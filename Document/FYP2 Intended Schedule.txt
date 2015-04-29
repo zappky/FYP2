@@ -1,0 +1,52 @@
+(subjected to changes)
+week 1~2 (conception)
+Game design and team
+
+week 3 (Pre-production)
+Framework and basic feature(able to move,1st person view,rough first stage layout)
+[milestone] Basic project environment is done
+
+week 4~5 (Pre-Alpha development) - main feature are all here.Very important to finish these -
+finish basic core game mechanism(stealth and puzzle) 
+- first stage layout with placeholder model
+- basic inventory system(able to store item)
+- at least 1 puzzle element
+- able to lose(get caught by enemy)
+- able to win(fulfilling goal)
+- Stealth bar display
+- done at least 1 factor of lower stealth bar
+- done at least 1 factor of restore stealth bar
+- able to pick up item
+- able to use item
+[milestone] Basic feel of game is done
+
+week 6~8 (Alpha development) -Better to have feature are here- *Note bug are allowed at this stage, main idea is to get all the basic feel done by end of alpha*
+finish other game element
+- crafting system
+- Finish puzzle element
+- Finish stealth element
+- enemy Ai and FOV
+- collectible placement
+- Point system
+- tracking of time spent to clear stage
+- minimap
+- music and sound
+[milestone] Completing all intented game features
+
+week 9 (Post Alpha development (Buffing up content) )
+- Credit page
+- Main Menu Page
+- Setting page
+- Collectible page
+- 2 more stage
+[milestone] Proper Game
+
+week 10~14 (Beta development (Debug,Game Testing,polish))
+- Debug and game testing
+[milestone] Stable and user-friendly game
+
+week 15~16 (Gold development (Polish))
+- Beautfy,fine adjustment.
+[milestone] Finalising game
+
+week 17 (Presentation)
