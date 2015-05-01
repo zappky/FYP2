@@ -1,0 +1,29 @@
+1. Upload new item
+-move desired item into your github folder
+-open your github on your pc
+-select the correct repositories
+-Open up "Uncommited changes"
+-select the file you really want to dedicate to the repositories.
+-press commit to master, puting any comment if you want
+-press sync
+-done
+
+2.Managing Conflict
+-Open up the conflicted files.
+-delete the things you don't
+-commit the changes
+-sync
+-done
+
+3.Copy a clone at your local pc from the repositories
+-open your github on your pc
+-press the "+" button on the top left hand corner
+-select the repositroies you want to have a local copy
+-done
+
+glossory
+master - master branch,meaning the branch where everyone will ultimately contribute to. aka main river
+commit - as the lateral english meaning.commiting yourself of the changes
+sync - sync up your local and repository version.practically a merge
+
+
