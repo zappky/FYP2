@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{1485EC76-E270-7C03-C742-AEC49EEAC15B}</ProjectGuid>
+	<ProjectGuid>{8FE98D30-6686-C5CE-7393-A62F443E1D85}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -65,10 +65,10 @@
      <None Include="Assets\_IMPORTED_\Photon Unity Networking\readme.txt" />
      <None Include="Assets\_IMPORTED_\Photon Unity Networking\changelog.txt" />
  <Reference Include="Photon3Unity3D">
- <HintPath>C:/Users/0000/Desktop/[GAME PROJECTS]/[TEST, TUTS]/FPS Parkour game/FPS Game/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+ <HintPath>C:/Users/0000/Desktop/FYP2/_FYP2_Git/FYP2/FYP2/Assets/Plugins/Photon3Unity3D.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
- <HintPath>C:/Users/0000/Desktop/[GAME PROJECTS]/[TEST, TUTS]/FPS Parkour game/FPS Game/Assets/_IMPORTED_/Photon Unity Networking/Editor/PhotonNetwork/Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/Users/0000/Desktop/FYP2/_FYP2_Git/FYP2/FYP2/Assets/_IMPORTED_/Photon Unity Networking/Editor/PhotonNetwork/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
@@ -76,11 +76,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{37CE1C4F-535A-BDD2-569C-1E04B35B633F}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{F6B4C491-A57C-0221-139A-28B8E34F612E}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{54429F92-6BEA-13D3-7A3D-38ED9E70CF28}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{B2D0E592-A81F-BDDF-C6DB-E7E5D25E6B0E}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript.unityproj">
-      <Project>{9EE22B11-E4CA-30A1-674B-361CDC5B5020}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
+      <Project>{A6F44ED1-9B91-EC61-86AA-18F9B03EB50F}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
