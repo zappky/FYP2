@@ -38,7 +38,8 @@
 -define:ENABLE_PROFILER
 -define:UNITY_EDITOR
 -define:UNITY_EDITOR_WIN
-Assets/Scripts/CInteract.cs
+Assets/Scripts/CSelect.cs
+Assets/Scripts/CTimer.cs
 Assets/Scripts/HideCursorScript.cs
 Assets/Scripts/SpawnSpot.cs
 "Assets/_IMPORTED_/Standard Assets/Character Controllers/Sources/Scripts/MouseLook.cs"
