@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// this script is to able player to "touch" item in the world
+ 
 public class CSelect : MonoBehaviour {
 
 	public RaycastHit hit;
 	public float raylength = 10.0f;
-	public bool ongui = true;
+	public bool display = true;
 	public bool onguihelper = true;
 	public string interacthelpertext = "'e' to interact";
 	Ray ray;
@@ -24,7 +26,7 @@ public class CSelect : MonoBehaviour {
 			onguihelper = true;
 
 			Debug.Log (hit.collider.gameObject.name);
-			if (Input.GetKeyDown ("e")) 
+			if (Input.GetButtonDown ("Interact")) 
 			{
 				if (hit.collider.gameObject.tag == "Alarm") 
 				{
@@ -36,9 +38,13 @@ public class CSelect : MonoBehaviour {
 			onguihelper = false;
 		}
 	}
+	void ToggleDisplay()
+	{
+		display = !display;
+	}
 	void OnGUI()
 	{
-		if (ongui == true) 
+		if (display == true) 
 		{
 			if(onguihelper == true)
 			{

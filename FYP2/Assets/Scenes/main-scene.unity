@@ -411,6 +411,46 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 0}
+--- !u!1 &66119819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 66119821}
+  - 114: {fileID: 66119820}
+  m_Layer: 0
+  m_Name: ItemDatabase
+  m_TagString: Item Database
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &66119820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 66119819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02202114d536fa49895740a09c95740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDatabase: []
+--- !u!4 &66119821
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 66119819}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.53334427, y: 1.09755278, z: -9.0615139}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
 --- !u!1 &69915920
 GameObject:
   m_ObjectHideFlags: 0
@@ -3894,6 +3934,7 @@ GameObject:
   - 114: {fileID: 1795129926}
   - 114: {fileID: 1795129925}
   - 114: {fileID: 1795129924}
+  - 114: {fileID: 1795129930}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -3912,6 +3953,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cfb9378cf5ebce4e95eefad406b70d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  raylength: 10
+  display: 1
+  onguihelper: 1
+  interacthelpertext: '''e'' to interact'
 --- !u!114 &1795129925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4028,6 +4073,20 @@ Transform:
   - {fileID: 22426152}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1795129930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1795129923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f4698281fb2124ea6ad01dcf1f43bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: []
+  database: {fileID: 0}
+  display: 0
 --- !u!1 &1797853307
 GameObject:
   m_ObjectHideFlags: 0
@@ -4476,6 +4535,7 @@ MonoBehaviour:
   timerUpperLimit: 20
   timerLowerLimit: 0
   operate: 1
+  display: 1
   alert: 0
   timerstate: 0
 --- !u!23 &1982297161

@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//this script is to make a alarm clock item funtional
+
 public class CTimer : MonoBehaviour {
 	public float timer  = 10.0f; // var to hold the time in sec
 	public float previoustimer  = 10.0f;//var to hold the time in sec set previously,also the time which timer restore to.
 	public float timerUpperLimit = 20.0f; //count up limit
 	public float timerLowerLimit = 0.0f; // count down limit
 	public bool operate   = false; // whether to update
+	public bool display = true;  // whether to draw the ui
 	public bool alert   = false; // whether to ring alarm
-
 	public enum TimerState
 	{
 		countdown
@@ -82,6 +84,10 @@ public class CTimer : MonoBehaviour {
 	public void ToggleOperation()
 	{
 		operate = !operate;
+	}
+	public void ToggleDisplay()
+	{
+		display = !display;
 	}
 	public void SetOperate( bool start )
 	{
