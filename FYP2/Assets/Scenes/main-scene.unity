@@ -4084,9 +4084,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f4698281fb2124ea6ad01dcf1f43bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotX: 5
+  slotY: 2
+  slotXpadding: 1
+  slotYpadding: 1
+  slotsXstartposition: 0
+  slotsYstartposition: 0
+  slotsize: 20
   inventory: []
+  slots: []
   database: {fileID: 0}
   display: 0
+  skin: {fileID: 11400000, guid: 698865607c47bfe49a3bacff8f441b64, type: 2}
 --- !u!1 &1797853307
 GameObject:
   m_ObjectHideFlags: 0
