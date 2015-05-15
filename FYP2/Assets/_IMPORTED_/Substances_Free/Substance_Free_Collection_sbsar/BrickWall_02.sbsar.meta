@@ -127,7 +127,8 @@ SubstanceImporter:
           first:
             name: _MainTex
           second:
-            texture: {instanceID: 0}
+            texture: {fileID: 1317947734, guid: 1e3bfaa4c8080a84ab11b92c542c021d,
+              type: 3}
             scale: {x: 1, y: 1}
             offset: {x: 0, y: 0}
         data:
@@ -170,8 +171,8 @@ SubstanceImporter:
     textureAssignments:
     - shaderProp:
         name: _MainTex
-      material: {instanceID: 0}
-      baseUID: 1675657122
+      material: {fileID: 193139059, guid: 1e3bfaa4c8080a84ab11b92c542c021d, type: 3}
+      baseUID: 749476946
     - shaderProp:
         name: _BumpMap
       material: {instanceID: 0}
