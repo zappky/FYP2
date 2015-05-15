@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\HideCursorScript.cs" />
+     <Compile Include="Assets\Scripts\Parachute.cs" />
      <Compile Include="Assets\Scripts\SpawnSpot.cs" />
      <Compile Include="Assets\_IMPORTED_\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
   </ItemGroup>
