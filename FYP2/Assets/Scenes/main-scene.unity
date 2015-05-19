@@ -1621,6 +1621,7 @@ GameObject:
   - 33: {fileID: 681456399}
   - 135: {fileID: 681456398}
   - 23: {fileID: 681456397}
+  - 54: {fileID: 681456401}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -1683,6 +1684,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
+--- !u!54 &681456401
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 681456396}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &706405007
 GameObject:
   m_ObjectHideFlags: 0
@@ -4083,9 +4099,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1795129923}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6356678ced95fb44836850d6efdbfdb, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ad2db89bab90094caa8a7659937f1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pushPower: 2
 --- !u!143 &1795129928
 CharacterController:
   m_ObjectHideFlags: 0
