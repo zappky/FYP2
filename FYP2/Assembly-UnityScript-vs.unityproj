@@ -52,6 +52,9 @@
      <Compile Include="Assets\_IMPORTED_\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonCamera.js" />
      <Compile Include="Assets\_IMPORTED_\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonController.js" />
      <Compile Include="Assets\_IMPORTED_\Standard Assets\JTimer.js" />
+ <Reference Include="Assembly-UnityScript-firstpass">
+ <HintPath>C:/Users/DarrenLow/Documents/GitHub/FYP2/FYP2/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

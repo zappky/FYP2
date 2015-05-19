@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ControllerCollisionScript : MonoBehaviour {
@@ -16,6 +16,14 @@ public class ControllerCollisionScript : MonoBehaviour {
 
 	void OnControllerColliderHit(ControllerColliderHit col)
 	{
+		//check win
+		if (col.transform.tag == "WinObjective")
+		{
+			//print ("hited");
+			Application.LoadLevel("winscreen");
+		}
+
+		//collision to other objects in the world
 		if(col.rigidbody == null || col.rigidbody.isKinematic)
 			return;
 
