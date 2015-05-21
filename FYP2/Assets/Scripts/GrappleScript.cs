@@ -28,13 +28,16 @@ public class GrappleScript : MonoBehaviour {
 		Camera cam = Camera.main;
 
 		// Spawn grapple on player
-		theGrapple = (GameObject)Instantiate(grapplePrefab, cam.transform.position, cam.transform.rotation);
+		Vector3 grappleSpawnPos = cam.transform.position;
+		grappleSpawnPos.x += 1;
+		grappleSpawnPos.z -= 1;
+		theGrapple = (GameObject)Instantiate(grapplePrefab, grappleSpawnPos, cam.transform.rotation);
 
 		// Get grapple's end (to let player 'hold on' to)
-		Transform grappleEnd = GetEndChild(theGrapple.transform);	
+		Transform grappleEnd = theGrapple.transform.GetChild(theGrapple.transform.childCount-1);	
 
 		// 'Attach' player to grapple end
-		grappleEnd.gameObject.AddComponent<FixedJoint>().connectedBody = this.gameObject.GetComponent<Rigidbody>();
+		grappleEnd.gameObject.AddComponent<FixedJoint>().connectedBody = this.GetComponent<Rigidbody>();
 
 		// Throw grapple (adding force to hook i.e. front of grapple)
 		theGrappleHook_rb = theGrapple.transform.GetChild(0).GetComponent<Rigidbody>();

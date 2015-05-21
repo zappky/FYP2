@@ -101,8 +101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 652173f49724aff4daa68b7d9c9bbeb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 100004, guid: 6d86d52680c83d9458fcd28ef1d8119e, type: 2}
-  ropePrefab: {fileID: 135692, guid: 7d897d0977ecf6f46ad595d362285875, type: 2}
   throwForce: 100
 --- !u!1001 &100100000
 Prefab:
