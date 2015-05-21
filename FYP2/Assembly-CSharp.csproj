@@ -49,11 +49,15 @@
      <Compile Include="Assets\Scripts\CSelect.cs" />
      <Compile Include="Assets\Scripts\CTimer.cs" />
      <Compile Include="Assets\Scripts\ControllerCollisionScript.cs" />
+     <Compile Include="Assets\Scripts\EnemyAi.cs" />
      <Compile Include="Assets\Scripts\FpsMovement.cs" />
+     <Compile Include="Assets\Scripts\GrappleCollisionScript.cs" />
+     <Compile Include="Assets\Scripts\GrappleScript.cs" />
      <Compile Include="Assets\Scripts\HideCursorScript.cs" />
      <Compile Include="Assets\Scripts\Inventory.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Scripts\ItemDatabase.cs" />
+     <Compile Include="Assets\Scripts\Parachute.cs" />
      <Compile Include="Assets\Scripts\SpawnSpot.cs" />
      <Compile Include="Assets\_IMPORTED_\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
  <Reference Include="UnityEngine.UI">
@@ -62,10 +66,6 @@
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{37E20FD6-A20C-C1FE-A459-F5A3B65EDCAC}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

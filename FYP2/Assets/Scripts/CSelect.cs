@@ -25,7 +25,7 @@ public class CSelect : MonoBehaviour {
 		{ //ray cast testing
 			onguihelper = true;
 
-			Debug.Log (hit.collider.gameObject.name);
+			//Debug.Log (hit.collider.gameObject.name);
 			if (Input.GetButtonDown ("Interact")) 
 			{
 				if (hit.collider.gameObject.tag == "Alarm") 

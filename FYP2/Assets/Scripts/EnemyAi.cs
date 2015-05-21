@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿	using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -28,7 +28,7 @@ public class EnemyAi : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		waypointlist.Add (transform.position);//storing original position
+//		waypointlist.Add (transform.position);//storing original position
 	}
 	
 	// Update is called once per frame

@@ -49,16 +49,17 @@
      <Compile Include="Assets\Scripts\CSelect.cs" />
      <Compile Include="Assets\Scripts\CTimer.cs" />
      <Compile Include="Assets\Scripts\ControllerCollisionScript.cs" />
+     <Compile Include="Assets\Scripts\EnemyAi.cs" />
      <Compile Include="Assets\Scripts\FpsMovement.cs" />
+     <Compile Include="Assets\Scripts\GrappleCollisionScript.cs" />
+     <Compile Include="Assets\Scripts\GrappleScript.cs" />
      <Compile Include="Assets\Scripts\HideCursorScript.cs" />
      <Compile Include="Assets\Scripts\Inventory.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Scripts\ItemDatabase.cs" />
+     <Compile Include="Assets\Scripts\Parachute.cs" />
      <Compile Include="Assets\Scripts\SpawnSpot.cs" />
      <Compile Include="Assets\_IMPORTED_\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
- <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/DarrenLow/Documents/GitHub/FYP2/FYP2/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
