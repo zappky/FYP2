@@ -1,9 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GrappleCollisionScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\FpsMovement.cs">
     <Files>
-      <File FileName="Assets\Scripts\GrappleScript.cs" Line="32" Column="22" />
-      <File FileName="Assets\Scripts\GrappleCollisionScript.cs" Line="34" Column="15" />
+      <File FileName="Assets\Scripts\FpsMovement.cs" Line="95" Column="59" />
+      <File FileName="Assets\Scripts\GrappleScript.cs" Line="85" Column="83" />
+      <File FileName="Assets\Scripts\GrappleCollisionScript.cs" Line="55" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

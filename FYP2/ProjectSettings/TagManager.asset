@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Alarm
   - WinObjective
+  - Rope
   layers:
   - Default
   - TransparentFX

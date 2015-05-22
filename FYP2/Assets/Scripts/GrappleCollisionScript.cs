@@ -9,7 +9,7 @@ public class GrappleCollisionScript : MonoBehaviour {
 	//private GameObject theGrapple;
 
 	private Rigidbody theGrappleHook_rb;
-	private HingeJoint grabHinge;
+	private FixedJoint grabJoint;
 	
 	// Use this for initialization
 	void Start () {
@@ -38,9 +38,19 @@ public class GrappleCollisionScript : MonoBehaviour {
 			theGrappleHook_rb.velocity *= 0;	//stop hook's movement
 			isHooked = true;
 			
-			// create hingejoint to obj it collided with 
-			grabHinge = this.gameObject.AddComponent<HingeJoint>();
-			grabHinge.connectedBody = col.rigidbody;
+			// create joint to obj it collided with 
+			grabJoint = this.gameObject.AddComponent<FixedJoint>();
+			grabJoint.connectedBody = col.rigidbody;
 		}
+	}
+
+	public void SetGrappleHooked(bool isHooked)
+	{
+		this.isHooked = isHooked;
+	}
+	
+	public bool GetGrappleHooked()
+	{
+		return isHooked;
 	}
 }
