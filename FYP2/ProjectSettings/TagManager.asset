@@ -7,7 +7,7 @@ TagManager:
   - Alarm
   - WinObjective
   - Rope
-  - Alert
+  - Item Database
   layers:
   - Default
   - TransparentFX

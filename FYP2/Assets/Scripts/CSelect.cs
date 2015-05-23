@@ -10,11 +10,13 @@ public class CSelect : MonoBehaviour {
 	public bool display = true;
 	public bool onguihelper = true;
 	public string interacthelpertext = "'e' to interact";
+	public Inventory playerinventory;
 	Ray ray;
 
 	// Use this for initialization
 	void Start () {
-
+		
+		playerinventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
 	}
 	
 	// Update is called once per frame
@@ -25,12 +27,27 @@ public class CSelect : MonoBehaviour {
 		{ //ray cast testing
 			onguihelper = true;
 
-			//Debug.Log (hit.collider.gameObject.name);
 			if (Input.GetButtonDown ("Interact")) 
 			{
-				if (hit.collider.gameObject.tag == "Alarm") 
+				
+				switch(hit.collider.gameObject.tag)
 				{
-					hit.collider.gameObject.GetComponent<CTimer> ().OnLookInteract ();
+					case "Alarm":
+					{
+						hit.collider.gameObject.GetComponent<CTimer> ().OnLookInteract ();
+					}
+					break;
+				}
+			}
+			if (Input.GetButtonDown ("Pick Up")) 
+			{
+				switch(hit.collider.gameObject.tag)
+				{
+				case "Alarm":
+				{
+					playerinventory.AddItem(1);
+				}
+					break;
 				}
 			}
 		} else 
