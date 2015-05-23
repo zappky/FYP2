@@ -15,6 +15,13 @@ public class ControllerCollisionScript : MonoBehaviour {
 
 	void OnControllerColliderHit(ControllerColliderHit col)
 	{
+		//check win
+		if (col.transform.tag == "WinObjective")
+		{
+			//print ("hited");
+			Application.LoadLevel("winscreen");
+		}
+
 		if(col.rigidbody == null || col.rigidbody.isKinematic)
 			return;
 
