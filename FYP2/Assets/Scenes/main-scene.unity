@@ -1832,6 +1832,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDatabase: []
+  craftDatabase: []
   alarmitem: {fileID: 0}
 --- !u!4 &1344691425
 Transform:
