@@ -8,6 +8,7 @@ TagManager:
   - WinObjective
   - Rope
   - Item Database
+  - Alert
   layers:
   - Default
   - TransparentFX
