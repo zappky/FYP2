@@ -3,6 +3,14 @@ using System.Collections;
 
 //this script is to make a alarm clock item funtional
 
+[System.Serializable]
+public class my_rectdata
+{
+	public float left = 10.0f;
+	public float top = 10.0f;
+	public float width = 50.0f;
+	public float height = 20.0f;
+}
 
 [System.Serializable]
 public class my_timedata {
@@ -11,6 +19,7 @@ public class my_timedata {
 	public float second = 0;
 	public float minute = 0;
 	public float GetTotalTimeInSecond()
+	
 	{
 		return minute*minute_base + second;
 	}
@@ -51,6 +60,8 @@ public class CTimer : MonoBehaviour {
 	public bool operate   = false; // whether to update
 	public bool display = true;  // whether to draw the ui
 	public bool alert   = false; // whether to ring alarm
+	public my_rectdata rect;
+		
 	public enum TimerState
 	{
 		countdown
@@ -65,15 +76,37 @@ public class CTimer : MonoBehaviour {
 	public TimerFormat timerformat = TimerFormat.MIN_SEC;
 	// Use this for initialization
 	void Start () {
+	
 		operate = false;
-		previoustimer.second = timer.second = 10.0f;	
-		//previoustimer.minute = timer.minute = 1.0f;	
-		//timerUpperLimit.minute = 1.0f;
-		timerUpperLimit.second = 10.0f;
+				
 		timerLowerLimit.second = 0.0f;
-		
-		timerformat = TimerFormat.MIN_SEC;
-		timerstate= TimerState.countdown;
+	
+		switch(this.tag)//configuration,cos i want to reuse this script as game clock
+		{
+			default:
+			break;
+			
+			case "Alarm":
+				previoustimer.second = timer.second = 10.0f;	
+			break;
+			
+			case "Game Session":
+				rect.left = Screen.width*0.9f;
+				rect.top = Screen.height*0.01f;
+				rect.width = 50.0f;
+				rect.height = 20.0f;
+				
+				previoustimer.second = timer.second = 0.0f;
+				
+				timerUpperLimit.minute = 99.0f;//some ridiculous time
+				timerUpperLimit.second = 59.0f;
+				
+				timerformat = TimerFormat.MIN_SEC;
+				timerstate= TimerState.countup;
+				
+				operate = true;
+			break;
+		}
 	}
 	
 	// Update is called once per frame
@@ -208,19 +241,21 @@ public class CTimer : MonoBehaviour {
 				default:
 				case TimerFormat.SEC:
 				{
-					GUI.Box(new Rect(10,10,50,20), "" + timer.second.ToString("0"));
+
+				//rect.left
+					GUI.Box(new Rect(rect.left,rect.top,rect.width,rect.height), "" + timer.second.ToString("0"));
 				}break;
 				
 				case TimerFormat.MIN_SEC:
 				{
-				GUI.Box(new Rect(10,10,50,20),timer.minute.ToString("f0") + ":0" + timer.second.ToString("f0"));
+				
 				if(Mathf.Round(timer.second) <= 9.0f)
 					{
-					GUI.Box(new Rect(10,10,50,20),timer.minute.ToString("f0") + ":0" + timer.second.ToString("f0"));
+					GUI.Box(new Rect(rect.left,rect.top,rect.width,rect.height),timer.minute.ToString("f0") + ":0" + timer.second.ToString("f0"));
 					}
 					else
 					{
-					GUI.Box(new Rect(10,10,50,20), timer.minute.ToString("f0") + ":" + timer.second.ToString("f0"));
+					GUI.Box(new Rect(rect.left,rect.top,rect.width,rect.height), timer.minute.ToString("f0") + ":" + timer.second.ToString("f0"));
 					}
 				}break;
 			}

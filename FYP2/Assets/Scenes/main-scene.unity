@@ -1845,6 +1845,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!1 &1383262357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1383262359}
+  - 114: {fileID: 1383262358}
+  m_Layer: 0
+  m_Name: Game Session
+  m_TagString: Game Session
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1383262358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1383262357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448def297b989384a8df4b74670b5398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer:
+    minute_base: 60
+    minute_tick: 1
+    second: 0
+    minute: 0
+  previoustimer:
+    minute_base: 60
+    minute_tick: 1
+    second: 0
+    minute: 0
+  timerUpperLimit:
+    minute_base: 60
+    minute_tick: 1
+    second: 99
+    minute: 99
+  timerLowerLimit:
+    minute_base: 60
+    minute_tick: 1
+    second: -1
+    minute: -1
+  operate: 1
+  display: 0
+  alert: 0
+  rect:
+    left: 10
+    top: 10
+    width: 50
+    height: 20
+  timerstate: 1
+  timerformat: 0
+--- !u!4 &1383262359
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1383262357}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -47.2026672, y: 22.7248936, z: -28.4522705}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!1 &1430730701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,6 +1980,11 @@ MonoBehaviour:
   operate: 1
   display: 1
   alert: 0
+  rect:
+    left: 10
+    top: 10
+    width: 50
+    height: 20
   timerstate: 0
   timerformat: 1
 --- !u!23 &1430730704

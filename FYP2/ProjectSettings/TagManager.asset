@@ -9,6 +9,7 @@ TagManager:
   - Rope
   - Item Database
   - Alert
+  - Game Session
   layers:
   - Default
   - TransparentFX
