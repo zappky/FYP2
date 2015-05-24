@@ -10,6 +10,7 @@ TagManager:
   - Item Database
   - Alert
   - Game Session
+  - Waypoint
   layers:
   - Default
   - TransparentFX

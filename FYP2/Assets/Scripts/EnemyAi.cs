@@ -1,93 +1,175 @@
-﻿	using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 //this script aim to describle behaviour of ai
 
-public class EnemyAi : MonoBehaviour {
+public class EnemyAI : MonoBehaviour {
 
 	public enum EnemyState
 	{
-		NONE,
 		IDLE,
-		PATROL,
+		ROAM,
 		ALERT,
 		RESET
 	}
-	public EnemyState state = EnemyState.NONE;
-	//a frustrum
-	public float movementspeed = 1.0f;
-	public float eyesight = 1.0f; // uncomfirm yet
-	public float attackrange = 10.0f; // the range of reach of ai
-	public float tolerancelength = 10.0f;//the length of which to determine whether ai has reach the waypoint
-	public GUISkin icon;//icon on minimap
+	public EnemyState state = EnemyState.IDLE;
 
-	public List<Transform> waypointlist = new List<Transform>();//list of waypoint
-	int targetwaypoint = 0;
-	public Transform targetenemy;
+	//AI properties
+	public float moveSpeed = 5.0f;
+	public float alertMoveSpeed = 2.0f;			// move spd multiplier for when in alert state
+	public float IDLE_DELAY = 2.0f;				// how long AI stays in idle before roaming 
+	public float lineOfSight = 10.0f; 			// how far AI can see (adv.)
+	public float attackRange = 10.0f; 			// AI's range of reach 
+	public float toleranceLength = 10.0f;		// the length of which to determine whether AI has reach the waypoint
+	//public GUISkin icon;						// icon on minimap
 
-	// Use this for initialization
+	public Transform target;					// stores location of target for AI to move to  
+												// (e.g. noise player made/ player's location(if he's in view)/ 
+												//  last seen location)
+
+	// list of waypoints
+	public List<Transform> waypointList = new List<Transform>();	 
+	private int nextWaypt; 						// AI's next waypoint  
+
+	private float delay;						// idle delay (in seconds)
+
+
 	void Start () {
-//		waypointlist.Add (transform.position);//storing original position
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		AiUpdate ();
+		delay = IDLE_DELAY;
+		nextWaypt = 0;							// 0 - original pos. (whr AI spawns/is from) 
+
+		// Spawn pos
+		this.transform.position = waypointList[nextWaypt].position;			
+
+		//waypointlist.Add (transform.position); 	//storing spawn position
+
+		// AI render color = green
 	}
 
-	void AiUpdate()
+
+	void Update () {
+		AIUpdate ();
+	}
+
+	void AIUpdate()
 	{
 		switch (state) 
 		{
-			case EnemyState.NONE:
+//=================================================================================================================
+//#IDLE
+
 			case EnemyState.IDLE:
 			default:
 			{
-				//do nothing
+				// slack, do nth
+				delay -= Time.deltaTime;						
+				
+				if(delay <= 0)							 
+				{
+					delay = IDLE_DELAY;
+					state = EnemyState.ROAM;			 
+				}
+
+				// STEALTH CHECK
+				// if heard loud noise or spotted player 
+				// state = alert
+				// AI render color = red
+				// target = noise/player/player last seen
 			}
 			break;
 
-			case EnemyState.PATROL://waypoint patrol
+//#IDLE		
+//=================================================================================================================
+//#ROAM
+
+			case EnemyState.ROAM:			// roam from 1 waypt to another
 			{
-				if(waypointlist.Count > 1)//if there are waypoint other than original point
+				// MOVEMENT
+				if(waypointList.Count > 1)	// if there are waypoint other than original point
 				{
-					Vector3.MoveTowards(transform.position,waypointlist[targetwaypoint].position,movementspeed *Time.deltaTime);
-				if( (waypointlist[targetwaypoint].position-transform.position).sqrMagnitude < tolerancelength )
+					// move to next waypt
+					transform.position = Vector3.MoveTowards(transform.position, waypointList[nextWaypt].position, 
+				                                         	 moveSpeed * Time.deltaTime);
+					
+					// if AI is alr on targeted waypt 
+					if( (waypointList[nextWaypt].position-transform.position).sqrMagnitude < toleranceLength )
 					{
-						++targetwaypoint;
-						if(targetwaypoint > waypointlist.Count)
+						++nextWaypt;		// move to next waypt
+						if(nextWaypt > waypointList.Count-1)
 						{
-							targetwaypoint = 1;
+							nextWaypt = 0;
 						}
 					}
 				}
+
+				// STEALTH CHECK
+				// if heard loud noise or spotted player 
+				// state = alert
+				// AI render color = red
+				// target = noise/player/player last seen
 			}
 			break;
-
-			case EnemyState.ALERT://got alerted,search and attack enemy
+			
+//#ROAM		
+//=================================================================================================================
+//#ALERT
+										
+			case EnemyState.ALERT:		// got alerted, search for player (or if in sight, attack)
 			{
-			Vector3.MoveTowards(transform.position,targetenemy.position,movementspeed * Time.deltaTime);
+				Vector3.MoveTowards(transform.position, target.position, moveSpeed*alertMoveSpeed * Time.deltaTime);
+				
+				// if alertness >= 20
+				// if player within atk range
+				// 		(if we're doing AI attack for this proj)
+				// 		alertness = max  
+				//		attack player
+				// 		(else)
+				//		alertIncr acc = 3
+				// 		alertness += alertIncrement * alertIncr acc, gameover if alertness is at max
 
-				if( (transform.position - targetenemy.position).sqrMagnitude <attackrange )
+				// else (if player not within atk range)
+				// 
+				//		if player in sight
+				//			alertIncr acc = 1.5
+				//			alertness += alertIncrement * alertIncr acc
+				//			target = player
+				//
+				//	 		if lost sight of player
+				//				target = player last seen pos
+				//				if at target (i.e. last seen pos)
+				//					look ard/roam movement
+				//		 			alertness -=  alertDecrement*0.5	// slower dec of alertness
+				//
+				//		else (distraction/noise was cause of alert)
+				//			if at target (i.e. location of d/noise)
+				//				look ard/roam movement
+				//	 			alertness -=  alertDecrement			// faster dec of alertness
+				
+				// else (alert < 20)
+				// state = reset
+			}
+			break;
+			
+//#ALERT		
+//=================================================================================================================
+//#RESET
+
+			case EnemyState.RESET:		// relax, and go back to normal. AI goes to next waypt before idling fr a while
+			{
+				Vector3.MoveTowards(transform.position,waypointList[nextWaypt].position,moveSpeed * Time.deltaTime);
+				
+				if( (waypointList[nextWaypt].position-transform.position).sqrMagnitude < toleranceLength )
 				{
-					//attack animation and stuff
+						++nextWaypt;						// get rdy to move to next waypt
+						if(nextWaypt > waypointList.Count-1)
+						{
+							nextWaypt = 0;
+						}
+						state = EnemyState.IDLE;			//reset the state
 				}
 			}
 			break;
-
-			case EnemyState.RESET://relax,and go back to normal
-			{
-				targetwaypoint = 0;
-				Vector3.MoveTowards(transform.position,waypointlist[targetwaypoint].position,movementspeed * Time.deltaTime);
-			if( (waypointlist[targetwaypoint].position-transform.position).sqrMagnitude < tolerancelength )
-				{
-					targetwaypoint = 1;//restore to the first waypoint
-					state = EnemyState.IDLE;//reset the state
-				}
-			}
-			break;
-
 		}
 	}
 }

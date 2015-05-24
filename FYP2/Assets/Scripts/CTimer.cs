@@ -134,11 +134,11 @@ public class CTimer : MonoBehaviour {
 			switch(timerstate)
 			{
 				case TimerState.countdown:	
-					Debug.Log("counting down activated");				
+					//Debug.Log("counting down activated");				
 					CountDown();
 					break;
 				case TimerState.countup:
-					Debug.Log("counting up activated");
+					//Debug.Log("counting up activated");
 					CountUp();
 					break;
 				
