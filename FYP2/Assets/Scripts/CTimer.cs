@@ -18,23 +18,37 @@ public class my_timedata {
 	public float minute_tick = 1.0f;
 	public float second = 0;
 	public float minute = 0;
-	public float GetTotalTimeInSecond()
 	
+	public float GetTotalTimeInSecond()
 	{
-		return minute*minute_base + second;
+		return minute * minute_base + second;
 	}
+	
+	public float GetTotalTimeInMinute()
+	{
+		return minute + second/minute_base;
+	}
+	
 	public void FlattenMinuteToSecond()
 	{
 		second += minute*minute_base;
+		minute = 0.0f;
 	}
+	
 	public void SetTime(float min,float sec)
 	{
 		minute = min;
 		second = sec;
 	}
+	
 	public void ClearAll()
 	{
 		minute = second = 0.0f;
+	}
+	public void SetMinuteToSecond(float min)
+	{
+		this.minute = min;
+		FlattenMinuteToSecond();
 	}
 	public void SetSecondSafe(float sec)
 	{
@@ -45,6 +59,7 @@ public class my_timedata {
 		}
 		second += sec;
 	}
+	
 	public void SetEqual(my_timedata another)
 	{
 		this.second = another.second;
