@@ -9,6 +9,8 @@ public class Item   {
 	public int id = -1;
 	public string description = "Nil";
 	public int weight = -1;
+	public bool stackable = false;
+	public int amount = 1;
 	
 	public enum ItemType
 	{
@@ -22,9 +24,14 @@ public class Item   {
 	public Texture2D icon ;
 	public Item()//constructor
 	{
-
+		itemname = "Undefined";//Due to giving "name" will clash with in-built unity .name , a different name is given for the varable
+		id = -1;
+		description = "Nil";
+		weight = -1;
+		stackable = false;
+		amount = 1;
 	}
-	public Item(int id, string name,ItemType type,string description,int weight)//constructor
+	public Item(int id, string name,ItemType type,string description,int weight,int amount,bool stackable)//constructor
 	{
 		this.id = id;
 		this.itemname = name;
@@ -32,6 +39,8 @@ public class Item   {
 		this.description = description;
 		this.weight = weight;
 		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
+		this.amount = amount;
+		this.stackable = stackable;
 	}
 	
 }
