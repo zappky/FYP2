@@ -103,6 +103,8 @@ public class CTimer : MonoBehaviour {
 			
 			case "Alarm":
 				previoustimer.second = timer.second = 10.0f;	
+				timerformat = TimerFormat.MIN_SEC;
+				timerstate= TimerState.countdown;
 			break;
 			
 			case "Game Session":

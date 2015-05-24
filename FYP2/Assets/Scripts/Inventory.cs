@@ -41,14 +41,24 @@ public class Inventory : MonoBehaviour {
 
 		AddItem (0);
 		AddItem (1);
-		AddItem (2);
+		AddItem (0);
+		AddItem (1);
+		AddItem (0);
+		AddItem (1);
+		AddItem (0);
+		AddItem (1);
+		AddItem (0);
+		AddItem (1);
+		////AddItem (1);
+		//AddItem (1);
+		//AddItem (2);
 		//AddItem (0);
 		//AddItem (0);
 		//		for(int i = 0 ; i <10; ++i)
 		//		{
 		//			inventory.Add(database.itemDatabase[0]);//add testing object
 		//		}
-		print(CheckContainsItem(0));
+		//print(CheckContainsItem(0));
 	}
 	// Update is called once per frame
 	// Update is called once per frame
@@ -57,13 +67,30 @@ public class Inventory : MonoBehaviour {
 			{
 				ToggleDisplay();
 			}
-			if(Input.GetKeyDown("s"))
+			if(display == true)
 			{
-				SaveInventory();
-			}
-			if(Input.GetKeyDown("l"))
-			{
-				LoadInventory();
+				if(Input.GetKeyDown("s"))
+				{
+					SaveInventory();
+				}
+				if(Input.GetKeyDown("l"))
+				{
+					LoadInventory();
+				}
+				if(Input.GetKeyDown("t"))
+				{
+					Debug.Log("activate crafting test");
+					
+					//List<Item> temp = new List<Item>();
+					//temp.Add(database.GetItem(0));
+					//temp[0].amount = 10;
+					//AddItem (temp);
+					//Item testitem = new Item();
+					////testitem = database.CreateItem(2);
+					//Debug.Log("test item amount" + testitem.amount);
+					//AddItem (testitem);
+					AddItem(database.CraftItem(inventory,database.GetCraftRecipe(0)));
+				}
 			}
 			
 		}
@@ -72,6 +99,82 @@ public class Inventory : MonoBehaviour {
 			Item tempitem = inventory[indexfrom];
 			inventory[indexfrom] = inventory[indexto];
 			inventory[indexto] = tempitem;
+		}
+		public void AddItem(List<Item> Items)
+		{
+			for(int i = 0 ; i < Items.Count; ++i)
+			{
+				AddItem(Items[i]);
+			}
+		}
+		public void AddItem(Item item)//here didnt check if the item is valid
+		{	
+			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+			{
+				if(inventory[i].id == item.id && inventory[i].stackable == true)//if found matching item
+				{
+					//Debug.Log("increment existing stackable item" + item.amount);
+					
+					//Debug.Log("checking inventory amount" + inventory[i].amount);
+					inventory[i].amount += item.amount;
+					item = null;
+					
+					break;
+				}
+			}
+			if(item != null) //if item is still there
+			{
+				for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+				{
+					if(inventory[i].id < 0)//if there a slot is empty
+					{
+						inventory[i] = item;
+						//Debug.Log("adding new item");
+						break;
+					}
+				}
+			}
+		}
+		public void AddItem(string itemname)
+		{	
+			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+			{
+				if(inventory[i].id < 0)//if there a slot is empty
+				{
+					for(int j = 0 ; j <database.itemDatabase.Count;++j)//loop through the item database
+					{
+						if(database.itemDatabase[j].itemname == itemname)//look for the matching item id 
+						{
+							if(database.itemDatabase[j].stackable == true)
+							{
+								
+								bool found = false;
+								for(int k = 0 ; k < inventory.Count; ++k)//loop through whole inventory //not efficient,but cannot think of better alogrithm
+								{
+									if(inventory[k].itemname == itemname)//if there a slot is empty
+									{
+										++inventory[k].amount;
+										found = true;
+										break;
+									}
+								}
+								if(!found)
+								{
+									inventory[i] = new Item(database.itemDatabase[j]);//add it in
+									break;
+								}
+								
+							}else
+							{
+								
+								inventory[i] = new Item(database.itemDatabase[j]);//add it in
+							}
+							break;	
+						}
+					}
+					break;			
+				}
+			}
 		}
 		public void AddItem(int id)
 		{	
@@ -85,16 +188,7 @@ public class Inventory : MonoBehaviour {
 						{
 							if(database.itemDatabase[j].stackable == true)
 							{
-								//							Debug.Log("item is stackable");
-								//							if(CheckContainsItem(id) == true)
-								//							{
-								//								Debug.Log("already have the item");
-								//								++inventory[i].amount;
-								//							}else
-								//							{
-								//								Debug.Log("dont have the item");
-								//								inventory[i] = database.itemDatabase[j];//add it in
-								//							}
+	
 								bool found = false;
 								for(int k = 0 ; k < inventory.Count; ++k)//loop through whole inventory //not efficient,but cannot think of better alogrithm
 								{
@@ -107,14 +201,14 @@ public class Inventory : MonoBehaviour {
 								}
 								if(!found)
 								{
-									inventory[i] = database.itemDatabase[j];//add it in
+									inventory[i] = new Item(database.itemDatabase[j]);//add it in
 									break;
 								}
 								
 							}else
 							{
-								Debug.Log("just add the item");
-								inventory[i] = database.itemDatabase[j];//add it in
+								
+								inventory[i] = new Item(database.itemDatabase[j]);//add it in
 							}
 							break;	
 						}
@@ -144,7 +238,7 @@ public class Inventory : MonoBehaviour {
 			{
 				if(inventory[i].id == id)
 				{
-					RemoveKnownItem(id);
+					RemoveKnownItem(i);
 					break;
 				}
 			}
@@ -163,10 +257,18 @@ public class Inventory : MonoBehaviour {
 		}
 		void UseItem(Item item)
 		{
-			database.UseItemEffect(item.id);
-			RemoveItem(item.id);
+			if(database.UseItemEffect(item.id))//if successful
+			{
+				RemoveItem(item.id);
+			}
 		}
-		
+		void UseItem(Item item,int itemindex)
+		{
+			if(database.UseItemEffect(item.id))//if successful
+			{
+				RemoveKnownItem(itemindex);
+			}
+		}
 		public void ToggleDisplay()
 		{
 			display = !display;
@@ -199,6 +301,21 @@ public class Inventory : MonoBehaviour {
 		int index = 0;
 		Event currentevent = Event.current;
 		
+		if(currentevent.button == 1 && currentevent.type == EventType.mouseUp && draggingitem)//discarding item when leftclick and dragging item//temporary
+		{				
+			if(itemdragged.stackable == true ||  itemdragged.type == Item.ItemType.Consumable)
+			{
+				--itemdragged.amount;
+				//Debug.Log("discarding");
+				if(itemdragged.amount <= 0)
+				{			
+					draggingitem = false;
+					itemdragged = null;
+				}
+			}
+			
+		}
+		
 		for (int y = 0; y < slotY; ++y) 
 		{
 			for (int x = 0; x < slotX; ++x) 
@@ -206,25 +323,12 @@ public class Inventory : MonoBehaviour {
 				Rect slotRect = new Rect(x*slotsize*slotXpadding + slotsXstartposition + slotfineoffset.x +slottempoffset.x, y*slotsize*slotYpadding + slotsYstartposition + slotfineoffset.y+slottempoffset.y,slotsize,slotsize);
 				//Rect slotRect = new Rect(x*60,y*60,50,50);
 				GUI.Box(slotRect, y.ToString(),skin.GetStyle("slot"));
-				
+//				if(inventory[index].amount <= 0)
+//				{
+//					inventory[index] = new Item();
+//				}
 				slots[index] = inventory[index];//sync up
 			
-				if(currentevent.button == 1 && currentevent.type == EventType.mouseUp && draggingitem)//discarding item when leftclick and dragging item//temporary
-				{				
-					if(itemdragged.stackable == true ||  itemdragged.type == Item.ItemType.Consumable)
-					{
-						--itemdragged.amount;
-						
-						if(itemdragged.amount <= 0)
-						{
-							
-							draggingitem = false;
-							itemdragged = null;
-						}
-					}
-					
-				}
-
 				if(slots[index].id >= 0)//if slot contain an valid item
 				{
 					GUI.DrawTexture(slotRect,slots[index].icon);
@@ -234,7 +338,7 @@ public class Inventory : MonoBehaviour {
 						
 						//testhit = true;
 						showtooltip = true;
-						print("Index" + index);
+						//print("Index" + index);
 						tooltip = CreateToolTip(slots[index]);
 						
 						
@@ -242,7 +346,7 @@ public class Inventory : MonoBehaviour {
 						{
 							//Debug.Log("double click");
 							//++testdoubleclickcount;
-							UseItem(slots[index]);
+							UseItem(slots[index],index);
 						}
 						
 						if(currentevent.button == 0 && currentevent.type == EventType.mouseDrag && !draggingitem)//if left click and drag,and not currently dragging item
