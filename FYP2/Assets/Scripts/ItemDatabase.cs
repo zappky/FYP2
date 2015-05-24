@@ -11,7 +11,7 @@ public class Item_Proxy//just a container for holding key data about crafting co
 	public int amount = 1;
 	public int itemid = -1;
 	
-	public Item_Proxy(int amount, int itemid)
+	public Item_Proxy(int itemid, int amount)
 	{
 		this.amount = amount;
 		this.itemid = itemid;
@@ -22,81 +22,122 @@ public class Item_Proxy//just a container for holding key data about crafting co
 public class CraftingRecipe//i do this purely because i want to view the item in the inspector as well =P
 {//container class
 	public string recipe_name = "";
-	public List<Item_Proxy> recipe = new List<Item_Proxy>();
+	public List<Item_Proxy> ingrediant = new List<Item_Proxy>();
+	public List<Item_Proxy> output = new List<Item_Proxy>();
 	
-	public CraftingRecipe(List<Item> recipe,string recipe_name)//bundle the required amount inside item.amount
+	public CraftingRecipe(string recipe_name,List<Item_Proxy> ingrediant,List<Item_Proxy> output)
 	{
+		//multi in multi out
 		this.recipe_name = recipe_name;
-		
-		List<Item_Proxy> temp = new List<Item_Proxy>();
-		
-		for(int i = 0 ; i <recipe.Count;++i)
-		{
-			temp.Add( MakeItemData(recipe[i].amount,recipe[i].id) );
-		}
-		this.recipe = temp;
-	}
-	public CraftingRecipe(List<int> itemIdList,List<int>itemAmount,string recipe_name)
+		this.ingrediant = ingrediant;
+		this.output = output;
+	}	
+	public CraftingRecipe(string recipe_name,List<Item_Proxy> ingrediant,Item_Proxy output)
 	{
+		//multi in single out
 		this.recipe_name = recipe_name;
-		
-		List<Item_Proxy> temp = new List<Item_Proxy>();
-		
-		for(int i = 0 ; i <itemIdList.Count;++i)
-		{
-			temp.Add( MakeItemData(itemAmount[i],itemIdList[i]) );
-		}
-		
-		this.recipe = temp;
-	}
-	public CraftingRecipe(List<Item_Proxy> recipe,string recipe_name)
-	{
-		this.recipe_name = recipe_name;
-		this.recipe = recipe;
+		this.ingrediant = ingrediant;
+		this.output.Add(output);
 	}
 	
-	public CraftingRecipe(List<Item> recipe)//bundle the required amount inside item.amount
+	
+	public CraftingRecipe(string recipe_name,List<Item> ingrediant,List<Item> output)//bundle the amount of each individual ingrediant need inside item.amount,same got for output
 	{
-		List<Item_Proxy> temp = new List<Item_Proxy>();
+		//multi in multi out
+		this.recipe_name = recipe_name;
 		
-		for(int i = 0 ; i <recipe.Count;++i)
+		for(int i = 0 ; i < ingrediant.Count; ++i)
 		{
-			temp.Add( MakeItemData(recipe[i].amount,recipe[i].id) );
+			this.ingrediant.Add(ConvertItemToStorageType(ingrediant[i]));
 		}
-		this.recipe = temp;
-	}
-	public CraftingRecipe(List<int> itemIdList,List<int>itemAmount)
-	{
-		List<Item_Proxy> temp = new List<Item_Proxy>();
 		
-		for(int i = 0 ; i <itemIdList.Count;++i)
+		for(int i = 0 ; i < output.Count; ++i)
 		{
-			temp.Add( MakeItemData(itemAmount[i],itemIdList[i]) );
+			this.output.Add(ConvertItemToStorageType(output[i]));
 		}
-			
-		this.recipe = temp;
 	}
-	public CraftingRecipe(List<Item_Proxy> recipe)
+	public CraftingRecipe(string recipe_name,List<Item> ingrediant,Item output)//bundle the amount of each individual ingrediant need inside item.amount,same got for output
 	{
-		this.recipe = recipe;
+		//multi in single out
+		this.recipe_name = recipe_name;
+		
+		for(int i = 0 ; i < ingrediant.Count; ++i)
+		{
+			this.ingrediant.Add(ConvertItemToStorageType(ingrediant[i]));
+		}
+		
+		//for(int i = 0 ; i < output.Count; ++i)
+		//{
+			this.output.Add(ConvertItemToStorageType(output));
+		//}
 	}
-	public Item_Proxy MakeItemData(int amount, int itemid)
+
+		
+	public CraftingRecipe(string recipe_name,List<int> ingrediant_id, List<int> ingrediant_amount,List<int> output_id, List<int> output_amount)//primitive data type into storage data type
 	{
-		return new Item_Proxy(amount,itemid); 
+		//multi in multi out
+		this.recipe_name = recipe_name;
+		
+		for(int i = 0 ; i < ingrediant_id.Count; ++i)
+		{
+			this.ingrediant.Add(MakeItemData(ingrediant_id[i],ingrediant_amount[i]));
+		}
+		
+		for(int i = 0 ; i < output_id.Count; ++i)
+		{
+			this.output.Add(MakeItemData(output_id[i],output_amount[i]));
+		}
+	}	
+	public CraftingRecipe(string recipe_name,List<int> ingrediant_id, List<int> ingrediant_amount,int output_id, int output_amount)//primitive data type into storage data type
+	{
+		//multi in single out
+		this.recipe_name = recipe_name;
+		
+		for(int i = 0 ; i < ingrediant_id.Count; ++i)
+		{
+			this.ingrediant.Add(MakeItemData(ingrediant_id[i],ingrediant_amount[i]));
+		}
+		
+		//for(int i = 0 ; i < output_id.Count; ++i)
+		//{
+			this.output.Add(MakeItemData(output_id,output_amount));
+		//}
+	}
+	
+	public Item_Proxy MakeItemData(int itemid, int amount)
+	{
+		return new Item_Proxy(itemid,amount); 
 	}
 	public Item_Proxy ConvertItemToStorageType(Item item,int amount_required)
 	{
 		return new Item_Proxy(item.id,amount_required);
 	}
-//	public Item_Proxy ConvertItemToStorageType(Item item)
-//	{
-//		return new Item_Proxy(item.id,1);
-//	}
-//	public Item_Proxy ConvertItemToStorageType(int itemId,int itemAmount)
-//	{
-//		return new Item_Proxy(itemId,itemAmount);
-//	}
-
+	public Item_Proxy ConvertItemToStorageType(Item item)
+	{
+		return new Item_Proxy(item.id,item.amount);
+	}
+	public Item_Proxy ConvertItemToStorageTypeFlatten(Item item)
+	{
+		return new Item_Proxy(item.id,1);
+	}
+	public void ClearIngrediant()
+	{
+		//this.recipe_name = "";
+		this.ingrediant.Clear();
+		//this.output.Clear();
+	}
+	public void ClearOutput()
+	{
+		//this.recipe_name = "";
+		//this.ingrediant.Clear();
+		this.output.Clear();
+	}
+	public void ClearAll()
+	{
+		this.recipe_name = "";
+		this.ingrediant.Clear();
+		this.output.Clear();
+	}
 }
 
 public class ItemDatabase : MonoBehaviour {
@@ -114,22 +155,35 @@ public class ItemDatabase : MonoBehaviour {
 		PopulateTestObject();//remove when project go full launch
 		PopulateTestCraftingData();
 	}
-	public CraftingRecipe MakeCraftingRecipe(List<int> itemIdList,List<int>itemAmount)
+	
+	
+	public CraftingRecipe MakeCraftingRecipe(string recipieName,List<int> itemIdList,List<int>itemAmount,List<int> outputIdList,List<int>outputAmountList)
 	{
-		return new CraftingRecipe(itemIdList,itemAmount);
+		return new CraftingRecipe(recipieName,itemIdList,itemAmount,outputIdList,outputAmountList);
 	}
-	public CraftingRecipe MakeCraftingRecipe(List<Item> itemList)//bundle the required amount inside item.amount
+	public CraftingRecipe MakeCraftingRecipe(string recipieName,List<int> itemIdList,List<int>itemAmount,int outputId,int outputAmount)
 	{
-		return new CraftingRecipe(itemList);
+		return new CraftingRecipe(recipieName,itemIdList,itemAmount,outputId,outputAmount);
 	}
-	public CraftingRecipe MakeCraftingRecipe(List<int> itemIdList,List<int>itemAmount,string recipe_name)
+	
+	public CraftingRecipe MakeCraftingRecipe(string recipieName,List<Item> itemList,List<Item> outputList)
 	{
-		return new CraftingRecipe(itemIdList,itemAmount,recipe_name);
+		return new CraftingRecipe(recipieName,itemList,outputList);
 	}
-	public CraftingRecipe MakeCraftingRecipe(List<Item> itemList,string recipe_name)//bundle the required amount inside item.amount
+	public CraftingRecipe MakeCraftingRecipe(string recipieName,List<Item> itemList,Item output)
 	{
-		return new CraftingRecipe(itemList,recipe_name);
+		return new CraftingRecipe(recipieName,itemList,output);
 	}
+	
+	public CraftingRecipe MakeCraftingRecipe(string recipieName,List<Item_Proxy> itemList,List<Item_Proxy> outputList)
+	{
+		return new CraftingRecipe(recipieName,itemList,outputList);
+	}
+	public CraftingRecipe MakeCraftingRecipe(string recipieName,List<Item_Proxy> itemList,Item_Proxy output)
+	{
+		return new CraftingRecipe(recipieName,itemList,output);
+	}
+	
 //	public List<Item> MakePair(Item item1, Item item2)
 //	{
 //		List<Item> templist = new List<Item>();
@@ -154,18 +208,14 @@ public class ItemDatabase : MonoBehaviour {
 	}
 	public void PopulateTestCraftingData()
 	{
-		//List<Item> temp = new List<Item>();
-		//temp.Add(GetItem(0));
-		//temp.Add(GetItem(1));	
+		List<Item> temp1 = new List<Item>();
+		temp1.Add(GetItem(0));
+		temp1.Add(GetItem(1));	
 		
-		List<int> temp1 = new List<int>();
-		List<int> temp2 = new List<int>();
-		temp1.Add(0);
-		temp1.Add(1);
-		temp2.Add(2);
-		temp2.Add(3);
+		List<Item> temp2 = new List<Item>();
+		temp2.Add(GetItem(2));
 		
-		craftDatabase.Add(MakeCraftingRecipe(temp1,temp2,"test recipe"));	
+		craftDatabase.Add(MakeCraftingRecipe("test recipe",temp1,temp2));	
 	}
 	public void PopulateTestObject()
 	{
