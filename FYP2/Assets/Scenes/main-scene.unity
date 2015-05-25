@@ -3605,7 +3605,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   moveSpeed: 30
-  alertMoveSpeed: 2
+  alertSightMoveSpeed: 2
+  alertNoiseMoveSpeed: 1.20000005
   IDLE_DELAY: 2
   fieldOfViewAngle: 110
   attackRange: 10
