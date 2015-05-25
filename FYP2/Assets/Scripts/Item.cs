@@ -20,8 +20,8 @@ public class Item   {
 		Quest
 	}
 	public ItemType type = ItemType.Undefined;
-	
 	public Texture2D icon ;
+
 	public Item()//constructor
 	{
 		itemname = "Undefined";//Due to giving "name" will clash with in-built unity .name , a different name is given for the varable
@@ -30,6 +30,21 @@ public class Item   {
 		weight = -1;
 		stackable = false;
 		amount = 1;
+		type = ItemType.Undefined;
+
+		//this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
+	}
+	public Item( Item another)//copy constructor
+	{
+		this.id = another.id;
+		this.itemname = another.itemname;
+		this.type = another.type;
+		this.description = another.description;
+		this.weight = another.weight;	
+		this.amount = another.amount;
+		this.stackable = another.stackable;
+
+		this.icon = another.icon;
 	}
 	public Item(int id, string name,ItemType type,string description,int weight,int amount,bool stackable)//constructor
 	{
@@ -38,9 +53,10 @@ public class Item   {
 		this.type = type;
 		this.description = description;
 		this.weight = weight;
-		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
+	
 		this.amount = amount;
 		this.stackable = stackable;
+		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
 	}
 	
 }
