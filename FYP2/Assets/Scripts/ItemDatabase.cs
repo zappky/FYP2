@@ -266,9 +266,9 @@ public class ItemDatabase : MonoBehaviour {
 	}
 	public void PopulateTestObject()
 	{
-		itemDatabase.Add(new Item(0,"testobject",Item.ItemType.Undefined,"just a test object 0",1,1,true));	
-		itemDatabase.Add(new Item(1,"testobject",Item.ItemType.Consumable,"just a test item 1",1,1,true));	
-		itemDatabase.Add(new Item(2,"testobject",Item.ItemType.Consumable,"just a test alarm item 2",1,1,true));
+		itemDatabase.Add(new Item(0,"battery",Item.ItemType.Undefined,"just a test object 0",1,1,true));	
+		itemDatabase.Add(new Item(1,"gear",Item.ItemType.Consumable,"just a test item 1",1,1,true));	
+		itemDatabase.Add(new Item(2,"clock",Item.ItemType.Consumable,"just a test alarm item 2",1,1,true));
 	}
 	public Item GetItem(string name)//beware that this is getting a reference, whatever you do to the returned item,gonna affect the database
 	{

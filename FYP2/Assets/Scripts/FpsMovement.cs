@@ -99,7 +99,7 @@ public class FpsMovement : MonoBehaviour
 			                                                   ForceMode.Impulse);
 			//else
 			//cc.Move (speed * Time.deltaTime);
-			Debug.Log(this.gameObject.GetComponent<Rigidbody>().velocity);
+			//Debug.Log(this.gameObject.GetComponent<Rigidbody>().velocity);
 		}
 	}
 

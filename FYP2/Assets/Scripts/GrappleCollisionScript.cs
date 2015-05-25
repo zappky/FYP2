@@ -28,7 +28,6 @@ public class GrappleCollisionScript : MonoBehaviour {
 	{
 		if(col.rigidbody == null || !col.rigidbody.isKinematic)	//if that sth dont have rb or isKinematic, return
 			return;
-		Debug.Log(col.gameObject.name);
 
 		// check if wall/obj can be 'hookable'
 		//if(col.tag == "Hookable")

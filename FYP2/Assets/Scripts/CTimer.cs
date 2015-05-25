@@ -150,6 +150,9 @@ public class CTimer : MonoBehaviour {
 	{
 		if(timer.GetTotalTimeInSecond() <= timerLowerLimit.GetTotalTimeInSecond())
 		{
+			SoundEffect sound = this.GetComponent<SoundEffect>();
+			sound.PlaySound();
+
 			timer.SetEqual(timerLowerLimit);
 			alert = true;
 			operate = false;
