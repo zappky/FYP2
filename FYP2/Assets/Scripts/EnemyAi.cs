@@ -19,32 +19,37 @@ public class EnemyAI : MonoBehaviour {
 	public float moveSpeed = 5.0f;
 	public float alertMoveSpeed = 2.0f;			// move spd multiplier for when in alert state
 	public float IDLE_DELAY = 2.0f;				// how long AI stays in idle before roaming 
-	public float lineOfSight = 10.0f; 			// how far AI can see (adv.)
+	public float fieldOfViewAngle = 110f; 		// how far AI can see (adv.)
 	public float attackRange = 10.0f; 			// AI's range of reach 
 	public float toleranceLength = 10.0f;		// the length of which to determine whether AI has reach the waypoint
 	//public GUISkin icon;						// icon on minimap
 
+	public GameObject Player;
 	public Transform target;					// stores location of target for AI to move to  
 												// (e.g. noise player made/ player's location(if he's in view)/ 
 												//  last seen location)
 
 	// list of waypoints
-	public List<Transform> waypointList = new List<Transform>();	 
+	public  List<Transform> waypointList = new List<Transform>();	 
 	private int nextWaypt; 						// AI's next waypoint  
-
+	
+	private bool playerInSight;					// may nt be needed
 	private float delay;						// idle delay (in seconds)
 
+	private SphereCollider col;					// AI's hearing range 
 
 	void Start () {
 		delay = IDLE_DELAY;
 		nextWaypt = 0;							// 0 - original pos. (whr AI spawns/is from) 
 
 		// Spawn pos
-		this.transform.position = waypointList[nextWaypt].position;			
-
-		//waypointlist.Add (transform.position); 	//storing spawn position
+		transform.position = waypointList[nextWaypt].position;			
 
 		// AI render color = green
+		gameObject.GetComponent<Renderer>().material.color = new Color(0, 1, 0);
+
+		attackRange += GetComponent<Transform> ().localScale.x;
+		col = gameObject.GetComponent<SphereCollider>(); 
 	}
 
 
@@ -62,13 +67,15 @@ public class EnemyAI : MonoBehaviour {
 			case EnemyState.IDLE:
 			default:
 			{
-				// slack, do nth
+				// slack, do nth/ look ard
 				delay -= Time.deltaTime;						
 				
 				if(delay <= 0)							 
 				{
 					delay = IDLE_DELAY;
-					state = EnemyState.ROAM;			 
+					state = EnemyState.ROAM;		
+
+					transform.LookAt(waypointList[nextWaypt].transform.position, Vector3.up);
 				}
 
 				// STEALTH CHECK
@@ -95,11 +102,13 @@ public class EnemyAI : MonoBehaviour {
 					// if AI is alr on targeted waypt 
 					if( (waypointList[nextWaypt].position-transform.position).sqrMagnitude < toleranceLength )
 					{
-						++nextWaypt;		// move to next waypt
+						++nextWaypt;				// move to next waypt
 						if(nextWaypt > waypointList.Count-1)
 						{
 							nextWaypt = 0;
 						}
+						
+						state = EnemyState.IDLE;	// slack/look ard for a while
 					}
 				}
 
@@ -117,8 +126,18 @@ public class EnemyAI : MonoBehaviour {
 										
 			case EnemyState.ALERT:		// got alerted, search for player (or if in sight, attack)
 			{
-				Vector3.MoveTowards(transform.position, target.position, moveSpeed*alertMoveSpeed * Time.deltaTime);
-				
+				// if target is close enough
+				if((target.position-transform.position).magnitude < attackRange )
+				{
+					// do sth
+				}
+				else
+				{
+					//transform.LookAt(target.transform.position, Vector3.up);
+					// move AI closer to target
+					transform.position = Vector3.MoveTowards(transform.position, target.position, 
+				                                         	 moveSpeed*alertMoveSpeed * Time.deltaTime);
+				}
 				// if alertness >= 20
 				// if player within atk range
 				// 		(if we're doing AI attack for this proj)
@@ -170,6 +189,63 @@ public class EnemyAI : MonoBehaviour {
 				}
 			}
 			break;
+		}
+	}
+
+	void OnTriggerStay(Collider other)
+	{
+		// if player enters sphere col
+		if(other.gameObject == Player)
+		{
+			playerInSight = false;		// reset
+
+			// check if player is within fov of AI
+//			Vector3 dir = other.transform.position - transform.position;
+//			float angle = Vector3.Angle(dir, transform.forward);			
+//
+//			if(angle > fieldOfViewAngle * 0.5f)
+//			{
+//				RaycastHit hit;
+//
+//				if(Physics.Raycast(transform.position,
+//				                   dir.normalized, out hit, col.radius))
+//				{
+//					// if raycast hits player (i.e. AI spotted player)
+//					if(hit.collider.gameObject == Player)
+//					{
+//						playerInSight = true;
+//						target = Player.transform;
+//						//state = EnemyState.ALERT;
+//
+//						// turn AI render color to red
+//						gameObject.GetComponent<Renderer>().material.color = new Color(1, 0, 0);
+//					}
+//				}
+					
+			// simple check for AI view (sphere col = AI fov)
+			if(other.gameObject == Player)
+			{
+				playerInSight = true;
+				target = Player.transform;
+				state = EnemyState.ALERT;
+
+				// turn AI render color to red
+				gameObject.GetComponent<Renderer>().material.color = new Color(1, 0, 0);
+			}
+		}
+	}
+
+	void OnTriggerExit(Collider other)
+	{
+		if(other.gameObject == Player)
+		{
+			playerInSight = false;
+			//target = Player.transform (last seen pos);
+			target = null;
+			state = EnemyState.RESET;
+			
+			// turn AI render color to red
+			gameObject.GetComponent<Renderer>().material.color = new Color(0, 1, 0);
 		}
 	}
 }

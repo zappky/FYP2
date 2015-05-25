@@ -49,7 +49,7 @@ public class FpsMovement : MonoBehaviour
 		{
 			//jump
 			if(!cc.isGrounded)
-				vertVelo += Physics.gravity.y * Time.deltaTime;
+				vertVelo += Physics.gravity.y*2 * Time.deltaTime;
 
 			if(cc.isGrounded && Input.GetButton("Jump"))
 			{
@@ -74,7 +74,10 @@ public class FpsMovement : MonoBehaviour
 
 			//lose from height
 			if(vertVelo < -25.0f)
-				Application.LoadLevel("losescreen");
+			{
+				if(cc.isGrounded)
+					Application.LoadLevel("losescreen");
+			}
 
 			Vector3 speed = new Vector3 (sideSpeed, vertVelo, forwardSpeed);
 			speed = transform.rotation * speed;
