@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\alertbar.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\PGE\ASSG1\PGE-Assignment\PGE Project - Top Down Shooter\Assets\Scripts\Characters\Classes\Enemy.cs">
     <Files>
-      <File FileName="Assets\Scripts\alertbar.cs" Line="14" Column="22" />
+      <File FileName="..\..\..\PGE\ASSG1\PGE-Assignment\PGE Project - Top Down Shooter\Assets\Scripts\Characters\Base Unit\Unit.cs" Line="58" Column="2" />
+      <File FileName="..\..\..\PGE\ASSG1\PGE-Assignment\PGE Project - Top Down Shooter\Assets\Scripts\Characters\Classes\Enemy.cs" Line="66" Column="29" />
+      <File FileName="..\..\..\PGE\ASSG1\PGE-Assignment\PGE Project - Top Down Shooter\Assets\Scripts\Characters\Base Unit\ColliderScript.cs" Line="20" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
