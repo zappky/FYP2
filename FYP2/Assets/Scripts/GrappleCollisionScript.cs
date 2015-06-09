@@ -5,11 +5,11 @@ public class GrappleCollisionScript : MonoBehaviour {
 
 	public float throwForce = 100f;
 	
-	private bool isHooked = false;					//to check if grapple hooked to sth successfully
-	//private GameObject theGrapple;
+	bool isHooked = false;					//to check if grapple hooked to sth successfully
+	//GameObject theGrapple;
 
-	private Rigidbody theGrappleHook_rb;
-	private FixedJoint grabJoint;
+	Rigidbody theGrappleHook_rb;
+	FixedJoint grabJoint;
 	
 	// Use this for initialization
 	void Start () {

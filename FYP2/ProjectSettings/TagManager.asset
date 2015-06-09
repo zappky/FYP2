@@ -11,6 +11,8 @@ TagManager:
   - Alert
   - Game Session
   - Waypoint
+  - GrappleEnd
+  - GrappleHook
   layers:
   - Default
   - TransparentFX
