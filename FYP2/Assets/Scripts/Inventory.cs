@@ -35,7 +35,6 @@ public class Inventory : MonoBehaviour {
 	//inventory information section
 	public List<Item> inventory = new List<Item>();//to hold the actual item
 	public List<Item> slots = new List<Item>();//used as proxy for inventory to display,and drag and drop
-	public Item quick
 
 	public float weightlimit = 10;
 	public float currentweight = 0;
