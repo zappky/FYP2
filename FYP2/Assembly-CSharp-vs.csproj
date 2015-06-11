@@ -49,7 +49,7 @@
      <Compile Include="Assets\Scripts\CSelect.cs" />
      <Compile Include="Assets\Scripts\CTimer.cs" />
      <Compile Include="Assets\Scripts\ControllerCollisionScript.cs" />
-     <Compile Include="Assets\Scripts\EnemyAI.cs" />
+     <Compile Include="Assets\Scripts\EnemyAi.cs" />
      <Compile Include="Assets\Scripts\FpsMovement.cs" />
      <Compile Include="Assets\Scripts\GrappleCollisionScript.cs" />
      <Compile Include="Assets\Scripts\GrappleScript.cs" />
@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Scripts\ItemDatabase.cs" />
      <Compile Include="Assets\Scripts\Parachute.cs" />
+     <Compile Include="Assets\Scripts\PlayerInfo.cs" />
      <Compile Include="Assets\Scripts\PointSystem.cs" />
      <Compile Include="Assets\Scripts\RestartGame.cs" />
      <Compile Include="Assets\Scripts\SoundEffect.cs" />

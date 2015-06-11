@@ -8,7 +8,7 @@ public class Item   {
 	public string itemname = "Undefined";//Due to giving "name" will clash with in-built unity .name , a different name is given for the varable
 	public int id = -1;
 	public string description = "Nil";
-	public int weight = -1;
+	public float weight = -1;//in kg
 	public bool stackable = false;
 	public int amount = 1;
 	
@@ -46,6 +46,20 @@ public class Item   {
 
 		this.icon = another.icon;
 	}
+
+	public Item(int id, string name)// shortenconstructor
+	{
+		this.id = id;
+		this.itemname = name;
+		this.type = ItemType.Undefined;
+		this.description = "Nil";
+		this.weight = 1;
+		this.amount = 1;
+		this.stackable = true;
+
+		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
+	}
+
 	public Item(int id, string name,ItemType type,string description,int weight,int amount,bool stackable)//constructor
 	{
 		this.id = id;
@@ -53,10 +67,15 @@ public class Item   {
 		this.type = type;
 		this.description = description;
 		this.weight = weight;
-	
 		this.amount = amount;
 		this.stackable = stackable;
+
 		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
+	}
+
+	public float CalculateCombinedWeight()
+	{
+		return this.amount * this.weight;
 	}
 	
 }
