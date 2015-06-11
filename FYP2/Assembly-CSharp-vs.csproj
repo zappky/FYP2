@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CSelect.cs" />
      <Compile Include="Assets\Scripts\CTimer.cs" />
+     <Compile Include="Assets\Scripts\CastSlot.cs" />
      <Compile Include="Assets\Scripts\ControllerCollisionScript.cs" />
      <Compile Include="Assets\Scripts\EnemyAi.cs" />
      <Compile Include="Assets\Scripts\FpsMovement.cs" />

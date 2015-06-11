@@ -15,8 +15,10 @@ public class Item   {
 	public enum ItemType
 	{
 		Undefined,
+		Useable,
 		Consumable,
 		Equipable,
+		CraftMaterial,
 		Quest
 	}
 	public ItemType type = ItemType.Undefined;
