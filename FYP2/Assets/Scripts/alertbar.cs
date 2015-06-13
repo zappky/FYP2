@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -17,6 +17,8 @@ public class alertbar : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		ab.fillAmount -= 0.01f * Time.deltaTime;
+
 		if(ab.fillAmount < 0.0f)
 			ab.fillAmount = 0.0f;
 
@@ -28,11 +30,7 @@ public class alertbar : MonoBehaviour {
 	{
 		if (col.transform.tag == "Alert")
 		{
-			ab.fillAmount += 0.2f * Time.deltaTime;
-		}
-		else
-		{
-			ab.fillAmount -= 0.05f * Time.deltaTime;
+			ab.fillAmount += 0.3f * Time.deltaTime;
 		}
 	}
 }

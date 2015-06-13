@@ -8,6 +8,8 @@ public class FpsMovement : MonoBehaviour
 	public float paraSpeed = 1.0f; //Parachute speed
 	public float airSpeed = 3.0f;  //on air speed
 	public float swingSpeed = 0.1f;	//grapple swing speed
+	float forwardSpeed = 0.0f;
+	float sideSpeed = 0.0f;
 
 	//mouselook stuff
 	public float mouseSensitivity = 5.0f; //balance mouse scrolling
@@ -39,9 +41,17 @@ public class FpsMovement : MonoBehaviour
 		vertRotation = Mathf.Clamp (vertRotation, -viewRange, viewRange);
 		Camera.main.transform.localRotation = Quaternion.Euler (vertRotation, 0, 0);
 
-		//movement
-		float forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed;
-		float sideSpeed = Input.GetAxis ("Horizontal") * moveSpeed;
+		if(Input.GetButton("Run"))
+		{
+			forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed * 2.0f;
+			sideSpeed = Input.GetAxis ("Horizontal") * moveSpeed * 2.0f;
+		}
+		else
+		{
+			//movement
+			forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed;
+			sideSpeed = Input.GetAxis ("Horizontal") * moveSpeed;
+		}
 
 		updateGrappleCheck();
 
@@ -49,9 +59,9 @@ public class FpsMovement : MonoBehaviour
 		{
 			//jump
 			if(!cc.isGrounded)
-				vertVelo += Physics.gravity.y*2 * Time.deltaTime;
+				vertVelo += Physics.gravity.y * 2 * Time.deltaTime;
 
-			if(cc.isGrounded && Input.GetButton("Jump"))
+			if(cc.isGrounded && Input.GetButtonDown("Jump"))
 			{
 				vertVelo = jumpSpeed;
 			}
