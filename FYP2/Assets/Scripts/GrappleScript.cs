@@ -79,28 +79,31 @@ public class GrappleScript : MonoBehaviour {
 				ascInputDelay -= Time.deltaTime;
 
 				// Ascend
-				if(Input.GetButton("Fire1") && ascInputDelay <= 0) 
+				if(Input.GetButton("Fire1") && ascInputDelay <= 0)
 				{
 					ascInputDelay = ascDelay;
 
-					grappleRope.localScale -= Vector3.up*ascSpeed;
+					if(!(currentRope == 1 && grappleRope.localScale.y <= 0))
+					{
+						grappleRope.localScale -= Vector3.up*ascSpeed;
 					
-					// Make sure setting of asc/desc wont over scale 
-					grappleRope.localScale = new Vector3(grappleRope.localScale.x,
-					                                     Mathf.Clamp(grappleRope.localScale.y, 0, 1),
-					                                     grappleRope.localScale.z);
+						// Make sure setting of asc/desc wont over scale 
+						grappleRope.localScale = new Vector3(grappleRope.localScale.x,
+						                                     Mathf.Clamp(grappleRope.localScale.y, 0, 1),
+						                                     grappleRope.localScale.z);
 
-					// btm of grappleEnd to cur. rope
-					//grappleEnd.transform.position = grappleRope.position;
-					Vector3 ropeBtmPos = new Vector3(grappleRope.GetComponentInChildren<Renderer>().bounds.center.x, 
-					                                 grappleRope.GetComponentInChildren<Renderer>().bounds.center.y-
-					                                 grappleRope.GetComponentInChildren<Renderer>().bounds.extents.y,
-					                                 grappleRope.GetComponentInChildren<Renderer>().bounds.center.z);
+						// btm of grappleEnd to cur. rope (needs fixing...)
+						//grappleEnd.transform.position = grappleRope.position;
+						Vector3 ropeBtmPos = new Vector3(grappleRope.GetComponentInChildren<Renderer>().bounds.center.x, 
+						                                 grappleRope.GetComponentInChildren<Renderer>().bounds.center.y-
+						                                 grappleRope.GetComponentInChildren<Renderer>().bounds.extents.y,
+						                                 grappleRope.GetComponentInChildren<Renderer>().bounds.center.z);
 
-					grappleEnd.transform.position = ropeBtmPos;
+						grappleEnd.transform.position = ropeBtmPos;
 					
-					// re-hinge to current rope
-					grappleEnd.GetComponent<HingeJoint>().connectedBody = grappleRope.GetComponent<Rigidbody>();
+						// re-hinge to current rope
+						grappleEnd.GetComponent<HingeJoint>().connectedBody = grappleRope.GetComponent<Rigidbody>();
+					}
 
 					// if reached limit for current rope, go to next one
 					if(grappleRope.localScale.y <= 0)
@@ -111,12 +114,6 @@ public class GrappleScript : MonoBehaviour {
 							grappleRope.GetComponentInChildren<Renderer>().enabled = false;
 							--currentRope;
 						}
-						else
-						{
-							grappleRope.localScale = new Vector3(grappleRope.localScale.x,
-							                                     Mathf.Clamp(grappleRope.localScale.y, 0.1f, 1),
-							                                     grappleRope.localScale.z);
-						}
 					}
 				}
 
@@ -124,25 +121,27 @@ public class GrappleScript : MonoBehaviour {
 				if(Input.GetButton("Fire2") && ascInputDelay <= 0) 
 				{
 					ascInputDelay = ascDelay;
-					
-					grappleRope.localScale += Vector3.up*ascSpeed;
-					
-					// Make sure setting of asc/desc wont over scale 
-					grappleRope.localScale = new Vector3(grappleRope.localScale.x,
-					                                     Mathf.Clamp(grappleRope.localScale.y, 0, 1),
-					                                     grappleRope.localScale.z);	
-					// btm of grappleEnd to cur. rope
-					//grappleEnd.transform.position = grappleRope.position;
-					Vector3 ropeBtmPos = new Vector3(grappleRope.GetComponentInChildren<Renderer>().bounds.center.x, 
-					                                 grappleRope.GetComponentInChildren<Renderer>().bounds.center.y-
-					                                 grappleRope.GetComponentInChildren<Renderer>().bounds.extents.y,
-					                                 grappleRope.GetComponentInChildren<Renderer>().bounds.center.z);
-					
-					grappleEnd.transform.position = ropeBtmPos;
-					
-					// re-hinge to current rope
-					grappleEnd.GetComponent<HingeJoint>().connectedBody = grappleRope.GetComponent<Rigidbody>();
 
+					if(!(currentRope == totalRopeCt && grappleRope.localScale.y >= 1))
+					{
+						grappleRope.localScale += Vector3.up*ascSpeed;
+						
+						// Make sure setting of asc/desc wont over scale 
+						grappleRope.localScale = new Vector3(grappleRope.localScale.x,
+						                                     Mathf.Clamp(grappleRope.localScale.y, 0, 1),
+						                                     grappleRope.localScale.z);	
+						// btm of grappleEnd to cur. rope
+						//grappleEnd.transform.position = grappleRope.position;
+						Vector3 ropeBtmPos = new Vector3(grappleRope.GetComponentInChildren<Renderer>().bounds.center.x, 
+						                                 grappleRope.GetComponentInChildren<Renderer>().bounds.center.y-
+						                                 grappleRope.GetComponentInChildren<Renderer>().bounds.extents.y,
+						                                 grappleRope.GetComponentInChildren<Renderer>().bounds.center.z);
+						
+						grappleEnd.transform.position = ropeBtmPos;
+						
+						// re-hinge to current rope
+						grappleEnd.GetComponent<HingeJoint>().connectedBody = grappleRope.GetComponent<Rigidbody>();
+					}
 					// if reached limit for current rope, go to next one
 					if(grappleRope.localScale.y >= 1)
 					{
