@@ -5,62 +5,68 @@ using System.Collections.Generic;
 //this script describle player inventory system
 
 public class Inventory : MonoBehaviour {
+
+	//interface variable section
 	public int slotX = 5;//slot column
 	public int slotY = 2;//slot rows
 	public float slotXpadding = 1;//as per slotsize 
 	public float slotYpadding = 1;//as per slotsize 
-	public Vector2 slotfineoffset; //for representing aftermath of all mousedrag
-	public Vector2 slottempoffset; //for mouse drag calulcation
 	public float slotsXstartposition = 0;
 	public float slotsYstartposition = 0;
 	public float slotsize = 20;
-	public List<Item> inventory = new List<Item>();//to hold the actual item
-	public List<Item> slots = new List<Item>();//used as proxy for inventory to display,and drag and dro
-	public ItemDatabase database;
+	public Vector2 slotfineoffset; //for representing aftermath of all mousedrag
+	public Vector2 slottempoffset; //for mouse drag calulcation
+
 	public bool display = false;
 	public bool showtooltip = false;
 	public string tooltip = "";
 	public GUISkin skin;
-	//public bool testhit = false;
+
+	//internal storage management section
 	public int fromindex = -1;
 	public bool draggingitem = false;
 	public Item itemdragged;
 	public Vector2 mouseprevposition;
-	//public int testdoubleclickcount = 0;
+
+	//script reference section
+	public ItemDatabase database = null;
+	public PlayerInfo playerinfo = null;
+	public CastSlot playercastslot = null;
+
+	//inventory information section
+	public List<Item> inventory = new List<Item>();//to hold the actual item
+	public List<Item> slots = new List<Item>();//used as proxy for inventory to display,and drag and drop
+
+	public float weightlimit = 10;
+	public float currentweight = 0;
 	
 	// Use this for initialization
 	void Start () {
 	
+		//insert the script reference
 		database = GameObject.FindGameObjectWithTag("Item Database").GetComponent<ItemDatabase>();//to input the script rference
+		playerinfo = this.GetComponent<PlayerInfo>();//should be relative the player object attached
+		playercastslot = this.GetComponent<CastSlot>();
 
 		for (int i = 0; i<(slotX*slotY); ++i) //populate the slot list
 		{
 			slots.Add(new Item());
 			inventory.Add(new Item());
 		}
+		//init weight limit
+		CalculateWeightLimit();
 
+		//just some init of the inventory item
 		AddItem (0);
-		AddItem (1);
 		AddItem (0);
+		//AddItem (0);
 		AddItem (1);
-		AddItem (0);
 		AddItem (1);
-		AddItem (0);
-		AddItem (1);
-		AddItem (0);
-		AddItem (1);
-		////AddItem (1);
+
+		//playercastslot.AddItem(new Item(inventory[0]));
 		//AddItem (1);
-		//AddItem (2);
-		//AddItem (0);
-		//AddItem (0);
-		//		for(int i = 0 ; i <10; ++i)
-		//		{
-		//			inventory.Add(database.itemDatabase[0]);//add testing object
-		//		}
-		//print(CheckContainsItem(0));
+
 	}
-	// Update is called once per frame
 	// Update is called once per frame
 	void Update () {
 			if(Input.GetButtonDown("Inventory"))
@@ -79,16 +85,6 @@ public class Inventory : MonoBehaviour {
 				}
 				if(Input.GetKeyDown("t"))
 				{
-					Debug.Log("activate crafting test");
-					
-					//List<Item> temp = new List<Item>();
-					//temp.Add(database.GetItem(0));
-					//temp[0].amount = 10;
-					//AddItem (temp);
-					//Item testitem = new Item();
-					////testitem = database.CreateItem(2);
-					//Debug.Log("test item amount" + testitem.amount);
-					//AddItem (testitem);
 					AddItem(database.CraftItem(inventory,database.GetCraftRecipe(0)));
 				}
 			}
@@ -102,12 +98,14 @@ public class Inventory : MonoBehaviour {
 		}
 		public void AddItem(List<Item> Items)
 		{
+			//Debug.Log("debug item count " + Items.Count );
+
 			for(int i = 0 ; i < Items.Count; ++i)
 			{
 				AddItem(Items[i]);
 			}
 		}
-		public void AddItem(Item item)//here didnt check if the item is valid
+		public void AddItem(Item item)//here didnt check if the item is valid or weight predicted is valid
 		{	
 			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
 			{
@@ -129,16 +127,28 @@ public class Inventory : MonoBehaviour {
 					if(inventory[i].id < 0)//if there a slot is empty
 					{
 						inventory[i] = item;
+						playercastslot.AddItem(new Item(inventory[i]));
 						//Debug.Log("adding new item");
 						break;
 					}
 				}
 			}
 		}
-		public void AddItem(string itemname)
+		public void AddItem(string itemname)//untested
 		{	
+			if (this.currentweight >= this.weightlimit)
+			{
+				return;
+			}
+
+			int trackerindex = -1;
+
 			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
 			{
+				if(inventory[i].itemname == itemname)
+				{
+					trackerindex = i ;
+				}
 				if(inventory[i].id < 0)//if there a slot is empty
 				{
 					for(int j = 0 ; j <database.itemDatabase.Count;++j)//loop through the item database
@@ -148,26 +158,47 @@ public class Inventory : MonoBehaviour {
 							if(database.itemDatabase[j].stackable == true)
 							{
 								
-								bool found = false;
-								for(int k = 0 ; k < inventory.Count; ++k)//loop through whole inventory //not efficient,but cannot think of better alogrithm
+//								bool found = false;
+//								for(int k = 0 ; k < inventory.Count; ++k)//loop through whole inventory //not efficient,but cannot think of better alogrithm
+//								{
+//									if(inventory[k].itemname == itemname)//if there a slot is empty
+//									{
+//										++inventory[k].amount;
+//										found = true;
+//										break;
+//									}
+//								}
+//								if(!found)
+//								{
+//									inventory[i] = new Item(database.itemDatabase[j]);//add it in
+//									break;
+//								}
+								if (trackerindex > -1)//if found
 								{
-									if(inventory[k].itemname == itemname)//if there a slot is empty
+									if(UpdateCurrentWeight(true,inventory[trackerindex].weight,1) == true)
 									{
-										++inventory[k].amount;
-										found = true;
+										++inventory[trackerindex].amount;
+									}
+									break;
+								}else
+								{
+									if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,1) == true)
+									{										
+										inventory[i] = new Item(database.itemDatabase[j]);//add it in
+										playercastslot.AddItem(new Item(inventory[i]));
 										break;
 									}
-								}
-								if(!found)
-								{
-									inventory[i] = new Item(database.itemDatabase[j]);//add it in
-									break;
+
 								}
 								
 							}else
 							{
 								
-								inventory[i] = new Item(database.itemDatabase[j]);//add it in
+								if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,1) == true)
+								{										
+									inventory[i] = new Item(database.itemDatabase[j]);//add it in
+									playercastslot.AddItem(new Item(inventory[i]));
+								}
 							}
 							break;	
 						}
@@ -178,10 +209,22 @@ public class Inventory : MonoBehaviour {
 		}
 		public void AddItem(int id)
 		{	
+			if (this.currentweight >= this.weightlimit)
+			{
+				return;
+			}
+
+			int trackerindex = -1;
+
 			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
 			{
+				if(inventory[i].id == id)
+				{
+					trackerindex = i ;
+				}
 				if(inventory[i].id < 0)//if there a slot is empty
 				{
+					
 					for(int j = 0 ; j <database.itemDatabase.Count;++j)//loop through the item database
 					{
 						if(database.itemDatabase[j].id == id)//look for the matching item id 
@@ -189,26 +232,46 @@ public class Inventory : MonoBehaviour {
 							if(database.itemDatabase[j].stackable == true)
 							{
 	
-								bool found = false;
-								for(int k = 0 ; k < inventory.Count; ++k)//loop through whole inventory //not efficient,but cannot think of better alogrithm
+								//bool found = false;
+								//for(int k = 0 ; k < inventory.Count; ++k)//loop through whole inventory //not efficient,but cannot think of better alogrithm
+								//{
+								//	if(inventory[k].id == id)//if there a slot is empty
+								//	{
+								//		++inventory[k].amount;
+								//		found = true;
+								//		break;
+								//	}
+								//}
+								//if(!found)
+								//{
+								//	inventory[i] = new Item(database.itemDatabase[j]);//add it in
+								//	break;
+								//}
+
+								if (trackerindex > -1)//if found
 								{
-									if(inventory[k].id == id)//if there a slot is empty
+									if(UpdateCurrentWeight(true,inventory[trackerindex].weight,1) == true)
 									{
-										++inventory[k].amount;
-										found = true;
+										++inventory[trackerindex].amount;
 										break;
 									}
-								}
-								if(!found)
+								}else
 								{
-									inventory[i] = new Item(database.itemDatabase[j]);//add it in
-									break;
+									if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,1) == true)
+									{										
+										inventory[i] = new Item(database.itemDatabase[j]);//add it in
+										playercastslot.AddItem(new Item(inventory[i]));
+										break;
+									}
 								}
 								
 							}else
 							{
-								
-								inventory[i] = new Item(database.itemDatabase[j]);//add it in
+								if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,1) == true)
+								{	
+									inventory[i] = new Item(database.itemDatabase[j]);//add it in
+									playercastslot.AddItem(new Item(inventory[i]));
+								}
 							}
 							break;	
 						}
@@ -221,15 +284,19 @@ public class Inventory : MonoBehaviour {
 		{
 			if(inventory[inventoryindex].stackable == true ||  inventory[inventoryindex].type == Item.ItemType.Consumable)
 			{
-				--inventory[inventoryindex].amount;
-				
-				if(inventory[inventoryindex].amount <= 0)
+				if (UpdateCurrentWeight(false,inventory[inventoryindex].weight,1) == true) //if the weight test pass
 				{
-					inventory[inventoryindex] = new Item();
+					--inventory[inventoryindex].amount;
+					if(inventory[inventoryindex].amount <= 0)
+					{
+						inventory[inventoryindex] = new Item();
+						playercastslot.RemoveItem(inventory[inventoryindex]);
+					}
 				}
 			}else
 			{
 				inventory[inventoryindex] = new Item();
+				playercastslot.RemoveItem(inventory[inventoryindex]);
 			}
 		}
 		void RemoveItem(int id)
@@ -255,14 +322,14 @@ public class Inventory : MonoBehaviour {
 			}
 			return false;
 		}
-		void UseItem(Item item)
+		public void UseItem(Item item)
 		{
 			if(database.UseItemEffect(item.id))//if successful
 			{
 				RemoveItem(item.id);
 			}
 		}
-		void UseItem(Item item,int itemindex)
+		public void UseItem(Item item,int itemindex)
 		{
 			if(database.UseItemEffect(item.id))//if successful
 			{
@@ -275,18 +342,19 @@ public class Inventory : MonoBehaviour {
 		}
 		void OnGUI()
 		{
-			GUI.skin = skin;
+			
 			if(display == true)
 			{
+				GUI.skin = skin;
 				//SimplePrintInventory();
 				DrawInventory();
 				if(showtooltip == true && draggingitem == false)
 				{
-					GUI.Box(new Rect(Event.current.mousePosition.x,Event.current.mousePosition.y,200,200),tooltip);
+					GUI.Box(new Rect(Event.current.mousePosition.x,Event.current.mousePosition.y,slotsize*5,slotsize*5),tooltip);
 				}
 				if(draggingitem == true)
 				{
-					GUI.DrawTexture(new Rect(Event.current.mousePosition.x,Event.current.mousePosition.y,50,50),itemdragged.icon);
+					GUI.DrawTexture(new Rect(Event.current.mousePosition.x,Event.current.mousePosition.y,slotsize,slotsize),itemdragged.icon);
 				}
 			}
 			
@@ -322,11 +390,8 @@ public class Inventory : MonoBehaviour {
 			{
 				Rect slotRect = new Rect(x*slotsize*slotXpadding + slotsXstartposition + slotfineoffset.x +slottempoffset.x, y*slotsize*slotYpadding + slotsYstartposition + slotfineoffset.y+slottempoffset.y,slotsize,slotsize);
 				//Rect slotRect = new Rect(x*60,y*60,50,50);
-				GUI.Box(slotRect, y.ToString(),skin.GetStyle("slot"));
-//				if(inventory[index].amount <= 0)
-//				{
-//					inventory[index] = new Item();
-//				}
+				//GUI.Box(slotRect, index.ToString(),skin.GetStyle("slot"));
+				GUI.Box(slotRect, "",skin.GetStyle("slot"));
 				slots[index] = inventory[index];//sync up
 			
 				if(slots[index].id >= 0)//if slot contain an valid item
@@ -395,11 +460,6 @@ public class Inventory : MonoBehaviour {
 					}
 					
 				}
-//				if(tooltip == "")
-//				{
-//					//print ("turning off tooltip");
-//					showtooltip = false;
-//				}
 				++index;
 				
 			}
@@ -408,9 +468,9 @@ public class Inventory : MonoBehaviour {
 	void SimplePrintInventory()
 	{
 		for(int i = 0 ; i < inventory.Count; ++i)//loop through all item in inventory to display them
-			{
-				GUI.Label(new Rect(10,i * 10,200,50),inventory[i].itemname);
-			}
+		{
+			GUI.Label(new Rect(10,i * 10,200,50),inventory[i].itemname);
+		}
 	}
 	
 	void LoadInventory()
@@ -427,5 +487,46 @@ public class Inventory : MonoBehaviour {
 		{
 			PlayerPrefs.SetInt("Inventory " + i,inventory[i].id);
 		}
+	}
+	bool UpdateCurrentWeight(bool mode , float item_weight, int item_amount)
+	{
+		float combinedweight = item_weight * item_amount;
+
+		if (mode == true)//add mode
+		{
+			if (this.currentweight + combinedweight <= this.weightlimit)
+			{
+				this.currentweight += combinedweight;
+				return true;
+			}
+			
+		}else
+		{
+			this.currentweight -= combinedweight;
+			return true;
+		}
+		
+		return false;
+	}
+
+	void UpdateCurrentWeight()//a hard update
+	{
+		currentweight = CalculateCurrentWeight();
+	}
+	
+	float CalculateCurrentWeight()
+	{
+		float total = 0.0f;
+
+		for(int i = 0 ; i < inventory.Count; ++i)//loop through all item in inventory
+		{
+			total += inventory[i].CalculateCombinedWeight();
+		}
+		return total;
+	}
+	void CalculateWeightLimit()
+	{
+		//backpack weight limit is usually 20%~30% of the person weight
+		this.weightlimit = playerinfo.weight * 0.2f;
 	}
 }

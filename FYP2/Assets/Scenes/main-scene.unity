@@ -3146,6 +3146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a9c5dde0d5c9f4ab86fdfd80e4d431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toggle: 0
 --- !u!1 &1511866828
 GameObject:
   m_ObjectHideFlags: 0
@@ -3875,6 +3876,10 @@ GameObject:
   - 114: {fileID: 1795129930}
   - 114: {fileID: 1795129932}
   - 114: {fileID: 1795129933}
+<<<<<<< HEAD
+=======
+  - 114: {fileID: 1795129934}
+>>>>>>> origin/master
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Player
@@ -3995,14 +4000,11 @@ MonoBehaviour:
   slotY: 2
   slotXpadding: 1.10000002
   slotYpadding: 1.10000002
-  slotfineoffset: {x: 0, y: 0}
-  slottempoffset: {x: 0, y: 0}
   slotsXstartposition: 0
   slotsYstartposition: 0
   slotsize: 50
-  inventory: []
-  slots: []
-  database: {fileID: 0}
+  slotfineoffset: {x: 0, y: 0}
+  slottempoffset: {x: 0, y: 0}
   display: 0
   showtooltip: 0
   tooltip: 
@@ -4019,6 +4021,13 @@ MonoBehaviour:
     type: 0
     icon: {fileID: 0}
   mouseprevposition: {x: 0, y: 0}
+  database: {fileID: 0}
+  playerinfo: {fileID: 0}
+  playercastslot: {fileID: 0}
+  inventory: []
+  slots: []
+  weightlimit: 10
+  currentweight: 0
 --- !u!114 &1795129931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4055,6 +4064,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1795129923}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: 88713e5714b46894b99d141cbb9fe825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -4063,6 +4073,47 @@ MonoBehaviour:
   enemyPrefab: {fileID: 167562, guid: d07574711fdd32749b54fa4c0ef60951, type: 2}
   switchDist: 10
   helpTransform: {fileID: 1026210991}
+=======
+  m_Script: {fileID: 11500000, guid: e2d7d55dd048e9a4781f92e146a2a6af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playername: hentaiislove
+  weight: 45
+  gender: 0
+--- !u!114 &1795129934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1795129923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d9b7fee00b4434d89419977d18e1ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotsLayer: []
+  display: 1
+  skin: {fileID: 11400000, guid: 525ca5412709ebb448b7ece9c761e5b6, type: 2}
+  fromindex: -1
+  draggingitem: 0
+  itemdragged:
+    itemname: Undefined
+    id: -1
+    description: Nil
+    weight: -1
+    stackable: 0
+    amount: 1
+    type: 0
+    icon: {fileID: 0}
+  currentSlotLayer: 0
+  maxSlotsColumn: 5
+  maxSlotsLayer: 3
+  slotsXpadding: 1
+  slotSize: 50
+  slotsXstartposition: 51
+  slotsYstartposition: 603.899963
+  playerinventory: {fileID: 0}
+>>>>>>> origin/master
 --- !u!4 &1840072056 stripped
 Transform:
   m_PrefabParentObject: {fileID: 411630, guid: 1a70140a50792844c8e841369ac5149d, type: 2}

@@ -266,9 +266,13 @@ public class ItemDatabase : MonoBehaviour {
 	}
 	public void PopulateTestObject()
 	{
-		itemDatabase.Add(new Item(0,"battery",Item.ItemType.Undefined,"just a test object 0",1,1,true));	
-		itemDatabase.Add(new Item(1,"gear",Item.ItemType.Consumable,"just a test item 1",1,1,true));	
-		itemDatabase.Add(new Item(2,"clock",Item.ItemType.Consumable,"just a test alarm item 2",1,1,true));
+		itemDatabase.Add(new Item(0,"battery",Item.ItemType.CraftMaterial,"just a test object 0",1,1,true));	
+		itemDatabase.Add(new Item(1,"gear",Item.ItemType.CraftMaterial,"just a test item 1",1,1,true));	
+		itemDatabase.Add(new Item(2,"clock",Item.ItemType.Useable,"just a test alarm item 2",1,1,true));
+	}
+	public Item GetItemWithIndex(int index)
+	{
+		return itemDatabase[index];
 	}
 	public Item GetItem(string name)//beware that this is getting a reference, whatever you do to the returned item,gonna affect the database
 	{
@@ -291,6 +295,10 @@ public class ItemDatabase : MonoBehaviour {
 			}
 		}
 		return new Item();
+	}
+	public Item CreateItemWithIndex(int index)
+	{
+		return new Item(itemDatabase[index]);
 	}
 	public Item CreateItem(string name)//duplicate a new item same as the database one
 	{
@@ -359,10 +367,12 @@ public class ItemDatabase : MonoBehaviour {
 		
 		return result;
 	}
-	public List<Item> CraftItem(List<Item>ingrediant,int recipeId)
+	public List<Item> CraftItem(List<Item>ingrediant,int recipeId)//untested
 	{
 		int matches = 0;
+		bool skip = false;
 		List<Item_Proxy> match = new List<Item_Proxy>(); 
+		List<int> matchedId = new List<int>();//a list to mark which recipe ingrediant has already been recored
 		List<Item> output = new List<Item>();//meant to be empty just for return
 		CraftingRecipe recipe = GetCraftRecipe(recipeId);
 		
@@ -370,11 +380,25 @@ public class ItemDatabase : MonoBehaviour {
 		{
 			for(int k = 0 ; k < recipe.ingrediant.Count; ++k)
 			{
-				if(ingrediant[i].id == recipe.ingrediant[k].itemid && ingrediant[i].amount >= recipe.ingrediant[k].amount)
+				skip = false; //reset flag
+				
+				for(int j = 0 ; j < matchedId.Count; ++j)
 				{
-					++matches;
-					match.Add(new Item_Proxy(i,recipe.ingrediant[k].amount));//keep record of which ingrediant index and how many of its amount to deduct.
-					break;
+					if ( k == matchedId[j])//skip the already checked ingrediant
+					{
+						skip = true;
+						break;
+					}
+				}
+				if (skip == false)
+				{
+					if(ingrediant[i].id == recipe.ingrediant[k].itemid && ingrediant[i].amount >= recipe.ingrediant[k].amount)
+					{
+						++matches;
+						match.Add(new Item_Proxy(i,recipe.ingrediant[k].amount));//keep record of which ingrediant index and how many of its amount to deduct.
+						matchedId.Add(k);
+						break;
+					}
 				}
 			}
 		}
@@ -385,15 +409,21 @@ public class ItemDatabase : MonoBehaviour {
 			{
 				//itemid here is used as index to quickly access the ingrediant to be deducted.
 				ingrediant[match[j].itemid].amount -= match[j].amount;
+				if(ingrediant[match[j].itemid].amount <= 0)
+				{
+					ingrediant[match[j].itemid] = new Item();
+				}
 			}		
 			return CreateOutputItem(recipe);//return the output list
 		}
 		return output;//return empty output list
 	}
-	public List<Item> CraftItem(List<Item>ingrediant,string recipeName)
+	public List<Item> CraftItem(List<Item>ingrediant,string recipeName)//untested
 	{
 		int matches = 0;
+		bool skip = false;
 		List<Item_Proxy> match = new List<Item_Proxy>(); 
+		List<int> matchedId = new List<int>();//a list to mark which recipe ingrediant has already been recored
 		List<Item> output = new List<Item>();//meant to be empty just for return
 		CraftingRecipe recipe = GetCraftRecipe(recipeName);
 		
@@ -401,11 +431,25 @@ public class ItemDatabase : MonoBehaviour {
 		{
 			for(int k = 0 ; k < recipe.ingrediant.Count; ++k)
 			{
-				if(ingrediant[i].id == recipe.ingrediant[k].itemid && ingrediant[i].amount >= recipe.ingrediant[k].amount)
+				skip = false; //reset flag
+				
+				for(int j = 0 ; j < matchedId.Count; ++j)
 				{
-					++matches;
-					match.Add(new Item_Proxy(i,recipe.ingrediant[k].amount));//keep record of which ingrediant index and how many of its amount to deduct.
-					break;
+					if ( k == matchedId[j])//skip the already checked ingrediant
+					{
+						skip = true;
+						break;
+					}
+				}
+				if (skip == false)
+				{
+					if(ingrediant[i].id == recipe.ingrediant[k].itemid && ingrediant[i].amount >= recipe.ingrediant[k].amount)
+					{
+						++matches;
+						match.Add(new Item_Proxy(i,recipe.ingrediant[k].amount));//keep record of which ingrediant index and how many of its amount to deduct.
+						matchedId.Add(k);
+						break;
+					}
 				}
 			}
 		}
@@ -416,6 +460,10 @@ public class ItemDatabase : MonoBehaviour {
 			{
 				//itemid here is used as index to quickly access the ingrediant to be deducted.
 				ingrediant[match[j].itemid].amount -= match[j].amount;
+				if(ingrediant[match[j].itemid].amount <= 0)
+				{
+					ingrediant[match[j].itemid] = new Item();
+				}
 			}		
 			return CreateOutputItem(recipe);//return the output list
 		}
@@ -425,18 +473,34 @@ public class ItemDatabase : MonoBehaviour {
 	public List<Item> CraftItem(List<Item>ingrediant,CraftingRecipe recipe)//take in ingrediant and recipe and produce out the crafted items in a list
 	{
 		int matches = 0;
+		bool skip = false;
 		List<Item_Proxy> match = new List<Item_Proxy>(); 
+		List<int> matchedId = new List<int>();//a list to mark which recipe ingrediant has already been recored
 		List<Item> output = new List<Item>();//meant to be empty just for return
 		
 		for(int i = 0 ; i < ingrediant.Count; ++i)
 		{
 			for(int k = 0 ; k < recipe.ingrediant.Count; ++k)
 			{
-				if(ingrediant[i].id == recipe.ingrediant[k].itemid && ingrediant[i].amount >= recipe.ingrediant[k].amount)
+				skip = false; //reset flag
+
+				for(int j = 0 ; j < matchedId.Count; ++j)
 				{
-					++matches;
-					match.Add(new Item_Proxy(i,recipe.ingrediant[k].amount));//keep record of which ingrediant index and how many of its amount to deduct.
-					break;
+					if ( k == matchedId[j])//skip the already checked ingrediant
+					{
+						skip = true;
+						break;
+					}
+				}
+				if (skip == false)
+				{
+					if(ingrediant[i].id == recipe.ingrediant[k].itemid && ingrediant[i].amount >= recipe.ingrediant[k].amount)
+					{
+						++matches;
+						match.Add(new Item_Proxy(i,recipe.ingrediant[k].amount));//keep record of which ingrediant index and how many of its amount to deduct.
+						matchedId.Add(k);
+						break;
+					}
 				}
 			}
 		}
@@ -447,9 +511,9 @@ public class ItemDatabase : MonoBehaviour {
 			{
 				//itemid here is used as index to quickly access the ingrediant to be deducted.
 				ingrediant[match[j].itemid].amount -= match[j].amount;
-				if(ingrediant[j].amount <= 0)
+				if(ingrediant[match[j].itemid].amount <= 0)
 				{
-					ingrediant[j] = new Item();
+					ingrediant[match[j].itemid] = new Item();
 				}
 			}		
 			return CreateOutputItem(recipe);//return the output list
