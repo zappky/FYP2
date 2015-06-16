@@ -3876,10 +3876,8 @@ GameObject:
   - 114: {fileID: 1795129930}
   - 114: {fileID: 1795129932}
   - 114: {fileID: 1795129933}
-<<<<<<< HEAD
-=======
   - 114: {fileID: 1795129934}
->>>>>>> origin/master
+  - 114: {fileID: 1795129935}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Player
@@ -4064,7 +4062,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1795129923}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: 88713e5714b46894b99d141cbb9fe825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -4073,13 +4070,6 @@ MonoBehaviour:
   enemyPrefab: {fileID: 167562, guid: d07574711fdd32749b54fa4c0ef60951, type: 2}
   switchDist: 10
   helpTransform: {fileID: 1026210991}
-=======
-  m_Script: {fileID: 11500000, guid: e2d7d55dd048e9a4781f92e146a2a6af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playername: hentaiislove
-  weight: 45
-  gender: 0
 --- !u!114 &1795129934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4113,7 +4103,20 @@ MonoBehaviour:
   slotsXstartposition: 51
   slotsYstartposition: 603.899963
   playerinventory: {fileID: 0}
->>>>>>> origin/master
+--- !u!114 &1795129935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1795129923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d7d55dd048e9a4781f92e146a2a6af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playername: hentaiislove
+  weight: 45
+  gender: 0
 --- !u!4 &1840072056 stripped
 Transform:
   m_PrefabParentObject: {fileID: 411630, guid: 1a70140a50792844c8e841369ac5149d, type: 2}
