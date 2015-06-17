@@ -1,31 +1,10 @@
 ﻿<Properties>
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\FpsMovement.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\fileManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\MiniMap.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\alertbar.cs" Line="33" Column="24" />
-      <File FileName="Assets\Scripts\GrappleScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GrappleCollisionScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FpsMovement.cs" Line="48" Column="4" />
-=======
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CastSlot.cs">
-    <Files>
-      <File FileName="Assets\Scripts\Inventory.cs" Line="258" Column="14" />
-      <File FileName="Assets\Scripts\GrappleScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GrappleCollisionScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FpsMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CSelect.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PointSystem.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Parachute.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\HideCursorScript.cs" Line="1" Column="1" />
-      <File FileName="c:\Users\KeeYang\Documents\GitHub\FYP2\FYP2\Assets\Scripts\EnemyAi.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerInfo.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Item.cs" Line="15" Column="22" />
-      <File FileName="Assets\Scripts\ItemDatabase.cs" Line="269" Column="68" />
-      <File FileName="Assets\Scripts\CastSlot.cs" Line="83" Column="5" />
->>>>>>> origin/master
+      <File FileName="Assets\Scripts\DialogSystem.cs" Line="17" Column="17" />
+      <File FileName="Assets\Scripts\DialogDatabase.cs" Line="20" Column="17" />
+      <File FileName="Assets\Scripts\fileManager.cs" Line="68" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

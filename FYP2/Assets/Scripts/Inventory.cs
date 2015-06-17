@@ -39,7 +39,7 @@ public class Inventory : MonoBehaviour {
 
 	public float weightlimit = 10;
 	public float currentweight = 0;
-	
+
 	// Use this for initialization
 	void Start () {
 	
