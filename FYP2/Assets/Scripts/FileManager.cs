@@ -93,12 +93,15 @@ public class my_XmlEntry // a class to describle a xml node
 	}
 }
 //this class is suppose to management of folder and file ,xml file, using code.
-public class fileManager : MonoBehaviour {
+public class FileManager : MonoBehaviour {
 	//singeton//it should persist until game ends
-	private static fileManager instance = null;
+	private static FileManager instance = null;
 	private string path = null;
 	private string backupPath = null;
+	private string gamedataPath = null;
+
 	public string backupFolderName = "backup";
+	public string gamedataFolderName = "gamedata";
 
 	public enum UpdateFileMode
 	{
@@ -106,13 +109,13 @@ public class fileManager : MonoBehaviour {
 		UPDATE_APPEND,
 	}
 
-	public static fileManager Instance
+	public static FileManager Instance
 	{
 		get
 		{
 			if(instance == null)
 			{
-				instance = new GameObject("fileManager").AddComponent<fileManager>();
+				instance = new GameObject("FileManager").AddComponent<FileManager>();
 			}
 			return instance;
 		}
@@ -207,19 +210,24 @@ public class fileManager : MonoBehaviour {
 		inputlist = CreateXmlBuildEntryList(parentlist,entrylist);
 		
 		
-		CreateXMLFile("gamedata/saves","mytest","xml",BuildXMLData(rootentry,inputlist),"plaintext");
+		CreateXMLFile("gamedata/dump","mytest","xml",BuildXMLData(rootentry,inputlist),"plaintext");
 	}
 	public void Initialize()
 	{
 		//print ("file manager init");
 		path = Application.dataPath; //get path to the game data directory (the assert folder)
 		//print ("path " + path);
-		backupPath = path + "/" + backupFolderName;
+		gamedataPath = path + "/" + gamedataFolderName;
+		backupPath = path + "/" + gamedataFolderName + "/" + backupFolderName;
 
 
-		if (CheckDirectory("gamedata") == false)
+		if (CheckDirectory(gamedataFolderName) == false)
 		{
-			CreateDirectory("gamedata");
+			if(CreateDirectory(gamedataFolderName) == true)
+			{
+				CreateDirectory(gamedataFolderName,"dump" );
+				CreateDirectory(gamedataFolderName,"backup" );
+			}
 		}
 
 		TestBuildXMLFile();
@@ -236,19 +244,9 @@ public class fileManager : MonoBehaviour {
 	public List<my_XmlBuildEntry> CreateXmlBuildEntryList(List<string>parentNameList,  List<my_XmlEntry> xmlEntryList)
 	{
 		List<my_XmlBuildEntry> entryList = new List<my_XmlBuildEntry>();
-		//my_XmlBuildEntry a_entry = new my_XmlBuildEntry();
-//		for(int i = 0 ; i<xmlEntryList.Count;++i)
-//		{
-//			print ("Checking value in construction: " + xmlEntryList[i].StringSelf());
-//		}
-
+		
 		for(int i = 0 ; i<xmlEntryList.Count;++i)
 		{
-			//a_entry = CreateBuildEntry(parentNameList[i],xmlEntryList[i]);
-			//a_entry.parentname = parentNameList[i];
-			//a_entry.entry = new my_XmlEntry(xmlEntryList[i]);
-
-			//print ("Constructing: " + xmlEntryList[i].StringSelf());
 			entryList.Add( CreateBuildEntry(parentNameList[i],xmlEntryList[i]));
 		}
 		return entryList;
@@ -288,7 +286,6 @@ public class fileManager : MonoBehaviour {
 
 		//varable preparation
 		XmlElement a_element = null;
-		//XmlElement a_parentnode = null;
 		XmlNodeList a_parentlist = null;
 
 		for(int i = 0 ; i < buildEntryList.Count;++i)
@@ -301,18 +298,14 @@ public class fileManager : MonoBehaviour {
 
 			if(a_parentlist != null && buildEntryList[i].parentname != null && buildEntryList[i].parentname != "")//append to existing parent
 			{
-				//print ("Before : " + buildEntryList[i].entry.StringSelf() );
 
+				//prepare the xmlelement
 				a_element = CreateXMLElement(xml,buildEntryList[i].entry);
 
-//				if(a_element.HasAttributes == true)
-//				{
-//					print ("Name: " + a_element.Name + " inner value: " + a_element.InnerText + " key: " + a_element.Attributes[0].Name + " value:" + a_element.Attributes[0].Value);
-//				}
 
 				for(int i2 = 0 ; i2< a_parentlist.Count; ++i2)
 				{
-
+					//append to the parent node
 					a_parentlist[i2].AppendChild(a_element);
 				}
 
@@ -332,10 +325,6 @@ public class fileManager : MonoBehaviour {
 	}
 
 	//return my_XmlBuildEntry assigned with the value passed in
-//	private my_XmlBuildEntry CreateBuildEntry(string parentname, string entryname,string entryvalue,List<string> entry_attribute_key,List<string> entry_attribute_value)
-//	{
-//		return new my_XmlBuildEntry(parentname ,new my_XmlEntry(entryname,entryvalue,entry_attribute_key,entry_attribute_value));
-//	}
 	private my_XmlBuildEntry CreateBuildEntry(string parentname, string entryname,string entryvalue)
 	{
 		return new my_XmlBuildEntry(parentname ,new my_XmlEntry(entryname,entryvalue));
@@ -461,10 +450,10 @@ public class fileManager : MonoBehaviour {
 			return false;
 		}
 
-		print ("Creating XML File in " + directory);
-
 		if(CheckDirectory(directory) == true)
 		{
+			print ("Creating XML File in " + directory);
+
 			switch (mode)
 			{
 				case "plaintext":
@@ -483,7 +472,7 @@ public class fileManager : MonoBehaviour {
 			}
 		}else
 		{
-			print ("Unable to create file as the directory" + directory + "does not exist");
+			print ("Unable to create XML file as the directory" + directory + "does not exist");
 		}
 		return false;
 	}
@@ -609,6 +598,27 @@ public class fileManager : MonoBehaviour {
 
 		string [] subDirList = Directory.GetDirectories(path + "/" + directory);
 		return subDirList;
+	}
+	private bool CreateDirectory(string parentDirectory ,string filename)//create folder
+	{
+		string newDirectory = parentDirectory + "/" + filename;
+
+		if(parentDirectory == "" || filename == "")
+		{
+			print ("Invalid value detected, Operation aborted");
+			return false;
+		}
+		
+		if (CheckDirectory(newDirectory) == false)
+		{
+			print ("creating directory: " + filename);
+			Directory.CreateDirectory(path + "/" + newDirectory);
+			return true;
+		}else
+		{
+			print ("ERROR: You are trying to create the directory" + filename + "but it already exists");
+		}
+		return false;
 	}
 	private bool CreateDirectory(string directory)//create folder
 	{
