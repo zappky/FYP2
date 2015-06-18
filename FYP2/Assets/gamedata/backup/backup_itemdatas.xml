@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database>
+	<item id="0">
+		<name>testobject</name>
+		<type>undefined</type>
+		<description>nill</description>
+		<weight>1</weight>
+		<stackable>True</stackable>
+	</item>
+	<item id="1">
+		<name>battery</name>
+		<type>craftmaterial</type>
+		<description>nill</description>
+		<weight>1</weight>
+		<stackable>True</stackable>
+	</item>
+	<item id="2">
+		<name>gear</name>
+		<type>craftmaterial</type>
+		<description>nill</description>
+		<weight>1</weight>
+		<stackable>True</stackable>
+	</item>
+	<item id="3">
+		<name>clock</name>
+		<type>useable</type>
+		<description>nill</description>
+		<weight>1</weight>
+		<stackable>True</stackable>
+	</item>
+</database>

@@ -57,11 +57,11 @@ public class Inventory : MonoBehaviour {
 		CalculateWeightLimit();
 
 		//just some init of the inventory item
-		AddItem (0);
-		AddItem (0);
-		//AddItem (0);
-		AddItem (1);
-		AddItem (1);
+		AddItem ("battery");
+		AddItem ("battery");
+
+		AddItem ("gear");
+		AddItem ("gear");
 
 		//playercastslot.AddItem(new Item(inventory[0]));
 		//AddItem (1);
@@ -96,6 +96,57 @@ public class Inventory : MonoBehaviour {
 			inventory[indexfrom] = inventory[indexto];
 			inventory[indexto] = tempitem;
 		}
+
+		//brute force loop and return a reference to the item based on the search id
+		public Item GetItem(int id)
+		{
+			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+			{
+				if(inventory[i].id == id)
+				{
+					return inventory[i];
+				}
+			}
+			return null;
+		}
+		//brute force loop and return a reference to the item based on the search name
+		public Item GetItem(string itemname)
+		{
+			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+			{
+				if(inventory[i].itemname == itemname)
+				{
+					return inventory[i];
+				}
+			}
+			return null;
+		}
+
+		//brute force loop and return a index to the item based on the search id
+		public int GetItemIndex(int id)
+		{
+			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+			{
+				if(inventory[i].id == id)
+				{
+					return i;
+				}
+			}
+			return -1;
+		}
+		//brute force loop and return a index to the item based on the search name
+		public int GetItemIndex(string itemname)
+		{
+			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+			{
+				if(inventory[i].itemname == itemname)
+				{
+					return i;
+				}
+			}
+			return -1;
+		}
+
 		public void AddItem(List<Item> Items)
 		{
 			//Debug.Log("debug item count " + Items.Count );
@@ -231,23 +282,6 @@ public class Inventory : MonoBehaviour {
 						{
 							if(database.itemDatabase[j].stackable == true)
 							{
-	
-								//bool found = false;
-								//for(int k = 0 ; k < inventory.Count; ++k)//loop through whole inventory //not efficient,but cannot think of better alogrithm
-								//{
-								//	if(inventory[k].id == id)//if there a slot is empty
-								//	{
-								//		++inventory[k].amount;
-								//		found = true;
-								//		break;
-								//	}
-								//}
-								//if(!found)
-								//{
-								//	inventory[i] = new Item(database.itemDatabase[j]);//add it in
-								//	break;
-								//}
-
 								if (trackerindex > -1)//if found
 								{
 									if(UpdateCurrentWeight(true,inventory[trackerindex].weight,1) == true)
@@ -299,6 +333,17 @@ public class Inventory : MonoBehaviour {
 				playercastslot.RemoveItem(inventory[inventoryindex]);
 			}
 		}
+		void RemoveItem(string itemname)
+		{
+			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+			{
+				if(inventory[i].itemname == itemname)
+				{
+					RemoveKnownItem(i);
+					break;
+				}
+			}
+		}
 		void RemoveItem(int id)
 		{
 			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
@@ -309,7 +354,6 @@ public class Inventory : MonoBehaviour {
 					break;
 				}
 			}
-			
 		}
 		bool CheckContainsItem(int id)
 		{

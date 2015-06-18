@@ -99,9 +99,15 @@ public class FileManager : MonoBehaviour {
 	private string path = null;
 	private string backupPath = null;
 	private string gamedataPath = null;
+	private string itemdataPath = null;
+	private string craftdataPath = null;
+	private string dialogdataPath = null;
 
 	public string backupFolderName = "backup";
 	public string gamedataFolderName = "gamedata";
+	public string itemDataFileName = "itemdatas";
+	public string craftDataFileName = "craftdatas";
+	public string dialogDataFileName = "dialogdatas";
 
 	public enum UpdateFileMode
 	{
@@ -121,27 +127,277 @@ public class FileManager : MonoBehaviour {
 		}
 
 	}
+	
+	public XmlNodeList DigToDesiredParentNodeList(XmlNodeList startingList,string desiredParentName)
+	{
+		XmlNodeList checknodelist = startingList;
+		XmlNode checknode = checknodelist.Item(0);
+		
+		while ( checknodelist.Count >= 1)
+		{
+			checknodelist = checknode.ChildNodes;
+			checknode = checknodelist.Item(0);
+			if(checknode.Name == desiredParentName)
+			{
+				return checknode.ParentNode.ChildNodes;
+			}
+		}
 
-//	//for testing purpose
-//	public void Update()
-//	{
-//		if(Input.GetKeyDown("m"))
+		return null;
+	}
+	public void SaveCraftDatabase()
+	{
+		my_XmlEntry rootentry = new my_XmlEntry("database",null);
+		
+		List<my_XmlBuildEntry> inputlist = new List<my_XmlBuildEntry>();
+		List<string> attkey = new List<string>();
+		List<string> attvalue = new List<string>();
+		
+		List<string> parentlist = new List<string>();
+		List<my_XmlEntry> entrylist = new List<my_XmlEntry>();
+		
+		
+		foreach (CraftingRecipe item in ItemDatabase.Instance.craftDatabase)
+		{
+
+			parentlist.Add(rootentry.name);
+			attkey.Clear();
+			attvalue.Clear();
+			attkey.Add("id");
+			attvalue.Add(item.id.ToString());
+			entrylist.Add(new my_XmlEntry("recipe",null,attkey,attvalue));
+			
+			parentlist.Add("recipe");
+			entrylist.Add(new my_XmlEntry("name",item.recipe_name,null,null));
+
+			foreach ( Item_Proxy input in item.ingrediant)
+			{
+				parentlist.Add("recipe");
+				attkey.Clear();
+				attvalue.Clear();
+				attkey.Add("id");
+				attvalue.Add(input.itemid.ToString());
+				attkey.Add("amount");
+				attvalue.Add(input.amount.ToString());
+				entrylist.Add(new my_XmlEntry("ingrediant",null,attkey,attvalue));
+			}
+
+			foreach ( Item_Proxy output in item.output)
+			{
+				parentlist.Add("recipe");
+				attkey.Clear();
+				attvalue.Clear();
+				attkey.Add("id");
+				attvalue.Add(output.itemid.ToString());
+				attkey.Add("amount");
+				attvalue.Add(output.amount.ToString());
+				entrylist.Add(new my_XmlEntry("output",null,attkey,attvalue));
+			}
+			
+		}	
+		inputlist = CreateXmlBuildEntryList(parentlist,entrylist);	
+		CreateXMLFile("gamedata/" + backupFolderName,"backup_"+ craftDataFileName,"xml",BuildXMLData(rootentry,inputlist),"plaintext");
+	}
+	public void SaveItemDatabase()
+	{
+		my_XmlEntry rootentry = new my_XmlEntry("database",null);
+		
+		List<my_XmlBuildEntry> inputlist = new List<my_XmlBuildEntry>();
+		List<string> attkey = new List<string>();
+		List<string> attvalue = new List<string>();
+		
+		List<string> parentlist = new List<string>();
+		List<my_XmlEntry> entrylist = new List<my_XmlEntry>();
+		
+		
+		foreach (Item item in ItemDatabase.Instance.itemDatabase)
+		{
+			parentlist.Add(rootentry.name);
+			attkey.Clear();
+			attvalue.Clear();
+			attkey.Add("id");
+			attvalue.Add(item.id.ToString());
+			entrylist.Add(new my_XmlEntry("item",null,attkey,attvalue));
+			
+			parentlist.Add("item");
+			entrylist.Add(new my_XmlEntry("name",item.itemname,null,null));
+			parentlist.Add("item");
+			entrylist.Add(new my_XmlEntry("type",item.GetItemType(),null,null));
+			parentlist.Add("item");
+			entrylist.Add(new my_XmlEntry("description",item.description,null,null));
+			parentlist.Add("item");
+			entrylist.Add(new my_XmlEntry("weight",item.weight.ToString(),null,null));
+			parentlist.Add("item");
+			entrylist.Add(new my_XmlEntry("stackable",item.stackable.ToString(),null,null));
+			
+		}	
+		inputlist = CreateXmlBuildEntryList(parentlist,entrylist);	
+		CreateXMLFile("gamedata/" + backupFolderName,"backup_"+ itemDataFileName,"xml",BuildXMLData(rootentry,inputlist),"plaintext");
+	}
+	public void SaveDatabase()
+	{
+		SaveItemDatabase();
+		SaveCraftDatabase();
+	}
+	public List<CraftingRecipe> LoadCraftsData()
+	{
+		if( CheckFile(craftdataPath,false) == false)
+		{
+			print ("ERROR: Craft data file cannot be found, load data aborted");
+			return null;
+			
+		}
+		print ("loading craft datas");
+		XmlDocument xmlDoc = new XmlDocument();
+		xmlDoc.Load(craftdataPath);
+		
+		
+		XmlNodeList parentList = null;
+		XmlNodeList innerchildContent = null;
+		//XmlNode innerchildItem = null;
+		List<CraftingRecipe> resultlist = new List<CraftingRecipe>();
+		CraftingRecipe tempitem = new CraftingRecipe();
+		
+		parentList = xmlDoc.GetElementsByTagName("database");
+		parentList = DigToDesiredParentNodeList(parentList,"recipe");
+
+		foreach(XmlNode childInfo in parentList)
+		{
+			//print ("looking at child INFO "+ childInfo.Name );
+
+			//WEIRD BUG HERE
+			tempitem = new CraftingRecipe();//COMMENT THIS OFF AND WEIRD BUG APPEAR IN THE CRAFTING LIST
+			//BUG IS WHERE THE CRAFTING RECIPE BELOW WILL GET ADDED WITH ALL THE ABOVE INGRIENDIANT AND OUTPUT LIST
+
+			tempitem.id = int.Parse(childInfo.Attributes["id"].Value);
+			XmlNodeList childContent = childInfo.ChildNodes;
+			
+			foreach (XmlNode childItem in childContent)
+			{
+				print ("looking at child ITEM "+ childItem.Name + " : " + childItem.InnerText );
+
+				switch (childItem.Name)
+				{
+				case "name":
+					tempitem.recipe_name = childItem.InnerText;
+					break;
+				case "ingrediant":
+					print ("DEBUG ingredaint value :" + childItem.InnerText);
+					print ("DEBUG ingredaint adding :" + childItem.Attributes["id"].Value + " and " + childItem.Attributes["amount"].Value);
+					//innerchildContent = childItem.ChildNodes;
+					//foreach (XmlNode innerchildItem in innerchildContent )
+					//{
+					//	print ("looking at input innferchild info "+ innerchildItem.Name + " id: " +innerchildItem.Attributes["id"].Value + " amount: " +innerchildItem.Attributes["amount"].Value  );
+						tempitem.AddIngrediant(int.Parse(childItem.Attributes["id"].Value),int.Parse(childItem.Attributes["amount"].Value));
+					//}
+
+					break;
+				case "output":
+					print ("DEBUG output value :" + childItem.InnerText);
+					print ("DEBUG output adding :" + childItem.Attributes["id"].Value + " and " + childItem.Attributes["amount"].Value);
+					//innerchildContent = childItem.ChildNodes;
+					//foreach (XmlNode innerchildItem in innerchildContent )
+					//{
+					//	print ("looking at output innferchild info "+ innerchildItem.Name + " id: " +innerchildItem.Attributes["id"].Value + " amount: " +innerchildItem.Attributes["amount"].Value  );
+						tempitem.AddOutputItem(int.Parse(childItem.Attributes["id"].Value),int.Parse(childItem.Attributes["amount"].Value));
+					//}
+					break;
+				default:
+					print("ERROR: Unknown load item data field detected: " + childItem.Name);
+					break;
+				}
+			}
+
+			resultlist.Add(new CraftingRecipe(tempitem));
+
+		}
+//		foreach (CraftingRecipe item in resultlist)
 //		{
-//			MoveFile("gamedata/test.gamedata", "gamedata/xml/test.gamedata",true);
+//			print(item.StringSelf() + "\n");
 //		}
-//		if(Input.GetKeyDown("c"))
-//		{
-//			CopyFile("gamedata/test.gamedata", "gamedata/xml/test.gamedata",true);
-//		}
-//		if(Input.GetKeyDown("d"))
-//		{
-//			DeleteFile("gamedata/xml/test.gamedata");
-//		}
-//		if(Input.GetKeyDown("e"))
-//		{
-//			DeleteFile("gamedata/test.gamedata");
-//		}
-//	}
+		return resultlist;
+	}
+	public List<Item> LoadItemsData()
+	{
+		//print( itemdataPath.Remove( 0,(path+"/").Length)  );
+
+		if( CheckFile(itemdataPath,false) == false)
+		{
+			print ("ERROR: Item data file cannot be found, load data aborted");
+			return null;
+
+		}
+		print ("loading item datas");
+		XmlDocument xmlDoc = new XmlDocument();
+		xmlDoc.Load(itemdataPath);
+
+
+		XmlNodeList parentList = null;
+
+		List<Item> resultlist = new List<Item>();
+		Item tempitem = new Item();
+
+		parentList = xmlDoc.GetElementsByTagName("database");
+		parentList = DigToDesiredParentNodeList(parentList,"item");
+			
+		foreach(XmlNode childInfo in parentList)
+		{
+			//print ("looking at child info "+ childInfo.Name );
+			tempitem.id = int.Parse(childInfo.Attributes["id"].Value);
+			XmlNodeList childContent = childInfo.ChildNodes;
+
+			foreach (XmlNode childItem in childContent)
+			{
+
+			
+				switch(childItem.Name)
+				{
+
+				case "Name":
+				case "name":
+					tempitem.itemname = childItem.InnerText;
+					break;
+
+				case "Type":
+				case "type":
+					tempitem.SetItemType(childItem.InnerText);
+					break;
+
+				case "Description":
+				case "description":
+					tempitem.description = childItem.InnerText;
+					break;
+
+				case "Weight":
+				case "weight":
+					tempitem.weight = int.Parse(childItem.InnerText);
+					break;
+
+				case "Stackable":
+				case "stackable":
+					switch (childItem.InnerText)
+					{
+					case "True":
+					case "true":
+						tempitem.stackable = true;
+						break;
+
+					case"False":
+					case"false":
+						default:
+						tempitem.stackable = false;
+						break;
+					}
+					break;
+				default:
+					print("ERROR: Unknown load item data field detected: " + childItem.Name);
+					break;
+				}
+			}
+			resultlist.Add(new Item(tempitem));
+		}
+		return resultlist;
+	}
 
 	public void TestBuildXMLFile()
 	{
@@ -220,6 +476,9 @@ public class FileManager : MonoBehaviour {
 		gamedataPath = path + "/" + gamedataFolderName;
 		backupPath = path + "/" + gamedataFolderName + "/" + backupFolderName;
 
+		itemdataPath = gamedataPath + "/" + itemDataFileName + ".xml";
+		craftdataPath = gamedataPath + "/" + craftDataFileName + ".xml";
+		dialogdataPath = gamedataPath + "/" + dialogDataFileName + ".xml";
 
 		if (CheckDirectory(gamedataFolderName) == false)
 		{
@@ -790,7 +1049,23 @@ public class FileManager : MonoBehaviour {
 		}
 		return false;
 	}
-	private bool CheckDirectory(string directory)
+	public bool CheckDirectory(string directory,bool raw)
+	{
+		if(raw == false)
+		{
+			return Directory.Exists(directory);
+		}
+		return Directory.Exists(path + "/" + directory);
+	}
+	public bool CheckFile(string filePath,bool raw)
+	{
+		if(raw == false)
+		{
+			return File.Exists(filePath);
+		}
+		return File.Exists(path + "/" + filePath);
+	}
+	public bool CheckDirectory(string directory)
 	{
 		return Directory.Exists(path + "/" + directory);
 	}
