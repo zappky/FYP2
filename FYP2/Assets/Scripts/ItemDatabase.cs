@@ -179,30 +179,53 @@ public class CraftingRecipe//i do this purely because i want to view the item in
 }
 
 public class ItemDatabase : MonoBehaviour {
+	private static ItemDatabase instance = null;
 	public List<Item> itemDatabase = new List<Item>();//containing all unique game item,crafted item and materals
 	public List<CraftingRecipe> craftDatabase = new List<CraftingRecipe>();//containing all game item crafting combination
-	public CTimer alarmitem;
-	
-	void Start()
+	public CTimer alarmitem = null;
+
+	public static ItemDatabase Instance
 	{
+		get
+		{
+			if(instance == null)
+			{
+
+				//not needed
+//				GameObject[] detectionlist = GameObject.FindGameObjectsWithTag("Item Database");
+//				//print("duplicate detected: " + detectionlist.Length);
+//				if (detectionlist.Length > 1)
+//				{
+//					foreach (GameObject item in detectionlist)
+//					{
+//						Destroy(item);
+//					}
+//				}
+
+				instance = new GameObject("ItemDatabase").AddComponent<ItemDatabase>();
+			}
+			return instance;
+		}
+	}
+	public void Initialize()
+	{	
 		alarmitem = GameObject.FindGameObjectWithTag("Alarm").GetComponent<CTimer>();//to input the script rference
-		
-		//PopulateGameObjectData();
-		//PopulateCraftingData();
-		
+			//alarmitem = this.GetComponent<CTimer>();
+			//PopulateGameObjectData();
+			//PopulateCraftingData();
+				
 		PopulateTestObject();//remove when project go full launch
 		PopulateTestCraftingData();
-		
-//		if(craftDatabase[0].testmap.ContainsKey(3))
-//		{
-//			Debug.Log("yay");
-//		}else{
-//			Debug.Log("ok");
-//		}
-	
-
 	}
-	
+	public void OnApplicationQuit()//this will be auto called like start and update function
+	{
+		DestroyInstance();
+	}
+	public void DestroyInstance()
+	{
+		//print ("database instance destroyed");
+		instance = null;
+	}
 	
 	public CraftingRecipe MakeCraftingRecipe(int id,string recipieName,List<int> itemIdList,List<int>itemAmount,List<int> outputIdList,List<int>outputAmountList)
 	{
@@ -268,7 +291,7 @@ public class ItemDatabase : MonoBehaviour {
 	{
 		itemDatabase.Add(new Item(0,"battery",Item.ItemType.CraftMaterial,"just a test object 0",1,1,true));	
 		itemDatabase.Add(new Item(1,"gear",Item.ItemType.CraftMaterial,"just a test item 1",1,1,true));	
-		itemDatabase.Add(new Item(2,"clock",Item.ItemType.Useable,"just a test alarm item 2",1,1,true));
+		itemDatabase.Add(new Item(2,"clock",Item.ItemType.Useable,"just a test alarm item 2",1,1,false));
 	}
 	public Item GetItemWithIndex(int index)
 	{

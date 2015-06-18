@@ -18,7 +18,19 @@ public class my_timedata {
 	public float minute_tick = 1.0f;
 	public float second = 0;
 	public float minute = 0;
-	
+
+	public my_timedata (float minute ,float second)
+	{
+		this.minute = minute;
+		this.second = second;
+	}
+	public my_timedata (my_timedata another)
+	{
+		this.minute_base = another.minute_base;
+		this.minute_tick = another.minute_tick;
+		this.minute = another.minute;
+		this.second = another.second;
+	}
 	public float GetTotalTimeInSecond()
 	{
 		return minute * minute_base + second;
@@ -73,10 +85,13 @@ public class CTimer : MonoBehaviour {
 	public my_timedata timerUpperLimit ; //count up limit
 	public my_timedata timerLowerLimit ; // count down limit
 	public bool operate   = false; // whether to update
-	public bool display = true;  // whether to draw the ui
+	public bool display = false;  // whether to draw the ui
 	public bool alert   = false; // whether to ring alarm
 	public my_rectdata rect;
-		
+
+	//public my_timedata resetTimer;
+	public my_timedata resetDelay = new my_timedata(0.0f,5.0f);//amount of wait time before reset timer.
+	public SoundEffect sound ;
 	public enum TimerState
 	{
 		countdown
@@ -87,13 +102,13 @@ public class CTimer : MonoBehaviour {
 		SEC,
 		MIN_SEC,
 	}
-	public TimerState timerstate= TimerState.countdown;
+	public TimerState timerstate = TimerState.countdown;
 	public TimerFormat timerformat = TimerFormat.MIN_SEC;
 	// Use this for initialization
 	void Start () {
 	
 		operate = false;
-				
+		sound = this.GetComponent<SoundEffect>();		
 		timerLowerLimit.second = 0.0f;
 	
 		switch(this.tag)//configuration,cos i want to reuse this script as game clock
@@ -131,33 +146,105 @@ public class CTimer : MonoBehaviour {
 
 		if(operate == true)
 		{
-			switch(timerstate)
+			if(alert == false)//on normal routine
 			{
+				switch(timerstate)
+				{
 				case TimerState.countdown:	
-					//Debug.Log("counting down activated");				
+
 					CountDown();
+
+					if(CheckReachTimeLimit(timerstate) == true)
+					{
+						ActivateEffect();
+						display = false;
+					}
+
 					break;
 				case TimerState.countup:
-					//Debug.Log("counting up activated");
+
 					CountUp();
+
+					if(CheckReachTimeLimit(timerstate) == true)
+					{
+						ActivateEffect();
+						display = false;
+					}
+
 					break;
-				
-			}	
+					
+				}	
+			}else//on reset timer routine
+			{
+				CountUp();
+				//print ("counting reset timer");
+				if( timer.GetTotalTimeInSecond() >= resetDelay.GetTotalTimeInSecond() == true)
+				{
+					//print ("resetting timer");
+					Reset();
+				}
+			}
+
 		}
 
 	}
+	private void StopSoundEffect()
+	{
+		if (sound.isActiveAndEnabled == true)
+		{
+			sound.StopSound();
+		}
+	}
+	private void ActivateEffect()
+	{
+		sound.PlaySound();
+		alert = true;
+	}
+	public bool CheckReachTimeLimit(TimerState state)
+	{
+		switch (state)
+		{
+			case TimerState.countdown:
+				return CheckReachTimeLimit(false);
+
+			case TimerState.countup:
+				return CheckReachTimeLimit(true);
+
+		}
+		return false;
+	}
+	public bool CheckReachTimeLimit(bool limitmode)
+	{
+		if(limitmode == true) //test for upperlimit
+		{
+			if(timer.GetTotalTimeInSecond() >= timerUpperLimit.GetTotalTimeInSecond())
+			{
+				timer.SetEqual(timerUpperLimit);
+				return true;
+			}
+		}else//test for lowerlimit
+		{
+			if(timer.GetTotalTimeInSecond() <= timerLowerLimit.GetTotalTimeInSecond())
+			{
+				timer.SetEqual(timerLowerLimit);
+				return true;
+			}
+		}
+
+		return false;
+	}
 	public void CountDown()
 	{
-		if(timer.GetTotalTimeInSecond() <= timerLowerLimit.GetTotalTimeInSecond())
-		{
-			SoundEffect sound = this.GetComponent<SoundEffect>();
-			sound.PlaySound();
-
-			timer.SetEqual(timerLowerLimit);
-			alert = true;
-			operate = false;
-			return;
-		}
+//		if(timer.GetTotalTimeInSecond() <= timerLowerLimit.GetTotalTimeInSecond())
+//		{
+//			SoundEffect sound = this.GetComponent<SoundEffect>();
+//			sound.PlaySound();
+//
+//			timer.SetEqual(timerLowerLimit);
+//			alert = true;
+//			operate = false;
+//			return;
+//		}
 		
 		switch(timerformat)
 		{
@@ -197,13 +284,14 @@ public class CTimer : MonoBehaviour {
 	}
 	public void CountUp()
 	{
-		if(timer.GetTotalTimeInSecond() >= timerUpperLimit.GetTotalTimeInSecond())
-		{
-			timer.SetEqual(timerUpperLimit);
-			alert = true;
-			operate = false;
-			return;
-		}
+//		if(timer.GetTotalTimeInSecond() >= timerUpperLimit.GetTotalTimeInSecond())
+//		{
+//			timer.SetEqual(timerUpperLimit);
+//			alert = true;
+//			operate = false;
+//			return;
+//		}
+
 		switch(timerformat)
 		{
 			case TimerFormat.MIN_SEC:
@@ -229,8 +317,9 @@ public class CTimer : MonoBehaviour {
 	public void Reset()
 	{
 		timer.SetEqual(previoustimer);
-		operate = true;
+		SetOperate(false);
 		alert = false;
+		StopSoundEffect();
 	}
 	public void SetTimer( float time_min,float time_sec)
 	{
@@ -256,28 +345,31 @@ public class CTimer : MonoBehaviour {
 	{
 		if(operate == true)
 		{
-			switch (timerformat)
+			if(display == true)
 			{
+				switch (timerformat)
+				{
 				default:
 				case TimerFormat.SEC:
 				{
-
-				//rect.left
+					
+					//rect.left
 					GUI.Box(new Rect(rect.left,rect.top,rect.width,rect.height), "" + timer.second.ToString("0"));
 				}break;
-				
+					
 				case TimerFormat.MIN_SEC:
 				{
-				
-				if(Mathf.Round(timer.second) <= 9.0f)
+					
+					if(Mathf.Round(timer.second) <= 9.0f)
 					{
-					GUI.Box(new Rect(rect.left,rect.top,rect.width,rect.height),timer.minute.ToString("f0") + ":0" + timer.second.ToString("f0"));
+						GUI.Box(new Rect(rect.left,rect.top,rect.width,rect.height),timer.minute.ToString("f0") + ":0" + timer.second.ToString("f0"));
 					}
 					else
 					{
-					GUI.Box(new Rect(rect.left,rect.top,rect.width,rect.height), timer.minute.ToString("f0") + ":" + timer.second.ToString("f0"));
+						GUI.Box(new Rect(rect.left,rect.top,rect.width,rect.height), timer.minute.ToString("f0") + ":" + timer.second.ToString("f0"));
 					}
 				}break;
+				}
 			}
 		}
 	}
@@ -291,7 +383,7 @@ public class CTimer : MonoBehaviour {
 	}
 	public void SetOperate( bool start )
 	{
-		operate = start;
+		display = operate = start;
 	}
 	public void OnLookInteract()//when being selected
 	{

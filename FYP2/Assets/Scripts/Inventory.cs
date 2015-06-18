@@ -44,7 +44,7 @@ public class Inventory : MonoBehaviour {
 	void Start () {
 	
 		//insert the script reference
-		database = GameObject.FindGameObjectWithTag("Item Database").GetComponent<ItemDatabase>();//to input the script rference
+		database = ItemDatabase.Instance;
 		playerinfo = this.GetComponent<PlayerInfo>();//should be relative the player object attached
 		playercastslot = this.GetComponent<CastSlot>();
 

@@ -61,7 +61,54 @@ public class Item   {
 
 		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
 	}
+	public Item(int id, string name,string itemtype,string description,int weight,int amount,bool stackable)//constructor
+	{
+		this.id = id;
+		this.itemname = name;
 
+		switch(itemtype)
+		{
+			case "craftmaterial":
+			case "Craftmaterial":
+			case "craftMaterial":
+			case "CraftMaterial":
+				this.type = ItemType.CraftMaterial;
+				break;
+
+			case "equipable":
+			case "Equipable":
+				this.type = ItemType.Equipable;
+				break;
+
+			case "useable":
+			case "Useable":
+				this.type = ItemType.Useable;
+				break;
+
+			case "quest":
+			case "Quest":
+				this.type = ItemType.Quest;
+				break;
+
+			case "consumable":
+			case "Consumable":
+				this.type = ItemType.Consumable;
+				break;
+
+			case "Undefined":
+			case "undefined":
+			default:
+				this.type = ItemType.Undefined;
+				break;
+		}
+
+		this.description = description;
+		this.weight = weight;
+		this.amount = amount;
+		this.stackable = stackable;
+		
+		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
+	}
 	public Item(int id, string name,ItemType type,string description,int weight,int amount,bool stackable)//constructor
 	{
 		this.id = id;
