@@ -5,13 +5,8 @@
 		<ingrediant id="-11" amount="1" />
 		<output id="-99" amount="1" />
 	</recipe>
-	<recipe id="2">
-		<name>testrecipe</name>
-		<ingrediant id="-19" amount="1" />
-		<output id="-91" amount="1" />
-	</recipe>
 	<recipe id="1">
-		<name>test Alarm recipe</name>
+		<name>Alarm Recipe</name>
 		<ingrediant id="1" amount="1" />
 		<ingrediant id="2" amount="1" />
 		<output id="3" amount="1" />

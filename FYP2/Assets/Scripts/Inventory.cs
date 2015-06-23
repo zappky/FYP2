@@ -85,7 +85,7 @@ public class Inventory : MonoBehaviour {
 				}
 				if(Input.GetKeyDown("t"))
 				{
-					AddItem(database.CraftItem(inventory,database.GetCraftRecipe(0)));
+					AddItem(database.CraftItem(inventory,database.GetCraftRecipe(1)));
 				}
 			}
 			

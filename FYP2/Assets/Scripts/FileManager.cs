@@ -264,10 +264,7 @@ public class FileManager : MonoBehaviour {
 		foreach(XmlNode childInfo in parentList)
 		{
 			//print ("looking at child INFO "+ childInfo.Name );
-
-			//WEIRD BUG HERE
-			tempitem = new CraftingRecipe();//COMMENT THIS OFF AND WEIRD BUG APPEAR IN THE CRAFTING LIST
-			//BUG IS WHERE THE CRAFTING RECIPE BELOW WILL GET ADDED WITH ALL THE ABOVE INGRIENDIANT AND OUTPUT LIST
+			tempitem.ClearAll();
 
 			tempitem.id = int.Parse(childInfo.Attributes["id"].Value);
 			XmlNodeList childContent = childInfo.ChildNodes;

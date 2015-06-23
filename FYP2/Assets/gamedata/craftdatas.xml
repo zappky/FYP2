@@ -2,20 +2,14 @@
 <database>
 	<recipe id = "0">
 		<name>testrecipe</name>
-		<ingrediant id = "-11" amount = "1">t1</ingrediant>
-		<output id = "-99" amount = "1">o1</output>
+		<ingrediant id = "-11" amount = "1"></ingrediant>
+		<output id = "-99" amount = "1"></output>
 	</recipe>
-	
-	<recipe id = "2">
-		<name>testrecipe</name>
-		<ingrediant id = "-19" amount = "1">t1</ingrediant>
-		<output id = "-91" amount = "1">o1</output>
-	</recipe>
-	
+
 	<recipe id = "1">
-		<name>test Alarm recipe</name>
-		<ingrediant id = "1" amount = "1">t2</ingrediant>
-		<ingrediant id = "2" amount = "1">t3</ingrediant>
-		<output id = "3" amount = "1">02</output>
+		<name>Alarm Recipe</name>
+		<ingrediant id = "1" amount = "1"></ingrediant>
+		<ingrediant id = "2" amount = "1"></ingrediant>
+		<output id = "3" amount = "1"></output>
 	</recipe>
 </database>

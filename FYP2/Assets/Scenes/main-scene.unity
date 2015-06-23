@@ -171,7 +171,6 @@ GameObject:
   - 20: {fileID: 22426157}
   - 92: {fileID: 22426156}
   - 124: {fileID: 22426155}
-  - 114: {fileID: 22426154}
   - 81: {fileID: 22426153}
   m_Layer: 0
   m_Name: Main Camera
@@ -202,26 +201,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 22426151}
   m_Enabled: 1
---- !u!114 &22426154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 6d86d52680c83d9458fcd28ef1d8119e,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 22426151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68ec2fe99d1108b9d0006a298d76c639, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axes: 0
-  sensitivityX: 15
-  sensitivityY: 15
-  minimumX: -360
-  maximumX: 360
-  minimumY: -60
-  maximumY: 60
-  rotationY: 0
 --- !u!124 &22426155
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1082,7 +1061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &534276493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1778,7 +1757,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 689096339}
   m_GameObject: {fileID: 940450606}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-<<<<<<< HEAD
 --- !u!1 &944886940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1876,10 +1854,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!1 &954211083
-=======
 --- !u!1 &963974907
->>>>>>> origin/master
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1905,7 +1880,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
 --- !u!115 &970897593
 MonoScript:
   m_ObjectHideFlags: 0
@@ -2124,7 +2099,6 @@ Transform:
   m_Children:
   - {fileID: 162652872}
   - {fileID: 1383262359}
-  - {fileID: 1344691425}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!1 &1304147804
@@ -2187,48 +2161,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1889193945}
   m_RootOrder: 0
---- !u!1 &1344691423
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1344691425}
-  - 114: {fileID: 1344691424}
-  m_Layer: 0
-  m_Name: ItemDatabase
-  m_TagString: Item Database
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1344691424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1344691423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f02202114d536fa49895740a09c95740, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDatabase: []
-  craftDatabase: []
-  alarmitem: {fileID: 0}
---- !u!4 &1344691425
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1344691423}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1299355427}
-  m_RootOrder: 2
 --- !u!1 &1372206160
 GameObject:
   m_ObjectHideFlags: 0
@@ -2454,7 +2386,7 @@ MonoBehaviour:
     minute_tick: 1
     second: 5
     minute: 0
-  sound: {fileID: 0}
+  sound: {fileID: 1430730707}
   timerstate: 0
   timerformat: 1
 --- !u!23 &1430730704
@@ -2923,11 +2855,8 @@ MonoBehaviour:
   swingSpeed: .100000001
   mouseSensitivity: 5
   viewRange: 60
-<<<<<<< HEAD
-  runSound: {fileID: 0}
-=======
+  runSound: {fileID: 944886942}
   debugFlyMode: 0
->>>>>>> origin/master
 --- !u!114 &1795129925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3009,7 +2938,7 @@ Transform:
   - {fileID: 1791613602}
   - {fileID: 944886941}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!114 &1795129930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3087,7 +3016,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1795129923}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88713e5714b46894b99d141cbb9fe825, type: 3}
   m_Name: 
@@ -3146,11 +3075,7 @@ MonoBehaviour:
   playername: hentaiislove
   weight: 45
   gender: 0
-<<<<<<< HEAD
---- !u!1 &1882340262
-=======
 --- !u!1 &1820238706
->>>>>>> origin/master
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -3453,7 +3378,7 @@ Transform:
   - {fileID: 1889193945}
   - {fileID: 2133130560}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &2094021062
 GameObject:
   m_ObjectHideFlags: 0
@@ -3464,19 +3389,13 @@ GameObject:
   - 4: {fileID: 2094021063}
   - 33: {fileID: 2094021066}
   - 23: {fileID: 2094021064}
-<<<<<<< HEAD
   - 54: {fileID: 2094021068}
   - 135: {fileID: 2094021069}
   - 114: {fileID: 2094021067}
-=======
   - 136: {fileID: 2094021065}
-  - 135: {fileID: 2094021069}
-  - 54: {fileID: 2094021068}
-  - 114: {fileID: 2094021067}
   - 114: {fileID: 2094021070}
   - 114: {fileID: 2094021071}
   - 114: {fileID: 2094021072}
->>>>>>> origin/master
   m_Layer: 0
   m_Name: AI_Human
   m_TagString: Enemy
@@ -3552,12 +3471,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-<<<<<<< HEAD
-  stats: {fileID: 11411490, guid: 1b02776659bd3cd49b3639d125098427, type: 2}
-  Player: {fileID: 1795129923}
-  target: {fileID: 1795129929}
-=======
->>>>>>> origin/master
   waypointList:
   - {fileID: 1870184486}
   - {fileID: 351105039}
@@ -3649,7 +3562,7 @@ MonoBehaviour:
   ALERTSPD_MAX: 5
   isAlarmed: 0
   playerInSight: 0
---- !u!4 &2133130560 stripped
+--- !u!4 &2133130560
 Transform:
   m_PrefabParentObject: {fileID: 480112, guid: 7e6b4ad5e3f116f4986af9cc80dac8f4, type: 2}
   m_PrefabInternal: {fileID: 146807321}
