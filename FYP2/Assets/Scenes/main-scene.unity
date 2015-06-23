@@ -979,6 +979,68 @@ Transform:
   - {fileID: 2094021063}
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!1 &505574104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 505574106}
+  - 114: {fileID: 505574105}
+  m_Layer: 0
+  m_Name: TestDialog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &505574105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 505574104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6f8d8df856abb4985ebe00071063ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  display: 0
+  displayTransparency: 1
+  autoText: 0
+  autoTextSpeed: 1
+  CurrentTextLine: 0
+  CurrentParagraph: 0
+  dialogBox:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  personBox:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  outputList: []
+  dialogOutput: 
+  personName: 
+  delayTime: 5
+  delayTimer: 0
+--- !u!4 &505574106
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 505574104}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -15.2713804, y: -71.1403732, z: -198.486465}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!1 &521320841
 GameObject:
   m_ObjectHideFlags: 0
@@ -2856,7 +2918,7 @@ MonoBehaviour:
   mouseSensitivity: 5
   viewRange: 60
   runSound: {fileID: 944886942}
-  debugFlyMode: 0
+  debugFlyMode: 1
 --- !u!114 &1795129925
 MonoBehaviour:
   m_ObjectHideFlags: 0

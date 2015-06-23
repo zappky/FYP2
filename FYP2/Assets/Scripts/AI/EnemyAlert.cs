@@ -16,7 +16,7 @@ public class EnemyAlert : MonoBehaviour {
 	public bool playerInSight = false;		// if true, isAlarmed will always be true - alert wont decrease until player is caught/gone. 
 											// (value is set by EnemyAI) 
 
-	SphereCollider col;						// AI's sight/hearing rng
+	SphereCollider col = null;						// AI's sight/hearing rng
 
 	// updates the dec of alert. Inc of alert done in EnemyAI
 	void Update () {

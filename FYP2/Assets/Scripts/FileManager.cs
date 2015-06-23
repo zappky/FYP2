@@ -253,7 +253,7 @@ public class FileManager : MonoBehaviour {
 		
 		
 		XmlNodeList parentList = null;
-		XmlNodeList innerchildContent = null;
+		//XmlNodeList innerchildContent = null;
 		//XmlNode innerchildItem = null;
 		List<CraftingRecipe> resultlist = new List<CraftingRecipe>();
 		CraftingRecipe tempitem = new CraftingRecipe();
@@ -271,7 +271,7 @@ public class FileManager : MonoBehaviour {
 			
 			foreach (XmlNode childItem in childContent)
 			{
-				print ("looking at child ITEM "+ childItem.Name + " : " + childItem.InnerText );
+				//print ("looking at child ITEM "+ childItem.Name + " : " + childItem.InnerText );
 
 				switch (childItem.Name)
 				{
@@ -279,8 +279,8 @@ public class FileManager : MonoBehaviour {
 					tempitem.recipe_name = childItem.InnerText;
 					break;
 				case "ingrediant":
-					print ("DEBUG ingredaint value :" + childItem.InnerText);
-					print ("DEBUG ingredaint adding :" + childItem.Attributes["id"].Value + " and " + childItem.Attributes["amount"].Value);
+					//print ("DEBUG ingredaint value :" + childItem.InnerText);
+					//print ("DEBUG ingredaint adding :" + childItem.Attributes["id"].Value + " and " + childItem.Attributes["amount"].Value);
 					//innerchildContent = childItem.ChildNodes;
 					//foreach (XmlNode innerchildItem in innerchildContent )
 					//{
@@ -290,8 +290,8 @@ public class FileManager : MonoBehaviour {
 
 					break;
 				case "output":
-					print ("DEBUG output value :" + childItem.InnerText);
-					print ("DEBUG output adding :" + childItem.Attributes["id"].Value + " and " + childItem.Attributes["amount"].Value);
+					//print ("DEBUG output value :" + childItem.InnerText);
+					//print ("DEBUG output adding :" + childItem.Attributes["id"].Value + " and " + childItem.Attributes["amount"].Value);
 					//innerchildContent = childItem.ChildNodes;
 					//foreach (XmlNode innerchildItem in innerchildContent )
 					//{

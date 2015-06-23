@@ -1,14 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\FileManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\DialogSystem.cs">
     <Files>
-      <File FileName="Assets\Scripts\alertbar.cs" Line="14" Column="3" />
-      <File FileName="Assets\Scripts\FpsMovement.cs" Line="37" Column="52" />
-      <File FileName="Assets\Scripts\Inventory.cs" Line="451" Column="45" />
-      <File FileName="Assets\Scripts\MiniMap.cs" Line="13" Column="32" />
-      <File FileName="Assets\Scripts\SingetonSetUp.cs" Line="10" Column="31" />
-      <File FileName="Assets\Scripts\ItemDatabase.cs" Line="200" Column="36" />
-      <File FileName="Assets\Scripts\FileManager.cs" Line="288" Column="1" />
+      <File FileName="Assets\Scripts\alertbar.cs" Line="15" Column="17" />
+      <File FileName="Assets\Scripts\FpsMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Inventory.cs" Line="416" Column="6" />
+      <File FileName="Assets\Scripts\MiniMap.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SingetonSetUp.cs" Line="8" Column="17" />
+      <File FileName="Assets\Scripts\ItemDatabase.cs" Line="183" Column="48" />
+      <File FileName="Assets\Scripts\FileManager.cs" Line="271" Column="4" />
+      <File FileName="c:\Users\132385w\Desktop\fyp2\FYP2\Assets\Scripts\AI\EnemyAlert.cs" Line="16" Column="131" />
+      <File FileName="Assets\Scripts\DialogSystem.cs" Line="69" Column="3" />
+      <File FileName="Assets\Scripts\CTimer.cs" Line="254" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
