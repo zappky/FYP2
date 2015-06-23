@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 420224}
-  - 114: {fileID: 11465552}
+  - 114: {fileID: 11411490}
   m_Layer: 0
   m_Name: HumanStats
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11465552
+--- !u!114 &11411490
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -36,7 +36,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 182244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e1ba8a92fdb6cb4abe5cb753576b76b, type: 3}
+  m_Script: {fileID: 11500000, guid: d2838b57b6897cd46804e82cf02d73b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
@@ -44,7 +44,7 @@ MonoBehaviour:
   alertNoiseMoveSpeed: 1.20000005
   IDLE_DELAY: 2
   fieldOfViewAngle: 110
-  attackRange: 10
+  attackRange: 43.1421127
   toleranceLength: 10
 --- !u!1001 &100100000
 Prefab:
