@@ -292,9 +292,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 23392109}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 93.0999985}
-  m_LocalScale: {x: 20, y: 20, z: 10}
+  m_LocalRotation: {x: 2.98023153e-08, y: 1.49011576e-08, z: 1.49011576e-08, w: 1}
+  m_LocalPosition: {x: 0, y: 4.96542452e-05, z: 416.529968}
+  m_LocalScale: {x: 40, y: 40, z: 10}
   m_Children: []
   m_Father: {fileID: 1535826215}
   m_RootOrder: 0
@@ -1495,6 +1495,103 @@ MeshFilter:
   m_PrefabInternal: {fileID: 689096339}
   m_GameObject: {fileID: 940450606}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &944886940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 944886941}
+  - 82: {fileID: 944886942}
+  m_Layer: 0
+  m_Name: runsound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &944886941
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 944886940}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.62465835, y: 2.62465715, z: 4.30013466}
+  m_Children: []
+  m_Father: {fileID: 1795129929}
+  m_RootOrder: 5
+--- !u!82 &944886942
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 944886940}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 229527afef2663b4daf766f754242fbe, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 5.11418915
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &954211083
 GameObject:
   m_ObjectHideFlags: 0
@@ -2226,7 +2323,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1535826214}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: 0, y: 12.5699997, z: 0}
+  m_LocalPosition: {x: 0, y: 336, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 23392110}
@@ -2266,7 +2363,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -2642,6 +2739,7 @@ MonoBehaviour:
   swingSpeed: .100000001
   mouseSensitivity: 5
   viewRange: 60
+  runSound: {fileID: 0}
 --- !u!114 &1795129925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2721,6 +2819,7 @@ Transform:
   - {fileID: 22426152}
   - {fileID: 1535826215}
   - {fileID: 1791613602}
+  - {fileID: 944886941}
   m_Father: {fileID: 0}
   m_RootOrder: 3
 --- !u!114 &1795129930
@@ -2805,10 +2904,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88713e5714b46894b99d141cbb9fe825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 2094021062}
+  enemies: []
+  objectives:
+  - {fileID: 1466716672}
   enemyPrefab: {fileID: 167562, guid: d07574711fdd32749b54fa4c0ef60951, type: 2}
-  switchDist: 10
+  objectivePrefab: {fileID: 119880, guid: 178af3651e0d48046bd6be3c7e7d7bd7, type: 2}
+  switchDist: 19
   helpTransform: {fileID: 1026210991}
 --- !u!114 &1795129934
 MonoBehaviour:
@@ -2857,10 +2958,6 @@ MonoBehaviour:
   playername: hentaiislove
   weight: 45
   gender: 0
---- !u!4 &1840072056 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 411630, guid: 1a70140a50792844c8e841369ac5149d, type: 2}
-  m_PrefabInternal: {fileID: 62859038}
 --- !u!1 &1882340262
 GameObject:
   m_ObjectHideFlags: 0
@@ -3275,12 +3372,12 @@ GameObject:
   - 33: {fileID: 2094021066}
   - 136: {fileID: 2094021065}
   - 23: {fileID: 2094021064}
-  - 114: {fileID: 2094021067}
   - 54: {fileID: 2094021068}
   - 135: {fileID: 2094021069}
+  - 114: {fileID: 2094021067}
   m_Layer: 0
   m_Name: AI_Human
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3353,9 +3450,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  stats: {fileID: 11465552, guid: 8838f540bcbdfe04c86845d90beff4fd, type: 2}
+  stats: {fileID: 11411490, guid: 1b02776659bd3cd49b3639d125098427, type: 2}
   Player: {fileID: 1795129923}
-  target: {fileID: 0}
+  target: {fileID: 1795129929}
   waypointList:
   - {fileID: 1698960190}
   - {fileID: 954211084}

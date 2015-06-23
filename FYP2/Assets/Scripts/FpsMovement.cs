@@ -20,6 +20,8 @@ public class FpsMovement : MonoBehaviour
 
 	CharacterController cc;
 
+	public AudioSource runSound;
+
 	bool paracheck = false;
 	bool isGrappling = false;		//if true, player is using grapple //temp grapple test - Hazim
 
@@ -27,6 +29,11 @@ public class FpsMovement : MonoBehaviour
 	void Start () 
 	{
 		cc = GetComponent<CharacterController>();
+
+		if(runSound == null)
+		{
+			runSound = GameObject.Find("runsound").GetComponent<AudioSource>();
+		}
 	}
 	
 	// Update is called once per frame
@@ -41,16 +48,19 @@ public class FpsMovement : MonoBehaviour
 		vertRotation = Mathf.Clamp (vertRotation, -viewRange, viewRange);
 		Camera.main.transform.localRotation = Quaternion.Euler (vertRotation, 0, 0);
 
-		if(Input.GetButton("Run"))
+		if((Input.GetButton("Run") && Input.GetButton("Vertical")) || (Input.GetButton("Run") && Input.GetButton("Horizontal")))
 		{
 			forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed * 2.0f;
 			sideSpeed = Input.GetAxis ("Horizontal") * moveSpeed * 2.0f;
+			if(!runSound.isPlaying)
+				runSound.Play();
 		}
 		else
 		{
 			//movement
 			forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed;
 			sideSpeed = Input.GetAxis ("Horizontal") * moveSpeed;
+			runSound.Stop();
 		}
 
 		updateGrappleCheck();
@@ -64,10 +74,12 @@ public class FpsMovement : MonoBehaviour
 			if(cc.isGrounded && Input.GetButtonDown("Jump"))
 			{
 				vertVelo = jumpSpeed;
+				runSound.Stop();
 			}
 			else if(!cc.isGrounded && Input.GetButtonDown("parachute"))	//button v
 			{
 				paracheck = !paracheck;
+				runSound.Stop();
 			}
 
 			//activate parachute
