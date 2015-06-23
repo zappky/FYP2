@@ -23,7 +23,9 @@ public class FpsMovement : MonoBehaviour
 	public AudioSource runSound;
 
 	bool paracheck = false;
-	bool isGrappling = false;		//if true, player is using grapple //temp grapple test - Hazim
+	bool isGrappling = false;		//if true, player is using grapple 
+
+	public bool debugFlyMode = false;		// rmb to turn off after use
 
 	// Use this for initialization
 	void Start () 
@@ -41,8 +43,9 @@ public class FpsMovement : MonoBehaviour
 	{
 		//camera rotate left right
 		float rotateLR = Input.GetAxis ("Mouse X") * mouseSensitivity;
-		transform.Rotate (0, rotateLR, 0);
 
+		transform.Rotate (0, rotateLR, 0);
+		//Camera.main.transform.Rotate (0, rotateLR, 0);
 		//camera rotate up down
 		vertRotation -= Input.GetAxis ("Mouse Y") * mouseSensitivity;
 		vertRotation = Mathf.Clamp (vertRotation, -viewRange, viewRange);
@@ -63,15 +66,22 @@ public class FpsMovement : MonoBehaviour
 			runSound.Stop();
 		}
 
-		updateGrappleCheck();
+		isGrappling = updateGrappleCheck();
 
 		if(!isGrappling)	//temp grapple test - Hazim
 		{
 			//jump
-			if(!cc.isGrounded)
-				vertVelo += Physics.gravity.y * 2 * Time.deltaTime;
+			if(!debugFlyMode)
+			{
+				if(!cc.isGrounded)
+					vertVelo += Physics.gravity.y * 2 * Time.deltaTime;
+			}
+			else
+			{
+				vertVelo = Input.GetAxis ("Fly") * moveSpeed;	//dunno how do real fly mode
+			}
 
-			if(cc.isGrounded && Input.GetButtonDown("Jump"))
+			if(cc.isGrounded && Input.GetButton("Jump"))
 			{
 				vertVelo = jumpSpeed;
 				runSound.Stop();
@@ -124,24 +134,12 @@ public class FpsMovement : MonoBehaviour
 			//Debug.Log(this.gameObject.GetComponent<Rigidbody>().velocity);
 		}
 	}
-
-	//temp grapple test - Hazim		*switch to return bool if it works
-	void updateGrappleCheck()
+	
+	bool updateGrappleCheck()
 	{
-		if(this.gameObject.GetComponent<Rigidbody>().isKinematic)
-			isGrappling = false;
+		if(!this.gameObject.GetComponent<Rigidbody>().isKinematic)
+			return true;
 		else
-			isGrappling = true;
-	}
-
-	//temp grapple test - Hazim *may nt be needed
-	public void fireGrapple()
-	{
-		//isGrappling = true;
-	}
-	//temp grapple test - Hazim *may nt be needed
-	public void releaseGrapple()
-	{
-		//isGrappling = false;
+			return false;
 	}
 }

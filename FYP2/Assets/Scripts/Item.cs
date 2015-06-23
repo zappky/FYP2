@@ -46,7 +46,8 @@ public class Item   {
 		this.amount = another.amount;
 		this.stackable = another.stackable;
 
-		this.icon = another.icon;
+		//this.icon = another.icon;
+		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
 	}
 
 	public Item(int id, string name)// shortenconstructor
@@ -61,7 +62,20 @@ public class Item   {
 
 		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
 	}
+	public Item(int id, string name,string itemtype,string description,int weight,int amount,bool stackable)//constructor
+	{
+		this.id = id;
+		this.itemname = name;
 
+		SetItemType(itemtype);
+
+		this.description = description;
+		this.weight = weight;
+		this.amount = amount;
+		this.stackable = stackable;
+		
+		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
+	}
 	public Item(int id, string name,ItemType type,string description,int weight,int amount,bool stackable)//constructor
 	{
 		this.id = id;
@@ -74,7 +88,76 @@ public class Item   {
 
 		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
 	}
+	public void SelfReloadIcon()
+	{
+		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
+	}
+	public string GetItemType()
+	{
+		switch(this.type)
+		{
+		case ItemType.Consumable:
+			return "consumable";
 
+		case ItemType.CraftMaterial:
+			return "craftmaterial";
+
+		case ItemType.Equipable:
+			return "equipable";
+
+		case ItemType.Quest:
+			return "quest";
+
+
+		case ItemType.Useable:
+			return "useable";
+
+			
+		case ItemType.Undefined:
+		default:
+			return "undefined";
+
+
+		}
+	}
+	public void SetItemType(string itemtype)
+	{
+		switch(itemtype)
+		{
+		case "craftmaterial":
+		case "Craftmaterial":
+		case "craftMaterial":
+		case "CraftMaterial":
+			this.type = ItemType.CraftMaterial;
+			break;
+			
+		case "equipable":
+		case "Equipable":
+			this.type = ItemType.Equipable;
+			break;
+			
+		case "useable":
+		case "Useable":
+			this.type = ItemType.Useable;
+			break;
+			
+		case "quest":
+		case "Quest":
+			this.type = ItemType.Quest;
+			break;
+			
+		case "consumable":
+		case "Consumable":
+			this.type = ItemType.Consumable;
+			break;
+			
+		case "Undefined":
+		case "undefined":
+		default:
+			this.type = ItemType.Undefined;
+			break;
+		}
+	}
 	public float CalculateCombinedWeight()
 	{
 		return this.amount * this.weight;

@@ -53,12 +53,10 @@ public class GrappleScript : MonoBehaviour {
 			if(theGrapple == null)				// if player havent launch grapple
 			{
 				FireGrapple();
-				//FPSController.fireGrapple();
 			}
 			else
 			{
 				ReleaseGrapple();
-				//FPSController.releaseGrapple();
 			}
 		}
 
@@ -69,7 +67,8 @@ public class GrappleScript : MonoBehaviour {
 			// check if player use grapple successfully (hooks sth)
 			if(hook.GetGrappleHooked())		
 			{
-				this.gameObject.GetComponent<Rigidbody>().isKinematic = false;			// enable rigidbody
+				if(this.gameObject.GetComponent<Rigidbody>().isKinematic)
+					this.gameObject.GetComponent<Rigidbody>().isKinematic = false;			// enable rigidbody
 
 				// current rope
 				Transform grappleRope = theGrapple.transform.GetChild(currentRope);
@@ -193,8 +192,7 @@ public class GrappleScript : MonoBehaviour {
 	void ReleaseGrapple()
 	{
 		theGrapple = null;
-
+		this.gameObject.GetComponent<Rigidbody>().isKinematic = true;	
 		Destroy(this.GetComponent<FixedJoint>());
-		this.gameObject.GetComponent<Rigidbody>().isKinematic = true;	 
 	}
 }

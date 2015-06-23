@@ -51,7 +51,11 @@
      <Compile Include="Assets\_IMPORTED_\Standard Assets\Character Controllers\Sources\Scripts\PlatformInputController.js" />
      <Compile Include="Assets\_IMPORTED_\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonCamera.js" />
      <Compile Include="Assets\_IMPORTED_\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonController.js" />
-     <Compile Include="Assets\_IMPORTED_\Standard Assets\JTimer.js" />
+     <None Include="Assets\gamedata\backup\backup_craftdatas.xml" />
+     <None Include="Assets\gamedata\dump\mytest.xml" />
+     <None Include="Assets\gamedata\itemdatas.xml" />
+     <None Include="Assets\gamedata\backup\backup_itemdatas.xml" />
+     <None Include="Assets\gamedata\craftdatas.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
