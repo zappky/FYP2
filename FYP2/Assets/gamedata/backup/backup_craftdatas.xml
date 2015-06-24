@@ -2,13 +2,50 @@
 <database>
 	<recipe id="0">
 		<name>testrecipe</name>
+		<description>nill</description>
+		<recipeIconName>Undefined</recipeIconName>
 		<ingrediant id="-11" amount="1" />
 		<output id="-99" amount="1" />
 	</recipe>
 	<recipe id="1">
-		<name>Alarm Recipe</name>
+		<name>Test Alarm Recipe</name>
+		<description>a test alaram recipe</description>
+		<recipeIconName>clock</recipeIconName>
 		<ingrediant id="1" amount="1" />
 		<ingrediant id="2" amount="1" />
 		<output id="3" amount="1" />
+	</recipe>
+	<recipe id="2">
+		<name>Running Shoes Recipe</name>
+		<description>a running shoes recipe</description>
+		<recipeIconName>running shoes</recipeIconName>
+		<ingrediant id="4" amount="1" />
+		<ingrediant id="5" amount="1" />
+		<output id="6" amount="1" />
+	</recipe>
+	<recipe id="3">
+		<name>Toybell Recipe</name>
+		<description>nill</description>
+		<recipeIconName>toy bell</recipeIconName>
+		<ingrediant id="10" amount="1" />
+		<ingrediant id="11" amount="1" />
+		<output id="7" amount="1" />
+	</recipe>
+	<recipe id="5">
+		<name>Alarm Recipe</name>
+		<description>nill</description>
+		<recipeIconName>alarm</recipeIconName>
+		<ingrediant id="1" amount="1" />
+		<ingrediant id="10" amount="1" />
+		<ingrediant id="12" amount="1" />
+		<output id="8" amount="1" />
+	</recipe>
+	<recipe id="6">
+		<name>Remote Control Recipe</name>
+		<description>nill</description>
+		<recipeIconName>remote control</recipeIconName>
+		<ingrediant id="1" amount="1" />
+		<ingrediant id="8" amount="1" />
+		<output id="9" amount="1" />
 	</recipe>
 </database>

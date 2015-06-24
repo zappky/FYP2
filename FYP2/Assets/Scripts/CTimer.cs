@@ -79,7 +79,7 @@ public class my_timedata {
 	}
 }
 
-public class CTimer : MonoBehaviour {
+public class CTimer :MonoBehaviour {
 	public my_timedata timer; // var to hold the time 
 	public my_timedata previoustimer;//var to hold the time in sec set previously,also the time which timer restore to.
 	public my_timedata timerUpperLimit ; //count up limit
@@ -106,7 +106,6 @@ public class CTimer : MonoBehaviour {
 	public TimerFormat timerformat = TimerFormat.MIN_SEC;
 	// Use this for initialization
 	void Start () {
-	
 		operate = false;
 		sound = this.GetComponent<SoundEffect>();		
 		timerLowerLimit.second = 0.0f;
@@ -388,5 +387,6 @@ public class CTimer : MonoBehaviour {
 	public void OnLookInteract()//when being selected
 	{
 		SetOperate(true);
+
 	}
 }

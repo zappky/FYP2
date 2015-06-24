@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-
 // this script is to describle all item attribute
 [System.Serializable]//this command make the inspector allow me to check and assign the property to each element in the item database// i am new to this too
-public class Item   {
+public class Item    {
 	
 	public string itemname = "Undefined";//Due to giving "name" will clash with in-built unity .name , a different name is given for the varable
 	public int id = -1;
@@ -23,6 +22,19 @@ public class Item   {
 	}
 	public ItemType type = ItemType.Undefined;
 	public Texture2D icon ;
+
+	public string ItemName
+	{
+		get
+		{
+			return this.itemname;
+		}
+		set
+		{
+			this.itemname = value;
+			SelfReloadIcon();
+		}
+	}
 
 	public Item()//constructor
 	{

@@ -169,6 +169,10 @@ public class FileManager : MonoBehaviour {
 			
 			parentlist.Add("recipe");
 			entrylist.Add(new my_XmlEntry("name",item.recipe_name,null,null));
+			parentlist.Add("recipe");
+			entrylist.Add(new my_XmlEntry("description",item.description,null,null));
+			parentlist.Add("recipe");
+			entrylist.Add(new my_XmlEntry("recipeIconName",item.recipeIconName,null,null));
 
 			foreach ( Item_Proxy input in item.ingrediant)
 			{
@@ -275,9 +279,27 @@ public class FileManager : MonoBehaviour {
 
 				switch (childItem.Name)
 				{
+				case "Name":
 				case "name":
 					tempitem.recipe_name = childItem.InnerText;
 					break;
+
+				case "recipeIconName":
+				case "recipeiconname":
+					tempitem.RecipeIconName = childItem.InnerText;
+
+					break;
+
+				case "Descriptions":
+				case "descriptions":
+				case "Description":
+				case "description":
+					tempitem.description = childItem.InnerText;
+					break;
+
+				case "Ingrediants":
+				case "ingrediants":
+				case "Ingrediant":
 				case "ingrediant":
 					//print ("DEBUG ingredaint value :" + childItem.InnerText);
 					//print ("DEBUG ingredaint adding :" + childItem.Attributes["id"].Value + " and " + childItem.Attributes["amount"].Value);
@@ -289,6 +311,9 @@ public class FileManager : MonoBehaviour {
 					//}
 
 					break;
+				case "Outputs":
+				case "outputs":
+				case "Output":
 				case "output":
 					//print ("DEBUG output value :" + childItem.InnerText);
 					//print ("DEBUG output adding :" + childItem.Attributes["id"].Value + " and " + childItem.Attributes["amount"].Value);

@@ -43,12 +43,18 @@ public class CastSlot : MonoBehaviour {
 	public float slotsXstartposition = 0.0f;
 	public float slotsYstartposition = 0.0f;
 
+	private Rect slotRect ;
+	private Rect labelRect ;
+	private GUIStyle labelStyle= null;
+
 
 	//script reference
 	public Inventory playerinventory = null;
+	
 
-	// Use this for initialization
+//	// Use this for initialization
 	void Start () {
+
 
 		UpdateSlotStartingPosition();
 
@@ -66,6 +72,12 @@ public class CastSlot : MonoBehaviour {
 		{
 			slotsLayer.Add(new QuickSlotList(maxSlotsColumn));
 		}
+
+		labelStyle = new GUIStyle(skin.GetStyle("slot"));
+		
+		labelStyle.fontSize = (int)slotSize;
+		labelStyle.alignment = TextAnchor.MiddleCenter;
+		labelRect = new Rect(slotsXstartposition - slotSize, slotsYstartposition ,slotSize,slotSize);
 	}
 	
 	// Update is called once per frame
@@ -117,11 +129,15 @@ public class CastSlot : MonoBehaviour {
 		int index = 0;
 		Event currentevent = Event.current;
 
+		//labelRect = new Rect(slotsXstartposition - slotSize, slotsYstartposition ,slotSize,slotSize);
+		GUI.Box(labelRect,(currentSlotLayer+1).ToString(),labelStyle);
+
 		for (int x = 0; x < maxSlotsColumn; ++x) 
 		{
 			//Rect slotRect = new Rect(x*slotSize*slotsXpadding + slotsXstartposition ,slotsYstartposition ,slotSize,slotSize);
-			Rect slotRect = new Rect(x*slotSize*slotsXpadding + slotsXstartposition , slotsYstartposition ,slotSize,slotSize);
+			slotRect = new Rect(x*slotSize*slotsXpadding + slotsXstartposition , slotsYstartposition ,slotSize,slotSize);
 			GUI.Box(slotRect,(x+1).ToString(),skin.GetStyle("slot"));
+
 
 			if(slotsLayer[currentSlotLayer].slots[x].id >= 0)//if slot contain an valid item
 			{
@@ -165,6 +181,7 @@ public class CastSlot : MonoBehaviour {
 
 			++index;
 		}
+
 	}
 	public bool CheckItemAlreadyAdded(int item_id)
 	{
@@ -284,7 +301,7 @@ public class CastSlot : MonoBehaviour {
 	void UpdateSlotStartingPosition()//call this if the slotsize is changed realtime
 	{
 		slotsXstartposition = Screen.width  * 0.50f - (slotSize * maxSlotsColumn)*0.5f;
-		slotsYstartposition = Screen.height * 0.90f - slotSize;
+		slotsYstartposition = Screen.height * 0.95f - slotSize;
 	}
 	int CalculateMaximisedSlotColumnCount()
 	{

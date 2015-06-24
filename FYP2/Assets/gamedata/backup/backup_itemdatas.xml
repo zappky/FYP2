@@ -28,4 +28,67 @@
 		<weight>1</weight>
 		<stackable>True</stackable>
 	</item>
+	<item id="4">
+		<name>string</name>
+		<type>craftmaterial</type>
+		<description>nill</description>
+		<weight>1</weight>
+		<stackable>True</stackable>
+	</item>
+	<item id="5">
+		<name>old shoes</name>
+		<type>craftmaterial</type>
+		<description>nill</description>
+		<weight>1</weight>
+		<stackable>True</stackable>
+	</item>
+	<item id="6">
+		<name>running shoes</name>
+		<type>equipable</type>
+		<description>nill</description>
+		<weight>1</weight>
+		<stackable>True</stackable>
+	</item>
+	<item id="7">
+		<name>toy bell</name>
+		<type>useable</type>
+		<description>nill</description>
+		<weight>1</weight>
+		<stackable>True</stackable>
+	</item>
+	<item id="8">
+		<name>alarm</name>
+		<type>useable</type>
+		<description>nill</description>
+		<weight>1</weight>
+		<stackable>True</stackable>
+	</item>
+	<item id="9">
+		<name>remote control</name>
+		<type>useable</type>
+		<description>nill</description>
+		<weight>1</weight>
+		<stackable>True</stackable>
+	</item>
+	<item id="10">
+		<name>capsule ball</name>
+		<type>craftmaterial</type>
+		<description>nill</description>
+		<weight>1</weight>
+		<stackable>True</stackable>
+	</item>
+	<item id="11">
+		<name>paper clip</name>
+		<type>craftmaterial</type>
+		<description>nill</description>
+		<weight>1</weight>
+		<stackable>True</stackable>
+	</item>
+	<item id="12">
+		<name>chip</name>
+		<type>craftmaterial</type>
+		<description>nill</description>
+		<weight>1</weight>
+		<stackable>True</stackable>
+	</item>
 </database>

@@ -39,19 +39,69 @@ public class CraftingRecipe//i do this purely because i want to view the item in
 {//container class
 	public string recipe_name = "";
 	public int id = -1;
+	public string description = "nill";
 	public List<Item_Proxy> ingrediant = new List<Item_Proxy>();
 	public List<Item_Proxy> output = new List<Item_Proxy>();
+	public Texture2D recipeIcon ;
+	public string recipeIconName = "";
+	private ItemDatabase database ;
 
-	
+	private Item ConsultItemIdentify(int itemid)
+	{
+		database  = ItemDatabase.Instance;
+		return database.GetItem(itemid);
+	}
+	private string ConsultItemName(int itemid)
+	{
+		database  = ItemDatabase.Instance;
+		return database.GetItem(itemid).itemname;
+	}
+
+	public string RecipeIconName
+	{
+		get
+		{
+			return this.recipeIconName;
+		}
+		set
+		{
+			this.recipeIconName = value;
+			LoadRecipeIcon();
+		}
+	}
+
 	public CraftingRecipe()
 	{
-		
 	}
-	
+
+	public void ReloadRecipeIcon()
+	{
+		this.recipeIcon = Resources.Load<Texture2D>("Item Icon/"+ recipeIconName);
+	}
+	public void LoadRecipeIcon()
+	{
+		if(output.Count >= 1)
+		{
+			if(recipeIconName == "" ||  recipeIconName == "nill" || recipeIconName == "none" || recipeIconName == " ")
+			{
+				recipeIconName = ConsultItemName(output[0].itemid);
+			}
+
+		}
+		this.recipeIcon = Resources.Load<Texture2D>("Item Icon/"+ recipeIconName);
+	}
+	public void LoadRecipeIcon(string iconname)
+	{
+		recipeIconName = iconname;
+		this.recipeIcon = Resources.Load<Texture2D>("Item Icon/"+ recipeIconName);
+	}
 	public CraftingRecipe(CraftingRecipe another)
 	{
+
 		this.id = another.id;
+		this.recipeIconName = another.recipeIconName;
 		this.recipe_name = another.recipe_name;
+		this.description = another.description;
 
 		for (int i = 0 ; i < another.ingrediant.Count ; ++i)
 		{
@@ -63,13 +113,18 @@ public class CraftingRecipe//i do this purely because i want to view the item in
 		}
 		//this.ingrediant = another.ingrediant;
 		//this.output = another.output;
+
+		LoadRecipeIcon();
 	}
 	
-	public CraftingRecipe(int id ,string recipe_name,List<Item_Proxy> ingrediant,List<Item_Proxy> output)
+	public CraftingRecipe(int id ,string recipe_name,List<Item_Proxy> ingrediant,List<Item_Proxy> output,string description,string recipeIconName)
 	{
+
 		//multi in multi out
 		this.id = id;
+		this.recipeIconName = recipeIconName;
 		this.recipe_name = recipe_name;
+		this.description = description;
 
 		for (int i = 0 ; i < ingrediant.Count ; ++i)
 		{
@@ -82,26 +137,35 @@ public class CraftingRecipe//i do this purely because i want to view the item in
 
 		//this.ingrediant = ingrediant;
 		//this.output = output;
+		LoadRecipeIcon();
 	}	
-	public CraftingRecipe(int id ,string recipe_name,List<Item_Proxy> ingrediant,Item_Proxy output)
+	public CraftingRecipe(int id ,string recipe_name,List<Item_Proxy> ingrediant,Item_Proxy output,string description,string recipeIconName)
 	{
+
 		//multi in single out
 		this.id = id;
 		this.recipe_name = recipe_name;
+		this.description = description;
+		this.recipeIconName = recipeIconName;
 		for (int i = 0 ; i < ingrediant.Count ; ++i)
 		{
 			this.ingrediant.Add(new Item_Proxy (ingrediant[i]));
 		}
 		//this.ingrediant = ingrediant;
 		this.output.Add(output);
+
+		LoadRecipeIcon();
 	}
 	
 	
-	public CraftingRecipe(int id ,string recipe_name,List<Item> ingrediant,List<Item> output)//bundle the amount of each individual ingrediant need inside item.amount,same got for output
+	public CraftingRecipe(int id ,string recipe_name,List<Item> ingrediant,List<Item> output,string description,string recipeIconName)//bundle the amount of each individual ingrediant need inside item.amount,same got for output
 	{
+
 		//multi in multi out
 		this.id = id;
 		this.recipe_name = recipe_name;
+		this.description = description;
+		this.recipeIconName = recipeIconName;
 		
 		for(int i = 0 ; i < ingrediant.Count; ++i)
 		{
@@ -114,12 +178,17 @@ public class CraftingRecipe//i do this purely because i want to view the item in
 			//this.output.Add(ConvertItemToStorageType(output[i]));
 			AddOutputItem(output[i]);
 		}
+
+		LoadRecipeIcon();
 	}
-	public CraftingRecipe(int id ,string recipe_name,List<Item> ingrediant,Item output)//bundle the amount of each individual ingrediant need inside item.amount,same got for output
+	public CraftingRecipe(int id ,string recipe_name,List<Item> ingrediant,Item output,string description,string recipeIconName)//bundle the amount of each individual ingrediant need inside item.amount,same got for output
 	{
+
 		//multi in single out
 		this.recipe_name = recipe_name;
 		this.id = id;
+		this.description = description;
+		this.recipeIconName = recipeIconName;
 		for(int i = 0 ; i < ingrediant.Count; ++i)
 		{
 			//this.ingrediant.Add(ConvertItemToStorageType(ingrediant[i]));
@@ -129,14 +198,19 @@ public class CraftingRecipe//i do this purely because i want to view the item in
 
 		//this.output.Add(ConvertItemToStorageType(output));
 		AddOutputItem(output);
+
+		LoadRecipeIcon();
 	}
 
 		
-	public CraftingRecipe(int id ,string recipe_name,List<int> ingrediant_id, List<int> ingrediant_amount,List<int> output_id, List<int> output_amount)//primitive data type into storage data type
+	public CraftingRecipe(int id ,string recipe_name,List<int> ingrediant_id, List<int> ingrediant_amount,List<int> output_id, List<int> output_amount,string description,string recipeIconName)//primitive data type into storage data type
 	{
+
 		//multi in multi out
 		this.recipe_name = recipe_name;
 		this.id = id;
+		this.description = description;
+		this.recipeIconName = recipeIconName;
 		for(int i = 0 ; i < ingrediant_id.Count; ++i)
 		{
 			//this.ingrediant.Add(MakeItemData(ingrediant_id[i],ingrediant_amount[i]));
@@ -148,12 +222,16 @@ public class CraftingRecipe//i do this purely because i want to view the item in
 			//this.output.Add(MakeItemData(output_id[i],output_amount[i]));
 			AddOutputItem(output_id[i],output_amount[i]);
 		}
+		LoadRecipeIcon();
 	}	
-	public CraftingRecipe(int id ,string recipe_name,List<int> ingrediant_id, List<int> ingrediant_amount,int output_id, int output_amount)//primitive data type into storage data type
+	public CraftingRecipe(int id ,string recipe_name,List<int> ingrediant_id, List<int> ingrediant_amount,int output_id, int output_amount,string description,string recipeIconName)//primitive data type into storage data type
 	{
+
 		//multi in single out
 		this.recipe_name = recipe_name;
 		this.id = id;
+		this.description = description;
+		this.recipeIconName = recipeIconName;
 		for(int i = 0 ; i < ingrediant_id.Count; ++i)
 		{
 			//this.ingrediant.Add(MakeItemData(ingrediant_id[i],ingrediant_amount[i]));
@@ -163,6 +241,8 @@ public class CraftingRecipe//i do this purely because i want to view the item in
 
 		//this.output.Add(MakeItemData(output_id,output_amount));
 		AddOutputItem(output_id,output_amount);
+
+		LoadRecipeIcon();
 	}
 
 	public void AddIngrediant(Item a_item)
@@ -217,7 +297,17 @@ public class CraftingRecipe//i do this purely because i want to view the item in
 		this.ingrediant.Clear();
 		this.output.Clear();
 	}
+	public string StringIngrediants()
+	{
+		string appendstring = "";
 
+		for(int i = 0 ; i< ingrediant.Count ; ++i)
+		{
+			appendstring += ConsultItemName(ingrediant[i].itemid) + "  x" +ingrediant[i].amount.ToString()+"\n";
+		}
+
+		return appendstring;
+	}
 	public string StringSelf()
 	{
 		string appendstring = "";
@@ -246,23 +336,12 @@ public class ItemDatabase : MonoBehaviour {
 		{
 			if(instance == null)
 			{
-
-				//not needed
-//				GameObject[] detectionlist = GameObject.FindGameObjectsWithTag("Item Database");
-//				//print("duplicate detected: " + detectionlist.Length);
-//				if (detectionlist.Length > 1)
-//				{
-//					foreach (GameObject item in detectionlist)
-//					{
-//						Destroy(item);
-//					}
-//				}
-
 				instance = new GameObject("Item Database").AddComponent<ItemDatabase>();
 			}
 			return instance;
 		}
 	}
+
 	public void Initialize()
 	{	
 		alarmitem = GameObject.FindGameObjectWithTag("Alarm").GetComponent<CTimer>();//to input the script rference
@@ -275,6 +354,7 @@ public class ItemDatabase : MonoBehaviour {
 		//PopulateTestObject();//remove when project go full launch
 		//PopulateTestCraftingData();
 	}
+
 	public void OnApplicationQuit()//this will be auto called like start and update function
 	{
 		FileManager.Instance.SaveDatabase();
@@ -294,31 +374,31 @@ public class ItemDatabase : MonoBehaviour {
 		this.itemDatabase = FileManager.Instance.LoadItemsData();
 	}
 	
-	public CraftingRecipe MakeCraftingRecipe(int id,string recipieName,List<int> itemIdList,List<int>itemAmount,List<int> outputIdList,List<int>outputAmountList)
+	public CraftingRecipe MakeCraftingRecipe(int id,string recipieName,List<int> itemIdList,List<int>itemAmount,List<int> outputIdList,List<int>outputAmountList,string description,string recipeIconName)
 	{
-		return new CraftingRecipe(id,recipieName,itemIdList,itemAmount,outputIdList,outputAmountList);
+		return new CraftingRecipe(id,recipieName,itemIdList,itemAmount,outputIdList,outputAmountList, description, recipeIconName);
 	}
-	public CraftingRecipe MakeCraftingRecipe(int id,string recipieName,List<int> itemIdList,List<int>itemAmount,int outputId,int outputAmount)
+	public CraftingRecipe MakeCraftingRecipe(int id,string recipieName,List<int> itemIdList,List<int>itemAmount,int outputId,int outputAmount,string description,string recipeIconName)
 	{
-		return new CraftingRecipe(id,recipieName,itemIdList,itemAmount,outputId,outputAmount);
-	}
-	
-	public CraftingRecipe MakeCraftingRecipe(int id,string recipieName,List<Item> itemList,List<Item> outputList)
-	{
-		return new CraftingRecipe(id,recipieName,itemList,outputList);
-	}
-	public CraftingRecipe MakeCraftingRecipe(int id,string recipieName,List<Item> itemList,Item output)
-	{
-		return new CraftingRecipe(id,recipieName,itemList,output);
+		return new CraftingRecipe(id,recipieName,itemIdList,itemAmount,outputId,outputAmount, description, recipeIconName);
 	}
 	
-	public CraftingRecipe MakeCraftingRecipe(int id,string recipieName,List<Item_Proxy> itemList,List<Item_Proxy> outputList)
+	public CraftingRecipe MakeCraftingRecipe(int id,string recipieName,List<Item> itemList,List<Item> outputList,string description,string recipeIconName)
 	{
-		return new CraftingRecipe(id,recipieName,itemList,outputList);
+		return new CraftingRecipe(id,recipieName,itemList,outputList, description, recipeIconName);
 	}
-	public CraftingRecipe MakeCraftingRecipe(int id,string recipieName,List<Item_Proxy> itemList,Item_Proxy output)
+	public CraftingRecipe MakeCraftingRecipe(int id,string recipieName,List<Item> itemList,Item output,string description,string recipeIconName)
 	{
-		return new CraftingRecipe(id,recipieName,itemList,output);
+		return new CraftingRecipe(id,recipieName,itemList,output, description, recipeIconName);
+	}
+	
+	public CraftingRecipe MakeCraftingRecipe(int id,string recipieName,List<Item_Proxy> itemList,List<Item_Proxy> outputList,string description,string recipeIconName)
+	{
+		return new CraftingRecipe(id,recipieName,itemList,outputList, description, recipeIconName);
+	}
+	public CraftingRecipe MakeCraftingRecipe(int id,string recipieName,List<Item_Proxy> itemList,Item_Proxy output,string description,string recipeIconName)
+	{
+		return new CraftingRecipe(id,recipieName,itemList,output, description, recipeIconName);
 	}
 	
 //	public List<Item> MakePair(Item item1, Item item2)
@@ -352,7 +432,7 @@ public class ItemDatabase : MonoBehaviour {
 		List<Item> temp2 = new List<Item>();
 		temp2.Add(CreateItem("clock"));
 		temp2[0].amount = 1;
-		craftDatabase.Add(MakeCraftingRecipe(0,"test Alarm recipe",temp1,temp2));	
+		craftDatabase.Add(MakeCraftingRecipe(0,"test Alarm recipe",temp1,temp2,"a test alarm recipe",""));	
 	}
 	public void PopulateTestObject()
 	{
