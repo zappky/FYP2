@@ -8,10 +8,13 @@ public class SingetonSetUp : MonoBehaviour {
 	void Start () {
 		FileManager.Instance.Initialize();
 		ItemDatabase.Instance.Initialize();
+		VendorDatabase.Instance.Initialize();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public void OnApplicationQuit()//this will be auto called like start and update function
+	{
+		//FileManager.Instance.SaveItemDatabase();
+		//FileManager.Instance.SaveCraftDatabase();
+		//FileManager.Instance.SaveVendorDatabase();
 	}
+
 }

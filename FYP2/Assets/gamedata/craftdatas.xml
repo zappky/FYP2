@@ -12,9 +12,9 @@
 		<name>Test Alarm Recipe</name>
 		<description>a test alaram recipe</description>
 		<recipeIconName>nill</recipeIconName>
-		<ingrediant id = "1" amount = "1"></ingrediant>
-		<ingrediant id = "2" amount = "1"></ingrediant>
-		<output id = "3" amount = "1"></output>
+		<ingrediant id = "battery" amount = "1"></ingrediant>
+		<ingrediant id = "gear" amount = "1"></ingrediant>
+		<output id = "clock" amount = "1"></output>
 	</recipe>
 	
 	<recipe id = "2">

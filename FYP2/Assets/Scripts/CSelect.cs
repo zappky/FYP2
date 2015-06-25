@@ -11,6 +11,7 @@ public class CSelect : MonoBehaviour {
 	public bool onguihelper = true;
 	public string interacthelpertext = "'e' to interact";
 	public Inventory playerinventory;
+	private Interactable iScript = null;
 	Ray ray;
 
 	// Use this for initialization
@@ -29,25 +30,19 @@ public class CSelect : MonoBehaviour {
 
 			if (Input.GetButtonDown ("Interact")) 
 			{
-				
-				switch(hit.collider.gameObject.tag)
+				//pressing interact or pick up as of now is all picking up item
+				iScript = hit.collider.gameObject.GetComponent<Interactable>();
+				if(iScript != null)
 				{
-					case "Alarm":
-					{
-						hit.collider.gameObject.GetComponent<CTimer> ().OnLookInteract ();
-					}
-					break;
+					iScript.SpawnItem();
 				}
 			}
 			if (Input.GetButtonDown ("Pick Up")) 
 			{
-				switch(hit.collider.gameObject.tag)
+				iScript = hit.collider.gameObject.GetComponent<Interactable>();
+				if(iScript != null)
 				{
-				case "Alarm":
-				{
-					playerinventory.AddItem(1);
-				}
-					break;
+					iScript.SpawnItem();
 				}
 			}
 		} else 

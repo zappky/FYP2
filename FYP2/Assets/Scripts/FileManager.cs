@@ -101,6 +101,7 @@ public class FileManager : MonoBehaviour {
 	private string gamedataPath = null;
 	private string itemdataPath = null;
 	private string craftdataPath = null;
+	private string vendordataPath = null;
 	private string dialogdataPath = null;
 
 	public string backupFolderName = "backup";
@@ -108,6 +109,7 @@ public class FileManager : MonoBehaviour {
 	public string itemDataFileName = "itemdatas";
 	public string craftDataFileName = "craftdatas";
 	public string dialogDataFileName = "dialogdatas";
+	public string vendorDataFileName = "vendordatas";
 
 	public enum UpdateFileMode
 	{
@@ -122,6 +124,7 @@ public class FileManager : MonoBehaviour {
 			if(instance == null)
 			{
 				instance = new GameObject("FileManager").AddComponent<FileManager>();
+				DontDestroyOnLoad(instance);
 			}
 			return instance;
 		}
@@ -181,6 +184,8 @@ public class FileManager : MonoBehaviour {
 				attvalue.Clear();
 				attkey.Add("id");
 				attvalue.Add(input.itemid.ToString());
+				attkey.Add("name");
+				attvalue.Add(input.itemname);
 				attkey.Add("amount");
 				attvalue.Add(input.amount.ToString());
 				entrylist.Add(new my_XmlEntry("ingrediant",null,attkey,attvalue));
@@ -193,6 +198,8 @@ public class FileManager : MonoBehaviour {
 				attvalue.Clear();
 				attkey.Add("id");
 				attvalue.Add(output.itemid.ToString());
+				attkey.Add("name");
+				attvalue.Add(output.itemname);
 				attkey.Add("amount");
 				attvalue.Add(output.amount.ToString());
 				entrylist.Add(new my_XmlEntry("output",null,attkey,attvalue));
@@ -201,6 +208,47 @@ public class FileManager : MonoBehaviour {
 		}	
 		inputlist = CreateXmlBuildEntryList(parentlist,entrylist);	
 		CreateXMLFile("gamedata/" + backupFolderName,"backup_"+ craftDataFileName,"xml",BuildXMLData(rootentry,inputlist),"plaintext");
+	}
+	public void SaveVendorDatabase()
+	{
+		my_XmlEntry rootentry = new my_XmlEntry("database",null);
+		
+		List<my_XmlBuildEntry> inputlist = new List<my_XmlBuildEntry>();
+		List<string> attkey = new List<string>();
+		List<string> attvalue = new List<string>();
+		
+		List<string> parentlist = new List<string>();
+		List<my_XmlEntry> entrylist = new List<my_XmlEntry>();
+		
+		
+		foreach (my_VendorEntry item in VendorDatabase.Instance.vendorList)
+		{
+			parentlist.Add(rootentry.name);
+			attkey.Clear();
+			attvalue.Clear();
+			attkey.Add("id");
+			attvalue.Add(item.id.ToString());
+			entrylist.Add(new my_XmlEntry("vendor",null,attkey,attvalue));
+			
+			parentlist.Add("vendor");
+			entrylist.Add(new my_XmlEntry("name",item.vendorName,null,null));
+
+			for( int i = 0 ; i< item.outputItemList.Count; ++i)
+			{
+				parentlist.Add("vendor");
+				attkey.Clear();
+				attvalue.Clear();
+				attkey.Add("id");
+				attvalue.Add(item.outputItemList[i].itemid.ToString());
+				attkey.Add("name");
+				attvalue.Add(item.outputItemList[i].itemname);
+				attkey.Add("amount");
+				attvalue.Add(item.outputItemList[i].amount.ToString());
+				entrylist.Add(new my_XmlEntry("output",null,attkey,attvalue));
+			}
+		}	
+		inputlist = CreateXmlBuildEntryList(parentlist,entrylist);	
+		CreateXMLFile("gamedata/" + backupFolderName,"backup_"+ vendorDataFileName,"xml",BuildXMLData(rootentry,inputlist),"plaintext");
 	}
 	public void SaveItemDatabase()
 	{
@@ -238,10 +286,74 @@ public class FileManager : MonoBehaviour {
 		inputlist = CreateXmlBuildEntryList(parentlist,entrylist);	
 		CreateXMLFile("gamedata/" + backupFolderName,"backup_"+ itemDataFileName,"xml",BuildXMLData(rootentry,inputlist),"plaintext");
 	}
-	public void SaveDatabase()
+
+	public List<my_VendorEntry> LoadVendorsData()
 	{
-		SaveItemDatabase();
-		SaveCraftDatabase();
+		//tempo testing first
+
+		List<my_VendorEntry> resultlist = new List<my_VendorEntry>();
+//		my_VendorEntry tementry = new my_VendorEntry();
+//		tementry.vendorName = "test vendor";
+//		tementry.AddOutputItem(1,"clock",1);
+//		resultlist.Add(tementry);
+
+		my_VendorEntry tempitem = new my_VendorEntry();
+		Item_Proxy tempitemproxy = new Item_Proxy();
+
+		if( CheckFile(vendordataPath,false) == false)
+		{
+			print ("ERROR: Vendor data file cannot be found, load data aborted");
+			return null;
+			
+		}
+		print ("loading vendor datas");
+		XmlDocument xmlDoc = new XmlDocument();
+		xmlDoc.Load(vendordataPath);
+		
+		
+		XmlNodeList parentList = null;
+
+		parentList = xmlDoc.GetElementsByTagName("database");
+		parentList = DigToDesiredParentNodeList(parentList,"vendor");
+
+		int inputid = -1;
+		int inputamount = -1;
+		string inputname = "";
+		
+		foreach(XmlNode childInfo in parentList)
+		{
+			print ("looking at child info "+ childInfo.Name );
+			tempitem.id = int.Parse(childInfo.Attributes["id"].Value);
+			XmlNodeList childContent = childInfo.ChildNodes;
+			
+			foreach (XmlNode childItem in childContent)
+			{
+				print ("looking at child item "+ childItem.Name );
+				switch(childItem.Name)
+				{
+					
+				case "Name":
+				case "name":
+					tempitem.vendorName = childItem.InnerText;
+					break;
+					
+				case "Output":
+				case "output":
+					inputid = int.Parse(childItem.Attributes["id"].Value);
+					inputname = childItem.Attributes["name"].Value;
+					inputamount  = int.Parse(childItem.Attributes["amount"].Value);
+					tempitem.AddOutputItem(inputid,inputname,inputamount);
+					break;
+
+				default:
+					print("ERROR: Unknown load vendor data field detected: " + childItem.Name);
+					break;
+				}
+			}
+			resultlist.Add(new my_VendorEntry(tempitem));
+		}
+		return resultlist;
+
 	}
 	public List<CraftingRecipe> LoadCraftsData()
 	{
@@ -264,7 +376,8 @@ public class FileManager : MonoBehaviour {
 		
 		parentList = xmlDoc.GetElementsByTagName("database");
 		parentList = DigToDesiredParentNodeList(parentList,"recipe");
-
+		int n = -1;
+		bool isNumeric = false;
 		foreach(XmlNode childInfo in parentList)
 		{
 			//print ("looking at child INFO "+ childInfo.Name );
@@ -301,29 +414,31 @@ public class FileManager : MonoBehaviour {
 				case "ingrediants":
 				case "Ingrediant":
 				case "ingrediant":
-					//print ("DEBUG ingredaint value :" + childItem.InnerText);
-					//print ("DEBUG ingredaint adding :" + childItem.Attributes["id"].Value + " and " + childItem.Attributes["amount"].Value);
-					//innerchildContent = childItem.ChildNodes;
-					//foreach (XmlNode innerchildItem in innerchildContent )
-					//{
-					//	print ("looking at input innferchild info "+ innerchildItem.Name + " id: " +innerchildItem.Attributes["id"].Value + " amount: " +innerchildItem.Attributes["amount"].Value  );
-						tempitem.AddIngrediant(int.Parse(childItem.Attributes["id"].Value),int.Parse(childItem.Attributes["amount"].Value));
-					//}
-
+					isNumeric = int.TryParse(childItem.Attributes["id"].Value, out n);
+					if(isNumeric == true)
+					{
+						tempitem.AddIngrediant(n,ItemDatabase.Instance.GetItem(n).itemname,int.Parse(childItem.Attributes["amount"].Value));
+					}else
+					{
+						tempitem.AddIngrediant(ItemDatabase.Instance.GetItem(childItem.Attributes["id"].Value));
+					}
 					break;
+
 				case "Outputs":
 				case "outputs":
 				case "Output":
 				case "output":
-					//print ("DEBUG output value :" + childItem.InnerText);
-					//print ("DEBUG output adding :" + childItem.Attributes["id"].Value + " and " + childItem.Attributes["amount"].Value);
-					//innerchildContent = childItem.ChildNodes;
-					//foreach (XmlNode innerchildItem in innerchildContent )
-					//{
-					//	print ("looking at output innferchild info "+ innerchildItem.Name + " id: " +innerchildItem.Attributes["id"].Value + " amount: " +innerchildItem.Attributes["amount"].Value  );
-						tempitem.AddOutputItem(int.Parse(childItem.Attributes["id"].Value),int.Parse(childItem.Attributes["amount"].Value));
-					//}
+					isNumeric = int.TryParse(childItem.Attributes["id"].Value, out n);
+					if(isNumeric == true)
+					{
+						tempitem.AddOutputItem(n,ItemDatabase.Instance.GetItem(n).itemname,int.Parse(childItem.Attributes["amount"].Value));
+					}else
+					{
+						tempitem.AddOutputItem(ItemDatabase.Instance.GetItem(childItem.Attributes["id"].Value));
+					}
+
 					break;
+
 				default:
 					print("ERROR: Unknown load item data field detected: " + childItem.Name);
 					break;
@@ -420,76 +535,6 @@ public class FileManager : MonoBehaviour {
 		}
 		return resultlist;
 	}
-
-	public void TestBuildXMLFile()
-	{
-		my_XmlEntry rootentry = new my_XmlEntry("player",null,null,null);
-		
-		List<my_XmlBuildEntry> inputlist = new List<my_XmlBuildEntry>();
-		List<string> attkey = new List<string>();
-		List<string> attvalue = new List<string>();
-		
-		List<string> parentlist = new List<string>();
-		List<my_XmlEntry> entrylist = new List<my_XmlEntry>();
-		
-		parentlist.Add("player");
-		entrylist.Add(new my_XmlEntry("profile",null));
-		parentlist.Add("player");
-		entrylist.Add(new my_XmlEntry("inventory",null));
-		
-		//the adding of player profile here is working file, but commented off to avoid flooding debug log
-		parentlist.Add("profile");
-		entrylist.Add(new my_XmlEntry("playername","Bob"));
-		parentlist.Add("profile");
-		entrylist.Add(new my_XmlEntry("hp","3333"));
-		parentlist.Add("profile");
-		entrylist.Add(new my_XmlEntry("mp","333"));
-		parentlist.Add("profile");
-		entrylist.Add(new my_XmlEntry("level","33"));
-		
-		
-		parentlist.Add("profile");
-		entrylist.Add(new my_XmlEntry("playername","billy"));
-		parentlist.Add("profile");
-		entrylist.Add(new my_XmlEntry("hp","1111"));
-		parentlist.Add("profile");
-		entrylist.Add(new my_XmlEntry("mp","111"));
-		parentlist.Add("profile");
-		entrylist.Add(new my_XmlEntry("level","11"));
-		
-		parentlist.Add("profile");
-		entrylist.Add(new my_XmlEntry("playername","billy"));
-		parentlist.Add("profile");
-		entrylist.Add(new my_XmlEntry("hp","0000"));
-		parentlist.Add("profile");
-		entrylist.Add(new my_XmlEntry("mp","000"));
-		parentlist.Add("profile");
-		entrylist.Add(new my_XmlEntry("level","00"));
-		
-		parentlist.Add("inventory");
-		attkey.Clear();
-		attvalue.Clear();
-		attkey.Add("name");
-		attvalue.Add("item1");
-		attkey.Add("qty");
-		attvalue.Add("10");
-		entrylist.Add(new my_XmlEntry("item","test1",attkey,attvalue));
-		
-		
-		parentlist.Add("inventory");
-		attkey.Clear();
-		attvalue.Clear();
-		attkey.Add("name");
-		attvalue.Add("item2");
-		attkey.Add("qty");
-		attvalue.Add("20");
-		entrylist.Add(new my_XmlEntry("item","test2",attkey,attvalue));
-		
-		inputlist = CreateXmlBuildEntryList(parentlist,entrylist);
-		
-		
-		CreateXMLFile("gamedata/dump","mytest","xml",BuildXMLData(rootentry,inputlist),"plaintext");
-	}
 	public void Initialize()
 	{
 		//print ("file manager init");
@@ -501,6 +546,7 @@ public class FileManager : MonoBehaviour {
 		itemdataPath = gamedataPath + "/" + itemDataFileName + ".xml";
 		craftdataPath = gamedataPath + "/" + craftDataFileName + ".xml";
 		dialogdataPath = gamedataPath + "/" + dialogDataFileName + ".xml";
+		vendordataPath = gamedataPath + "/" + vendorDataFileName + ".xml";
 
 		if (CheckDirectory(gamedataFolderName) == false)
 		{
@@ -510,11 +556,11 @@ public class FileManager : MonoBehaviour {
 				CreateDirectory(gamedataFolderName,"backup" );
 			}
 		}
-
-		TestBuildXMLFile();
+	
 	}
 	public void OnApplicationQuit()//this will be auto called like start and update function
 	{
+		print ("file manager get quited");
 		DestroyInstance();
 	}
 	public void DestroyInstance()
@@ -753,7 +799,7 @@ public class FileManager : MonoBehaviour {
 			}
 		}else
 		{
-			print ("Unable to create XML file as the directory" + directory + "does not exist");
+			print ("Unable to create XML file as the directory: " + directory + " does not exist");
 		}
 		return false;
 	}

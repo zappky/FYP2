@@ -9,12 +9,14 @@ using System.Collections.Generic;
 public class Item_Proxy//just a container for holding key data about crafting combo
 {
 	public int itemid = -1;
+	public string itemname = "";
 	public int amount = 1;
 	
 	public Item_Proxy()
 	{
 		this.amount = 1;
 		this.itemid = -1;
+		this.itemname = "";
 	}
 	
 	public Item_Proxy(int itemid, int amount)
@@ -22,15 +24,30 @@ public class Item_Proxy//just a container for holding key data about crafting co
 		this.amount = amount;
 		this.itemid = itemid;
 	}
+
+	public Item_Proxy(string itemname, int amount)
+	{
+		this.amount = amount;
+		this.itemname = itemname;
+	}
+
+	public Item_Proxy(int itemid,string itemname, int amount)
+	{
+		this.amount = amount;
+		this.itemname = itemname;
+		this.itemid = itemid;
+	}
 	
 	public Item_Proxy(Item_Proxy another)
 	{
 		this.amount = another.amount;
 		this.itemid = another.itemid;
+		this.itemname = another.itemname;
 	}
+
 	public string StringSelf()
 	{
-		return "Item Id : " + itemid.ToString() + " Item amount: "+ amount.ToString();
+		return "Item Id/Name : " + itemid.ToString()+"/"+itemname + " Item amount: "+ amount.ToString() ;
 	}
 }
 
@@ -247,13 +264,20 @@ public class CraftingRecipe//i do this purely because i want to view the item in
 
 	public void AddIngrediant(Item a_item)
 	{
-		this.ingrediant.Add(MakeItemData(a_item.id,a_item.amount));
+		this.ingrediant.Add(MakeItemData(a_item.id,a_item.ItemName,a_item.amount));
 	}
 	public void AddOutputItem(Item a_item)
 	{
-		this.output.Add(MakeItemData(a_item.id,a_item.amount));
+		this.output.Add(MakeItemData(a_item.id,a_item.ItemName,a_item.amount));
 	}
-
+	public void AddIngrediant(int itemid,string itemname, int amount)
+	{
+		this.ingrediant.Add(MakeItemData(itemid,itemname,amount));
+	}
+	public void AddOutputItem(int itemid,string itemname, int amount)
+	{
+		this.output.Add(MakeItemData(itemid,itemname,amount));
+	}
 	public void AddIngrediant(int itemid, int amount)
 	{
 		this.ingrediant.Add(MakeItemData(itemid,amount));
@@ -262,7 +286,10 @@ public class CraftingRecipe//i do this purely because i want to view the item in
 	{
 		this.output.Add(MakeItemData(itemid,amount));
 	}
-
+	private Item_Proxy MakeItemData(int itemid,string itemname, int amount)
+	{
+		return new Item_Proxy(itemid,itemname,amount); 
+	}
 	private Item_Proxy MakeItemData(int itemid, int amount)
 	{
 		return new Item_Proxy(itemid,amount); 
@@ -336,7 +363,9 @@ public class ItemDatabase : MonoBehaviour {
 		{
 			if(instance == null)
 			{
+
 				instance = new GameObject("Item Database").AddComponent<ItemDatabase>();
+				DontDestroyOnLoad(instance);
 			}
 			return instance;
 		}
@@ -357,7 +386,10 @@ public class ItemDatabase : MonoBehaviour {
 
 	public void OnApplicationQuit()//this will be auto called like start and update function
 	{
-		FileManager.Instance.SaveDatabase();
+		print ("item database get quited");
+		FileManager.Instance.SaveItemDatabase();
+		FileManager.Instance.SaveCraftDatabase();
+
 		DestroyInstance();
 	}
 	public void DestroyInstance()

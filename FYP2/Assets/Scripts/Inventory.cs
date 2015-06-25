@@ -244,11 +244,11 @@ public class Inventory : MonoBehaviour {
 			}
 		}
 	}
-	public void AddItem(string itemname)//untested
+	public bool AddItem(string itemname)//untested
 	{	
 		if (this.currentweight >= this.weightlimit)
 		{
-			return;
+			return false;
 		}
 
 		int trackerindex = -1;
@@ -273,15 +273,17 @@ public class Inventory : MonoBehaviour {
 								if(UpdateCurrentWeight(true,inventory[trackerindex].weight,1) == true)
 								{
 									++inventory[trackerindex].amount;
+									return true;
 								}
-								break;
+								//break;
 							}else
 							{
 								if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,1) == true)
 								{										
 									inventory[i] = new Item(database.itemDatabase[j]);//add it in
 									playercastslot.AddItem(new Item(inventory[i]));
-									break;
+									return true;
+									//break;
 								}
 
 							}
@@ -293,6 +295,7 @@ public class Inventory : MonoBehaviour {
 							{										
 								inventory[i] = new Item(database.itemDatabase[j]);//add it in
 								playercastslot.AddItem(new Item(inventory[i]));
+								return true;
 							}
 						}
 						break;	
@@ -301,12 +304,14 @@ public class Inventory : MonoBehaviour {
 				break;			
 			}
 		}
+
+		return false;
 	}
-	public void AddItem(int id)
+	public bool AddItem(int id)
 	{	
 		if (this.currentweight >= this.weightlimit)
 		{
-			return;
+			return false;
 		}
 
 		int trackerindex = -1;
@@ -331,7 +336,8 @@ public class Inventory : MonoBehaviour {
 								if(UpdateCurrentWeight(true,inventory[trackerindex].weight,1) == true)
 								{
 									++inventory[trackerindex].amount;
-									break;
+									return true;
+									//break;
 								}
 							}else
 							{
@@ -339,7 +345,8 @@ public class Inventory : MonoBehaviour {
 								{										
 									inventory[i] = new Item(database.itemDatabase[j]);//add it in
 									playercastslot.AddItem(new Item(inventory[i]));
-									break;
+									return true;
+									//break;
 								}
 							}
 							
@@ -349,6 +356,7 @@ public class Inventory : MonoBehaviour {
 							{	
 								inventory[i] = new Item(database.itemDatabase[j]);//add it in
 								playercastslot.AddItem(new Item(inventory[i]));
+								return true;
 							}
 						}
 						break;	
@@ -357,6 +365,7 @@ public class Inventory : MonoBehaviour {
 				break;			
 			}
 		}
+		return false;
 	}
 	void RemoveKnownItem(int inventoryindex)
 	{
