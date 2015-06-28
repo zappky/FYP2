@@ -28,7 +28,8 @@ public class EnemyAI : MonoBehaviour {
 	Vector3 targetPos;					// stores location of target for AI to move to  
 										// (e.g. src of noise player made/ decoy's src/ player in sight)	 
 	EnemyStats stats;
-	EnemySight sight;
+	EnemySight sight;					// this includes enemy hearing 
+	EnemyAlert alert;
 	Renderer debugRenderer;				// to access AI renderer for color chg to show alert state (debug only)
 	SphereCollider col;					// AI's sight & hearing range 
 	GameObject player;
@@ -37,11 +38,12 @@ public class EnemyAI : MonoBehaviour {
 	void Start () {
 		stats = gameObject.GetComponent<EnemyStats>();
 		sight = gameObject.GetComponent<EnemySight>();
+		alert = gameObject.GetComponent<EnemyAlert>();
 		col = gameObject.GetComponent<SphereCollider>(); 
 		player = GameObject.FindGameObjectWithTag("Player");
 		debugRenderer = gameObject.GetComponent<Renderer>();
 
-		stats.attackRange += GetComponent<Collider>().bounds.size.x*0.5f;
+		stats.attackRange += GetComponent<CapsuleCollider>().bounds.size.x*0.5f;
 
 		delaySet = false;
 		collideWithOther = false;
@@ -57,6 +59,44 @@ public class EnemyAI : MonoBehaviour {
 
 	void Update()
 	{
+		CheckAlertness();
+
+		FSM();
+	}
+
+	void CheckAlertness()
+	{
+		if(state != EnemyState.ALERT)
+		{
+			if(alert.isAlarmed)
+				state = EnemyState.ALERT;
+			else if(alert.isAlarmedByDecoy)
+			{
+				if(!delaySet)									// delay abit, so AI wont immediately rush there
+				{
+					delaySet = true;
+					delay = stats.IDLE_DELAY;					
+				}
+				else
+				{
+					delay -= Time.deltaTime;						
+					
+					if(delay <= 0)							 
+					{
+						delaySet = false;
+						state = EnemyState.ALERT;
+
+						targetPos = new Vector3(alert.targetPos.x,
+						                        transform.position.y,		// so that AI wont fly/go underground
+						                        alert.targetPos.z);
+					}
+				}
+			}
+		}
+	}
+
+	void FSM()
+	{
 		switch (state) 
 		{
 //=================================================================================================================
@@ -71,42 +111,31 @@ public class EnemyAI : MonoBehaviour {
 				{
 					delay = stats.IDLE_DELAY;
 					state = EnemyState.ROAM;		
-
-					//transform.LookAt(waypointList[nextWaypt].transform.position, Vector3.up);
 				}
 
-				// STEALTH CHECK
-				// if heard loud noise or spotted player 
-				// state = alert
-				// AI render color = red
-				// target = noise/player/player last seen
-				if(worldDecoyList[0].GetComponent<CTimer>().alert)	// if alarm decoy in world rings
-				{
-					if(!delaySet)									// delay abit, so AI wont immediately rush there
-					{
-						delaySet = true;
-						delay = stats.IDLE_DELAY;					
-
-						// turn AI render color to red
-						gameObject.GetComponent<Renderer>().material.color = new Color(1, 0, 0);
-					}
-					else
-					{
-						delay -= Time.deltaTime;						
-						
-						if(delay <= 0)							 
-						{
-							delaySet = false;
-							state = EnemyState.ALERT;
-							target = worldDecoyList[0].transform;
-							targetPos = new Vector3(target.position.x,
-							                        transform.position.y,		// so that AI wont fly/go underground
-							                        target.position.z);
-						}
-					}
-				}
-				else if(sight.playerInSight)			//temp, use alertness value once alert calc is done
-					state = EnemyState.ALERT;
+				// old mtd
+//				if(worldDecoyList[0].GetComponent<CTimer>().alert)	// if alarm decoy in world rings
+//				{
+//					if(!delaySet)									// delay abit, so AI wont immediately rush there
+//					{
+//						delaySet = true;
+//						delay = stats.IDLE_DELAY;					
+//					}
+//					else
+//					{
+//						delay -= Time.deltaTime;						
+//						
+//						if(delay <= 0)							 
+//						{
+//							delaySet = false;
+//							alert.isAlarmedByDecoy = true;
+//							target = worldDecoyList[0].transform;
+//							targetPos = new Vector3(target.position.x,
+//							                        transform.position.y,		// so that AI wont fly/go underground
+//							                        target.position.z);
+//						}
+//					}
+//				}
 			}
 			break;
 
@@ -139,39 +168,33 @@ public class EnemyAI : MonoBehaviour {
 						state = EnemyState.IDLE;	// slack/look ard for a while
 					}
 				}
-
-				// STEALTH CHECK
-				// if heard loud noise or spotted player 
-				// state = alert
-				// AI render color = red
-				// target = noise/player/player last seen
-				if(worldDecoyList[0].GetComponent<CTimer>().alert)	// if alarm decoy in world rings
-				{
-					if(!delaySet)									// delay abit, so AI wont immediately rush there
-					{
-						delaySet = true;
-						delay = stats.IDLE_DELAY;					
-
-						// turn AI render color to red
-						gameObject.GetComponent<Renderer>().material.color = new Color(1, 0, 0);
-					}
-					else
-					{
-						delay -= Time.deltaTime;						
-						
-						if(delay <= 0)							 
-						{
-							delaySet = false;
-							state = EnemyState.ALERT;
-							target = worldDecoyList[0].transform;
-							targetPos = new Vector3(target.position.x,
-							                        transform.position.y,		// so that AI wont fly/go underground
-							                        target.position.z);
-						}
-					}
-				}
-				else if(sight.playerInSight)			//temp, use alertness value once alert calc is done
-					state = EnemyState.ALERT;
+				
+				// old mtd
+//				if(worldDecoyList[0].GetComponent<CTimer>().alert)	// if alarm decoy in world rings
+//				{
+//					if(!delaySet)									// delay abit, so AI wont immediately rush there
+//					{
+//						delaySet = true;
+//						delay = stats.IDLE_DELAY;					
+//
+//						// turn AI render color to red
+//						gameObject.GetComponent<Renderer>().material.color = new Color(1, 0, 0);
+//					}
+//					else
+//					{
+//						delay -= Time.deltaTime;						
+//						
+//						if(delay <= 0)							 
+//						{
+//							delaySet = false;
+//							state = EnemyState.ALERT;
+//							target = worldDecoyList[0].transform;
+//							targetPos = new Vector3(target.position.x,
+//							                        transform.position.y,		// so that AI wont fly/go underground
+//							                        target.position.z);
+//						}
+//					}
+//				}
 			}
 			break;
 			
@@ -181,54 +204,65 @@ public class EnemyAI : MonoBehaviour {
 										
 			case EnemyState.ALERT:		// got alerted, search for player (or if in sight, attack)
 			{
-				// check if gt anyth in AI's way
+				// check if gt anyth in AI's way (most probably when chasing player/decoy made by player
 				if(collideWithOther)
 				{
-					if(!delaySet)
+					if(alert.isAlarmedByDecoy)
 					{
-						delaySet = true;
-						// temp, AI should 'act' like he's waiting for player (or sth else) before reseting
-						delay = stats.ALERT_DELAY;	
-
-					}
-					else
-					{
-						delay -= Time.deltaTime;						
-						
-						if(delay <= 0)							 
+						if(!delaySet)
 						{
-							delaySet = false;
-							state = EnemyState.RESET;
+							delaySet = true;
+							// temp, AI should 'act' like he's looking ard
+							delay = stats.ALERT_DELAY;	
+						}
+						else
+						{
+							delay -= Time.deltaTime;						
+							
+							if(delay <= 0)							 
+							{
+								delaySet = false;
+								state = EnemyState.RESET;
+							}
 						}
 					}
 				}
 				else
 				{
-					float alertMoveSpeed, distDiff;
+					float alertMoveSpeed;
 					
-					if(target == null && sight.playerInSight)
-						target = player.transform;
+					// old mtd
+//					if(target == null && alert.playerInSight)
+//						target = player.transform;
 
-					if(target.gameObject == player)
-					{
-						targetPos = sight.targetPos;
+//					if(target.gameObject == player)
+//					{
+//						targetPos = alert.targetPos;
+//						alertMoveSpeed = stats.alertSightMoveSpeed;
+//						distDiff = stats.attackRange+player.GetComponent<CharacterController>().bounds.size.x*0.5f;
+//					}
+//					else
+//					{
+//						alertMoveSpeed = stats.alertNoiseMoveSpeed;
+//						distDiff = stats.attackRange+target.gameObject.GetComponent<Collider>().bounds.size.x*0.5f;
+//					}
+
+					if(alert.playerInSight)
 						alertMoveSpeed = stats.alertSightMoveSpeed;
-						distDiff = stats.attackRange+player.GetComponent<CharacterController>().bounds.size.x*0.5f;
-					}
 					else
-					{
 						alertMoveSpeed = stats.alertNoiseMoveSpeed;
-						distDiff = stats.attackRange+target.gameObject.GetComponent<Collider>().bounds.size.x*0.5f;
-					}
-				
+						
 					// if target is close enough
-					if((transform.position-targetPos).magnitude < distDiff)
+					if((transform.position-targetPos).magnitude < stats.attackRange)
 					{
 						// do sth
-						if(target.gameObject == worldDecoyList[0])
+						// old mtd
+						//if(target.gameObject == worldDecoyList[0])
+						if(alert.isAlarmedByDecoy)
 						{
-							worldDecoyList[0].GetComponent<CTimer>().alert = false;		// AI switches off the alarm
-							worldDecoyList[0].GetComponent<SoundEffect>().StopSound();	
+							// old mtd..
+//							worldDecoyList[0].GetComponent<CTimer>().alert = false;		// AI switches off the alarm
+//							worldDecoyList[0].GetComponent<SoundEffect>().StopSound();	
 
 							delay -= Time.deltaTime;						
 							
@@ -243,15 +277,13 @@ public class EnemyAI : MonoBehaviour {
 								
 								if(delay <= 0)							 
 								{
+									// find a way to reset world decoy
 									delaySet = false;
 									state = EnemyState.RESET;
 								}
 							}
 						}		
-						// atk player 
-
-						// if lose sight of player
-						else if(!sight.playerInSight)		
+						else if(!alert.playerInSight)	// i.e. AI was chasing last seen/heard pos
 						{
 							if(!delaySet)
 							{
@@ -271,50 +303,25 @@ public class EnemyAI : MonoBehaviour {
 								}
 							}	
 						}
+						// add alertness rapidly (max alert = gameover)
+						else if(alert.playerInSight)
+						{
+							alert.playerInRange = true;
+						}
 					}
 					else 	
 					{
 						// face target
-						Quaternion targetRotation = Quaternion.LookRotation(targetPos-transform.position);
+						Quaternion targetRotation = Quaternion.LookRotation(alert.targetPos-transform.position);
 						transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle(transform.eulerAngles.y,
 						                                                            targetRotation.eulerAngles.y,
 						                                                            stats.rotationSpeed * Time.deltaTime);
 					
 						// move AI closer to target
-						transform.position = Vector3.MoveTowards(transform.position, targetPos, 
+						transform.position = Vector3.MoveTowards(transform.position, alert.targetPos, 
 						                                         stats.moveSpeed*alertMoveSpeed * Time.deltaTime);
 					}
 				}
-
-				// if alertness >= 20
-				// if player within atk range
-				// 		(if we're doing AI attack for this proj)
-				// 		alertness = max  
-				//		attack player
-				// 		(else)
-				//		alertIncr acc = 3
-				// 		alertness += alertIncrement * alertIncr acc, gameover if alertness is at max
-
-				// else (if player not within atk range)
-				// 
-				//		if player in sight
-				//			alertIncr acc = 1.5
-				//			alertness += alertIncrement * alertIncr acc
-				//			target = player
-				//
-				//	 		if lost sight of player
-				//				target = player last seen pos
-				//				if at target (i.e. last seen pos)
-				//					look ard/roam movement
-				//		 			alertness -=  alertDecrement*0.5	// slower dec of alertness
-				//
-				//		else (distraction/noise was cause of alert)
-				//			if at target (i.e. location of d/noise)
-				//				look ard/roam movement
-				//	 			alertness -=  alertDecrement			// faster dec of alertness
-				
-				// else (alert < 20)
-				// state = reset
 			}
 			break;
 			
@@ -324,8 +331,10 @@ public class EnemyAI : MonoBehaviour {
 
 			case EnemyState.RESET:		// relax, and go back to normal. AI goes to next waypt before idling fr a while
 			{
+				alert.isAlarmedByDecoy = false;
 				collideWithOther = false;
-				// face next waypt
+				
+				// go back to waypt prev heading
 				Quaternion targetRotation = Quaternion.LookRotation(waypointList[nextWaypt].position-transform.position);
 				transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle(transform.eulerAngles.y,
 				                                                            targetRotation.eulerAngles.y,
@@ -343,8 +352,6 @@ public class EnemyAI : MonoBehaviour {
 					delay = stats.IDLE_DELAY;
 					state = EnemyState.IDLE;			//reset the state
 				}
-
-				debugRenderer.material.color = Color.green;
 			}
 			break;
 		}
@@ -353,8 +360,6 @@ public class EnemyAI : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other)
 	{
-		if(!sight.playerInSight)			// since AI cant see player
-			return;
 		if (other.gameObject.tag != "Floor")
 		{
 			// static obj is in AI's way (e.g. chair, bed)

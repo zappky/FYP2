@@ -3,6 +3,7 @@ using System.Collections;
 
 public class FpsMovement : MonoBehaviour 
 {
+	public bool isRunning = false;
 	public float moveSpeed = 7.0f; //movement speed
 	public float jumpSpeed = 5.0f;
 	public float paraSpeed = 1.0f; //Parachute speed
@@ -20,7 +21,10 @@ public class FpsMovement : MonoBehaviour
 
 	CharacterController cc;
 
-	public AudioSource runSound;
+	//public AudioSource runSound;
+	public AudioClip runSound;
+	public float SFX_DELAY = 2.0f;
+	float runSFXdelay = 0.0f;
 
 	bool paracheck = false;
 	bool isGrappling = false;		//if true, player is using grapple 
@@ -31,11 +35,6 @@ public class FpsMovement : MonoBehaviour
 	void Start () 
 	{
 		cc = GetComponent<CharacterController>();
-
-		if(runSound == null)
-		{
-			runSound = GameObject.Find("runsound").GetComponent<AudioSource>();
-		}
 	}
 	
 	// Update is called once per frame
@@ -51,19 +50,28 @@ public class FpsMovement : MonoBehaviour
 		vertRotation = Mathf.Clamp (vertRotation, -viewRange, viewRange);
 		Camera.main.transform.localRotation = Quaternion.Euler (vertRotation, 0, 0);
 
-		if((Input.GetButton("Run") && Input.GetButton("Vertical")) || (Input.GetButton("Run") && Input.GetButton("Horizontal")))
+		if(Input.GetButton("Run"))
 		{
-			forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed * 2.0f;
-			sideSpeed = Input.GetAxis ("Horizontal") * moveSpeed * 2.0f;
-			if(!runSound.isPlaying)
-				runSound.Play();
+			if(cc.isGrounded)
+			{
+				isRunning = true;
+				forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed * 2.0f;	//shud use runSpd instead of 2
+				sideSpeed = Input.GetAxis ("Horizontal") * moveSpeed * 2.0f;
+
+				runSFXdelay -= Time.deltaTime;
+				if(runSFXdelay <= 0)	 
+				{
+					runSFXdelay = SFX_DELAY;
+					AudioSource.PlayClipAtPoint(runSound, transform.position);
+				}
+			}
 		}
 		else
 		{
 			//movement
-			forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed;
+			isRunning = false;
+			forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed;	
 			sideSpeed = Input.GetAxis ("Horizontal") * moveSpeed;
-			runSound.Stop();
 		}
 
 		isGrappling = updateGrappleCheck();
@@ -84,12 +92,10 @@ public class FpsMovement : MonoBehaviour
 			if(cc.isGrounded && Input.GetButton("Jump"))
 			{
 				vertVelo = jumpSpeed;
-				runSound.Stop();
 			}
 			else if(!cc.isGrounded && Input.GetButtonDown("parachute"))	//button v
 			{
 				paracheck = !paracheck;
-				runSound.Stop();
 			}
 
 			//activate parachute

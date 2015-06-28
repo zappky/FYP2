@@ -4,21 +4,20 @@ using System.Collections;
 public class EnemySight : MonoBehaviour 
 {
 	public float fieldOfViewAngle = 110f; 	// how far AI can see 
-	public bool playerInSight;
+	//public bool playerInSight;
 
-	public Vector3 targetPos;				// pos to move towards to (player/last seen pos)
+	//public Vector3 targetPos;				// pos to move towards to (player/last seen pos)
 
 	Vector3 lastSeenPos;					// player last seen pos
 	SphereCollider col;
 	GameObject player;
-	//EnemyAlert alert;						// AI's alertness calculations
+	EnemyAlert alert;						// AI's alertness calculations
 
-	Renderer debugRenderer;					// to access AI renderer for color chg to show alert state (debug only)
 
 	void Start() {
 		col = GetComponent<SphereCollider>();
 		player = GameObject.FindGameObjectWithTag("Player");
-		debugRenderer = gameObject.GetComponent<Renderer>();
+		alert = gameObject.GetComponent<EnemyAlert>();
 	}
 
 
@@ -31,7 +30,10 @@ public class EnemySight : MonoBehaviour
 		// if player enters sphere col
 		if(other.gameObject == player)
 		{
-			playerInSight = false;		// reset
+			// old method
+			//playerInSight = false;		// reset
+			alert.playerInSight = false;		// reset
+			alert.playerInRange = false;		// reset
 
 			Vector3 dir = other.transform.position - transform.position+transform.up;
 			float angle = Vector3.Angle(dir, transform.forward);
@@ -49,43 +51,43 @@ public class EnemySight : MonoBehaviour
 					if(hit.collider.gameObject == player)
 					{
 						// add alertness
-						// alert.increase();
-						// if alert value > sth, chase player
-						playerInSight = true;
-						targetPos = new Vector3(player.transform.position.x,
-						                        transform.position.y,			// since AI is giant, use back his own y pos
-						                        player.transform.position.z);
-						lastSeenPos = targetPos;
+						alert.playerInSight = true;
 
-						// turn AI render color to red (alert)
-						debugRenderer.material.color = Color.red;
+						// old method
+//						playerInSight = true;
+//						targetPos = new Vector3(player.transform.position.x,
+//						                        transform.position.y,			// since AI is giant, use his y pos
+//						                        player.transform.position.z);
+//						lastSeenPos = targetPos;
+
 						Debug.DrawRay(ray.origin, ray.direction*transform.localScale.x*col.radius, Color.green, 1);
 					}
 					//in fov, but gt obj blocking sight
 					else
 					{
-						targetPos = lastSeenPos;	// AI would move to last seen pos
-						
-						// reset AI render color to green (!alert)
-						debugRenderer.material.color = Color.green;	
+						// old method
+						//targetPos = lastSeenPos;	// AI would move to last seen pos
+
 						Debug.DrawRay(ray.origin, ray.direction*transform.localScale.x*col.radius, Color.red, 1);
 					}
 				}
 			}
-			// not in AI's fov
 			else
-			{
-				// if player running or make noise, add alertness
-
-				debugRenderer.material.color = Color.green;
 				Debug.DrawRay(ray.origin, ray.direction*transform.localScale.x*col.radius, Color.black, 1);
+			
+			// if player running near AI or is seen
+			if(player.GetComponent<FpsMovement>().isRunning || alert.playerInSight)
+			{
+				// (calc of alert incr depending on player being seen or not is done in this fn.)
+				alert.AlertIncr(new Vector3(player.transform.position.x,
+				                        	transform.position.y,			// since AI is giant, use his y pos
+				                        	player.transform.position.z));
 			}
 		}
 	}
 	
 	void OnTriggerExit(Collider other)
 	{
-		gameObject.GetComponent<Renderer>().material.color = Color.green;
 	}
 
 	void OnDrawGizmos()
