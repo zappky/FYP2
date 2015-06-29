@@ -1,20 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\VendorDatabase.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\DialogInterface.cs">
     <Files>
-      <File FileName="Assets\Scripts\Interactable.cs" Line="55" Column="6" />
-      <File FileName="Assets\Scripts\CastSlot.cs" Line="41" Column="54" />
-      <File FileName="Assets\Scripts\Inventory.cs" Line="147" Column="29" />
-      <File FileName="Assets\Scripts\ItemDatabase.cs" Line="368" Column="5" />
-      <File FileName="c:\Users\KeeYang\Documents\GitHub\FYP2\FYP2\Assets\Scripts\CastSlot.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CTimer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AI\EnemyAI.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\DialogSystem.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Item.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FileManager.cs" Line="120" Column="35" />
-      <File FileName="Assets\Scripts\CSelect.cs" Line="32" Column="5" />
-      <File FileName="Assets\Scripts\VendorDatabase.cs" Line="61" Column="4" />
-      <File FileName="Assets\Scripts\SingetonSetUp.cs" Line="21" Column="1" />
+      <File FileName="Assets\Scripts\DialogTree.cs" Line="211" Column="17" />
+      <File FileName="Assets\Scripts\DialogInterface.cs" Line="9" Column="46" />
+      <File FileName="Assets\Scripts\ItemDatabase.cs" Line="8" Column="1" />
+      <File FileName="Assets\Scripts\DialogDatabase.cs" Line="71" Column="3" />
+      <File FileName="Assets\Scripts\SingetonSetUp.cs" Line="4" Column="1" />
+      <File FileName="Assets\Scripts\Inventory.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FileManager.cs" Line="329" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

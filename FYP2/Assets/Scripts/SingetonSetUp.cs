@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
 // this script is suppose to attach to a blank object and initalize the singeton in the game
 public class SingetonSetUp : MonoBehaviour {
 
@@ -9,6 +11,7 @@ public class SingetonSetUp : MonoBehaviour {
 		FileManager.Instance.Initialize();
 		ItemDatabase.Instance.Initialize();
 		VendorDatabase.Instance.Initialize();
+		DialogDatabase.Instance.Initialize();
 	}
 	public void OnApplicationQuit()//this will be auto called like start and update function
 	{

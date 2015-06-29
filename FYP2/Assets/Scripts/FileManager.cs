@@ -8,7 +8,6 @@ using System.IO;
 using System.Text;
 using System.Xml;
 
-
 public class my_XmlBuildEntry//a class to describle a xml entry for building new xml node in the file
 {
 	public string parentname = null;
@@ -130,7 +129,23 @@ public class FileManager : MonoBehaviour {
 		}
 
 	}
-	
+	public XmlNodeList DigToDesiredChildNodeList(XmlNodeList startingList,string desiredParentName)
+	{
+		XmlNodeList checknodelist = startingList;
+		XmlNode checknode = checknodelist.Item(0);
+		
+		while ( checknodelist.Count >= 1)
+		{
+			checknodelist = checknode.ChildNodes;
+			checknode = checknodelist.Item(0);
+			if(checknode.Name == desiredParentName)
+			{
+				return checknode.ChildNodes;
+			}
+		}
+		
+		return null;
+	}
 	public XmlNodeList DigToDesiredParentNodeList(XmlNodeList startingList,string desiredParentName)
 	{
 		XmlNodeList checknodelist = startingList;
@@ -286,16 +301,90 @@ public class FileManager : MonoBehaviour {
 		inputlist = CreateXmlBuildEntryList(parentlist,entrylist);	
 		CreateXMLFile("gamedata/" + backupFolderName,"backup_"+ itemDataFileName,"xml",BuildXMLData(rootentry,inputlist),"plaintext");
 	}
+	public List<DialogTree> LoadDialogTreeData()
+	{
+		List<DialogTree> resultlist = new List<DialogTree>();
+		DialogTree tempentry =null;
+		my_DialogNode tempdialog =null;
+		my_DialogOption tempdialogoption =null;
 
+		if( CheckFile(dialogdataPath,false) == false)
+		{
+			print ("ERROR: Dialog tree data file cannot be found, load data aborted");
+			return null;
+			
+		}
+		print ("loading Dialog Tree datas");
+		XmlDocument xmlDoc = new XmlDocument();
+		xmlDoc.Load(dialogdataPath);
+		
+		
+		XmlNodeList parentList = null;
+		
+		parentList = xmlDoc.GetElementsByTagName("database");
+		parentList = DigToDesiredParentNodeList(parentList,"level");
+
+		foreach(XmlNode childInfo in parentList)
+		{
+			//print ("looking at childinfo name:"+ childInfo.Name );
+			//tempentry = new my_DialogTreeDatabaseEntry();
+			//tempentry.level = int.Parse(childInfo.Attributes["id"].Value);
+			tempentry = new DialogTree();
+			XmlNodeList childContent = DigToDesiredChildNodeList(parentList,"dialogtree");
+
+			foreach (XmlNode childItem in childContent)
+			{
+				//print ("looking at childItem name: "+ childItem.Name );
+				tempdialog = new my_DialogNode();
+				tempdialog.actorName = childItem.Attributes["actorname"].Value;
+				tempdialog.nodeId = int.Parse(childItem.Attributes["id"].Value);
+				foreach (XmlNode innerchildItem in childItem.ChildNodes)
+				{
+					//print ("looking at innerchildItem name: "+ innerchildItem.Name );
+					switch(innerchildItem.Name)
+					{
+					case "text":
+					case "Text":
+					case "texts":
+					case "Texts":
+						tempdialog.text = innerchildItem.InnerText;
+						break;
+
+					case "Option":
+					case "option":
+					case "Options":
+					case "options":
+						tempdialogoption = new my_DialogOption();
+						tempdialogoption.text = innerchildItem.InnerText;
+						string tempstring = innerchildItem.Attributes["nextdialogid"].Value;
+						if( tempstring == "" || tempstring == " ")
+						{
+							tempdialogoption.nextDialogId = -1;
+						}else
+						{
+							tempdialogoption.nextDialogId = int.Parse(innerchildItem.Attributes["nextdialogid"].Value);
+						}
+
+						tempdialogoption.returnStatus = int.Parse(innerchildItem.Attributes["resultid"].Value);
+						tempdialog.AddDialogOption(tempdialogoption);
+						break;
+
+					default:
+						print("ERROR: Unknown load dialog tree data field detected: " + innerchildItem.Name);
+						break;
+					}
+				}
+				//tempentry.dialogtree.AddDialog(tempdialog);
+				tempentry.AddDialog(tempdialog);
+			}
+			resultlist.Add(tempentry);
+		}
+		return resultlist;
+	}
 	public List<my_VendorEntry> LoadVendorsData()
 	{
-		//tempo testing first
 
 		List<my_VendorEntry> resultlist = new List<my_VendorEntry>();
-//		my_VendorEntry tementry = new my_VendorEntry();
-//		tementry.vendorName = "test vendor";
-//		tementry.AddOutputItem(1,"clock",1);
-//		resultlist.Add(tementry);
 
 		my_VendorEntry tempitem = new my_VendorEntry();
 		Item_Proxy tempitemproxy = new Item_Proxy();
