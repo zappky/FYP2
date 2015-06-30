@@ -4,19 +4,19 @@
 		<dialogtree>
 		
 			<dialog id = "0" actorname = "npc" >
-				<text>Hello brave warrior!!!!!!!!!!!</text>
+				<text>Hell warrior!!!!!!!!!!!</text>
 				<option nextdialogid = "1" resultid = "0">sup noob</option>
 				<option nextdialogid = "2" resultid = "0">hello strange voice</option>
 			</dialog>
 			
 			
 			<dialog id = "1" actorname = "npc">
-				<text>I dont want to talk to you</text>
+				<text>I dont want to talk to </text>
 				<option nextdialogid = "" resultid = "0">Aww</option>
 			</dialog>
 			
 			<dialog id = "2" actorname = "npc">
-				<text>I have a quest for you</text>
+				<text>I have a quest for </text>
 				<option nextdialogid = "" resultid = "0">Ok bye</option>
 				<option nextdialogid = "4" resultid = "0">What is it?</option>
 				<option nextdialogid = "3" resultid = "0">What is the pay?</option>

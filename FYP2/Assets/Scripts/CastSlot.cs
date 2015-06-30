@@ -46,8 +46,6 @@ public class CastSlot : MonoBehaviour {
 	private Rect slotRect ;
 	private Rect labelRect ;
 	private GUIStyle labelStyle= null;
-
-
 	//script reference
 	public Inventory playerinventory = null;
 	
@@ -83,6 +81,7 @@ public class CastSlot : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
 		if(Input.GetKeyDown("tab"))
 		{
 			IncrementClampSlotLayer(1,true);
@@ -93,6 +92,7 @@ public class CastSlot : MonoBehaviour {
 
 	void OnGUI()
 	{		
+
 		//blinding key 1 to 9 ,to the slot 1 to 9 and trigger the item effect
 		if (Event.current.type == EventType.KeyDown) {
 			if (Event.current.keyCode >= KeyCode.Alpha1

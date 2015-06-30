@@ -4,12 +4,31 @@ using System.Collections;
 //this script is to make a alarm clock item funtional
 
 [System.Serializable]
-public class my_rectdata
+public class my_rectdata// this class to to hold information for unity rect class, to ease data handling
 {
 	public float left = 10.0f;
 	public float top = 10.0f;
 	public float width = 50.0f;
 	public float height = 20.0f;
+
+	public my_rectdata ()
+	{
+	}
+	public my_rectdata (my_rectdata another)
+	{
+		this.left = another.left;
+		this.top = another.top;
+		this.width = another.width;
+		this.height = another.height;
+	}
+	public void ClearAll()
+	{
+		left = top = width = height = 0.0f;
+	}
+	public void EqualisedWidthAndHeight()//used for like making the rect to become a square
+	{
+		width = height = (width + height)*0.5f;
+	}
 }
 
 [System.Serializable]
@@ -87,7 +106,8 @@ public class CTimer :MonoBehaviour {
 	public bool operate   = false; // whether to update
 	public bool display = false;  // whether to draw the ui
 	public bool alert   = false; // whether to ring alarm
-	public my_rectdata rect;
+	public Rect timerRect;
+
 
 	//public my_timedata resetTimer;
 	public my_timedata resetDelay = new my_timedata(0.0f,5.0f);//amount of wait time before reset timer.
@@ -109,7 +129,10 @@ public class CTimer :MonoBehaviour {
 		operate = false;
 		sound = this.GetComponent<SoundEffect>();		
 		timerLowerLimit.second = 0.0f;
-	
+
+		float timerWidth = 50.0f;
+		float timerHeight = 20.0f;
+
 		switch(this.tag)//configuration,cos i want to reuse this script as game clock
 		{
 			default:
@@ -119,13 +142,12 @@ public class CTimer :MonoBehaviour {
 				previoustimer.second = timer.second = 10.0f;	
 				timerformat = TimerFormat.MIN_SEC;
 				timerstate= TimerState.countdown;
+
+				timerRect = new Rect(Screen.width*0.01f,Screen.height*0.01f,timerWidth,timerHeight);
 			break;
 			
 			case "Game Session":
-				rect.left = Screen.width*0.9f;
-				rect.top = Screen.height*0.01f;
-				rect.width = 50.0f;
-				rect.height = 20.0f;
+				timerRect = new Rect(Screen.width - timerWidth,Screen.height*0.01f,timerWidth,timerHeight);
 				
 				previoustimer.second = timer.second = 0.0f;
 				
@@ -135,7 +157,7 @@ public class CTimer :MonoBehaviour {
 				timerformat = TimerFormat.MIN_SEC;
 				timerstate= TimerState.countup;
 				
-				operate = true;
+				SetOperate(true);
 			break;
 		}
 	}
@@ -233,18 +255,7 @@ public class CTimer :MonoBehaviour {
 		return false;
 	}
 	public void CountDown()
-	{
-//		if(timer.GetTotalTimeInSecond() <= timerLowerLimit.GetTotalTimeInSecond())
-//		{
-//			SoundEffect sound = this.GetComponent<SoundEffect>();
-//			sound.PlaySound();
-//
-//			timer.SetEqual(timerLowerLimit);
-//			alert = true;
-//			operate = false;
-//			return;
-//		}
-		
+	{	
 		switch(timerformat)
 		{
 			case TimerFormat.MIN_SEC:
@@ -283,13 +294,6 @@ public class CTimer :MonoBehaviour {
 	}
 	public void CountUp()
 	{
-//		if(timer.GetTotalTimeInSecond() >= timerUpperLimit.GetTotalTimeInSecond())
-//		{
-//			timer.SetEqual(timerUpperLimit);
-//			alert = true;
-//			operate = false;
-//			return;
-//		}
 
 		switch(timerformat)
 		{
@@ -353,7 +357,7 @@ public class CTimer :MonoBehaviour {
 				{
 					
 					//rect.left
-					GUI.Box(new Rect(rect.left,rect.top,rect.width,rect.height), "" + timer.second.ToString("0"));
+					GUI.Box(timerRect, "" + timer.second.ToString("0"));
 				}break;
 					
 				case TimerFormat.MIN_SEC:
@@ -361,11 +365,11 @@ public class CTimer :MonoBehaviour {
 					
 					if(Mathf.Round(timer.second) <= 9.0f)
 					{
-						GUI.Box(new Rect(rect.left,rect.top,rect.width,rect.height),timer.minute.ToString("f0") + ":0" + timer.second.ToString("f0"));
+						GUI.Box(timerRect,timer.minute.ToString("f0") + ":0" + timer.second.ToString("f0"));
 					}
 					else
 					{
-						GUI.Box(new Rect(rect.left,rect.top,rect.width,rect.height), timer.minute.ToString("f0") + ":" + timer.second.ToString("f0"));
+						GUI.Box(timerRect, timer.minute.ToString("f0") + ":" + timer.second.ToString("f0"));
 					}
 				}break;
 				}

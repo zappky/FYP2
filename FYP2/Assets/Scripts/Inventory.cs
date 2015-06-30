@@ -123,7 +123,6 @@ public class Inventory : MonoBehaviour {
 			}
 
 		}
-
 	
 	}
 	// Update is called once per frame
@@ -436,9 +435,11 @@ public class Inventory : MonoBehaviour {
 			case 3:
 			{
 			Debug.Log("alarm1 effect");
-			CTimer obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as CTimer;
+			GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
 			CTimer escript = obj.GetComponent<CTimer>();
 			escript.OnLookInteract();
+			print("Display: "  + escript.display);
+			print("Operate: "  + escript.operate);
 			RemoveItem(item.id);
 				//alarmitem.OnLookInteract();	
 			}break;

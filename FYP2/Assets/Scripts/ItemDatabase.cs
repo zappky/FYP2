@@ -355,7 +355,7 @@ public class ItemDatabase : MonoBehaviour {
 	private static ItemDatabase instance = null;
 	public List<Item> itemDatabase = new List<Item>();//containing all unique game item,crafted item and materals
 	public List<CraftingRecipe> craftDatabase = new List<CraftingRecipe>();//containing all game item crafting combination
-	public CTimer alarmitem = null;
+	//public CTimer alarmitem = null;
 
 	public static ItemDatabase Instance
 	{
@@ -373,7 +373,7 @@ public class ItemDatabase : MonoBehaviour {
 
 	public void Initialize()
 	{	
-		alarmitem = GameObject.FindGameObjectWithTag("Alarm").GetComponent<CTimer>();//to input the script rference
+		//alarmitem = GameObject.FindGameObjectWithTag("Alarm").GetComponent<CTimer>();//to input the script rference
 			//alarmitem = this.GetComponent<CTimer>();
 			//PopulateGameObjectData();
 			//PopulateCraftingData();
@@ -547,28 +547,28 @@ public class ItemDatabase : MonoBehaviour {
 		
 		return false;
 	}
-	public bool UseItemEffect(int id)//activate other script effect here
-	{
-		bool result = false;
-		
-		switch(id)
-		{
-			default:
-			case 0:
-			{
-				Debug.Log("nill effect");
-			}break;
-				
-			case 3:
-			{
-				Debug.Log("alarm effect");
-				alarmitem.OnLookInteract();
-				result = true;		
-			}break;
-		}
-		
-		return result;
-	}
+//	public bool UseItemEffect(int id)//activate other script effect here
+//	{
+//		bool result = false;
+//		
+//		switch(id)
+//		{
+//			default:
+//			case 0:
+//			{
+//				Debug.Log("nill effect");
+//			}break;
+//				
+//			case 3:
+//			{
+//				Debug.Log("alarm effect");
+//				alarmitem.OnLookInteract();
+//				result = true;		
+//			}break;
+//		}
+//		
+//		return result;
+//	}
 	public List<Item> CraftItem(List<Item>ingrediant,int recipeId)//untested
 	{
 		int matches = 0;

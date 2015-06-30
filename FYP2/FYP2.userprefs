@@ -1,14 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\DialogInterface.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ScreenManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\DialogTree.cs" Line="211" Column="17" />
-      <File FileName="Assets\Scripts\DialogInterface.cs" Line="9" Column="46" />
-      <File FileName="Assets\Scripts\ItemDatabase.cs" Line="8" Column="1" />
-      <File FileName="Assets\Scripts\DialogDatabase.cs" Line="71" Column="3" />
-      <File FileName="Assets\Scripts\SingetonSetUp.cs" Line="4" Column="1" />
-      <File FileName="Assets\Scripts\Inventory.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FileManager.cs" Line="329" Column="6" />
+      <File FileName="Assets\Scripts\Inventory.cs" Line="125" Column="4" />
+      <File FileName="Assets\Scripts\ItemDatabase.cs" Line="657" Column="4" />
+      <File FileName="Assets\Scripts\DialogTree.cs" Line="13" Column="41" />
+      <File FileName="Assets\Scripts\DialogInterface.cs" Line="47" Column="28" />
+      <File FileName="Assets\Scripts\DialogDatabase.cs" Line="25" Column="1" />
+      <File FileName="Assets\Scripts\SingetonSetUp.cs" Line="15" Column="28" />
+      <File FileName="Assets\Scripts\FileManager.cs" Line="21" Column="5" />
+      <File FileName="Assets\Scripts\AI\EnemyManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\alertbar.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FpsMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\RestartGame.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\QuestManager.cs" Line="53" Column="65" />
+      <File FileName="Assets\Scripts\CTimer.cs" Line="154" Column="27" />
+      <File FileName="Assets\Scripts\CastSlot.cs" Line="101" Column="34" />
+      <File FileName="Assets\Scripts\ScreenManager.cs" Line="25" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

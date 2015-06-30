@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[System.Serializable]
+//[System.Serializable]
 public class my_DialogOption
 {
 	public string text = "";//the text to be displayed
@@ -55,7 +55,7 @@ public class my_DialogOption
 		this.parentDialog = parentDialog;
 	}
 }
-[System.Serializable]
+//[System.Serializable]
 public class my_DialogNode
 {
 	//***Note*** first index of options list will be reserved for linking dialog node with zero or one option to another node //
@@ -117,7 +117,7 @@ public class my_DialogNode
 
 
 //this script is to be the data structure of npc dialogs
-[System.Serializable]
+//[System.Serializable]
 public class DialogTree {
 
 	public List<my_DialogNode> dialogs =  new List<my_DialogNode>();

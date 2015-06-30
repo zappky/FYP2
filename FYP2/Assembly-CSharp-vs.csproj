@@ -72,7 +72,9 @@
      <Compile Include="Assets\Scripts\Parachute.cs" />
      <Compile Include="Assets\Scripts\PlayerInfo.cs" />
      <Compile Include="Assets\Scripts\PointSystem.cs" />
+     <Compile Include="Assets\Scripts\QuestManager.cs" />
      <Compile Include="Assets\Scripts\RestartGame.cs" />
+     <Compile Include="Assets\Scripts\ScreenManager.cs" />
      <Compile Include="Assets\Scripts\SingetonSetUp.cs" />
      <Compile Include="Assets\Scripts\SoundEffect.cs" />
      <Compile Include="Assets\Scripts\SpawnSpot.cs" />
@@ -82,10 +84,10 @@
      <None Include="Assets\gamedata\backup\backup_vendordatas.xml" />
      <None Include="Assets\gamedata\dump\mytest.xml" />
      <None Include="Assets\gamedata\itemdatas.xml" />
-     <None Include="Assets\gamedata\dialogdatas.xml" />
      <None Include="Assets\gamedata\vendordatas.xml" />
      <None Include="Assets\gamedata\backup\backup_itemdatas.xml" />
      <None Include="Assets\gamedata\craftdatas.xml" />
+     <None Include="Assets\gamedata\dialogdatas.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

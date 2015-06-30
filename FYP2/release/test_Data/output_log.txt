@@ -1,0 +1,1724 @@
+Initialize engine version: 5.0.0f4 (5b98b70ebeb9)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA Quadro K2000 (ID=0xffe)
+    Vendor:   NVIDIA
+    VRAM:     1990 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\132385w\Downloads\FYP2-master (1)\FYP2-master\FYP2\release\test_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\132385w\Downloads\FYP2-master (1)\FYP2-master\FYP2\release\test_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\132385w\Downloads\FYP2-master (1)\FYP2-master\FYP2\release\test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\132385w\Downloads\FYP2-master (1)\FYP2-master\FYP2\release\test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\132385w\Downloads\FYP2-master (1)\FYP2-master\FYP2\release\test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\132385w\Downloads\FYP2-master (1)\FYP2-master\FYP2\release\test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.059 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\132385w\Downloads\FYP2-master (1)\FYP2-master\FYP2\release\test_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\132385w\Downloads\FYP2-master (1)\FYP2-master\FYP2\release\test_Data\Managed\System.Xml.dll (this message is harmless)
+Platform assembly: C:\Users\132385w\Downloads\FYP2-master (1)\FYP2-master\FYP2\release\test_Data\Managed\System.dll (this message is harmless)
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+COL W STATIC OBJ: Window
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+COL W STATIC OBJ: Wall7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+COL W STATIC OBJ: Wall6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.465682 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.348685 ms (FindLiveObjects: 0.032349 ms CreateObjectMapping: 0.074962 ms MarkObjects: 0.231731 ms  DeleteObjects: 0.009020 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.318224 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.656312 ms (FindLiveObjects: 0.068119 ms CreateObjectMapping: 0.062209 ms MarkObjects: 0.508564 ms  DeleteObjects: 0.016485 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.360526 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.672798 ms (FindLiveObjects: 0.067808 ms CreateObjectMapping: 0.061898 ms MarkObjects: 0.526605 ms  DeleteObjects: 0.015552 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.319779 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.697682 ms (FindLiveObjects: 0.068119 ms CreateObjectMapping: 0.061898 ms MarkObjects: 0.549934 ms  DeleteObjects: 0.016174 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.328177 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.711679 ms (FindLiveObjects: 0.068119 ms CreateObjectMapping: 0.062520 ms MarkObjects: 0.563620 ms  DeleteObjects: 0.016485 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.366436 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.744961 ms (FindLiveObjects: 0.081494 ms CreateObjectMapping: 0.072785 ms MarkObjects: 0.573573 ms  DeleteObjects: 0.016174 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.277165 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.726609 ms (FindLiveObjects: 0.068119 ms CreateObjectMapping: 0.061587 ms MarkObjects: 0.580416 ms  DeleteObjects: 0.015552 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.535314 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.763935 ms (FindLiveObjects: 0.067808 ms CreateObjectMapping: 0.062520 ms MarkObjects: 0.616187 ms  DeleteObjects: 0.016174 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.272811 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.765490 ms (FindLiveObjects: 0.067808 ms CreateObjectMapping: 0.062209 ms MarkObjects: 0.618675 ms  DeleteObjects: 0.015552 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.097068 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.773889 ms (FindLiveObjects: 0.067497 ms CreateObjectMapping: 0.062209 ms MarkObjects: 0.627074 ms  DeleteObjects: 0.015863 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.313869 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.819302 ms (FindLiveObjects: 0.067808 ms CreateObjectMapping: 0.063453 ms MarkObjects: 0.670620 ms  DeleteObjects: 0.016174 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.027704 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.693016 ms (FindLiveObjects: 0.078073 ms CreateObjectMapping: 0.050078 ms MarkObjects: 0.550867 ms  DeleteObjects: 0.012752 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.263168 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.837343 ms (FindLiveObjects: 0.067808 ms CreateObjectMapping: 0.062209 ms MarkObjects: 0.690528 ms  DeleteObjects: 0.015863 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.154923 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.867514 ms (FindLiveObjects: 0.067497 ms CreateObjectMapping: 0.062520 ms MarkObjects: 0.719144 ms  DeleteObjects: 0.017418 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.005620 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.869692 ms (FindLiveObjects: 0.067186 ms CreateObjectMapping: 0.061898 ms MarkObjects: 0.723810 ms  DeleteObjects: 0.015863 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.271877 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.893642 ms (FindLiveObjects: 0.067808 ms CreateObjectMapping: 0.062831 ms MarkObjects: 0.745583 ms  DeleteObjects: 0.016485 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.221177 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.776377 ms (FindLiveObjects: 0.072163 ms CreateObjectMapping: 0.049767 ms MarkObjects: 0.638893 ms  DeleteObjects: 0.014619 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.243572 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.940922 ms (FindLiveObjects: 0.080872 ms CreateObjectMapping: 0.064387 ms MarkObjects: 0.777310 ms  DeleteObjects: 0.017418 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.242017 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.977937 ms (FindLiveObjects: 0.082116 ms CreateObjectMapping: 0.072785 ms MarkObjects: 0.805927 ms  DeleteObjects: 0.016174 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.078405 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.727542 ms (FindLiveObjects: 0.091759 ms CreateObjectMapping: 0.043857 ms MarkObjects: 0.576684 ms  DeleteObjects: 0.014308 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.383855 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.979803 ms (FindLiveObjects: 0.067808 ms CreateObjectMapping: 0.061898 ms MarkObjects: 0.832988 ms  DeleteObjects: 0.015863 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.270633 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 1.110132 ms (FindLiveObjects: 0.074651 ms CreateObjectMapping: 0.075273 ms MarkObjects: 0.942477 ms  DeleteObjects: 0.017107 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.198159 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.898308 ms (FindLiveObjects: 0.088337 ms CreateObjectMapping: 0.050389 ms MarkObjects: 0.744028 ms  DeleteObjects: 0.014308 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.257258 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 0.837031 ms (FindLiveObjects: 0.071541 ms CreateObjectMapping: 0.049456 ms MarkObjects: 0.702347 ms  DeleteObjects: 0.013064 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.303916 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 1.042013 ms (FindLiveObjects: 0.067808 ms CreateObjectMapping: 0.061587 ms MarkObjects: 0.894887 ms  DeleteObjects: 0.016174 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.144348 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 1.074051 ms (FindLiveObjects: 0.068430 ms CreateObjectMapping: 0.062209 ms MarkObjects: 0.925680 ms  DeleteObjects: 0.016796 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.440777 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 1.092091 ms (FindLiveObjects: 0.068430 ms CreateObjectMapping: 0.062209 ms MarkObjects: 0.943410 ms  DeleteObjects: 0.017107 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.161144 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 1.028637 ms (FindLiveObjects: 0.076517 ms CreateObjectMapping: 0.057855 ms MarkObjects: 0.877468 ms  DeleteObjects: 0.015863 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.283075 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 1.134705 ms (FindLiveObjects: 0.067808 ms CreateObjectMapping: 0.062520 ms MarkObjects: 0.986646 ms  DeleteObjects: 0.016796 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.259747 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 1.128484 ms (FindLiveObjects: 0.068119 ms CreateObjectMapping: 0.060965 ms MarkObjects: 0.981358 ms  DeleteObjects: 0.016796 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.225220 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 1.084004 ms (FindLiveObjects: 0.078384 ms CreateObjectMapping: 0.057232 ms MarkObjects: 0.932212 ms  DeleteObjects: 0.015241 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.305782 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 1.183540 ms (FindLiveObjects: 0.068430 ms CreateObjectMapping: 0.062520 ms MarkObjects: 1.034858 ms  DeleteObjects: 0.016485 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.309203 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 1.188828 ms (FindLiveObjects: 0.068430 ms CreateObjectMapping: 0.061898 ms MarkObjects: 1.040768 ms  DeleteObjects: 0.016485 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.214956 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 1.220866 ms (FindLiveObjects: 0.069985 ms CreateObjectMapping: 0.069985 ms MarkObjects: 1.062853 ms  DeleteObjects: 0.017107 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.244194 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 1.216200 ms (FindLiveObjects: 0.068430 ms CreateObjectMapping: 0.062209 ms MarkObjects: 1.068763 ms  DeleteObjects: 0.015863 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.233930 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 1.226153 ms (FindLiveObjects: 0.068430 ms CreateObjectMapping: 0.062831 ms MarkObjects: 1.077783 ms  DeleteObjects: 0.016174 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.216822 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 902.
+Total: 1.245438 ms (FindLiveObjects: 0.068741 ms CreateObjectMapping: 0.061276 ms MarkObjects: 1.097379 ms  DeleteObjects: 0.016485 ms)
+
+AI_Human
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Item data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Craft data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Vendor data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Dialog tree data file cannot be found, load data aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogDatabase.LoadDialogTreeDatas () [0x00000] in <filename unknown>:0 
+  at DialogDatabase.Initialize () [0x00000] in <filename unknown>:0 
+  at SingetonSetUp.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Inventory.AddItem (System.String itemname) [0x00000] in <filename unknown>:0 
+  at Inventory.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at DialogInterface.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+vendor database get quited
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at FileManager.SaveVendorDatabase () [0x00000] in <filename unknown>:0 
+  at VendorDatabase.OnApplicationQuit () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+item database get quited
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at FileManager.SaveItemDatabase () [0x00000] in <filename unknown>:0 
+  at ItemDatabase.OnApplicationQuit () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+file manager get quited
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
