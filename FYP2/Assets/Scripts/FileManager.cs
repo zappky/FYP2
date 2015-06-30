@@ -102,6 +102,7 @@ public class FileManager : MonoBehaviour {
 	private string craftdataPath = null;
 	private string vendordataPath = null;
 	private string dialogdataPath = null;
+	private string questlogdataPath = null;
 
 	public string backupFolderName = "backup";
 	public string gamedataFolderName = "gamedata";
@@ -109,6 +110,7 @@ public class FileManager : MonoBehaviour {
 	public string craftDataFileName = "craftdatas";
 	public string dialogDataFileName = "dialogdatas";
 	public string vendorDataFileName = "vendordatas";
+	public string questlogDataFileName = "questlogdatas";
 
 	public enum UpdateFileMode
 	{
@@ -163,8 +165,120 @@ public class FileManager : MonoBehaviour {
 
 		return null;
 	}
+
+	public void SaveQuestDatabase()
+	{
+		if(QuestLogDatabase.Instance.questLogDatabase.Count == 0)
+		{
+			print ("QuestLogDatabase list is empty,saving aborted");
+			return;
+		}
+
+		my_XmlEntry rootentry = new my_XmlEntry("database",null);
+		
+		List<my_XmlBuildEntry> inputlist = new List<my_XmlBuildEntry>();
+		List<string> attkey = new List<string>();
+		List<string> attvalue = new List<string>();
+		
+		List<string> parentlist = new List<string>();
+		List<my_XmlEntry> entrylist = new List<my_XmlEntry>();
+
+		foreach (my_QuestLogList loglist in QuestLogDatabase.Instance.questLogDatabase)
+		{
+			parentlist.Add(rootentry.name);
+			entrylist.Add(new my_XmlEntry("level",null,null,null));
+
+			foreach (my_QuestLog log in loglist)
+			{
+				parentlist.Add("level");
+				attkey.Clear();
+				attvalue.Clear();
+				attkey.Add("id");
+				attvalue.Add(log.id.ToString());
+				attkey.Add("name");
+				attvalue.Add(log.questname);
+				entrylist.Add(new my_XmlEntry("quest",null,attkey,attvalue));
+			}
+		}
+		inputlist = CreateXmlBuildEntryList(parentlist,entrylist);	
+		CreateXMLFile("gamedata/" + backupFolderName,"backup_"+ questlogDataFileName,"xml",BuildXMLData(rootentry,inputlist),"plaintext");
+	}
+	public void SaveDialogDatabase()
+	{
+		if(DialogDatabase.Instance.dialogDatabase.Count == 0)
+		{
+			print ("DialogDatabase list is empty,saving aborted");
+			return;
+		}
+		
+		my_XmlEntry rootentry = new my_XmlEntry("database",null);
+		
+		List<my_XmlBuildEntry> inputlist = new List<my_XmlBuildEntry>();
+		List<string> attkey = new List<string>();
+		List<string> attvalue = new List<string>();
+		
+		List<string> parentlist = new List<string>();
+		List<my_XmlEntry> entrylist = new List<my_XmlEntry>();
+
+		foreach (DialogTree a_tree in DialogDatabase.Instance.dialogDatabase)
+		{
+			//one dialog tree goes into one game level
+			parentlist.Add(rootentry.name);
+			entrylist.Add(new my_XmlEntry("level",null,null,null));
+			parentlist.Add("level");
+			entrylist.Add(new my_XmlEntry("dialogtree",null,null,null));
+
+			foreach (my_DialogNode a_node in a_tree)
+			{
+				parentlist.Add("dialogtree");
+				attkey.Clear();
+				attvalue.Clear();
+				attkey.Add("id");
+				attvalue.Add(a_node.nodeId.ToString());
+				attkey.Add("actorname");
+				attvalue.Add(a_node.actorName);
+				entrylist.Add(new my_XmlEntry("dialog",null,attkey,attvalue));
+
+				parentlist.Add("dialog");
+				entrylist.Add(new my_XmlEntry("test",a_node.text,null,null));
+
+				for(int i = 0 ; i < a_node.options.Count ; ++i)
+				{
+					parentlist.Add("dialog");
+					attkey.Clear();
+					attvalue.Clear();
+					attkey.Add("nextdialogid");
+					if( a_node.options[i].nextDialog != null)
+					{
+						attvalue.Add(a_node.options[i].nextDialog.nodeId.ToString());
+					}else
+					{
+						attvalue.Add("");
+					}
+					attkey.Add("nextdialogid_raw");
+					attvalue.Add(a_node.options[i].nextDialogId.ToString());
+
+					attkey.Add("resultid");
+					attvalue.Add(a_node.options[i].returnStatus.ToString());
+					entrylist.Add(new my_XmlEntry("option",a_node.options[i].text,attkey,attvalue));
+				}
+
+			}
+
+		}
+			
+			
+		inputlist = CreateXmlBuildEntryList(parentlist,entrylist);	
+		CreateXMLFile("gamedata/" + backupFolderName,"backup_"+ dialogDataFileName,"xml",BuildXMLData(rootentry,inputlist),"plaintext");
+	}
 	public void SaveCraftDatabase()
 	{
+		if(ItemDatabase.Instance.craftDatabase.Count == 0)
+		{
+			print ("Craftdatabase list is empty,saving aborted");
+			return;
+		}
+
 		my_XmlEntry rootentry = new my_XmlEntry("database",null);
 		
 		List<my_XmlBuildEntry> inputlist = new List<my_XmlBuildEntry>();
@@ -226,6 +340,12 @@ public class FileManager : MonoBehaviour {
 	}
 	public void SaveVendorDatabase()
 	{
+		if(VendorDatabase.Instance.vendorList.Count == 0)
+		{
+			print ("VendorDatabase list is empty,saving aborted");
+			return;
+		}
+
 		my_XmlEntry rootentry = new my_XmlEntry("database",null);
 		
 		List<my_XmlBuildEntry> inputlist = new List<my_XmlBuildEntry>();
@@ -267,6 +387,12 @@ public class FileManager : MonoBehaviour {
 	}
 	public void SaveItemDatabase()
 	{
+		if(ItemDatabase.Instance.itemDatabase.Count == 0)
+		{
+			print ("ItemDatabase list is empty,saving aborted");
+			return;
+		}
+
 		my_XmlEntry rootentry = new my_XmlEntry("database",null);
 		
 		List<my_XmlBuildEntry> inputlist = new List<my_XmlBuildEntry>();
@@ -301,6 +427,59 @@ public class FileManager : MonoBehaviour {
 		inputlist = CreateXmlBuildEntryList(parentlist,entrylist);	
 		CreateXMLFile("gamedata/" + backupFolderName,"backup_"+ itemDataFileName,"xml",BuildXMLData(rootentry,inputlist),"plaintext");
 	}
+
+	public List<my_QuestLogList> LoadQuestLogData()
+	{
+		List<my_QuestLogList> resultlist = new List<my_QuestLogList>();
+
+		if( CheckFile(questlogdataPath,false) == false)
+		{
+			print ("ERROR: Quest log data file cannot be found, load data aborted");
+			return null;
+			
+		}
+		print ("loading Quest log datas");
+		XmlDocument xmlDoc = new XmlDocument();
+		xmlDoc.Load(questlogdataPath);
+
+		XmlNodeList parentList = null;
+		
+		parentList = xmlDoc.GetElementsByTagName("database");
+		parentList = DigToDesiredParentNodeList(parentList,"level");
+		my_QuestLogList tempquestloglist = null;
+		my_QuestLog tempquestlog = null;
+
+		foreach(XmlNode childInfo in parentList)
+		{
+			//print ("looking at childinfo name:"+ childInfo.Name );
+			tempquestloglist = new my_QuestLogList();
+
+			XmlNodeList childContent = childInfo.ChildNodes;
+			
+			foreach (XmlNode childItem in childContent)
+			{
+				tempquestlog = new my_QuestLog();
+
+				switch (childItem.Name)
+				{
+				case "quest":
+					tempquestlog.questname = childItem.Attributes["name"].Value;
+					tempquestlog.id = int.Parse(childItem.Attributes["id"].Value);
+					break;
+				default:
+					print("ERROR: Unknown load questlog data field detected: " + childItem.Name);
+					break;
+				}
+
+				tempquestloglist.questlogs.Add(tempquestlog);
+			}
+
+			resultlist.Add(tempquestloglist);
+		}
+		
+		return resultlist;
+	}
+
 	public List<DialogTree> LoadDialogTreeData()
 	{
 		List<DialogTree> resultlist = new List<DialogTree>();
@@ -636,6 +815,7 @@ public class FileManager : MonoBehaviour {
 		craftdataPath = gamedataPath + "/" + craftDataFileName + ".xml";
 		dialogdataPath = gamedataPath + "/" + dialogDataFileName + ".xml";
 		vendordataPath = gamedataPath + "/" + vendorDataFileName + ".xml";
+		questlogdataPath = gamedataPath + "/" + questlogDataFileName + ".xml";
 
 		if (CheckDirectory(gamedataFolderName) == false)
 		{

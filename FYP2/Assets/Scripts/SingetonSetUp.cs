@@ -9,9 +9,11 @@ public class SingetonSetUp : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		FileManager.Instance.Initialize();
+		ScreenManager.Instance.Initialize();
 		ItemDatabase.Instance.Initialize();
 		VendorDatabase.Instance.Initialize();
 		DialogDatabase.Instance.Initialize();
+		QuestLogDatabase.Instance.Initialize();
 		QuestManager.Instance.Initialize();
 	}
 	public void OnApplicationQuit()//this will be auto called like start and update function

@@ -2,26 +2,23 @@
 <database>
 	<level>
 		<dialogtree>
-		
 			<dialog id = "0" actorname = "npc" >
-				<text>Hell warrior!!!!!!!!!!!</text>
+				<text>Hell warrior!</text>
 				<option nextdialogid = "1" resultid = "0">sup noob</option>
 				<option nextdialogid = "2" resultid = "0">hello strange voice</option>
 			</dialog>
 			
-			
 			<dialog id = "1" actorname = "npc">
-				<text>I dont want to talk to </text>
+				<text>I dont want to talk to you</text>
 				<option nextdialogid = "" resultid = "0">Aww</option>
 			</dialog>
 			
 			<dialog id = "2" actorname = "npc">
-				<text>I have a quest for </text>
+				<text>I have a quest for you</text>
 				<option nextdialogid = "" resultid = "0">Ok bye</option>
 				<option nextdialogid = "4" resultid = "0">What is it?</option>
 				<option nextdialogid = "3" resultid = "0">What is the pay?</option>
 			</dialog>
-			
 			
 			<dialog id = "3" actorname = "npc">
 				<text>You will get 5 gold</text>
@@ -36,6 +33,5 @@
 			</dialog>
 			
 		</dialogtree>
-	</level>
-		
+	</level>	
 </database>

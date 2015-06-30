@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-//[System.Serializable]
+[System.Serializable]
 public class my_DialogOption
 {
 	public string text = "";//the text to be displayed
@@ -55,7 +55,7 @@ public class my_DialogOption
 		this.parentDialog = parentDialog;
 	}
 }
-//[System.Serializable]
+[System.Serializable]
 public class my_DialogNode
 {
 	//***Note*** first index of options list will be reserved for linking dialog node with zero or one option to another node //
@@ -117,46 +117,34 @@ public class my_DialogNode
 
 
 //this script is to be the data structure of npc dialogs
-//[System.Serializable]
-public class DialogTree {
+[System.Serializable]
+public class DialogTree : IEnumerable<my_DialogNode>
+{
 
 	public List<my_DialogNode> dialogs =  new List<my_DialogNode>();
-
-	public void InitTestData()
+	
+	public IEnumerator<my_DialogNode> GetEnumerator()
 	{
-		my_DialogNode node0 = new my_DialogNode("hello brave warrior","npc");
-		my_DialogNode node1 = new my_DialogNode("I dont want to talk to you","npc");
-		my_DialogNode node2 = new my_DialogNode("I have a quest for you","npc");
-		my_DialogNode node3 = new my_DialogNode("You will get 5 gold you greedy swine","npc");
-		my_DialogNode node4 = new my_DialogNode("Collect ten dandilions","npc");
-		
-		
-		node0.AddDialogOption(new my_DialogOption("sup noob",0,node1));
-		node0.AddDialogOption(new my_DialogOption("Hello strange voice",0,node2));
-		AddDialog(node0);
-		
-		node1.AddDialogOption(new my_DialogOption("Aww",0));
-		AddDialog(node1);
-		
-		
-		node2.AddDialogOption(new my_DialogOption("K Bye",0));
-		node2.AddDialogOption(new my_DialogOption("What is it?",0,node4));
-		node2.AddDialogOption(new my_DialogOption("What is the pay?",0,node3));
-		AddDialog(node2);
-		
-		node3.AddDialogOption(new my_DialogOption("Ok what is it?",0,node4));
-		node3.AddDialogOption(new my_DialogOption("That suck i am out",0));
-		AddDialog(node3);
-		
-		node4.AddDialogOption(new my_DialogOption("Let do it",1));
-		node4.AddDialogOption(new my_DialogOption("No way",0));
-		AddDialog(node4);
+		return dialogs.GetEnumerator();
 	}
+	
+	IEnumerator IEnumerable.GetEnumerator()
+	{
+		return dialogs.GetEnumerator();
+	}
+	
 	public DialogTree()
 	{
 		//InitTestData();
 	}
 
+	public my_DialogNode this[int index]
+	{
+		get
+		{
+			return dialogs[index];
+		}
+	}
 
 	public my_DialogNode FindDialog(int nodeid)
 	{

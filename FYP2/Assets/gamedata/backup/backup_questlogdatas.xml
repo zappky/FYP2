@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database>
+	<level>
+		<quest id="0" name="xmltestquest1" />
+		<quest id="1" name="xmltestquest2" />
+		<quest id="2" name="xmltestquest3" />
+		<quest id="3" name="xmltestquest4" />
+		<quest id="4" name="xmltestquest5" />
+	</level>
+	<level>
+		<quest id="0" name="xmltestquest1" />
+		<quest id="1" name="xmltestquest2" />
+		<quest id="2" name="xmltestquest3" />
+		<quest id="3" name="xmltestquest4" />
+		<quest id="4" name="xmltestquest5" />
+	</level>
+</database>

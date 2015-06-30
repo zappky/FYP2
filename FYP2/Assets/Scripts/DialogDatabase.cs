@@ -17,11 +17,18 @@ public class DialogDatabase : MonoBehaviour {
 			if(instance == null)
 			{
 				instance = new GameObject("Dialog Database").AddComponent<DialogDatabase>();
+				DontDestroyOnLoad(instance);
 			}
 			return instance;
 		}
 	}
-
+	public DialogTree this[int index]
+	{
+		get
+		{
+			return dialogDatabase[index];
+		}
+	}
 	public void Initialize()
 	{
 		LoadDialogTreeDatas();
@@ -29,14 +36,19 @@ public class DialogDatabase : MonoBehaviour {
 
 	public void OnApplicationQuit()
 	{
+		SaveDialogTreeDatas();
 		DestroyInstance();
 	}
 
 	public void DestroyInstance()
 	{
+		SaveDialogTreeDatas();
 		instance = null;
 	}
-
+	public void SaveDialogTreeDatas()
+	{
+		FileManager.Instance.SaveDialogDatabase();
+	}
 	public void LoadDialogTreeDatas()
 	{
 		List<DialogTree>templist = FileManager.Instance.LoadDialogTreeData();//extract out the readied list of dialog tree from file manager

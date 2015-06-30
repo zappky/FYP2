@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class my_QuestLog
 {
+	public int id = -1;
 	public string questname = "";
 	public bool statues = false;//true means done
 
@@ -14,12 +16,19 @@ public class my_QuestLog
 
 	public my_QuestLog(my_QuestLog another)
 	{
+		this.id = another.id;
 		this.questname = another.questname;
 		this.statues = another.statues;
 	}
-
+	public my_QuestLog(int questId , string questname)
+	{
+		this.id = questId;
+		this.questname = questname;
+		this.statues = false;
+	}
 	public my_QuestLog(string questname)
 	{
+		this.id = -1;
 		this.questname = questname;
 		this.statues = false;
 	}
@@ -35,13 +44,17 @@ public class my_QuestLog
 		}
 	}
 }
+
 public class QuestManager : MonoBehaviour {
 	public bool display = false;
+	public QuestLogDatabase questdatabase = null;
+	public my_QuestLogList questLogList = null;
 	public List<my_QuestLog> questLogs = new List<my_QuestLog>();
 	public static QuestManager instance = null;
 	public Rect questDisplayRect;
 	public List<Rect>questLogRects = new List<Rect>();
 	public int maxQuestLog = 5;
+	public int currentGameLevel = 1;
 
 	public static QuestManager Instance
 	{
@@ -50,10 +63,25 @@ public class QuestManager : MonoBehaviour {
 			if(instance == null)
 			{
 				instance = new GameObject("Quest Manager").AddComponent<QuestManager>();
-				instance.transform.parent = GameObject.Find("UI").transform;
+				DontDestroyOnLoad(instance);
 			}
 			return instance;
 		}
+	}
+
+	public void FetchNewQuest()
+	{
+		this.questLogList = questdatabase.GetQuestLogListByLevel(currentGameLevel);
+
+		for(int i = 0 ; i < questLogList.questlogs.Count ; ++i)
+		{
+			AddQuestLog(questLogList[i]);
+		}
+	}
+
+	public bool AddQuestLog(int questid,string newQuestName)
+	{
+		return AddQuestLog(new my_QuestLog(questid,newQuestName));
 	}
 	public bool AddQuestLog(string newQuestName)
 	{
@@ -61,34 +89,49 @@ public class QuestManager : MonoBehaviour {
 	}
 	public bool AddQuestLog(my_QuestLog a_questlog)
 	{
+
 		if(questLogs.Count >= maxQuestLog)
 		{
-			print ("max quest log reached, cannot add anymore log");
+			print ("ERROR: max quest log reached, cannot add anymore log");
 			return false;
 		}else
 		{
-			questLogs.Add(a_questlog);
-			return true;
+			if(DuplicateQuestLogCheck(a_questlog) == false)
+			{
+				questLogs.Add(a_questlog);
+				return true;
+			}else
+			{
+				return false;
+			}
 		}
 	}
-
-	public void TestInitData()
+	public bool DuplicateQuestLogCheck(my_QuestLog a_questlog)
 	{
-		AddQuestLog("test quest log 1");
-		AddQuestLog("test quest log 2");
-		AddQuestLog("test quest log 3");
-		AddQuestLog("test quest log 4");
-		AddQuestLog("test quest log 5");
+		foreach (my_QuestLog a_log in questLogs)
+		{
+			if(a_log.id == a_questlog.id)
+			{
+				print ("ERROR: duplicate quest add detected, abort operation");
+				return true;
+			}
+		}
+
+		return false;
 	}
 	public void Initialize()
 	{
+		questdatabase = QuestLogDatabase.instance;
+		questLogList = questdatabase.GetQuestLogListByLevel(currentGameLevel);
+
 		questDisplayRect = new Rect (0.0f,Screen.height * 0.3f,Screen.width * 0.3f,Screen.width * 0.3f);
 		float questLogHeight = questDisplayRect.height / (maxQuestLog+1);
 		for (int i = 0; i<maxQuestLog; ++i)//reserve some rect 
 		{
 			questLogRects.Add (new Rect (questDisplayRect.xMin,questDisplayRect.yMin + (i+1) *questLogHeight,questDisplayRect.width,questLogHeight));
 		}
-		TestInitData();
+
+		FetchNewQuest();
 	}
 	
 	public void OnApplicationQuit()
@@ -99,10 +142,6 @@ public class QuestManager : MonoBehaviour {
 	public void DestroyInstance()
 	{
 		instance = null;
-	}
-	// Update is called once per frame
-	void Update () {
-	
 	}
 
 	void OnGUI()

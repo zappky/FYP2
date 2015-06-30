@@ -6,11 +6,36 @@ public class ScreenManager : MonoBehaviour {
 	public float prevScreenHeight;
 	public float currScreenWidth;
 	public float currScreenHeight;
-	private bool aspectchanged = false;
-	// Use this for initialization
-	void Start () {
+	private bool screenAspectChanged = false;
+
+	public static ScreenManager instance = null;
+
+	public static ScreenManager Instance
+	{
+		get
+		{
+			if(instance == null)
+			{
+				instance = new GameObject("Screen Manager").AddComponent<ScreenManager>();
+				DontDestroyOnLoad(instance);
+			}
+			return instance;
+		}
+	}
+	public void Initialize()
+	{
 		prevScreenWidth = currScreenWidth = Screen.width;
 		prevScreenHeight = currScreenHeight = Screen.height;
+	}
+	
+	public void OnApplicationQuit()
+	{
+		DestroyInstance();
+	}
+	
+	public void DestroyInstance()
+	{
+		instance = null;
 	}
 	
 	// Update is called once per frame
@@ -21,10 +46,10 @@ public class ScreenManager : MonoBehaviour {
 	
 		if(prevScreenWidth == currScreenWidth && prevScreenHeight == currScreenHeight)
 		{
-			aspectchanged = false;
+			screenAspectChanged = false;
 		}else
 		{
-			aspectchanged = true;
+			screenAspectChanged = true;
 
 			if( prevScreenWidth != currScreenWidth)
 			{
@@ -38,8 +63,23 @@ public class ScreenManager : MonoBehaviour {
 		//print ("aspect changed?" + aspectchanged);
 	}
 
+	public float CurrrentScreenWidth
+	{
+		get
+		{
+			return this.currScreenWidth;
+		}
+	}
+	public float CurrrentScreenHeight
+	{
+		get
+		{
+			return this.currScreenHeight;
+		}
+	}
+
 	public bool CheckAspectChanged()
 	{
-		return aspectchanged;
+		return screenAspectChanged;
 	}
 }
