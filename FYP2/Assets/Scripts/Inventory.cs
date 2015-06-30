@@ -375,14 +375,16 @@ public class Inventory : MonoBehaviour {
 				--inventory[inventoryindex].amount;
 				if(inventory[inventoryindex].amount <= 0)
 				{
-					inventory[inventoryindex] = new Item();
 					playercastslot.RemoveItem(inventory[inventoryindex]);
+					inventory[inventoryindex] = new Item();
+
 				}
 			}
 		}else
 		{
-			inventory[inventoryindex] = new Item();
 			playercastslot.RemoveItem(inventory[inventoryindex]);
+			inventory[inventoryindex] = new Item();
+
 		}
 	}
 	void RemoveItem(string itemname)
@@ -482,23 +484,23 @@ public class Inventory : MonoBehaviour {
 		//}
 		switch(item.id)
 		{
-		default:
-		case 0:
-		{
-			Debug.Log("nill effect");
-		}break;
-			
-		case 3:
-		{
-			Debug.Log("alarm2 effect");
-			GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
-			CTimer escript = obj.GetComponent<CTimer>() as CTimer;
-			escript.OnLookInteract();
-			print("Display: "  + escript.display);
-			print("Operate: "  + escript.operate);
-			RemoveKnownItem(itemindex);
-			//alarmitem.OnLookInteract();	
-		}break;
+			default:
+			case 0:
+			{
+				Debug.Log("nill effect");
+			}break;
+				
+			case 3:
+			{
+				Debug.Log("alarm2 effect");
+				GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
+				CTimer escript = obj.GetComponent<CTimer>() as CTimer;
+				escript.OnLookInteract();
+				print("Display: "  + escript.display);
+				print("Operate: "  + escript.operate);
+				RemoveKnownItem(itemindex);
+				//alarmitem.OnLookInteract();	
+			}break;
 		}
 	}
 	

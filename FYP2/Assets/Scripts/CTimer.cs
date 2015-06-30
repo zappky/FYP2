@@ -126,7 +126,7 @@ public class CTimer :MonoBehaviour {
 	public TimerFormat timerformat = TimerFormat.MIN_SEC;
 	// Use this for initialization
 	void Start () {
-		operate = false;
+		//operate = false;
 		sound = this.GetComponent<SoundEffect>();		
 		timerLowerLimit.second = 0.0f;
 
