@@ -50,6 +50,8 @@ public class Inventory : MonoBehaviour {
 	private List<string> tabNameList = new List<string>();//palleral arrary
 	private List<Rect> tabRectList = new List<Rect>();//palleral arrary // original tab rect info
 	private const int tabAmount = 2 ;
+	private Rect toolTipRect = new Rect();
+	private Rect dragItemIconRect = new Rect();
 
 
 	// Use this for initialization
@@ -123,7 +125,10 @@ public class Inventory : MonoBehaviour {
 			}
 
 		}
-	
+		toolTipRect.width = slotsize*5;
+		toolTipRect.height = toolTipRect.width;
+		dragItemIconRect.width = slotsize;
+		dragItemIconRect.height = dragItemIconRect.width;
 	}
 	// Update is called once per frame
 	void Update () {
@@ -148,12 +153,7 @@ public class Inventory : MonoBehaviour {
 			}
 			
 		}
-	void SwapInventoryItem(int indexfrom,int indexto)
-	{
-		Item tempitem = inventory[indexfrom];
-		inventory[indexfrom] = inventory[indexto];
-		inventory[indexto] = tempitem;
-	}
+
 
 	//brute force loop and return a reference to the item based on the search id
 	public Item GetItem(int id)
@@ -178,31 +178,6 @@ public class Inventory : MonoBehaviour {
 			}
 		}
 		return null;
-	}
-
-	//brute force loop and return a index to the item based on the search id
-	public int GetItemIndex(int id)
-	{
-		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
-		{
-			if(inventory[i].id == id)
-			{
-				return i;
-			}
-		}
-		return -1;
-	}
-	//brute force loop and return a index to the item based on the search name
-	public int GetItemIndex(string itemname)
-	{
-		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
-		{
-			if(inventory[i].itemname == itemname)
-			{
-				return i;
-			}
-		}
-		return -1;
 	}
 
 	public void AddItem(List<Item> Items)
@@ -281,6 +256,9 @@ public class Inventory : MonoBehaviour {
 								{										
 									inventory[i] = new Item(database.itemDatabase[j]);//add it in
 									playercastslot.AddItem(new Item(inventory[i]));
+
+									inventory[i].itemindexinlist = i;
+
 									return true;
 									//break;
 								}
@@ -294,6 +272,9 @@ public class Inventory : MonoBehaviour {
 							{										
 								inventory[i] = new Item(database.itemDatabase[j]);//add it in
 								playercastslot.AddItem(new Item(inventory[i]));
+
+								inventory[i].itemindexinlist = i;
+
 								return true;
 							}
 						}
@@ -344,6 +325,9 @@ public class Inventory : MonoBehaviour {
 								{										
 									inventory[i] = new Item(database.itemDatabase[j]);//add it in
 									playercastslot.AddItem(new Item(inventory[i]));
+
+									inventory[i].itemindexinlist = i;
+
 									return true;
 									//break;
 								}
@@ -355,6 +339,8 @@ public class Inventory : MonoBehaviour {
 							{	
 								inventory[i] = new Item(database.itemDatabase[j]);//add it in
 								playercastslot.AddItem(new Item(inventory[i]));
+
+								inventory[i].itemindexinlist = i;
 								return true;
 							}
 						}
@@ -375,14 +361,16 @@ public class Inventory : MonoBehaviour {
 				--inventory[inventoryindex].amount;
 				if(inventory[inventoryindex].amount <= 0)
 				{
-					playercastslot.RemoveItem(inventory[inventoryindex]);
+					//playercastslot.RemoveItem(inventory[inventoryindex]);
+					playercastslot.GetItem(inventory[inventoryindex]).displayDisableIcon = true;
 					inventory[inventoryindex] = new Item();
 
 				}
 			}
 		}else
 		{
-			playercastslot.RemoveItem(inventory[inventoryindex]);
+			//playercastslot.RemoveItem(inventory[inventoryindex]);
+			playercastslot.GetItem(inventory[inventoryindex]).displayDisableIcon = true;
 			inventory[inventoryindex] = new Item();
 
 		}
@@ -409,6 +397,45 @@ public class Inventory : MonoBehaviour {
 			}
 		}
 	}
+	bool CheckContainsItem(Item a_item)
+	{
+
+		if( a_item.itemindexinlist >= 0 && a_item.itemindexinlist < inventory.Count)
+		{
+			if( inventory[a_item.itemindexinlist].id == a_item.id || inventory[a_item.itemindexinlist].itemname == a_item.itemname)//early prediction
+			{
+				//Debug.Log("early item access prediction acitvated");
+				return true;
+			}
+		}
+		//else
+//		{
+//			Debug.Log("normal item access acitvated");
+//		}
+
+
+		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+		{
+			if(inventory[i].id == a_item.id || inventory[i].itemname == a_item.itemname)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	bool CheckContainsItem(string itemname)
+	{
+
+		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+		{
+			if(inventory[i].itemname == itemname)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	bool CheckContainsItem(int id)
 	{
 		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
@@ -422,10 +449,12 @@ public class Inventory : MonoBehaviour {
 	}
 	public void UseItem(Item item)
 	{
-		//if(database.UseItemEffect(item.id))//if successful
-		//{
-		//	RemoveItem(item.id);
-		//}
+		if(CheckContainsItem(item) == false)
+		{
+			Debug.Log("Inventory doesnt contain item: " + item.itemname + "use item aborted");
+			return;
+		}
+
 		switch(item.id)
 		{
 			default:
@@ -436,52 +465,26 @@ public class Inventory : MonoBehaviour {
 				
 			case 3:
 			{
-			Debug.Log("alarm1 effect");
+			//Debug.Log("alarm1 effect");
 			GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
 			CTimer escript = obj.GetComponent<CTimer>();
 			escript.OnLookInteract();
-			print("Display: "  + escript.display);
-			print("Operate: "  + escript.operate);
+			//print("Display: "  + escript.display);
+			//print("Operate: "  + escript.operate);
 			RemoveItem(item.id);
 				//alarmitem.OnLookInteract();	
 			}break;
 		}
-		//		print ("Item id :" + item.id.ToString() + "item name: " + item.itemname);
-//		bool result = false;
-//
-//		switch(item.itemname)
-//		{
-//
-//			case "toybell":
-//			case "toy bell":
-//			testPrefab = Instantiate(Resources.Load("DecoyToyBell"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as CTimer;
-//			testPrefab.OnLookInteract();
-//			break;
-//			case "alarm":
-//			case "clock":
-//			testPrefab = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as CTimer;
-//			testPrefab.OnLookInteract();
-//			print("yeay");
-//				break;
-//
-//
-//			default:
-//						print ("ERROR: Unhandled item effect use detected");
-//					break;
-//		}
-//
-//		if(result == true)
-//		{
-//			RemoveItem(item.id);
-//		}
+
 	}
 
 	public void UseItem(Item item,int itemindex)
 	{
-		//if(database.UseItemEffect(item.id))//if successful
-		//{
-		//	RemoveKnownItem(itemindex);
-		//}
+		if(CheckContainsItem(item) == false)
+		{
+			Debug.Log("Inventory doesnt contain item: " + item.itemname + "use item aborted");
+			return;
+		}
 		switch(item.id)
 		{
 			default:
@@ -492,12 +495,12 @@ public class Inventory : MonoBehaviour {
 				
 			case 3:
 			{
-				Debug.Log("alarm2 effect");
+				//Debug.Log("alarm2 effect");
 				GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
 				CTimer escript = obj.GetComponent<CTimer>() as CTimer;
 				escript.OnLookInteract();
-				print("Display: "  + escript.display);
-				print("Operate: "  + escript.operate);
+				//print("Display: "  + escript.display);
+				//print("Operate: "  + escript.operate);
 				RemoveKnownItem(itemindex);
 				//alarmitem.OnLookInteract();	
 			}break;
@@ -520,22 +523,25 @@ public class Inventory : MonoBehaviour {
 
 			if(updatedBackgroundRect.Contains(currentevent.mousePosition))
 			{
-				
-				if(currentevent.button == 0 && currentevent.type == EventType.mouseDown && !draggingitem)//if left click and drag,and not currently dragging item
+				if( draggingitem == false || itemdragged == null)
 				{
-					mouseprevposition = currentevent.mousePosition ;		
-					
-				}else if(currentevent.button == 0 && currentevent.type == EventType.mouseDrag && !draggingitem)
-				{ 
-					slottempoffset = currentevent.mousePosition - mouseprevposition;
-					
-				}else if(currentevent.button == 0 && currentevent.type == EventType.mouseUp && !draggingitem)
-				{
-					slotfineoffset += slottempoffset;
-					
-					slottempoffset.Set(0.0f,0.0f);
-					
+					if(currentevent.button == 0 && currentevent.type == EventType.mouseDown)//if left click and drag,and not currently dragging item
+					{
+						mouseprevposition = currentevent.mousePosition ;		
+						
+					}else if(currentevent.button == 0 && currentevent.type == EventType.mouseDrag)
+					{ 
+						slottempoffset = currentevent.mousePosition - mouseprevposition;
+						
+					}else if(currentevent.button == 0 && currentevent.type == EventType.mouseUp)
+					{
+						slotfineoffset += slottempoffset;
+						
+						slottempoffset.Set(0.0f,0.0f);
+						
+					}
 				}
+
 			}
 
 			updatedBackgroundRect = new Rect(backgroundRect.x + slotfineoffset.x +slottempoffset.x,backgroundRect.y + slotfineoffset.y +slottempoffset.y, backgroundRect.width,backgroundRect.height);
@@ -568,10 +574,11 @@ public class Inventory : MonoBehaviour {
 				//inventory page
 				case 0:
 					DrawInventory();
+					dragItemIconRect.position = currentevent.mousePosition;
 
 					if(draggingitem == true)//display dragged item icon on mouseposition
 					{
-						GUI.DrawTexture(new Rect(Event.current.mousePosition.x,Event.current.mousePosition.y,slotsize,slotsize),itemdragged.icon);
+						GUI.DrawTexture(dragItemIconRect,itemdragged.icon);
 					}
 
 					break;
@@ -587,7 +594,8 @@ public class Inventory : MonoBehaviour {
 
 			if(showtooltip == true && draggingitem == false)
 			{
-				GUI.Box(new Rect(Event.current.mousePosition.x,Event.current.mousePosition.y,slotsize*5,slotsize*5),tooltip);
+				toolTipRect.position = currentevent.mousePosition;
+				GUI.Box(toolTipRect,tooltip);
 			}
 
 		}
@@ -655,12 +663,17 @@ public class Inventory : MonoBehaviour {
 		{				
 			if(itemdragged.stackable == true ||  itemdragged.type == Item.ItemType.Consumable)
 			{
+				//RemoveItem(itemdragged.itemname);
+
 				--itemdragged.amount;
 				//Debug.Log("discarding");
 				if(itemdragged.amount <= 0)
-				{			
+				{		
+					//playercastslot.RemoveItem(itemdragged);
+					playercastslot.GetItem(itemdragged).displayDisableIcon = true;
 					draggingitem = false;
 					itemdragged = null;
+
 				}
 			}
 			
@@ -709,11 +722,15 @@ public class Inventory : MonoBehaviour {
 							fromindex = index;
 							itemdragged = slots[index];//copy the item
 							inventory[index] = new Item(); // delete the thing.
+
+
 						}
 						if(currentevent.type == EventType.mouseUp && draggingitem)//dragging an item and let go of mouse
 						{
 							inventory[fromindex] = inventory[index];
+							inventory[fromindex].itemindexinlist = fromindex;
 							inventory[index] = itemdragged;
+							inventory[index].itemindexinlist = index;
 							draggingitem = false;
 							itemdragged = null;
 						}
@@ -731,6 +748,7 @@ public class Inventory : MonoBehaviour {
 						if(currentevent.type == EventType.mouseUp && draggingitem)
 						{
 							inventory[index] = itemdragged;
+							inventory[index].itemindexinlist = index;
 							draggingitem = false;
 							itemdragged = null;
 						}

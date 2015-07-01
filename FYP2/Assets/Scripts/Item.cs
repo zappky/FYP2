@@ -10,6 +10,7 @@ public class Item    {
 	public float weight = -1;//in kg
 	public bool stackable = false;
 	public int amount = 1;
+	public int itemindexinlist = -1;//to track the index of the item in the list, for optimization, due to it having to manually managed, it wont always works
 	
 	public enum ItemType
 	{
@@ -22,6 +23,8 @@ public class Item    {
 	}
 	public ItemType type = ItemType.Undefined;
 	public Texture2D icon ;
+	public bool displayDisableIcon = false;//to flag whether to draw the disabledicon instead of normal one
+	public Texture2D disabledicon ;
 
 	public string ItemName
 	{
@@ -57,9 +60,10 @@ public class Item    {
 		this.weight = another.weight;	
 		this.amount = another.amount;
 		this.stackable = another.stackable;
+		this.displayDisableIcon = another.displayDisableIcon;
 
 		//this.icon = another.icon;
-		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
+		SelfReloadIcon();
 	}
 
 	public Item(int id, string name)// shortenconstructor
@@ -72,7 +76,7 @@ public class Item    {
 		this.amount = 1;
 		this.stackable = true;
 
-		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
+		SelfReloadIcon();
 	}
 	public Item(int id, string name,string itemtype,string description,int weight,int amount,bool stackable)//constructor
 	{
@@ -86,7 +90,7 @@ public class Item    {
 		this.amount = amount;
 		this.stackable = stackable;
 		
-		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
+		SelfReloadIcon();
 	}
 	public Item(int id, string name,ItemType type,string description,int weight,int amount,bool stackable)//constructor
 	{
@@ -98,11 +102,15 @@ public class Item    {
 		this.amount = amount;
 		this.stackable = stackable;
 
-		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
+		SelfReloadIcon();
 	}
 	public void SelfReloadIcon()
 	{
 		this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
+		//if(this.type == ItemType.Consumable  ||  this.type == ItemType.Useable)
+		//{
+			this.disabledicon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname + "_disabled");
+		//}
 	}
 	public string GetItemType()
 	{

@@ -48,6 +48,8 @@ public class CastSlot : MonoBehaviour {
 	private GUIStyle labelStyle= null;
 	//script reference
 	public Inventory playerinventory = null;
+	private Event currentevent = null;
+	private Rect dragItemIconRect = new Rect();
 	
 
 //	// Use this for initialization
@@ -76,6 +78,8 @@ public class CastSlot : MonoBehaviour {
 		labelStyle.fontSize = (int)slotSize;
 		labelStyle.alignment = TextAnchor.MiddleCenter;
 		labelRect = new Rect(slotsXstartposition - slotSize, slotsYstartposition ,slotSize,slotSize);
+		dragItemIconRect.width = slotSize;
+		dragItemIconRect.height = slotSize;
 	}
 	
 	// Update is called once per frame
@@ -92,13 +96,15 @@ public class CastSlot : MonoBehaviour {
 
 	void OnGUI()
 	{		
+		currentevent = Event.current;
+		dragItemIconRect.position = currentevent.mousePosition;
 
 		//blinding key 1 to 9 ,to the slot 1 to 9 and trigger the item effect
-		if (Event.current.type == EventType.KeyDown) {
-			if (Event.current.keyCode >= KeyCode.Alpha1
-			    && Event.current.keyCode <= KeyCode.Alpha9) 
+		if (currentevent.type == EventType.KeyDown) {
+			if (currentevent.keyCode >= KeyCode.Alpha1
+			    && currentevent.keyCode <= KeyCode.Alpha9) 
 			{
-				string output = Event.current.keyCode.ToString();
+				string output = currentevent.keyCode.ToString();
 				int extractednum = int.Parse(""+output[output.Length-1]);
 				if (extractednum > maxSlotsColumn)
 				{
@@ -119,7 +125,13 @@ public class CastSlot : MonoBehaviour {
 
 			if(draggingitem == true)
 			{
-				GUI.DrawTexture(new Rect(Event.current.mousePosition.x,Event.current.mousePosition.y,slotSize,slotSize),itemdragged.icon);
+				if(itemdragged.displayDisableIcon == true)
+				{
+					GUI.DrawTexture(dragItemIconRect,itemdragged.disabledicon);
+				}else{
+					GUI.DrawTexture(dragItemIconRect,itemdragged.icon);
+				}
+
 			}
 		}
 	}
@@ -127,7 +139,6 @@ public class CastSlot : MonoBehaviour {
 	void DrawQuickSlot()
 	{
 		int index = 0;
-		Event currentevent = Event.current;
 
 		//labelRect = new Rect(slotsXstartposition - slotSize, slotsYstartposition ,slotSize,slotSize);
 		GUI.Box(labelRect,(currentSlotLayer+1).ToString(),labelStyle);
@@ -141,7 +152,14 @@ public class CastSlot : MonoBehaviour {
 
 			if(slotsLayer[currentSlotLayer].slots[x].id >= 0)//if slot contain an valid item
 			{
-				GUI.DrawTexture(slotRect,slotsLayer[currentSlotLayer].slots[x].icon);
+				if(slotsLayer[currentSlotLayer].slots[x].displayDisableIcon == true)
+				{
+					GUI.DrawTexture(slotRect,slotsLayer[currentSlotLayer].slots[x].disabledicon);
+				}else
+				{
+					GUI.DrawTexture(slotRect,slotsLayer[currentSlotLayer].slots[x].icon);
+				}
+
 
 				if(slotRect.Contains(currentevent.mousePosition))//check if mouse hover over the box
 				{
@@ -183,6 +201,48 @@ public class CastSlot : MonoBehaviour {
 		}
 
 	}
+	public Item GetItem(string item_name)
+	{
+		for (int y = 0 ; y<maxSlotsLayer; ++y )
+		{
+			for (int x = 0 ; x<maxSlotsColumn; ++x )
+			{
+				if(slotsLayer[y].slots[x].ItemName == item_name)
+				{
+					return slotsLayer[y].slots[x];
+				}
+			}
+		}
+		return null;
+	}
+	public Item GetItem(int item_id)
+	{
+		for (int y = 0 ; y<maxSlotsLayer; ++y )
+		{
+			for (int x = 0 ; x<maxSlotsColumn; ++x )
+			{
+				if(slotsLayer[y].slots[x].id == item_id)
+				{
+					return slotsLayer[y].slots[x];
+				}
+			}
+		}
+		return null;
+	}
+	public Item GetItem(Item a_item)
+	{
+		for (int y = 0 ; y<maxSlotsLayer; ++y )
+		{
+			for (int x = 0 ; x<maxSlotsColumn; ++x )
+			{
+				if(slotsLayer[y].slots[x].id == a_item.id || slotsLayer[y].slots[x].itemname == a_item.itemname)
+				{
+					return slotsLayer[y].slots[x];
+				}
+			}
+		}
+		return null;
+	}
 	public bool CheckItemAlreadyAdded(int item_id)
 	{
 		for (int y = 0 ; y<maxSlotsLayer; ++y )
@@ -191,18 +251,18 @@ public class CastSlot : MonoBehaviour {
 			{
 				if(slotsLayer[y].slots[x].id == item_id)
 				{
-					return false;
+					return true;
 				}
 			}
 		}
 
-		return true;
+		return false;
 	}
 	public void AddItem(Item a_item)
 	{
-		if(CheckItemAlreadyAdded(a_item.id) == false || a_item.type != Item.ItemType.Consumable && a_item.type != Item.ItemType.Useable)
+		if( a_item.type != Item.ItemType.Consumable && a_item.type != Item.ItemType.Useable)
 		{
-			Debug.Log("forbbiden add detected");
+			//Debug.Log("forbbiden add detected");
 			return;
 		}
 		//Debug.Log("layer " + slotsLayer.Count);
@@ -216,8 +276,17 @@ public class CastSlot : MonoBehaviour {
 			}
 			for (int x = 0 ; x<maxSlotsColumn; ++x )
 			{
+
+				if(slotsLayer[y].slots[x].id == a_item.id || slotsLayer[y].slots[x].itemname == a_item.itemname  )
+				{
+					slotsLayer[y].slots[x].displayDisableIcon = false;
+					done = true;
+					break;
+				}
+
 				if(slotsLayer[y].slots[x].id < 0)//if slot contain an invalid item meaning empty slot
 				{
+					//a_item.displayDisableIcon = false;
 					slotsLayer[y].slots[x] = a_item;
 					done = true;
 					break;
@@ -228,7 +297,7 @@ public class CastSlot : MonoBehaviour {
 	}
 	public void RemoveItem(int item_id)
 	{
-		Debug.Log("removing item from quickcast");
+		//Debug.Log("removing item from quickcast");
 
 		for (int y = 0 ; y<maxSlotsLayer;++y )
 		{
@@ -237,25 +306,25 @@ public class CastSlot : MonoBehaviour {
 				if(slotsLayer[y].slots[x].id == item_id)
 				{
 					slotsLayer[y].slots[x] = new Item();
-					Debug.Log("FOUND item to be removed from quickcast");
+					//Debug.Log("FOUND item to be removed from quickcast");
 					break;
 				}
 			}
 		}
 	}
-
+	
 	public void RemoveItem(Item a_item)
 	{
-		Debug.Log("removing item from quickcast");
+		//Debug.Log("removing item from quickcast");
 		
 		for (int y = 0 ; y<maxSlotsLayer;++y )
 		{
 			for (int x = 0 ; x<maxSlotsColumn;++x )
 			{
-				if(slotsLayer[y].slots[x].id == a_item.id)
+				if(slotsLayer[y].slots[x].id == a_item.id || slotsLayer[y].slots[x].itemname == a_item.itemname )
 				{
 					slotsLayer[y].slots[x] = new Item();
-					Debug.Log("FOUND item to be removed from quickcast");
+					//Debug.Log("FOUND item to be removed from quickcast");
 					break;
 				}
 			}
