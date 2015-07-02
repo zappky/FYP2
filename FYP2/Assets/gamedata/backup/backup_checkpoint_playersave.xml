@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database>
+	<player>
+		<level>
+			<currentlevel_raw>-1</currentlevel_raw>
+			<currentlevel_unity name="main-scene" number="0" />
+		</level>
+		<info>
+			<name>Eddy</name>
+			<weight>45</weight>
+		</info>
+		<quickcast>
+			<layer index="0">
+				<item id="3" name="clock" index="0" />
+			</layer>
+			<layer index="1" />
+			<layer index="2" />
+		</quickcast>
+		<checkpoint id="-1" name="test checkpoint" index="0" x="-90.09" y="78.4" z="-272.96" />
+		<inventory>
+			<item index="0" id="3" name="clock" amount="3" description="nill" stackable="True" type="useable" />
+		</inventory>
+	</player>
+</database>

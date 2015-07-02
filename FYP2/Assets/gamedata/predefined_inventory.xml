@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database>
+	<inventory>
+		<level id = "-1">
+			<item id = "3" amount = "1"></item>
+		</level>
+	</inventory>
+</database>

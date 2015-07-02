@@ -41,13 +41,13 @@ public class Item    {
 
 	public Item()//constructor
 	{
-		itemname = "Undefined";//Due to giving "name" will clash with in-built unity .name , a different name is given for the varable
-		id = -1;
-		description = "Nil";
-		weight = -1;
-		stackable = false;
-		amount = 1;
-		type = ItemType.Undefined;
+//		itemname = "Undefined";//Due to giving "name" will clash with in-built unity .name , a different name is given for the varable
+//		id = -1;
+//		description = "Nil";
+//		weight = -1;
+//		stackable = false;
+//		amount = 1;
+//		type = ItemType.Undefined;
 
 		//this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
 	}
@@ -112,6 +112,26 @@ public class Item    {
 			this.disabledicon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname + "_disabled");
 		//}
 	}
+	public void SetStackable(string status)
+	{
+		switch(status)
+		{
+		case "True":
+		case "true":
+			this.stackable = true;
+			break;
+
+		case "False":
+		case "false":
+			this.stackable = false;
+			break;
+
+		default:
+			Debug.Log("ERROR: Undetermined setting of item stackablity");
+			this.stackable = false;
+			break;
+		}
+	}
 	public string GetItemType()
 	{
 		switch(this.type)
@@ -135,8 +155,8 @@ public class Item    {
 			
 		case ItemType.Undefined:
 		default:
+			Debug.Log("ERROR: Undetermined getting of item type");
 			return "undefined";
-
 
 		}
 	}
@@ -174,6 +194,7 @@ public class Item    {
 		case "Undefined":
 		case "undefined":
 		default:
+			Debug.Log("ERROR: Undetermined setting of item type");
 			this.type = ItemType.Undefined;
 			break;
 		}

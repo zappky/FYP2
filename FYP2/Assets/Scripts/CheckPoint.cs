@@ -9,6 +9,16 @@ public class CheckPoint : MonoBehaviour {
 	public bool playerEnteredCheckPoint = false;
 	public bool playerStayedCheckPoint = false;
 	public bool playerExitedCheckPoint = false;
+
+	public enum CheckPoint_Type
+	{
+		CHECKPOINT_NONE,
+		CHECKPOINT_DIALOG_TRIGGER,
+		CHECKPOINT_SAVE_TRIGGER,
+		CHECKPOINT_TOTAL
+	}
+
+	public CheckPoint_Type checkpointType = CheckPoint_Type.CHECKPOINT_NONE;
 	// Use this for initialization
 	void Start () {
 		this.checkPointName = this.name;

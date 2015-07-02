@@ -97,11 +97,8 @@ public class Inventory : MonoBehaviour {
 		CalculateWeightLimit();
 
 		//just some init of the inventory item
-		AddItem ("battery");
-		AddItem ("battery");
-
-		AddItem ("gear");
-		AddItem ("gear");
+		//AddItem (1,3);
+		//AddItem (2,3);
 
 		Item tempitem = new Item();
 
@@ -180,6 +177,18 @@ public class Inventory : MonoBehaviour {
 		return null;
 	}
 
+	public void AddItemKnown(Item a_item,int index)//blind adding of item
+	{
+		if(index >= 0 && index < inventory.Count)
+		{
+			inventory[index] = a_item;
+		}else
+		{
+			print ("ERROR: Blind inventory add item - index is acccesing out of range inventory list");
+		}
+
+	}
+
 	public void AddItem(List<Item> Items)
 	{
 		//Debug.Log("debug item count " + Items.Count );
@@ -219,6 +228,10 @@ public class Inventory : MonoBehaviour {
 		}
 	}
 	public bool AddItem(string itemname)//untested
+	{
+		return AddItem(itemname,1);
+	}
+	public bool AddItem(string itemname,int amount)//untested
 	{	
 		if (this.currentweight >= this.weightlimit)
 		{
@@ -244,17 +257,20 @@ public class Inventory : MonoBehaviour {
 
 							if (trackerindex > -1)//if found
 							{
-								if(UpdateCurrentWeight(true,inventory[trackerindex].weight,1) == true)
+								//stackable and is old item
+								if(UpdateCurrentWeight(true,inventory[trackerindex].weight,inventory[trackerindex].amount+amount) == true)
 								{
-									++inventory[trackerindex].amount;
+									inventory[trackerindex].amount += amount;
 									return true;
 								}
 								//break;
 							}else
 							{
-								if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,1) == true)
+								//stackable and is new item
+								if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,1+amount) == true)
 								{										
 									inventory[i] = new Item(database.itemDatabase[j]);//add it in
+									inventory[i].amount = amount;
 									playercastslot.AddItem(new Item(inventory[i]));
 
 									inventory[i].itemindexinlist = i;
@@ -267,14 +283,23 @@ public class Inventory : MonoBehaviour {
 							
 						}else
 						{
-							
-							if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,1) == true)
-							{										
-								inventory[i] = new Item(database.itemDatabase[j]);//add it in
-								playercastslot.AddItem(new Item(inventory[i]));
+							if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,inventory[i].amount + amount) == true)//ensure enough weight spacing left
+							{
+								for(int addcount = 0 ; addcount < amount; ++addcount)
+								{
+									for(int icontinue = i ; icontinue < inventory.Count; ++icontinue)//loop through whole inventory agn
+									{
+										if(inventory[icontinue].id < 0)//if there a slot is empty
+										{
+											inventory[icontinue] = new Item(database.itemDatabase[j]);//add it in
+											playercastslot.AddItem(new Item(inventory[icontinue]));
+											
+											inventory[icontinue].itemindexinlist = icontinue;
 
-								inventory[i].itemindexinlist = i;
-
+											break;//break out once found an empty slot and inserted
+										}							
+									}
+								}
 								return true;
 							}
 						}
@@ -287,7 +312,11 @@ public class Inventory : MonoBehaviour {
 
 		return false;
 	}
-	public bool AddItem(int id)
+	public bool AddItem(int id)//untested
+	{
+		return AddItem(id,1);
+	}
+	public bool AddItem(int id,int amount)//untested
 	{	
 		if (this.currentweight >= this.weightlimit)
 		{
@@ -313,17 +342,20 @@ public class Inventory : MonoBehaviour {
 						{
 							if (trackerindex > -1)//if found
 							{
-								if(UpdateCurrentWeight(true,inventory[trackerindex].weight,1) == true)
+								//stackable and is old item
+								if(UpdateCurrentWeight(true,inventory[trackerindex].weight,inventory[trackerindex].amount+amount) == true)
 								{
-									++inventory[trackerindex].amount;
+									inventory[trackerindex].amount += amount;
 									return true;
 									//break;
 								}
 							}else
 							{
-								if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,1) == true)
+								//stackable and is new item
+								if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,1+amount) == true)
 								{										
 									inventory[i] = new Item(database.itemDatabase[j]);//add it in
+									inventory[i].amount = amount;
 									playercastslot.AddItem(new Item(inventory[i]));
 
 									inventory[i].itemindexinlist = i;
@@ -335,12 +367,23 @@ public class Inventory : MonoBehaviour {
 							
 						}else
 						{
-							if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,1) == true)
-							{	
-								inventory[i] = new Item(database.itemDatabase[j]);//add it in
-								playercastslot.AddItem(new Item(inventory[i]));
-
-								inventory[i].itemindexinlist = i;
+							if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,inventory[i].amount + amount) == true)//ensure enough weight spacing left
+							{
+								for(int addcount = 0 ; addcount < amount; ++addcount)
+								{
+									for(int icontinue = i ; icontinue < inventory.Count; ++icontinue)//loop through whole inventory agn
+									{
+										if(inventory[icontinue].id < 0)//if there a slot is empty
+										{
+											inventory[icontinue] = new Item(database.itemDatabase[j]);//add it in
+											playercastslot.AddItem(new Item(inventory[icontinue]));
+											
+											inventory[icontinue].itemindexinlist = icontinue;
+											
+											break;//break out once found an empty slot and inserted
+										}	
+									}
+								}
 								return true;
 							}
 						}

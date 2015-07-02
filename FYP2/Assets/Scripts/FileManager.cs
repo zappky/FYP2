@@ -131,6 +131,10 @@ public class FileManager : MonoBehaviour {
 		}
 
 	}
+	public string GetGameDataPath()
+	{
+		return gamedataPath;
+	}
 	public XmlNodeList DigToDesiredChildNodeList(XmlNodeList startingList,string desiredParentName)
 	{
 		XmlNodeList checknodelist = startingList;

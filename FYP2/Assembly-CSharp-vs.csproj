@@ -83,12 +83,15 @@
      <Compile Include="Assets\Scripts\SpawnSpot.cs" />
      <Compile Include="Assets\Scripts\VendorDatabase.cs" />
      <Compile Include="Assets\Scripts\alertbar.cs" />
+     <None Include="Assets\gamedata\backup\backup_checkpoint_playersave.xml" />
      <None Include="Assets\gamedata\backup\backup_craftdatas.xml" />
      <None Include="Assets\gamedata\backup\backup_vendordatas.xml" />
      <None Include="Assets\gamedata\dump\mytest.xml" />
      <None Include="Assets\gamedata\questlogdatas.xml" />
+     <None Include="Assets\gamedata\checkpoint_playersave.xml" />
      <None Include="Assets\gamedata\itemdatas.xml" />
      <None Include="Assets\gamedata\backup\backup_dialogdatas.xml" />
+     <None Include="Assets\gamedata\predefined_inventory.xml" />
      <None Include="Assets\gamedata\backup\backup_questlogdatas.xml" />
      <None Include="Assets\gamedata\dialogdatas.xml" />
      <None Include="Assets\gamedata\vendordatas.xml" />

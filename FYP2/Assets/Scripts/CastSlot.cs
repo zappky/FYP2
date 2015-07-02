@@ -7,11 +7,11 @@ using System.Collections.Generic;
 //i decided to seperate them instead
 
 [System.Serializable]
-public class QuickSlotList //workaround so that the list can be seralizabled
+public class CastSlotList //workaround so that the list can be seralizabled
 {
 	public List<Item> slots = new List<Item>();
 
-	public QuickSlotList(int size)
+	public CastSlotList(int size)
 	{
 		for (int i = 0 ; i <size; ++i)
 		{
@@ -24,7 +24,7 @@ public class QuickSlotList //workaround so that the list can be seralizabled
 public class CastSlot : MonoBehaviour {
 
 	//private List<Item> slots = new List<Item>(); //list of slot
-	public List< QuickSlotList > slotsLayer = new List< QuickSlotList >(); // list of  list of slot
+	public List< CastSlotList > slotsLayerList = new List< CastSlotList >(); // list of  list of slot
 	//public List< Item[] > testlist = new List< Item[]>[10];
 	public bool display = true;
 	public GUISkin skin = null;
@@ -70,7 +70,7 @@ public class CastSlot : MonoBehaviour {
 
 		for (int y = 0 ; y <maxSlotsLayer; ++y)
 		{
-			slotsLayer.Add(new QuickSlotList(maxSlotsColumn));
+			slotsLayerList.Add(new CastSlotList(maxSlotsColumn));
 		}
 
 		labelStyle = new GUIStyle(skin.GetStyle("slot"));
@@ -112,7 +112,7 @@ public class CastSlot : MonoBehaviour {
 				}
 				if (extractednum-1 >=0)
 				{
-					playerinventory.UseItem(slotsLayer[currentSlotLayer].slots[extractednum-1]);
+					playerinventory.UseItem(slotsLayerList[currentSlotLayer].slots[extractednum-1]);
 				}
 			}
 		}
@@ -150,14 +150,14 @@ public class CastSlot : MonoBehaviour {
 			GUI.Box(slotRect,(x+1).ToString(),skin.GetStyle("slot"));
 
 
-			if(slotsLayer[currentSlotLayer].slots[x].id >= 0)//if slot contain an valid item
+			if(slotsLayerList[currentSlotLayer].slots[x].id >= 0)//if slot contain an valid item
 			{
-				if(slotsLayer[currentSlotLayer].slots[x].displayDisableIcon == true)
+				if(slotsLayerList[currentSlotLayer].slots[x].displayDisableIcon == true)
 				{
-					GUI.DrawTexture(slotRect,slotsLayer[currentSlotLayer].slots[x].disabledicon);
+					GUI.DrawTexture(slotRect,slotsLayerList[currentSlotLayer].slots[x].disabledicon);
 				}else
 				{
-					GUI.DrawTexture(slotRect,slotsLayer[currentSlotLayer].slots[x].icon);
+					GUI.DrawTexture(slotRect,slotsLayerList[currentSlotLayer].slots[x].icon);
 				}
 
 
@@ -167,19 +167,19 @@ public class CastSlot : MonoBehaviour {
 					{
 						//Debug.Log("double click");
 						//++testdoubleclickcount;
-						playerinventory.UseItem(slotsLayer[currentSlotLayer].slots[x]);
+						playerinventory.UseItem(slotsLayerList[currentSlotLayer].slots[x]);
 					}
 					if(currentevent.button == 0 && currentevent.type == EventType.mouseDrag && !draggingitem)//if left click and drag,and not currently dragging item
 					{
 						draggingitem = true;
 						fromindex = index;
-						itemdragged = slotsLayer[currentSlotLayer].slots[x];//copy the item
-						slotsLayer[currentSlotLayer].slots[x] = new Item(); // delete the thing.
+						itemdragged = slotsLayerList[currentSlotLayer].slots[x];//copy the item
+						slotsLayerList[currentSlotLayer].slots[x] = new Item(); // delete the thing.
 					}
 					if(currentevent.type == EventType.mouseUp && draggingitem)//dragging an item and let go of mouse
 					{
-						slotsLayer[currentSlotLayer].slots[fromindex] = slotsLayer[currentSlotLayer].slots[x];
-						slotsLayer[currentSlotLayer].slots[x] = itemdragged;
+						slotsLayerList[currentSlotLayer].slots[fromindex] = slotsLayerList[currentSlotLayer].slots[x];
+						slotsLayerList[currentSlotLayer].slots[x] = itemdragged;
 						draggingitem = false;
 						itemdragged = null;
 					}
@@ -190,7 +190,7 @@ public class CastSlot : MonoBehaviour {
 				{
 					if(currentevent.type == EventType.mouseUp && draggingitem)
 					{
-						slotsLayer[currentSlotLayer].slots[x] = itemdragged;
+						slotsLayerList[currentSlotLayer].slots[x] = itemdragged;
 						draggingitem = false;
 						itemdragged = null;
 					}
@@ -207,9 +207,9 @@ public class CastSlot : MonoBehaviour {
 		{
 			for (int x = 0 ; x<maxSlotsColumn; ++x )
 			{
-				if(slotsLayer[y].slots[x].ItemName == item_name)
+				if(slotsLayerList[y].slots[x].ItemName == item_name)
 				{
-					return slotsLayer[y].slots[x];
+					return slotsLayerList[y].slots[x];
 				}
 			}
 		}
@@ -221,9 +221,9 @@ public class CastSlot : MonoBehaviour {
 		{
 			for (int x = 0 ; x<maxSlotsColumn; ++x )
 			{
-				if(slotsLayer[y].slots[x].id == item_id)
+				if(slotsLayerList[y].slots[x].id == item_id)
 				{
-					return slotsLayer[y].slots[x];
+					return slotsLayerList[y].slots[x];
 				}
 			}
 		}
@@ -235,9 +235,9 @@ public class CastSlot : MonoBehaviour {
 		{
 			for (int x = 0 ; x<maxSlotsColumn; ++x )
 			{
-				if(slotsLayer[y].slots[x].id == a_item.id || slotsLayer[y].slots[x].itemname == a_item.itemname)
+				if(slotsLayerList[y].slots[x].id == a_item.id || slotsLayerList[y].slots[x].itemname == a_item.itemname)
 				{
-					return slotsLayer[y].slots[x];
+					return slotsLayerList[y].slots[x];
 				}
 			}
 		}
@@ -249,7 +249,7 @@ public class CastSlot : MonoBehaviour {
 		{
 			for (int x = 0 ; x<maxSlotsColumn; ++x )
 			{
-				if(slotsLayer[y].slots[x].id == item_id)
+				if(slotsLayerList[y].slots[x].id == item_id)
 				{
 					return true;
 				}
@@ -258,6 +258,12 @@ public class CastSlot : MonoBehaviour {
 
 		return false;
 	}
+
+	public void AddItemKnown(Item a_item,int layerindex,int columnindex)//blind adding of item
+	{
+		slotsLayerList[layerindex].slots[columnindex] = a_item;
+	}
+
 	public void AddItem(Item a_item)
 	{
 		if( a_item.type != Item.ItemType.Consumable && a_item.type != Item.ItemType.Useable)
@@ -265,8 +271,8 @@ public class CastSlot : MonoBehaviour {
 			//Debug.Log("forbbiden add detected");
 			return;
 		}
-		//Debug.Log("layer " + slotsLayer.Count);
-		//Debug.Log("column " + slotsLayer[0].slots.Count);
+		//Debug.Log("layer " + slotsLayerList.Count);
+		//Debug.Log("column " + slotsLayerList[0].slots.Count);
 		bool done = false;
 		for (int y = 0 ; y<maxSlotsLayer; ++y )
 		{
@@ -277,17 +283,17 @@ public class CastSlot : MonoBehaviour {
 			for (int x = 0 ; x<maxSlotsColumn; ++x )
 			{
 
-				if(slotsLayer[y].slots[x].id == a_item.id || slotsLayer[y].slots[x].itemname == a_item.itemname  )
+				if(slotsLayerList[y].slots[x].id == a_item.id || slotsLayerList[y].slots[x].itemname == a_item.itemname  )
 				{
-					slotsLayer[y].slots[x].displayDisableIcon = false;
+					slotsLayerList[y].slots[x].displayDisableIcon = false;
 					done = true;
 					break;
 				}
 
-				if(slotsLayer[y].slots[x].id < 0)//if slot contain an invalid item meaning empty slot
+				if(slotsLayerList[y].slots[x].id < 0)//if slot contain an invalid item meaning empty slot
 				{
 					//a_item.displayDisableIcon = false;
-					slotsLayer[y].slots[x] = a_item;
+					slotsLayerList[y].slots[x] = a_item;
 					done = true;
 					break;
 				
@@ -303,9 +309,9 @@ public class CastSlot : MonoBehaviour {
 		{
 			for (int x = 0 ; x<maxSlotsColumn;++x )
 			{
-				if(slotsLayer[y].slots[x].id == item_id)
+				if(slotsLayerList[y].slots[x].id == item_id)
 				{
-					slotsLayer[y].slots[x] = new Item();
+					slotsLayerList[y].slots[x] = new Item();
 					//Debug.Log("FOUND item to be removed from quickcast");
 					break;
 				}
@@ -321,9 +327,9 @@ public class CastSlot : MonoBehaviour {
 		{
 			for (int x = 0 ; x<maxSlotsColumn;++x )
 			{
-				if(slotsLayer[y].slots[x].id == a_item.id || slotsLayer[y].slots[x].itemname == a_item.itemname )
+				if(slotsLayerList[y].slots[x].id == a_item.id || slotsLayerList[y].slots[x].itemname == a_item.itemname )
 				{
-					slotsLayer[y].slots[x] = new Item();
+					slotsLayerList[y].slots[x] = new Item();
 					//Debug.Log("FOUND item to be removed from quickcast");
 					break;
 				}
