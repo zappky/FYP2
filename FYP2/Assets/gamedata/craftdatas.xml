@@ -1,60 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <database>
 	<recipe id = "0">
-		<name>testrecipe</name>
-		<description>nill</description>
-		<recipeIconName></recipeIconName>
-		<ingrediant id = "-11" amount = "1"></ingrediant>
-		<output id = "-99" amount = "1"></output>
+		<name>Grapple</name>
+		<description>For easier travelling. Not to be used for fighting titans.</description>
+		<recipeIconName>nill</recipeIconName>
+		<ingrediant id = "Broken Grapple" amount = "1"></ingrediant>
+		<ingrediant id = "Paper Clip" amount = "1"></ingrediant>
+		<output id = "Grapple" amount = "1"></output>
 	</recipe>
 
 	<recipe id = "1">
-		<name>Test Alarm Recipe</name>
-		<description>a test alaram recipe</description>
+		<name>Running Shoes</name>
+		<description>Gotta go fast!</description>
 		<recipeIconName>nill</recipeIconName>
-		<ingrediant id = "battery" amount = "1"></ingrediant>
-		<ingrediant id = "gear" amount = "1"></ingrediant>
-		<output id = "clock" amount = "1"></output>
+		<ingrediant id = "Old Running Shoes" amount = "1"></ingrediant>
+		<ingrediant id = "String" amount = "1"></ingrediant>
+		<output id = "Running Shoes" amount = "1"></output>
 	</recipe>
-	
-	<recipe id = "2">
-		<name>Running Shoes Recipe</name>
-		<description>a running shoes recipe</description>
-		<recipeIconName></recipeIconName>
-		<ingrediant id = "4" amount = "1"></ingrediant>
-		<ingrediant id = "5" amount = "1"></ingrediant>
-		<output id = "6" amount = "1"></output>
-	</recipe>
-	
-	<recipe id = "3">
-		<name>Toybell Recipe</name>
-		<description>nill</description>
-		<recipeIconName></recipeIconName>
-		<ingrediant id = "10" amount = "1"></ingrediant>
-		<ingrediant id = "11" amount = "1"></ingrediant>
-		<output id = "7" amount = "1"></output>
-	</recipe>
-	
 
+
+	<recipe id = "2">
+		<name>Parachute</name>
+		<description>Defy gravity for x seconds.</description>
+		<recipeIconName>nill</recipeIconName>
+		<ingrediant id = "Paper" amount = "1"></ingrediant>
+		<ingrediant id = "String" amount = "2"></ingrediant>
+		<output id = "Parachute" amount = "1"></output>
+	</recipe>
+
+	<recipe id = "3">
+		<name>Toy Bell</name>
+		<description>Useful decoy. Works on pets only.</description>
+		<recipeIconName>nill</recipeIconName>
+		<ingrediant id = "Capsule Ball" amount = "1"></ingrediant>
+		<ingrediant id = "Paper Clip" amount = "1"></ingrediant>
+		<output id = "Toy Bell" amount = "1"></output>
+	</recipe>
+
+	<recipe id = "4">
+		<name>Sticky Noisemaker</name>
+		<description>Useful decoy. Works on humans only.</description>
+		<recipeIconName>nill</recipeIconName>
+		<ingrediant id = "Chip" amount = "1"></ingrediant>
+		<ingrediant id = "Paper Clip" amount = "2"></ingrediant>
+		<output id = "Sticky Noisemaker" amount = "1"></output>
+	</recipe>
 	
 	<recipe id = "5">
-		<name>Alarm Recipe</name>
-		<description>nill</description>
-		<recipeIconName></recipeIconName>
-		<ingrediant id = "1" amount = "1"></ingrediant>
-		<ingrediant id = "10" amount = "1"></ingrediant>
-		<ingrediant id = "12" amount = "1"></ingrediant>
-		<output id = "8" amount = "1"></output>
+		<name>Remote Control</name>
+		<description>Long range alarm clock disruptor.</description>
+		<recipeIconName>nill</recipeIconName>
+		<ingrediant id = "Chip" amount = "1"></ingrediant>
+		<ingrediant id = "Battery" amount = "2"></ingrediant>
+		<output id = "Remote Control" amount = "1"></output>
 	</recipe>
-	
-	<recipe id = "6">
-		<name>Remote Control Recipe</name>
-		<description>nill</description>
-		<recipeIconName></recipeIconName>
-		<ingrediant id = "1" amount = "1"></ingrediant>
-		<ingrediant id = "8" amount = "1"></ingrediant>
-		<output id = "9" amount = "1"></output>
-	</recipe>
-	
-	
 </database>

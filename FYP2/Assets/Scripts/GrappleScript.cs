@@ -156,8 +156,8 @@ public class GrappleScript : MonoBehaviour {
 	void FireGrapple()
 	{
 		Camera cam = Camera.main;
-		Vector3 rightHandPos = rightHand.position;		// temp pos storage
-		rightHandPos.y += grappleSpawnOffset.y;						// so we can offset spawn Y pos
+		Vector3 rightHandPos = rightHand.position;				// temp pos storage
+		rightHandPos.y += grappleSpawnOffset.y;					// so we can offset spawn Y pos
 
 		// Spawn grapple on player
 		theGrapple = (GameObject)Instantiate(grapplePrefab, 

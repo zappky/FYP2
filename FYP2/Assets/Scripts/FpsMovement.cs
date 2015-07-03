@@ -1,9 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (CharacterController))]
+[RequireComponent (typeof (FallResponse))]
 public class FpsMovement : MonoBehaviour 
 {
 	public bool isRunning = false;
+	public bool isGrappling = false;				 
+	public bool useParachute = false;
 	public float moveSpeed = 7.0f; //movement speed
 	public float jumpSpeed = 5.0f;
 	public float paraSpeed = 1.0f; //Parachute speed
@@ -26,8 +30,6 @@ public class FpsMovement : MonoBehaviour
 	public float SFX_DELAY = 2.0f;
 	float runSFXdelay = 0.0f;
 
-	bool paracheck = false;
-	bool isGrappling = false;		//if true, player is using grapple 
 
 	public bool debugFlyMode = false;		// rmb to turn off after use
 
@@ -95,11 +97,11 @@ public class FpsMovement : MonoBehaviour
 			}
 			else if(!cc.isGrounded && Input.GetButtonDown("parachute"))	//button v
 			{
-				paracheck = !paracheck;
+				useParachute = !useParachute;
 			}
 
 			//activate parachute
-			if (paracheck) 
+			if (useParachute) 
 			{
 				vertVelo = -paraSpeed;
 				forwardSpeed = Input.GetAxis ("Vertical") * airSpeed;
@@ -107,15 +109,15 @@ public class FpsMovement : MonoBehaviour
 			}
 
 			//set back parachute to false
-			if(cc.isGrounded && paracheck)
-				paracheck = false;
+			if(cc.isGrounded && useParachute)
+				useParachute = false;
 
 			//lose from height
-			if(vertVelo < -25.0f)
-			{
-				if(cc.isGrounded)
-					Application.LoadLevel("losescreen");
-			}
+//			if(vertVelo < -25.0f)
+//			{
+//				if(cc.isGrounded)
+//					Application.LoadLevel("losescreen");
+//			}
 
 			Vector3 speed = new Vector3 (sideSpeed, vertVelo, forwardSpeed);
 			speed = transform.rotation * speed;

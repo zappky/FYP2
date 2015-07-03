@@ -44,9 +44,9 @@ public class CheckPoint : MonoBehaviour {
 		playerobj.transform.position = this.transform.position;
 	}
 
-	void OnCollisionEnter(Collision other)
+	void OnTriggerEnter(Collider other)
 	{
-		print ("checking coliison enter");
+		print ("checking collison enter");
 		print ("collision game object name " +  other.gameObject.name);
 
 		if(other.gameObject.tag == "Player")
@@ -56,9 +56,9 @@ public class CheckPoint : MonoBehaviour {
 			playerExitedCheckPoint = false;
 		}
 	}
-	void OnCollisionStay (Collision other)
+	void OnTriggerStay (Collider other)
 	{
-		print ("checking coliison stay ");
+		print ("checking collison stay ");
 		print ("collision game object name " +  other.gameObject.name);
 		if(other.gameObject.tag == "Player")
 		{
@@ -67,9 +67,9 @@ public class CheckPoint : MonoBehaviour {
 			playerExitedCheckPoint = false;
 		}
 	}
-	void OnCollisionExit (Collision other)
+	void OnTriggerExit (Collider other)
 	{
-		print ("checking coliison exit");
+		print ("checking collison exit");
 		print ("collision game object name " +  other.gameObject.name);
 		if(other.gameObject.tag == "Player")
 		{

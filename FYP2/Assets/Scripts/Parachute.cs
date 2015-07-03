@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof (CharacterController))] 
+//[RequireComponent (typeof (CharacterController))] 
 public class Parachute : MonoBehaviour {
 	//private CharacterMotor characScript;
 	CharacterController cc;

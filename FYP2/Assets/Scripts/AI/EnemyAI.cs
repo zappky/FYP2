@@ -16,6 +16,7 @@ public class EnemyAI : MonoBehaviour {
 	}
 	public EnemyState state = EnemyState.IDLE;
 
+	public bool awake = true;			// if AI is sleeping(!awake), he'd always be in idle state (only in lvl 1)
 	public List<Transform> waypointList = new List<Transform>();		// list of waypoints 
 	public List<GameObject> worldDecoyList = new List<GameObject>();	// list of decoys in world (e.g. alarm clock)
 			
@@ -51,7 +52,10 @@ public class EnemyAI : MonoBehaviour {
 		nextWaypt = 0;					// 0 - original pos. (whr AI spawns/is from) 
 		
 		// Spawn pos
-		transform.position = waypointList[nextWaypt].position;	
+		if (waypointList.Count > 0) {
+			transform.position = waypointList[nextWaypt].position;	
+			transform.rotation = waypointList[nextWaypt].rotation;	
+		}
 
 		// AI render color = green (!alerted)
 		debugRenderer.material.color = Color.green;
@@ -69,26 +73,32 @@ public class EnemyAI : MonoBehaviour {
 		if(state != EnemyState.ALERT)
 		{
 			if(alert.isAlarmed)
-				state = EnemyState.ALERT;
+			{
+				if(awake)
+					state = EnemyState.ALERT;
+			}
 			else if(alert.isAlarmedByDecoy)
 			{
-				if(!delaySet)									// delay abit, so AI wont immediately rush there
+				if(awake)
 				{
-					delaySet = true;
-					delay = stats.IDLE_DELAY;					
-				}
-				else
-				{
-					delay -= Time.deltaTime;						
-					
-					if(delay <= 0)							 
+					if(!delaySet)									// delay abit, so AI wont immediately rush there
 					{
-						delaySet = false;
-						state = EnemyState.ALERT;
+						delaySet = true;
+						delay = stats.IDLE_DELAY;					
+					}
+					else
+					{
+						delay -= Time.deltaTime;						
+						
+						if(delay <= 0)							 
+						{
+							delaySet = false;
+							state = EnemyState.ALERT;
 
-						targetPos = new Vector3(alert.targetPos.x,
-						                        transform.position.y,		// so that AI wont fly/go underground
-						                        alert.targetPos.z);
+							targetPos = new Vector3(alert.targetPos.x,
+							                        transform.position.y,		// so that AI wont fly/go underground
+							                        alert.targetPos.z);
+						}
 					}
 				}
 			}
@@ -105,7 +115,8 @@ public class EnemyAI : MonoBehaviour {
 			default:
 			{
 				// slack, do nth/ look ard
-				delay -= Time.deltaTime;						
+				if(awake)
+					delay -= Time.deltaTime;						
 				
 				if(delay <= 0)							 
 				{
