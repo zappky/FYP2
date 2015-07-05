@@ -15,6 +15,10 @@
       <File FileName="Assets\Scripts\DialogTree.cs" Line="202" Column="32" />
       <File FileName="Assets\gamedata\dialogdatas.xml" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SingetonSetUp.cs" Line="1" Column="1" />
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\PGE\ASSG1\PGE-Assignment\PGE Project - Top Down Shooter\Assets\Scripts\Combat\Firing\Firing.cs">
+    <Files>
+      <File FileName="..\..\..\PGE\ASSG1\PGE-Assignment\PGE Project - Top Down Shooter\Assets\Scripts\Combat\Firing\Firing.cs" Line="156" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
