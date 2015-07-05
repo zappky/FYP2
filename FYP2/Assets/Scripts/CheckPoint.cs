@@ -2,26 +2,24 @@
 using System.Collections;
 
 //this script is to describle what is a checkpoint, a game object should attach this script to be indicated as a checkpoint instead of being tag as checkpoint
+[System.Serializable]
 public class CheckPoint : MonoBehaviour {
 
-	public string checkPointName = "";
 	public int id = -1;
-	public bool playerEnteredCheckPoint = false;
-	public bool playerStayedCheckPoint = false;
-	public bool playerExitedCheckPoint = false;
+	public int indexInList = -1;
+	public LevelManager levelManager = null;
 
 	public enum CheckPoint_Type
 	{
 		CHECKPOINT_NONE,
 		CHECKPOINT_DIALOG_TRIGGER,
-		CHECKPOINT_SAVE_TRIGGER,
-		CHECKPOINT_TOTAL
+		CHECKPOINT_SAVE_TRIGGER
 	}
 
 	public CheckPoint_Type checkpointType = CheckPoint_Type.CHECKPOINT_NONE;
 	// Use this for initialization
 	void Start () {
-		this.checkPointName = this.name;
+		levelManager = LevelManager.Instance;
 	}
 
 	void Update()
@@ -30,13 +28,12 @@ public class CheckPoint : MonoBehaviour {
 
 	public CheckPoint()
 	{
-
 	}
 
 	public CheckPoint (CheckPoint another)
 	{
-		this.checkPointName = another.checkPointName;
 		this.id = another.id;
+		this.indexInList = another.indexInList;
 	}
 
 	public void RepositionPlayerAt(GameObject playerobj)
@@ -46,36 +43,33 @@ public class CheckPoint : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		print ("checking collison enter");
-		print ("collision game object name " +  other.gameObject.name);
+		if(other.gameObject.tag == "Player")
+		{
+			if(indexInList > levelManager.currentCheckPointIndex  )//check if the current collided checkpoint is further than the last checkpoint
+			{
+				levelManager.currentCheckPointIndex = indexInList;
 
-		if(other.gameObject.tag == "Player")
-		{
-			playerEnteredCheckPoint = true;
-			playerStayedCheckPoint = false;
-			playerExitedCheckPoint = false;
+				switch (this.checkpointType)
+				{
+				case CheckPoint_Type.CHECKPOINT_DIALOG_TRIGGER:
+					levelManager.playerdialoginferface.StartNewDialogSessionUsingBookmark(levelManager.CurrentLevelName,this.name);
+					levelManager.SavePlayerInfo();
+					break;
+					
+				case CheckPoint_Type.CHECKPOINT_SAVE_TRIGGER:
+					levelManager.SavePlayerInfo();
+					break;
+					
+				case CheckPoint_Type.CHECKPOINT_NONE://dont care
+					break;
+					
+				default:
+					Debug.Log("ERROR: Unhandled checkpoint type trigger : " + this.checkpointType.ToString());
+					break;
+				}
+			}
+
 		}
 	}
-	void OnTriggerStay (Collider other)
-	{
-		print ("checking collison stay ");
-		print ("collision game object name " +  other.gameObject.name);
-		if(other.gameObject.tag == "Player")
-		{
-			playerEnteredCheckPoint = false;
-			playerStayedCheckPoint = true;
-			playerExitedCheckPoint = false;
-		}
-	}
-	void OnTriggerExit (Collider other)
-	{
-		print ("checking collison exit");
-		print ("collision game object name " +  other.gameObject.name);
-		if(other.gameObject.tag == "Player")
-		{
-			playerEnteredCheckPoint = false;
-			playerStayedCheckPoint = false;
-			playerExitedCheckPoint = true;
-		}
-	}
+
 }

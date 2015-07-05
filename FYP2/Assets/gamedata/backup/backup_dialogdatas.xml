@@ -27,6 +27,26 @@
 				<option nextdialogid="" nextdialogid_raw="-1" resultid="1">Let do it</option>
 				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">No way</option>
 			</dialog>
+			<dialog id="5" actorname="npc2">
+				<test>Next dialog session test ,dialog 5</test>
+				<option nextdialogid="6" nextdialogid_raw="6" resultid="0">go dialog 6</option>
+				<option nextdialogid="7" nextdialogid_raw="7" resultid="0">go dialog 7</option>
+			</dialog>
+			<dialog id="6" actorname="npc2">
+				<test>Next dialog session test,dialog 6</test>
+				<option nextdialogid="7" nextdialogid_raw="7" resultid="0">go dialog 7</option>
+				<option nextdialogid="8" nextdialogid_raw="8" resultid="0">go dialog 8</option>
+			</dialog>
+			<dialog id="7" actorname="npc2">
+				<test>Next dialog session test,dialog 7</test>
+				<option nextdialogid="8" nextdialogid_raw="8" resultid="0">go dialog 8</option>
+				<option nextdialogid="5" nextdialogid_raw="5" resultid="0">go dialog 5</option>
+			</dialog>
+			<dialog id="8" actorname="npc2">
+				<test>Next dialog session test,dialog 8</test>
+				<option nextdialogid="0" nextdialogid_raw="0" resultid="0">go dialog session 1</option>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">end dialog </option>
+			</dialog>
 		</dialogtree>
 	</level>
 </database>

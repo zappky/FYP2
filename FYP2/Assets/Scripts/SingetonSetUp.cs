@@ -14,7 +14,10 @@ public class SingetonSetUp : MonoBehaviour {
 		VendorDatabase.Instance.Initialize();
 		DialogDatabase.Instance.Initialize();
 		QuestLogDatabase.Instance.Initialize();
+		LevelManager.Instance.Initialize();
 		QuestManager.Instance.Initialize();
+		DialogInterface.Instance.Initialize();
+
 	}
 	public void OnApplicationQuit()//this will be auto called like start and update function
 	{

@@ -25,7 +25,7 @@
 		<name>Toy Bell</name>
 		<type>consumable</type>
 		<description>Useful decoy. Works on pets only.</description>
-		<weight>1</weight>
+		<weight>3</weight>
 		<stackable>True</stackable>
 	</item>
 	<item id="4">

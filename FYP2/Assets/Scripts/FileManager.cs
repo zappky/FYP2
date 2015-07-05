@@ -230,6 +230,12 @@ public class FileManager : MonoBehaviour {
 			parentlist.Add(rootentry.name);
 			entrylist.Add(new my_XmlEntry("level",null,null,null));
 			parentlist.Add("level");
+			attkey.Clear();
+			attvalue.Clear();
+			attkey.Add("id");
+			attvalue.Add(a_tree.id.ToString());
+			attkey.Add("gamelevelparent");
+			attvalue.Add(a_tree.gameLevelParent);
 			entrylist.Add(new my_XmlEntry("dialogtree",null,null,null));
 
 			foreach (my_DialogNode a_node in a_tree)
@@ -503,24 +509,39 @@ public class FileManager : MonoBehaviour {
 		
 		
 		XmlNodeList parentList = null;
-		
+
 		parentList = xmlDoc.GetElementsByTagName("database");
 		parentList = DigToDesiredParentNodeList(parentList,"level");
 
 		foreach(XmlNode childInfo in parentList)
 		{
-			//print ("looking at childinfo name:"+ childInfo.Name );
-			//tempentry = new my_DialogTreeDatabaseEntry();
-			//tempentry.level = int.Parse(childInfo.Attributes["id"].Value);
-			tempentry = new DialogTree();
 			XmlNodeList childContent = DigToDesiredChildNodeList(parentList,"dialogtree");
+			//print ("looking at childinfo name:"+ childInfo.Name );
+			tempentry = new DialogTree();
+			XmlNode dialogtreenode = childContent.Item(0).ParentNode;
+			tempentry.id = int.Parse(dialogtreenode.Attributes["id"].Value);
+			tempentry.gameLevelParent = dialogtreenode.Attributes["gamelevelparent"].Value;
+
+
+
 
 			foreach (XmlNode childItem in childContent)
 			{
-				//print ("looking at childItem name: "+ childItem.Name );
+				print ("looking at childItem name: "+ childItem.Name );
 				tempdialog = new my_DialogNode();
 				tempdialog.actorName = childItem.Attributes["actorname"].Value;
 				tempdialog.nodeId = int.Parse(childItem.Attributes["id"].Value);
+				if(childItem.Attributes["newdialogsection"] != null)
+				{
+					switch (childItem.Attributes["newdialogsection"].Value)
+					{
+						case "true":
+						case "True":
+							tempentry.AddDialogBookmark(tempdialog);
+							break;
+					}
+
+				}
 				foreach (XmlNode innerchildItem in childItem.ChildNodes)
 				{
 					//print ("looking at innerchildItem name: "+ innerchildItem.Name );
@@ -720,10 +741,7 @@ public class FileManager : MonoBehaviour {
 			resultlist.Add(new CraftingRecipe(tempitem));
 
 		}
-//		foreach (CraftingRecipe item in resultlist)
-//		{
-//			print(item.StringSelf() + "\n");
-//		}
+
 		return resultlist;
 	}
 	public List<Item> LoadItemsData()

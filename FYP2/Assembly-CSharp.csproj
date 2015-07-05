@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\DialogDatabase.cs" />
      <Compile Include="Assets\Scripts\DialogInterface.cs" />
      <Compile Include="Assets\Scripts\DialogTree.cs" />
+     <Compile Include="Assets\Scripts\FallResponse.cs" />
      <Compile Include="Assets\Scripts\FileManager.cs" />
      <Compile Include="Assets\Scripts\FpsMovement.cs" />
      <Compile Include="Assets\Scripts\GrappleCollisionScript.cs" />
@@ -88,7 +89,6 @@
      <None Include="Assets\gamedata\backup\backup_vendordatas.xml" />
      <None Include="Assets\gamedata\dump\mytest.xml" />
      <None Include="Assets\gamedata\questlogdatas.xml" />
-     <None Include="Assets\gamedata\checkpoint_playersave.xml" />
      <None Include="Assets\gamedata\itemdatas.xml" />
      <None Include="Assets\gamedata\backup\backup_dialogdatas.xml" />
      <None Include="Assets\gamedata\predefined_inventory.xml" />

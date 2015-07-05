@@ -1,8 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\FallResponse.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LevelManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\FallResponse.cs" Line="8" Column="2" />
+      <File FileName="Assets\Scripts\CheckPoint.cs" Line="50" Column="18" />
+      <File FileName="Assets\Scripts\Inventory.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelManager.cs" Line="526" Column="3" />
+      <File FileName="Assets\gamedata\predefined_inventory.xml" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CastSlot.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ItemDatabase.cs" Line="684" Column="69" />
+      <File FileName="Assets\Scripts\Item.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FileManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\DialogInterface.cs" Line="112" Column="4" />
+      <File FileName="Assets\Scripts\DialogDatabase.cs" Line="84" Column="57" />
+      <File FileName="Assets\Scripts\DialogTree.cs" Line="202" Column="32" />
+      <File FileName="Assets\gamedata\dialogdatas.xml" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SingetonSetUp.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

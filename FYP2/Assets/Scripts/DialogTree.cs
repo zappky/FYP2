@@ -3,13 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
+public class my_DialogBookmark
+{
+	public string bookmarkName = "";
+	public int id = -1;
+	public my_DialogNode bookmarkedDialogNode = null;
+
+	public my_DialogBookmark()
+	{
+
+	}
+	public my_DialogBookmark(int id, my_DialogNode nodeToBookmark)
+	{
+		this.id = id;
+		this.bookmarkedDialogNode = nodeToBookmark;
+	}
+	public my_DialogBookmark(string bookmarkname, my_DialogNode nodeToBookmark)
+	{
+		this.bookmarkName = bookmarkname;
+		this.bookmarkedDialogNode = nodeToBookmark;
+	}
+	public my_DialogBookmark(int id,string bookmarkname, my_DialogNode nodeToBookmark)
+	{
+		this.id = id;
+		this.bookmarkName = bookmarkname;
+		this.bookmarkedDialogNode = nodeToBookmark;
+	}
+
+}
+
+[System.Serializable]
 public class my_DialogOption
 {
 	public string text = "";//the text to be displayed
 	public int returnStatus = 0;// zero means neutral, 1 is postive, -1 is negative respond
 	
 	public my_DialogNode nextDialog = null;//the next node
-	public int nextDialogId = -1;//for xml loading purpose
+	public int nextDialogId = -1;//for xml loading purpose//preferably dont use it for any checking outside of initlization
 	public my_DialogNode parentDialog = null;// the node which the option is attached to
 	
 	public my_DialogOption()
@@ -120,8 +150,10 @@ public class my_DialogNode
 [System.Serializable]
 public class DialogTree : IEnumerable<my_DialogNode>
 {
-
+	public int id = -1;
 	public List<my_DialogNode> dialogs =  new List<my_DialogNode>();
+	public List<my_DialogBookmark> dialogSections =  new List<my_DialogBookmark>();//bookmark of each unique section of dialogs
+	public string gameLevelParent = ""; // identifier of where this dialog tree is suppose to be at.//follo the currentlevelname
 	
 	public IEnumerator<my_DialogNode> GetEnumerator()
 	{
@@ -145,8 +177,43 @@ public class DialogTree : IEnumerable<my_DialogNode>
 			return dialogs[index];
 		}
 	}
+	public my_DialogNode GetDialogBookmarkedWithIndex(int index)
+	{
+		return dialogSections[index].bookmarkedDialogNode;
+	}
+	public my_DialogNode GetDialogBookmarked(string name)
+	{
+		foreach (my_DialogBookmark a_bookmark in dialogSections)
+		{
+			if(a_bookmark.bookmarkName == name)
+			{
+				return a_bookmark.bookmarkedDialogNode;
+			}
+		}
+		Debug.Log("ERROR: GetDialogBookmarked cannot find with: " + name);
+		return null;
+	}
+	public my_DialogNode GetDialogBookmarked(int id)
+	{
+		if(id >= 0 && id < dialogSections.Count)
+		{
+			if(dialogSections[id].id == id)
+			{
+				return dialogSections[id].bookmarkedDialogNode;
+			}
+		}
 
-	public my_DialogNode FindDialog(int nodeid)
+		foreach (my_DialogBookmark a_bookmark in dialogSections)
+		{
+			if(a_bookmark.id == id)
+			{
+				return a_bookmark.bookmarkedDialogNode;
+			}
+		}
+		Debug.Log("ERROR: GetDialogBookmarked cannot find with: " + id);
+		return null;
+	}
+	public my_DialogNode GetDialog(int nodeid)
 	{
 		if( nodeid >= 0 && nodeid < dialogs.Count && dialogs[nodeid].nodeId == nodeid)//early test
 		{
@@ -164,7 +231,7 @@ public class DialogTree : IEnumerable<my_DialogNode>
 
 		return null;
 	}
-	public my_DialogNode GetDialog(int index)
+	public my_DialogNode GetDialogWithIndex(int index)
 	{
 		if(index >= 0 && index < dialogs.Count)
 		{
@@ -193,6 +260,10 @@ public class DialogTree : IEnumerable<my_DialogNode>
 			}
 			return null;
 		}
+	}
+	public void AddDialogBookmark(my_DialogNode a_dialog)
+	{
+		dialogSections.Add(new my_DialogBookmark(dialogSections.Count,dialogSections.Count.ToString(),a_dialog));
 	}
 	public void AddDialog(my_DialogNode a_dialog)
 	{

@@ -358,7 +358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &59009772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,7 +424,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
 --- !u!1 &69793047
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,57 +1068,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 187138933}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &211850063
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 211850064}
-  - 114: {fileID: 211850065}
-  m_Layer: 0
-  m_Name: Level Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &211850064
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 211850063}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
---- !u!114 &211850065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 211850063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e443f5d7e1b8ce4296df0ef6a130b99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  checkPointList: []
-  filemanager: {fileID: 0}
-  playerobj: {fileID: 0}
-  playerinfo: {fileID: 0}
-  playerinventory: {fileID: 0}
-  playercastslot: {fileID: 0}
-  playerSaveFileName: checkpoint_playersave
-  playerdataPath: 
-  predefinedInventorySaveFileName: predefined_inventory
-  predefinedInventoryPath: 
-  currentLevel: -1
-  currentCheckPointIndex: 0
 --- !u!1 &214183115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2229,45 +2178,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 22426152}
   m_RootOrder: 0
---- !u!1 &505574104
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 505574106}
-  - 114: {fileID: 505574105}
-  m_Layer: 0
-  m_Name: TestDialog
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &505574105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 505574104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 362dd1ac6ee2c3e4e9f644ddd09823d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &505574106
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 505574104}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.2713804, y: -71.1403732, z: -198.486465}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
 --- !u!1 &521320841
 GameObject:
   m_ObjectHideFlags: 0
@@ -2943,7 +2853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &708079008
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2998,7 +2908,7 @@ Transform:
   m_LocalScale: {x: 10000, y: 10000, z: 10000}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!1001 &717576131
 Prefab:
   m_ObjectHideFlags: 0
@@ -3430,7 +3340,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
 --- !u!114 &833107202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7609,6 +7519,14 @@ MonoBehaviour:
     stackable: 0
     amount: 1
     itemindexinlist: -1
+    recipeParent:
+      recipe_name: 
+      id: -1
+      description: nill
+      ingrediant: []
+      output: []
+      recipeIcon: {fileID: 0}
+      recipeIconName: 
     type: 0
     icon: {fileID: 0}
     displayDisableIcon: 0
@@ -7693,6 +7611,14 @@ MonoBehaviour:
     stackable: 0
     amount: 1
     itemindexinlist: -1
+    recipeParent:
+      recipe_name: 
+      id: -1
+      description: nill
+      ingrediant: []
+      output: []
+      recipeIcon: {fileID: 0}
+      recipeIconName: 
     type: 0
     icon: {fileID: 0}
     displayDisableIcon: 0
@@ -7730,7 +7656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bd134a98f446394aa840ee18681b868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxFallDist: 25
 --- !u!1 &1830793057
 GameObject:
   m_ObjectHideFlags: 0
@@ -8142,7 +8067,7 @@ GameObject:
   - 23: {fileID: 1923133580}
   - 114: {fileID: 1923133584}
   m_Layer: 0
-  m_Name: test checkpoint
+  m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8202,7 +8127,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
 --- !u!114 &1923133584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8214,12 +8139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12bd402449b79544957207766f9203b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkPointName: 
   id: -1
-  playerEnteredCheckPoint: 0
-  playerStayedCheckPoint: 0
-  playerExitedCheckPoint: 0
-  checkpointType: 0
+  indexInList: -1
+  levelManager: {fileID: 0}
+  checkpointType: 1
 --- !u!1 &1924553930
 GameObject:
   m_ObjectHideFlags: 0

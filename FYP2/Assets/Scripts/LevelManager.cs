@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+//using System.Linq;
 using System.Xml;
 
+[System.Serializable]
 public class LevelManager : MonoBehaviour {
 
 	public List<CheckPoint> checkPointList = new List<CheckPoint>();
@@ -13,29 +14,102 @@ public class LevelManager : MonoBehaviour {
 	public PlayerInfo playerinfo = null;
 	public Inventory playerinventory = null;
 	public CastSlot playercastslot = null;
+	public DialogInterface playerdialoginferface = null;
 
 	public string playerSaveFileName = "checkpoint_playersave";
 	public string playerdataPath = "";
 	public string predefinedInventorySaveFileName = "predefined_inventory";
 	public string predefinedInventoryPath = "";
+	public int currentCheckPointIndex = -1; //the first check point should be at the starting point of the game
 
-	public int currentLevel = -1;
-	public int currentCheckPointIndex = 0; //the first check point should be at the starting point of the game
+	public static LevelManager instance = null;
+	
+	public static LevelManager Instance
+	{
+		get
+		{
+			if(instance == null)
+			{
+				instance = new GameObject("Level Manager").AddComponent<LevelManager>();
+				//DontDestroyOnLoad(instance);
+			}
+			return instance;
+		}
+	}
+	public void Initialize()
+	{
+		CheckPoint[] temparray = null;
+		temparray =  FindObjectsOfType<CheckPoint>();
+		for(int index = 0 ; index < temparray.Length; ++index)
+		{
+			temparray[index].indexInList = index;
+			this.checkPointList.Add(temparray[index]);
+		}
+		//this.checkPointList = FindObjectsOfType<CheckPoint>().ToList();//find and insert all gameobject with checkpoint script
+		this.filemanager = FileManager.Instance;
 
-
-	// Use this for initialization
-	void Start () {
-		this.checkPointList = FindObjectsOfType<CheckPoint>().ToList();//find and insert all gameobject with checkpoint script
 		this.playerobj = GameObject.FindGameObjectWithTag("Player");
 		this.playerinfo = playerobj.GetComponent<PlayerInfo>();
-		this.filemanager = FileManager.Instance;
 		this.playerinventory = playerobj.GetComponent<Inventory>();
 		this.playercastslot = playerobj.GetComponent<CastSlot>();
+		this.playerdialoginferface = DialogInterface.Instance;
+
 		this.playerdataPath = filemanager.GetGameDataPath() + "/" + filemanager.backupFolderName +"/"+ "backup_"+playerSaveFileName + ".xml";
 		this.predefinedInventorySaveFileName = filemanager.GetGameDataPath() + "/" + predefinedInventorySaveFileName + ".xml";
-
 	}
-	
+
+	public void DestroyInstance()
+	{
+		instance = null;
+	}
+
+	public void OnApplicationQuit()
+	{
+		//for testing purpose,please remove the save playerinfo call when release
+		SavePlayerInfo();
+		DestroyInstance();
+	}
+	public int CurrentLevelIndex
+	{
+		get
+		{
+			return Application.loadedLevel;
+		}
+	}
+	public string CurrentLevelName
+	{
+		get
+		{
+			return Application.loadedLevelName;
+		}
+	}
+	public void LoadLevel(string levelname,bool loadPredefinedInventory)
+	{
+		Application.LoadLevel(levelname);
+		if(loadPredefinedInventory == true)
+		{
+			LoadPreDefinedInventory(levelname);
+		}
+	}
+	public void LoadLevel(int levelindex,bool loadPredefinedInventory)
+	{
+		Application.LoadLevel(levelindex);
+		if(loadPredefinedInventory == true)
+		{
+			LoadPreDefinedInventory(levelindex);
+		}
+	}
+//	void Start()
+//	{
+//		this.checkPointList = FindObjectsOfType<CheckPoint>().ToList();//find and insert all gameobject with checkpoint script
+//		this.playerobj = GameObject.FindGameObjectWithTag("Player");
+//		this.playerinfo = playerobj.GetComponent<PlayerInfo>();
+//		this.filemanager = FileManager.Instance;
+//		this.playerinventory = playerobj.GetComponent<Inventory>();
+//		this.playercastslot = playerobj.GetComponent<CastSlot>();
+//		this.playerdataPath = filemanager.GetGameDataPath() + "/" + filemanager.backupFolderName +"/"+ "backup_"+playerSaveFileName + ".xml";
+//		this.predefinedInventorySaveFileName = filemanager.GetGameDataPath() + "/" + predefinedInventorySaveFileName + ".xml";
+//	}
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown("m"))
@@ -44,17 +118,80 @@ public class LevelManager : MonoBehaviour {
 		}
 		if(Input.GetKeyDown("n"))
 		{
-			LoadPreDefinedInventory(currentLevel);
+			LoadPreDefinedInventory(CurrentLevelName);
 		}
 
 	}
 
-	public void OnApplicationQuit()
+
+	public void LoadPreDefinedInventory(int levelIndex)
 	{
-		//for testing purpose,please remove the save playerinfo call when release
-		SavePlayerInfo();
+		if( filemanager.CheckFile(predefinedInventorySaveFileName,false) == false)
+		{
+			print ("ERROR: predefined Inventory save data cannot be found, load data aborted");
+			return ;
+			
+		}
+		print ("loading  predefined Inventory save data");
+		XmlDocument xmlDoc = new XmlDocument();
+		xmlDoc.Load(predefinedInventorySaveFileName);
+		
+		XmlNodeList parentList = null;
+		parentList = xmlDoc.GetElementsByTagName("database");
+		parentList = filemanager.DigToDesiredChildNodeList(parentList,"inventory");
+		
+		
+		bool isNumeric = false;
+		int n = -1;
+		foreach (XmlNode levelsection in parentList)
+		{
+			isNumeric = int.TryParse(levelsection.Attributes["id"].Value, out n);
+			if(isNumeric == true)
+			{
+				if(levelIndex != n)
+				{
+					continue;
+				}
+			}else
+			{
+				if(CurrentLevelName != levelsection.Attributes["id"].Value)
+				{
+					continue;
+				}
+			}
+
+			
+			foreach (XmlNode itemsection in levelsection.ChildNodes)
+			{
+				switch(itemsection.Name)
+				{
+				case "Item":
+				case "item":
+					
+					int amountToAdd = int.Parse(itemsection.Attributes["amount"].Value);
+					
+					isNumeric = int.TryParse(itemsection.Attributes["id"].Value, out n);
+					if(isNumeric == true)
+					{
+						print ("load predefined inventory add item amount: " + amountToAdd);
+						playerinventory.AddItem(n,amountToAdd);
+					}else
+					{
+						print ("load predefined inventory add item amount: " + amountToAdd);
+						playerinventory.AddItem(itemsection.Attributes["id"].Value,amountToAdd);
+					}
+					
+					break;
+					
+				default:
+					print ("ERROR: Unhandled itemsection item field detected: " + itemsection.Name);
+					break;
+				}
+			}
+		}
+		
 	}
-	public void LoadPreDefinedInventory(int level)
+	public void LoadPreDefinedInventory(string levelName)
 	{
 		if( filemanager.CheckFile(predefinedInventorySaveFileName,false) == false)
 		{
@@ -75,9 +212,19 @@ public class LevelManager : MonoBehaviour {
 		int n = -1;
 		foreach (XmlNode levelsection in parentList)
 		{
-			if(currentLevel != int.Parse(levelsection.Attributes["id"].Value))
+			isNumeric = int.TryParse(levelsection.Attributes["id"].Value, out n);
+			if(isNumeric == true)
 			{
-				continue;
+				if(CurrentLevelIndex != n)
+				{
+					continue;
+				}
+			}else
+			{
+				if(levelName != levelsection.Attributes["id"].Value)
+				{
+					continue;
+				}
 			}
 
 			foreach (XmlNode itemsection in levelsection.ChildNodes)
@@ -92,13 +239,13 @@ public class LevelManager : MonoBehaviour {
 					isNumeric = int.TryParse(itemsection.Attributes["id"].Value, out n);
 					if(isNumeric == true)
 					{
+						print ("load predefined inventory add item amount: " + amountToAdd);
 						playerinventory.AddItem(n,amountToAdd);
 					}else
 					{
+						print ("load predefined inventory add item amount: " + amountToAdd);
 						playerinventory.AddItem(itemsection.Attributes["id"].Value,amountToAdd);
 					}
-
-
 
 					break;
 
@@ -148,14 +295,11 @@ public class LevelManager : MonoBehaviour {
 				{
 					switch (sectionitem.Name)
 					{
-					case "currentlevel_raw":
-						//Application.LoadLevel(int.Parse(sectionitem.InnerText));
-						break;
 						
 					case "currentlevel_unity":
 						if(loadCheckPointLevel == true)
 						{
-							Application.LoadLevel( int.Parse(sectionitem.Attributes["number"].Value) );
+							Application.LoadLevel( sectionitem.Attributes["name"].Value );
 						}
 						break;
 						
@@ -250,6 +394,8 @@ public class LevelManager : MonoBehaviour {
 			case "inventory":
 				if(playerinventory != null)
 				{
+					playerinventory.currentweight = int.Parse(playerinfosection.Attributes["weight"].Value);
+
 					sectioncontent = playerinfosection.ChildNodes;
 					foreach (XmlNode sectionitem in sectioncontent)
 					{
@@ -261,6 +407,7 @@ public class LevelManager : MonoBehaviour {
 							tempitem.id = int.Parse(sectionitem.Attributes["id"].Value);
 							tempitem.itemname = sectionitem.Attributes["name"].Value;
 							tempitem.amount = int.Parse(sectionitem.Attributes["amount"].Value);
+							tempitem.weight = int.Parse(sectionitem.Attributes["weight"].Value);
 							tempitem.itemindexinlist = int.Parse(sectionitem.Attributes["index"].Value);
 							tempitem.description = sectionitem.Attributes["description"].Value;
 							tempitem.SetItemType(sectionitem.Attributes["type"].Value);
@@ -307,10 +454,7 @@ public class LevelManager : MonoBehaviour {
 
 		parentlist.Add("player");
 		entrylist.Add(new my_XmlEntry("level",null,null,null));
-		
-		parentlist.Add("level");
-		entrylist.Add(new my_XmlEntry("currentlevel_raw",this.currentLevel.ToString(),null,null));
-		
+
 		parentlist.Add("level");
 		attkey.Clear();
 		attvalue.Clear();
@@ -388,7 +532,7 @@ public class LevelManager : MonoBehaviour {
 				attkey.Add("id");
 				attvalue.Add(checkPointList[currentCheckPointIndex].id.ToString());
 				attkey.Add("name");
-				attvalue.Add(checkPointList[currentCheckPointIndex].checkPointName);
+				attvalue.Add(checkPointList[currentCheckPointIndex].name);
 				attkey.Add("index");
 				attvalue.Add(currentCheckPointIndex.ToString());
 				attkey.Add("x");
@@ -408,7 +552,12 @@ public class LevelManager : MonoBehaviour {
 			if(playerinventory.inventory.Count >= 1)
 			{
 				parentlist.Add("player");
-				entrylist.Add(new my_XmlEntry("inventory",null,null,null));
+				attkey.Clear();
+				attvalue.Clear();
+				attkey.Add("weight");
+				attvalue.Add(playerinventory.currentweight.ToString());
+				entrylist.Add(new my_XmlEntry("inventory",null,attkey,attvalue));
+
 				
 				for(int i = 0 ; i < playerinventory.inventory.Count ;++i )
 				{
@@ -430,6 +579,8 @@ public class LevelManager : MonoBehaviour {
 					attvalue.Add(item.itemname);
 					attkey.Add("amount");
 					attvalue.Add(item.amount.ToString());
+					attkey.Add("weight");
+					attvalue.Add(item.weight.ToString());
 					attkey.Add("description");
 					attvalue.Add(item.description);
 					attkey.Add("stackable");

@@ -121,7 +121,7 @@ public class CastSlot : MonoBehaviour {
 		{
 			GUI.skin = skin;
 
-			DrawQuickSlot();
+			DrawCastSlot();
 
 			if(draggingitem == true)
 			{
@@ -136,7 +136,7 @@ public class CastSlot : MonoBehaviour {
 		}
 	}
 
-	void DrawQuickSlot()
+	void DrawCastSlot()
 	{
 		int index = 0;
 
@@ -152,12 +152,20 @@ public class CastSlot : MonoBehaviour {
 
 			if(slotsLayerList[currentSlotLayer].slots[x].id >= 0)//if slot contain an valid item
 			{
+
 				if(slotsLayerList[currentSlotLayer].slots[x].displayDisableIcon == true)
 				{
-					GUI.DrawTexture(slotRect,slotsLayerList[currentSlotLayer].slots[x].disabledicon);
+					if(slotsLayerList[currentSlotLayer].slots[x].disabledicon != null)
+					{
+						GUI.DrawTexture(slotRect,slotsLayerList[currentSlotLayer].slots[x].disabledicon);
+					}
 				}else
 				{
-					GUI.DrawTexture(slotRect,slotsLayerList[currentSlotLayer].slots[x].icon);
+					if(slotsLayerList[currentSlotLayer].slots[x].icon != null)
+					{
+						GUI.DrawTexture(slotRect,slotsLayerList[currentSlotLayer].slots[x].icon);
+					}
+				
 				}
 
 

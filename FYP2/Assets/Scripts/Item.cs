@@ -11,7 +11,7 @@ public class Item    {
 	public bool stackable = false;
 	public int amount = 1;
 	public int itemindexinlist = -1;//to track the index of the item in the list, for optimization, due to it having to manually managed, it wont always works
-	
+	public CraftingRecipe recipeParent =  new CraftingRecipe();
 	public enum ItemType
 	{
 		Undefined,
@@ -41,15 +41,7 @@ public class Item    {
 
 	public Item()//constructor
 	{
-//		itemname = "Undefined";//Due to giving "name" will clash with in-built unity .name , a different name is given for the varable
-//		id = -1;
-//		description = "Nil";
-//		weight = -1;
-//		stackable = false;
-//		amount = 1;
-//		type = ItemType.Undefined;
 
-		//this.icon = Resources.Load<Texture2D>("Item Icon/"+ this.itemname);
 	}
 	public Item( Item another)//copy constructor
 	{
@@ -61,6 +53,7 @@ public class Item    {
 		this.amount = another.amount;
 		this.stackable = another.stackable;
 		this.displayDisableIcon = another.displayDisableIcon;
+		this.recipeParent = another.recipeParent;
 
 		//this.icon = another.icon;
 		SelfReloadIcon();
