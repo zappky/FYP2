@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\FallResponse.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\PGE\ASSG1\PGE-Assignment\PGE Project - Top Down Shooter\Assets\Scripts\Combat\Firing\Firing.cs">
     <Files>
-      <File FileName="Assets\Scripts\FallResponse.cs" Line="8" Column="2" />
+      <File FileName="..\..\..\PGE\ASSG1\PGE-Assignment\PGE Project - Top Down Shooter\Assets\Scripts\Combat\Firing\Firing.cs" Line="156" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

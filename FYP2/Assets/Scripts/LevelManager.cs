@@ -33,7 +33,6 @@ public class LevelManager : MonoBehaviour {
 		this.playercastslot = playerobj.GetComponent<CastSlot>();
 		this.playerdataPath = filemanager.GetGameDataPath() + "/" + filemanager.backupFolderName +"/"+ "backup_"+playerSaveFileName + ".xml";
 		this.predefinedInventorySaveFileName = filemanager.GetGameDataPath() + "/" + predefinedInventorySaveFileName + ".xml";
-
 	}
 	
 	// Update is called once per frame

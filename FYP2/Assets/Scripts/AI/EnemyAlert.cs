@@ -31,7 +31,7 @@ public class EnemyAlert : MonoBehaviour {
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player");
 		col = gameObject.GetComponent<SphereCollider>();
-		debugRenderer = gameObject.GetComponent<Renderer>();
+		debugRenderer = transform.GetChild(0).GetComponent<Renderer>();
 	}
 
 	// updates the dec of alert. Inc of alert done in EnemyAI

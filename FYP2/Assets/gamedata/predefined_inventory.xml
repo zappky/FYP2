@@ -2,7 +2,8 @@
 <database>
 	<inventory>
 		<level id = "-1">
-			<item id = "3" amount = "1"></item>
+			<item id = "6" amount = "1"></item>
+			<item id = "7" amount = "1"></item>
 		</level>
 	</inventory>
 </database>
