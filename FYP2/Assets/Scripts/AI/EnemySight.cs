@@ -76,7 +76,9 @@ public class EnemySight : MonoBehaviour
 				Debug.DrawRay(ray.origin, ray.direction*transform.localScale.x*col.radius, Color.black, 1);
 			
 			// if player running near AI or is seen
-			if(player.GetComponent<FpsMovement>().isRunning || alert.playerInSight)
+			if((player.GetComponent<CharacterController>().isGrounded
+			&&  player.GetComponent<FpsMovement>().isRunning) 
+			||  alert.playerInSight)
 			{
 				// (calc of alert incr depending on player being seen or not is done in this fn.)
 				alert.AlertIncr(new Vector3(player.transform.position.x,

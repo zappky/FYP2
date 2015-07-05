@@ -2,8 +2,8 @@
 <database>
 	<inventory>
 		<level id = "main-scene">
-			<item id = "9" amount = "3"></item>
-			<item id = "10" amount = "3"></item>
+			<item id = "6" amount = "1"></item>
+			<item id = "7" amount = "1"></item>
 		</level>
 	</inventory>
 </database>

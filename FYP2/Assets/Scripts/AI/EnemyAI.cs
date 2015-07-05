@@ -42,7 +42,7 @@ public class EnemyAI : MonoBehaviour {
 		alert = gameObject.GetComponent<EnemyAlert>();
 		col = gameObject.GetComponent<SphereCollider>(); 
 		player = GameObject.FindGameObjectWithTag("Player");
-		debugRenderer = gameObject.GetComponent<Renderer>();
+		debugRenderer = transform.GetChild(0).GetComponent<Renderer>();
 
 		stats.attackRange += GetComponent<CapsuleCollider>().bounds.size.x*0.5f;
 
