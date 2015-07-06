@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <database>
-	<recipe id = "0">
+	<recipe id = "1">
 		<name>Grapple</name>
 		<description>For easier travelling. Not to be used for fighting titans.</description>
 		<recipeIconName>nill</recipeIconName>
@@ -9,7 +9,7 @@
 		<output id = "Grapple" amount = "1"></output>
 	</recipe>
 
-	<recipe id = "1">
+	<recipe id = "2">
 		<name>Running Shoes</name>
 		<description>Gotta go fast!</description>
 		<recipeIconName>nill</recipeIconName>
@@ -19,7 +19,7 @@
 	</recipe>
 
 
-	<recipe id = "2">
+	<recipe id = "3">
 		<name>Parachute</name>
 		<description>Defy gravity for x seconds.</description>
 		<recipeIconName>nill</recipeIconName>
@@ -28,7 +28,7 @@
 		<output id = "Parachute" amount = "1"></output>
 	</recipe>
 
-	<recipe id = "3">
+	<recipe id = "4">
 		<name>Toy Bell</name>
 		<description>Useful decoy. Works on pets only.</description>
 		<recipeIconName>nill</recipeIconName>

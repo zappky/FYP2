@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <database>
 	<level>
-		<dialogtree>
-			<dialog id = "0" actorname = "npc" >
+		<dialogtree id = "0" gamelevelparent = "main-scene">
+			<dialog id = "0" actorname = "npc" newdialogsection = "true">
 				<text>Hell warrior!</text>
 				<option nextdialogid = "1" resultid = "0">sup noob</option>
 				<option nextdialogid = "2" resultid = "0">hello strange voice</option>
@@ -30,6 +30,27 @@
 				<text>Collect 10 dandilions</text>
 				<option nextdialogid = "" resultid = "1">Let do it</option>
 				<option nextdialogid = "" resultid = "0">No way</option>
+			</dialog>
+			
+			<dialog id = "5" actorname = "npc2" newdialogsection = "true">
+				<text>Next dialog session test ,dialog 5</text>
+				<option nextdialogid = "6" resultid = "0">go dialog 6</option>
+				<option nextdialogid = "7" resultid = "0">go dialog 7</option>
+			</dialog>
+			<dialog id = "6" actorname = "npc2">
+				<text>Next dialog session test,dialog 6</text>
+				<option nextdialogid = "7" resultid = "0">go dialog 7</option>
+				<option nextdialogid = "8" resultid = "0">go dialog 8</option>
+			</dialog>
+			<dialog id = "7" actorname = "npc2">
+				<text>Next dialog session test,dialog 7</text>
+				<option nextdialogid = "8" resultid = "0">go dialog 8</option>
+				<option nextdialogid = "5" resultid = "0">go dialog 5</option>
+			</dialog>
+			<dialog id = "8" actorname = "npc2">
+				<text>Next dialog session test,dialog 8</text>
+				<option nextdialogid = "0" resultid = "0">go dialog session 1</option>
+				<option nextdialogid = "" resultid = "0">end dialog </option>
 			</dialog>
 			
 		</dialogtree>

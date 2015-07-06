@@ -52,6 +52,8 @@ public class Inventory : MonoBehaviour {
 	private const int tabAmount = 2 ;
 	private Rect toolTipRect = new Rect();
 	private Rect dragItemIconRect = new Rect();
+	private bool updateCraftSlotDisplayNow = false;
+	//private bool messageNullTextureError = false;
 
 
 	// Use this for initialization
@@ -96,10 +98,6 @@ public class Inventory : MonoBehaviour {
 		//init weight limit
 		CalculateWeightLimit();
 
-		//just some init of the inventory item
-		//AddItem (1,3);
-		//AddItem (2,3);
-
 		Item tempitem = new Item();
 
 		for(int i = 0 ; i< database.craftDatabase.Count; ++i)
@@ -107,14 +105,16 @@ public class Inventory : MonoBehaviour {
 			tempitem = new Item();
 			if( database.craftDatabase[i].id >= 1)
 			{
+				tempitem.itemname = database.craftDatabase[i].recipe_name;
 				tempitem.id = database.craftDatabase[i].id;//using item as representation of crafting recipe information
 				tempitem.description = CreateCraftToolTip(database.craftDatabase[i]);
 				tempitem.icon = database.craftDatabase[i].recipeIcon;
-
+				tempitem.recipeParent = database.craftDatabase[i];
 				for  (int i2 = 0 ; i2< craftslots.Count; ++ i2)
 				{
 					if(craftslots[i2].id < 0)
 					{
+						ManageCraftRecipeIconDisplay(tempitem);
 						craftslots[i2] = tempitem;
 						break;
 					}
@@ -142,10 +142,6 @@ public class Inventory : MonoBehaviour {
 				if(Input.GetKeyDown("l"))
 				{
 					LoadInventory();
-				}
-				if(Input.GetKeyDown("t"))
-				{
-					AddItem(database.CraftItem(inventory,database.GetCraftRecipe(1)));
 				}
 			}
 			
@@ -204,9 +200,6 @@ public class Inventory : MonoBehaviour {
 		{
 			if(inventory[i].id == item.id && inventory[i].stackable == true)//if found matching item
 			{
-				//Debug.Log("increment existing stackable item" + item.amount);
-				
-				//Debug.Log("checking inventory amount" + inventory[i].amount);
 				inventory[i].amount += item.amount;
 				item = null;
 				
@@ -221,16 +214,17 @@ public class Inventory : MonoBehaviour {
 				{
 					inventory[i] = item;
 					playercastslot.AddItem(new Item(inventory[i]));
-					//Debug.Log("adding new item");
 					break;
 				}
 			}
 		}
 	}
+
 	public bool AddItem(string itemname)//untested
 	{
 		return AddItem(itemname,1);
 	}
+
 	public bool AddItem(string itemname,int amount)//untested
 	{	
 		if (this.currentweight >= this.weightlimit)
@@ -258,33 +252,33 @@ public class Inventory : MonoBehaviour {
 							if (trackerindex > -1)//if found
 							{
 								//stackable and is old item
-								if(UpdateCurrentWeight(true,inventory[trackerindex].weight,inventory[trackerindex].amount+amount) == true)
+								if(CheckExceedWeightLimit (inventory[trackerindex].weight,amount) == false)//check if will not exceed weight limit
 								{
-									inventory[trackerindex].amount += amount;
+									AddItemAmountWithWeight(inventory[trackerindex],amount);
 									return true;
 								}
-								//break;
+
 							}else
 							{
 								//stackable and is new item
-								if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,1+amount) == true)
-								{										
+								if(CheckExceedWeightLimit (database.itemDatabase[j].weight,amount) == false)//check if will not exceed weight limit
+								{
 									inventory[i] = new Item(database.itemDatabase[j]);//add it in
 									inventory[i].amount = amount;
+									currentweight += inventory[i].weight * amount;
 									playercastslot.AddItem(new Item(inventory[i]));
-
 									inventory[i].itemindexinlist = i;
-
 									return true;
-									//break;
 								}
 
 							}
 							
 						}else
 						{
-							if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,inventory[i].amount + amount) == true)//ensure enough weight spacing left
+
+							if(CheckExceedWeightLimit (database.itemDatabase[j].weight,amount) == false )
 							{
+								currentweight += database.itemDatabase[j].weight * amount;
 								for(int addcount = 0 ; addcount < amount; ++addcount)
 								{
 									for(int icontinue = i ; icontinue < inventory.Count; ++icontinue)//loop through whole inventory agn
@@ -302,6 +296,7 @@ public class Inventory : MonoBehaviour {
 								}
 								return true;
 							}
+
 						}
 						break;	
 					}
@@ -343,32 +338,31 @@ public class Inventory : MonoBehaviour {
 							if (trackerindex > -1)//if found
 							{
 								//stackable and is old item
-								if(UpdateCurrentWeight(true,inventory[trackerindex].weight,inventory[trackerindex].amount+amount) == true)
+								if(CheckExceedWeightLimit (inventory[trackerindex].weight,amount) == false)//check if will not exceed weight limit
 								{
-									inventory[trackerindex].amount += amount;
+									AddItemAmountWithWeight(inventory[trackerindex],amount);
 									return true;
-									//break;
 								}
+
 							}else
 							{
 								//stackable and is new item
-								if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,1+amount) == true)
-								{										
+								if(CheckExceedWeightLimit (database.itemDatabase[j].weight,amount) == false)//check if will not exceed weight limit
+								{
 									inventory[i] = new Item(database.itemDatabase[j]);//add it in
 									inventory[i].amount = amount;
+									currentweight += inventory[i].weight * amount;
 									playercastslot.AddItem(new Item(inventory[i]));
-
 									inventory[i].itemindexinlist = i;
-
 									return true;
-									//break;
 								}
 							}
 							
 						}else
 						{
-							if(UpdateCurrentWeight(true,database.itemDatabase[j].weight,inventory[i].amount + amount) == true)//ensure enough weight spacing left
+							if(CheckExceedWeightLimit (database.itemDatabase[j].weight,amount) == false )
 							{
+								currentweight += database.itemDatabase[j].weight * amount;
 								for(int addcount = 0 ; addcount < amount; ++addcount)
 								{
 									for(int icontinue = i ; icontinue < inventory.Count; ++icontinue)//loop through whole inventory agn
@@ -381,11 +375,12 @@ public class Inventory : MonoBehaviour {
 											inventory[icontinue].itemindexinlist = icontinue;
 											
 											break;//break out once found an empty slot and inserted
-										}	
+										}							
 									}
 								}
 								return true;
 							}
+
 						}
 						break;	
 					}
@@ -399,21 +394,21 @@ public class Inventory : MonoBehaviour {
 	{
 		if(inventory[inventoryindex].stackable == true ||  inventory[inventoryindex].type == Item.ItemType.Consumable)
 		{
-			if (UpdateCurrentWeight(false,inventory[inventoryindex].weight,1) == true) //if the weight test pass
+			if(CheckExceedWeightLimit(inventory[inventoryindex].weight,1) == false )
 			{
-				--inventory[inventoryindex].amount;
+				AddItemAmountWithWeight(inventory[inventoryindex],-1);
 				if(inventory[inventoryindex].amount <= 0)
 				{
-					//playercastslot.RemoveItem(inventory[inventoryindex]);
 					playercastslot.GetItem(inventory[inventoryindex]).displayDisableIcon = true;
 					inventory[inventoryindex] = new Item();
 
 				}
 			}
+
 		}else
 		{
-			//playercastslot.RemoveItem(inventory[inventoryindex]);
 			playercastslot.GetItem(inventory[inventoryindex]).displayDisableIcon = true;
+			currentweight -= inventory[inventoryindex].weight * inventory[inventoryindex].amount;
 			inventory[inventoryindex] = new Item();
 
 		}
@@ -447,14 +442,9 @@ public class Inventory : MonoBehaviour {
 		{
 			if( inventory[a_item.itemindexinlist].id == a_item.id || inventory[a_item.itemindexinlist].itemname == a_item.itemname)//early prediction
 			{
-				//Debug.Log("early item access prediction acitvated");
 				return true;
 			}
 		}
-		//else
-//		{
-//			Debug.Log("normal item access acitvated");
-//		}
 
 
 		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
@@ -508,14 +498,12 @@ public class Inventory : MonoBehaviour {
 				
 			case 3:
 			{
-			//Debug.Log("alarm1 effect");
 			GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
 			CTimer escript = obj.GetComponent<CTimer>();
 			escript.OnLookInteract();
-			//print("Display: "  + escript.display);
-			//print("Operate: "  + escript.operate);
+
 			RemoveItem(item.id);
-				//alarmitem.OnLookInteract();	
+
 			}break;
 		}
 
@@ -538,14 +526,12 @@ public class Inventory : MonoBehaviour {
 				
 			case 3:
 			{
-				//Debug.Log("alarm2 effect");
 				GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
 				CTimer escript = obj.GetComponent<CTimer>() as CTimer;
 				escript.OnLookInteract();
-				//print("Display: "  + escript.display);
-				//print("Operate: "  + escript.operate);
+
 				RemoveKnownItem(itemindex);
-				//alarmitem.OnLookInteract();	
+	
 			}break;
 		}
 	}
@@ -588,13 +574,10 @@ public class Inventory : MonoBehaviour {
 			}
 
 			updatedBackgroundRect = new Rect(backgroundRect.x + slotfineoffset.x +slottempoffset.x,backgroundRect.y + slotfineoffset.y +slottempoffset.y, backgroundRect.width,backgroundRect.height);
-			//GUI.Box(new Rect(backgroundRect.x + slotfineoffset.x +slottempoffset.x,backgroundRect.y + slotfineoffset.y +slottempoffset.y, backgroundRect.width,backgroundRect.height),pageNameList[currentPage].ToString());//draw background
-			//GUI.Box(backgroundRect,pageNameList[currentPage].ToString());//draw background
 			GUI.Box(updatedBackgroundRect,pageNameList[currentPage].ToString());//draw background
 
 			for(int i = 0 ; i <tabAmount ; ++i)
 			{
-				//GUI.Box(new Rect(tabRectList[i].x + slotfineoffset.x +slottempoffset.x,tabRectList[i].y + slotfineoffset.y +slottempoffset.y,tabRectList[i].width,tabRectList[i].height  ),tabNameList[i].ToString());//draw the tabs
 				updatedTabRect = new Rect(tabRectList[i].x + slotfineoffset.x +slottempoffset.x,tabRectList[i].y + slotfineoffset.y +slottempoffset.y,tabRectList[i].width,tabRectList[i].height) ;
 				GUI.Box(updatedTabRect,tabNameList[i].ToString());//draw the tabs
 
@@ -610,7 +593,12 @@ public class Inventory : MonoBehaviour {
 					}
 				}
 			}
-			
+
+			if(currentPage != 1)
+			{
+				updateCraftSlotDisplayNow = true;//reset the flag
+			}
+
 			switch (currentPage)
 			{
 
@@ -623,10 +611,22 @@ public class Inventory : MonoBehaviour {
 					{
 						GUI.DrawTexture(dragItemIconRect,itemdragged.icon);
 					}
-
+					
 					break;
 				//crafting page	
 				case 1:
+					if(updateCraftSlotDisplayNow == true)//idea is to refresh the craft recipe display only when the page is on and only once per vist
+					{
+						for(int i = 0 ; i< craftslots.Count; ++i)
+						{
+							if(craftslots[i].id >0)
+							{
+								ManageCraftRecipeIconDisplay(craftslots[i]);
+							}
+							
+						}
+						updateCraftSlotDisplayNow = false;
+					}
 					DrawCrafting();
 					break;
 
@@ -670,10 +670,20 @@ public class Inventory : MonoBehaviour {
 				
 				if(craftslots[index].id >= 0)//if slot contain an valid item
 				{
-					if(craftslots[index].icon != null)
+					if(craftslots[index].displayDisableIcon == true)
 					{
-						GUI.DrawTexture(slotRect,craftslots[index].icon);
+						if(craftslots[index].disabledicon != null)
+						{
+							GUI.DrawTexture(slotRect,craftslots[index].disabledicon);
+						}
+					}else
+					{
+						if(craftslots[index].icon != null)
+						{
+							GUI.DrawTexture(slotRect,craftslots[index].icon);
+						}
 					}
+
 
 					
 					if(slotRect.Contains(currentevent.mousePosition))//check if mouse hover over the box
@@ -683,6 +693,7 @@ public class Inventory : MonoBehaviour {
 						if(currentevent.button == 0 &&currentevent.type == EventType.mouseDown && currentevent.clickCount == 2)//double click
 						{
 							AddItem(database.CraftItem(inventory,database.GetCraftRecipe(craftslots[index].id)));
+							ManageCraftRecipeIconDisplay(craftslots[index]);
 						}
 					}
 				}else//if current slot contain invalid item
@@ -706,13 +717,12 @@ public class Inventory : MonoBehaviour {
 		{				
 			if(itemdragged.stackable == true ||  itemdragged.type == Item.ItemType.Consumable)
 			{
-				//RemoveItem(itemdragged.itemname);
 
-				--itemdragged.amount;
-				//Debug.Log("discarding");
+				AddItemAmountWithWeight(itemdragged,-1);
+
 				if(itemdragged.amount <= 0)
 				{		
-					//playercastslot.RemoveItem(itemdragged);
+
 					playercastslot.GetItem(itemdragged).displayDisableIcon = true;
 					draggingitem = false;
 					itemdragged = null;
@@ -727,8 +737,7 @@ public class Inventory : MonoBehaviour {
 			for (int x = 0; x < slotX; ++x) 
 			{
 				Rect slotRect = new Rect(x*slotsize*slotXpadding + slotsXstartposition + slotfineoffset.x +slottempoffset.x, y*slotsize*slotYpadding + slotsYstartposition + slotfineoffset.y+slottempoffset.y,slotsize,slotsize);
-				//Rect slotRect = new Rect(x*60,y*60,50,50);
-				//GUI.Box(slotRect, index.ToString(),skin.GetStyle("slot"));
+
 				GUI.Box(slotRect, "",skin.GetStyle("slot"));
 				slots[index] = inventory[index];//sync up
 
@@ -746,16 +755,14 @@ public class Inventory : MonoBehaviour {
 					if(slotRect.Contains(currentevent.mousePosition))//check if mouse hover over the box
 					{
 						
-						//testhit = true;
+
 						showtooltip = true;
-						//print("Index" + index);
 						tooltip = CreateToolTip(slots[index]);
 						
 						
 						if(currentevent.button == 0 &&currentevent.type == EventType.mouseDown && currentevent.clickCount == 2)//double click
 						{
-							//Debug.Log("double click");
-							//++testdoubleclickcount;
+
 							UseItem(slots[index],index);
 						}
 						
@@ -781,8 +788,6 @@ public class Inventory : MonoBehaviour {
 					}
 				}else//if current slot contain invalid item
 				{
-				
-						
 					if(slotRect.Contains(currentevent.mousePosition))//check if mouse hover over the box
 					{
 						//tooltip = "";
@@ -802,6 +807,19 @@ public class Inventory : MonoBehaviour {
 				++index;
 				
 			}
+		}
+	}
+
+	void ManageCraftRecipeIconDisplay(Item the_recipe_representation)//remember that i am using item class as representation of the craft recipe inside the craftslots
+	{
+		if(database.CheckCraftable(inventory,the_recipe_representation.recipeParent) == false)
+		{
+			//print ("recipe "+ the_recipe_representation.itemname + " is not craftable");
+			the_recipe_representation.displayDisableIcon = true;
+		}else
+		{
+			//print ("recipe "+ the_recipe_representation.itemname + " is CRAFTABLE");
+			the_recipe_representation.displayDisableIcon = false;
 		}
 	}
 	void SimplePrintInventory()
@@ -827,24 +845,18 @@ public class Inventory : MonoBehaviour {
 			PlayerPrefs.SetInt("Inventory " + i,inventory[i].id);
 		}
 	}
-	bool UpdateCurrentWeight(bool mode , float item_weight, int item_amount)
+	void AddItemAmountWithWeight(Item a_item,int amountToAdd)//warning, it is a += ,not = ,so the resulting amount may differ from expectation
 	{
-		float combinedweight = item_weight * item_amount;
-
-		if (mode == true)//add mode
+		a_item.amount += amountToAdd;
+		this.currentweight += amountToAdd * a_item.weight;
+	}
+	bool CheckExceedWeightLimit( float item_weight, int item_amount)
+	{
+		if (this.currentweight + (item_weight * item_amount) > this.weightlimit)
 		{
-			if (this.currentweight + combinedweight <= this.weightlimit)
-			{
-				this.currentweight += combinedweight;
-				return true;
-			}
-			
-		}else
-		{
-			this.currentweight -= combinedweight;
 			return true;
 		}
-		
+
 		return false;
 	}
 

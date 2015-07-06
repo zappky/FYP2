@@ -2,6 +2,6 @@
 <database>
 	<vendor id="0">
 		<name>test vendor</name>
-		<output id="3" name="clock" amount="10" />
+		<output id="3" name="clock" amount="1" />
 	</vendor>
 </database>

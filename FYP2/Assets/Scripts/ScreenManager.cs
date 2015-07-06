@@ -63,14 +63,14 @@ public class ScreenManager : MonoBehaviour {
 		//print ("aspect changed?" + aspectchanged);
 	}
 
-	public float CurrrentScreenWidth
+	public float CurrentScreenWidth
 	{
 		get
 		{
 			return this.currScreenWidth;
 		}
 	}
-	public float CurrrentScreenHeight
+	public float CurrentScreenHeight
 	{
 		get
 		{

@@ -64,6 +64,7 @@ public class Interactable : MonoBehaviour {
 	//for picking up effect
 	public void SpawnItem(bool preferNameAsIdentifier)//preferred default call, prority is given to add item using id first.
 	{
+		print ("spawning item");
 		foreach (my_VendorEntry item in vendordatabase.vendorList)
 		{
 			if(item.vendorName == this.name)//find the corresponding vendor name
@@ -80,6 +81,7 @@ public class Interactable : MonoBehaviour {
 								if(playerInventory.AddItem(itemcontent.itemid) == false)
 								{
 									SpawnItemBlind();
+
 								}
 							}
 						}else
@@ -89,6 +91,7 @@ public class Interactable : MonoBehaviour {
 								if(playerInventory.AddItem(itemcontent.itemname) == false)
 								{
 									SpawnItemBlind();
+
 								}
 							}
 						}

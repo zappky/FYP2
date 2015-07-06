@@ -262,30 +262,34 @@ public class CraftingRecipe//i do this purely because i want to view the item in
 		LoadRecipeIcon();
 	}
 
+
 	public void AddIngrediant(Item a_item)
 	{
 		this.ingrediant.Add(MakeItemData(a_item.id,a_item.ItemName,a_item.amount));
-	}
-	public void AddOutputItem(Item a_item)
-	{
-		this.output.Add(MakeItemData(a_item.id,a_item.ItemName,a_item.amount));
-	}
-	public void AddIngrediant(int itemid,string itemname, int amount)
-	{
-		this.ingrediant.Add(MakeItemData(itemid,itemname,amount));
-	}
-	public void AddOutputItem(int itemid,string itemname, int amount)
-	{
-		this.output.Add(MakeItemData(itemid,itemname,amount));
 	}
 	public void AddIngrediant(int itemid, int amount)
 	{
 		this.ingrediant.Add(MakeItemData(itemid,amount));
 	}
+	public void AddIngrediant(int itemid,string itemname, int amount)
+	{
+		this.ingrediant.Add(MakeItemData(itemid,itemname,amount));
+	}
+	
+	public void AddOutputItem(Item a_item)
+	{
+		this.output.Add(MakeItemData(a_item.id,a_item.ItemName,a_item.amount));
+	}
 	public void AddOutputItem(int itemid, int amount)
 	{
 		this.output.Add(MakeItemData(itemid,amount));
 	}
+	public void AddOutputItem(int itemid,string itemname, int amount)
+	{
+		this.output.Add(MakeItemData(itemid,itemname,amount));
+	}
+
+
 	private Item_Proxy MakeItemData(int itemid,string itemname, int amount)
 	{
 		return new Item_Proxy(itemid,itemname,amount); 
@@ -308,14 +312,10 @@ public class CraftingRecipe//i do this purely because i want to view the item in
 	}
 	public void ClearIngrediant()
 	{
-		//this.recipe_name = "";
 		this.ingrediant.Clear();
-		//this.output.Clear();
 	}
 	public void ClearOutput()
 	{
-		//this.recipe_name = "";
-		//this.ingrediant.Clear();
 		this.output.Clear();
 	}
 	public void ClearAll()
@@ -355,7 +355,6 @@ public class ItemDatabase : MonoBehaviour {
 	private static ItemDatabase instance = null;
 	public List<Item> itemDatabase = new List<Item>();//containing all unique game item,crafted item and materals
 	public List<CraftingRecipe> craftDatabase = new List<CraftingRecipe>();//containing all game item crafting combination
-	//public CTimer alarmitem = null;
 
 	public static ItemDatabase Instance
 	{
@@ -363,7 +362,6 @@ public class ItemDatabase : MonoBehaviour {
 		{
 			if(instance == null)
 			{
-
 				instance = new GameObject("Item Database").AddComponent<ItemDatabase>();
 				DontDestroyOnLoad(instance);
 			}
@@ -373,15 +371,8 @@ public class ItemDatabase : MonoBehaviour {
 
 	public void Initialize()
 	{	
-		//alarmitem = GameObject.FindGameObjectWithTag("Alarm").GetComponent<CTimer>();//to input the script rference
-			//alarmitem = this.GetComponent<CTimer>();
-			//PopulateGameObjectData();
-			//PopulateCraftingData();
-				
 		LoadItemsData();
 		LoadCraftsData();
-		//PopulateTestObject();//remove when project go full launch
-		//PopulateTestCraftingData();
 	}
 
 	public void OnApplicationQuit()//this will be auto called like start and update function
@@ -433,45 +424,6 @@ public class ItemDatabase : MonoBehaviour {
 		return new CraftingRecipe(id,recipieName,itemList,output, description, recipeIconName);
 	}
 	
-//	public List<Item> MakePair(Item item1, Item item2)
-//	{
-//		List<Item> templist = new List<Item>();
-//		templist.Add(item1);
-//		templist.Add(item2);
-//		return templist;
-//	}
-//	public List<Item> MakePair(int itemid1, int itemid2)
-//	{
-//		List<Item> templist = new List<Item>();
-//		templist.Add(GetItem(itemid1));
-//		templist.Add(GetItem(itemid2));
-//		return templist;
-//	}
-	public void PopulateGameObjectData()//real game object data goes here
-	{
-	
-	}
-	public void PopulateCraftingData()//real game object crafting combination data goes here
-	{
-		
-	}
-	public void PopulateTestCraftingData()
-	{
-		List<Item> temp1 = new List<Item>();
-		temp1.Add(CreateItem("battery"));
-		temp1.Add(CreateItem("gear"));	
-		
-		List<Item> temp2 = new List<Item>();
-		temp2.Add(CreateItem("clock"));
-		temp2[0].amount = 1;
-		craftDatabase.Add(MakeCraftingRecipe(0,"test Alarm recipe",temp1,temp2,"a test alarm recipe",""));	
-	}
-	public void PopulateTestObject()
-	{
-		itemDatabase.Add(new Item(1,"battery",Item.ItemType.CraftMaterial,"just a test object 0",1,1,true));	
-		itemDatabase.Add(new Item(2,"gear",Item.ItemType.CraftMaterial,"just a test item 1",1,1,true));	
-		itemDatabase.Add(new Item(3,"clock",Item.ItemType.Useable,"just a test alarm item 2",1,1,false));
-	}
 	public Item GetItemWithIndex(int index)
 	{
 		return itemDatabase[index];
@@ -489,6 +441,14 @@ public class ItemDatabase : MonoBehaviour {
 	}
 	public Item GetItem(int id)//beware that this is getting a reference, whatever you do to the returned item,gonna affect the database
 	{
+		if(id >= 0 && id <itemDatabase.Count)//early prediction
+		{
+			if(id == itemDatabase[id].id)
+			{
+				return itemDatabase[id];
+			}
+		}
+
 		for(int i = 0 ; i < itemDatabase.Count; ++i)
 		{
 			if(id == itemDatabase[i].id)
@@ -547,30 +507,14 @@ public class ItemDatabase : MonoBehaviour {
 		
 		return false;
 	}
-//	public bool UseItemEffect(int id)//activate other script effect here
-//	{
-//		bool result = false;
-//		
-//		switch(id)
-//		{
-//			default:
-//			case 0:
-//			{
-//				Debug.Log("nill effect");
-//			}break;
-//				
-//			case 3:
-//			{
-//				Debug.Log("alarm effect");
-//				alarmitem.OnLookInteract();
-//				result = true;		
-//			}break;
-//		}
-//		
-//		return result;
-//	}
+
 	public List<Item> CraftItem(List<Item>ingrediant,int recipeId)//untested
 	{
+		if(ingrediant.Count == 0)
+		{
+			return null;
+		}
+
 		int matches = 0;
 		bool skip = false;
 		List<Item_Proxy> match = new List<Item_Proxy>(); 
@@ -622,6 +566,11 @@ public class ItemDatabase : MonoBehaviour {
 	}
 	public List<Item> CraftItem(List<Item>ingrediant,string recipeName)//untested
 	{
+		if(ingrediant.Count == 0)
+		{
+			return null;
+		}
+
 		int matches = 0;
 		bool skip = false;
 		List<Item_Proxy> match = new List<Item_Proxy>(); 
@@ -674,6 +623,15 @@ public class ItemDatabase : MonoBehaviour {
 	
 	public List<Item> CraftItem(List<Item>ingrediant,CraftingRecipe recipe)//take in ingrediant and recipe and produce out the crafted items in a list
 	{
+		if(recipe == null || ingrediant.Count == 0)
+		{
+			return null;
+		}
+		if(recipe.output.Count == 0 || recipe.ingrediant.Count == 0)
+		{
+			return null;
+		}
+
 		int matches = 0;
 		bool skip = false;
 		List<Item_Proxy> match = new List<Item_Proxy>(); 
@@ -737,19 +695,47 @@ public class ItemDatabase : MonoBehaviour {
 		
 		return output;
 	}
-	
+
 	public bool CheckCraftable(List<Item>ingrediant,CraftingRecipe recipe)
 	{
+		if(recipe == null)
+		{
+			return false;
+		}
+		if(recipe.output.Count == 0 || recipe.ingrediant.Count == 0)
+		{
+			return false;
+		}
+
 		int matches = 0;
+		bool skip = false;
+		List<Item_Proxy> match = new List<Item_Proxy>(); 
+		List<int> matchedId = new List<int>();//a list to mark which recipe ingrediant has already been recored
+		List<Item> output = new List<Item>();//meant to be empty just for return
 		
 		for(int i = 0 ; i < ingrediant.Count; ++i)
 		{
 			for(int k = 0 ; k < recipe.ingrediant.Count; ++k)
 			{
-				if(ingrediant[i].id == recipe.ingrediant[k].itemid && ingrediant[i].amount >= recipe.ingrediant[k].amount)
+				skip = false; //reset flag
+				
+				for(int j = 0 ; j < matchedId.Count; ++j)
 				{
-					++matches;
-					break;
+					if ( k == matchedId[j])//skip the already checked ingrediant
+					{
+						skip = true;
+						break;
+					}
+				}
+				if (skip == false)
+				{
+					if(ingrediant[i].id == recipe.ingrediant[k].itemid && ingrediant[i].amount >= recipe.ingrediant[k].amount)
+					{
+						++matches;
+						match.Add(new Item_Proxy(i,recipe.ingrediant[k].amount));//keep record of which ingrediant index and how many of its amount to deduct.
+						matchedId.Add(k);
+						break;
+					}
 				}
 			}
 		}
@@ -772,6 +758,14 @@ public class ItemDatabase : MonoBehaviour {
 	}
 	public CraftingRecipe GetCraftRecipe(int id)//beware that it is getting as reference
 	{
+		if(id >= 0 && id < craftDatabase.Count)//early prediction
+		{
+			if(id == craftDatabase[id].id)
+			{
+				return craftDatabase[id];
+			}
+		}
+
 		for(int i = 0 ; i < craftDatabase.Count; ++i)
 		{
 			if(id == craftDatabase[i].id)
@@ -795,6 +789,14 @@ public class ItemDatabase : MonoBehaviour {
 	}
 	public CraftingRecipe CreateCraftRecipe(int id)///creating new crafting recipe based on the database one
 	{
+		if(id >= 0 && id < craftDatabase.Count)//early prediction
+		{
+			if(id == craftDatabase[id].id)
+			{
+				return new CraftingRecipe(craftDatabase[id]);
+			}
+		}
+
 		for(int i = 0 ; i < craftDatabase.Count; ++i)
 		{
 			if(id == craftDatabase[i].id)
@@ -807,6 +809,14 @@ public class ItemDatabase : MonoBehaviour {
 	
 	public bool CheckValidCraftRecipe(int id)
 	{
+		if(id >= 0 && id < craftDatabase.Count)//early prediction
+		{
+			if(id == craftDatabase[id].id)
+			{
+				return true;
+			}
+		}
+
 		for(int i = 0 ; i < craftDatabase.Count; ++i)
 		{
 			if(id == craftDatabase[i].id)

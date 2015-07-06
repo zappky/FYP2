@@ -10,6 +10,7 @@ public class FpsMovement : MonoBehaviour
 	public bool useParachute = false;
 	public float moveSpeed = 7.0f; //movement speed
 	public float jumpSpeed = 5.0f;
+	public float runSpeed = 1.2f;
 	public float paraSpeed = 1.0f; //Parachute speed
 	public float airSpeed = 3.0f;  //on air speed
 	public float swingSpeed = 0.1f;	//grapple swing speed
@@ -56,15 +57,19 @@ public class FpsMovement : MonoBehaviour
 		{
 			if(cc.isGrounded)
 			{
-				isRunning = true;
-				forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed * 2.0f;	//shud use runSpd instead of 2
-				sideSpeed = Input.GetAxis ("Horizontal") * moveSpeed * 2.0f;
+				forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed * runSpeed;	
+				sideSpeed = Input.GetAxis ("Horizontal") * moveSpeed * runSpeed;
 
-				runSFXdelay -= Time.deltaTime;
-				if(runSFXdelay <= 0)	 
+				if(forwardSpeed != 0 || sideSpeed != 0)
 				{
-					runSFXdelay = SFX_DELAY;
-					AudioSource.PlayClipAtPoint(runSound, transform.position);
+					isRunning = true;
+
+					runSFXdelay -= Time.deltaTime;
+					if(runSFXdelay <= 0)	 
+					{
+						runSFXdelay = SFX_DELAY;
+						AudioSource.PlayClipAtPoint(runSound, transform.position);
+					}
 				}
 			}
 		}
@@ -74,6 +79,12 @@ public class FpsMovement : MonoBehaviour
 			isRunning = false;
 			forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed;	
 			sideSpeed = Input.GetAxis ("Horizontal") * moveSpeed;
+		}
+
+		if(isRunning && !cc.isGrounded)	// reduce spd when in air after a run jump
+		{
+			forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed * runSpeed*0.5f;	
+			sideSpeed = Input.GetAxis ("Horizontal") * moveSpeed * runSpeed*0.5f;
 		}
 
 		isGrappling = updateGrappleCheck();
@@ -88,7 +99,7 @@ public class FpsMovement : MonoBehaviour
 			}
 			else
 			{
-				vertVelo = Input.GetAxis ("Fly") * moveSpeed;	//dunno how do real fly mode
+				vertVelo = Input.GetAxis("Fly") * moveSpeed;	//dunno how do real fly mode
 			}
 
 			if(cc.isGrounded && Input.GetButton("Jump"))

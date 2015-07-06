@@ -60,7 +60,7 @@ public class DialogDatabase : MonoBehaviour {
 			{
 				foreach (my_DialogOption a_dialogoption in a_dialognode.options)
 				{
-					my_DialogNode thenextdialognode = templist[i].FindDialog(a_dialogoption.nextDialogId);
+					my_DialogNode thenextdialognode = templist[i].GetDialog(a_dialogoption.nextDialogId);
 					a_dialogoption.nextDialog = thenextdialognode;
 				}
 				
@@ -69,26 +69,89 @@ public class DialogDatabase : MonoBehaviour {
 			dialogDatabase.Add(templist[i]);
 		}
 	}
-
-	public DialogTree GetDialogTreeWithIndex(int index)
-	{	
-		if(index >= 0 && index < dialogDatabase.Count)
-		{
-			return dialogDatabase[index];
-		}	
-		Debug.Log("ERROR: Get Dialog tree index,array out of range");
-		return null	;	
-	}
-	public DialogTree GetDialogTreeWithLevel(int level)
+	public my_DialogNode GetBookmarkDialogNode(string gameLevelParentName , string bookmark_node_name)
 	{
-		level--;
+		return GetDialogTree(gameLevelParentName).GetDialogBookmarked(bookmark_node_name);
+	}
+	
+	public my_DialogNode GetBookmarkDialogNode(int dialogTreeId , string bookmark_node_name)
+	{
+		return GetDialogTree(dialogTreeId).GetDialogBookmarked(bookmark_node_name);
+	}
 
-		if(level >= 0 && level < dialogDatabase.Count)
+	public my_DialogNode GetBookmarkDialogNode(string gameLevelParentName , int bookmark_node_id)
+	{
+		return GetDialogTree(gameLevelParentName).GetDialogBookmarked(bookmark_node_id);
+	}
+	
+	public my_DialogNode GetBookmarkDialogNode(int dialogTreeId , int bookmark_node_id)
+	{
+		return GetDialogTree(dialogTreeId).GetDialogBookmarked(bookmark_node_id);
+	}
+
+	public my_DialogNode GetDialogNode(string gameLevelParentName , int node_id)
+	{
+		return GetDialogNode(GetDialogTree(gameLevelParentName),node_id);
+	}
+
+	public my_DialogNode GetDialogNode(int dialogTreeId , int node_id)
+	{
+		return GetDialogNode(GetDialogTree(dialogTreeId),node_id);
+	}
+
+	public my_DialogNode GetDialogNode(DialogTree dialogTree , int node_id)
+	{
+		if(node_id >= 0 && node_id < dialogTree.dialogs.Count)
 		{
-			return dialogDatabase[level];
+			if(node_id == dialogTree.dialogs[node_id].nodeId)
+			{
+				return dialogTree.dialogs[node_id];
+			}
+		}
+		foreach (my_DialogNode a_node in dialogTree)
+		{
+			if(node_id == a_node.nodeId)
+			{
+				return a_node;
+			}
 		}
 
 		return null;
-
 	}
+
+	public DialogTree GetDialogTree(string gameLevelName)
+	{
+		for(int i = 0 ; i < dialogDatabase.Count; ++i)
+		{
+			if(dialogDatabase[i].gameLevelParent == gameLevelName)
+			{
+				return dialogDatabase[i];
+			}
+		}
+		Debug.Log("ERROR: Get Dialog tree -  cannot find tree with the name: " + gameLevelName);
+		return null;
+	}
+
+	public DialogTree GetDialogTree(int id)
+	{	
+		if(id >= 0 && id < dialogDatabase.Count)
+		{
+			if(dialogDatabase[id].id == id)
+			{
+				return dialogDatabase[id];
+			}
+
+		}	
+
+		foreach(DialogTree a_tree in dialogDatabase)
+		{
+			if(a_tree.id == id)
+			{
+				return a_tree;
+			}
+		}
+		Debug.Log("ERROR: GetDialogTree cannot find dialogtree with: " + id);
+		return null	;	
+	}
+
 }
