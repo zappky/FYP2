@@ -55,7 +55,6 @@ public class Inventory : MonoBehaviour {
 	private bool updateCraftSlotDisplayNow = false;
 	//private bool messageNullTextureError = false;
 
-
 	// Use this for initialization
 	void Start () {
 	
@@ -114,6 +113,7 @@ public class Inventory : MonoBehaviour {
 				{
 					if(craftslots[i2].id < 0)
 					{
+						tempitem.SelfReloadIcon();
 						ManageCraftRecipeIconDisplay(tempitem);
 						craftslots[i2] = tempitem;
 						break;
@@ -132,6 +132,7 @@ public class Inventory : MonoBehaviour {
 			if(Input.GetButtonDown("Inventory"))
 			{
 				ToggleDisplay();
+				Cursor.visible = !Cursor.visible;
 			}
 			if(display == true)
 			{
@@ -494,17 +495,26 @@ public class Inventory : MonoBehaviour {
 			case 0:
 			{
 				Debug.Log("nill effect");
-			}break;
-				
+			}
+			break;
+			case 1:
+			{
+				GrappleScript gscript = GetComponent<GrappleScript>();
+				if(!gscript.isGrappling)
+					gscript.FireGrapple();
+				else
+					gscript.ReleaseGrapple();
+			}
+			break;
 			case 3:
 			{
-			GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
-			CTimer escript = obj.GetComponent<CTimer>();
-			escript.OnLookInteract();
+				GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
+				CTimer escript = obj.GetComponent<CTimer>();
+				escript.OnLookInteract();
 
-			RemoveItem(item.id);
-
-			}break;
+				RemoveItem(item.id);
+			}
+			break;
 		}
 
 	}

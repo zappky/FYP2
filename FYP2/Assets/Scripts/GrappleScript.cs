@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GrappleScript : MonoBehaviour {
 
+	public bool isGrappling = false;
 	public float ascSpeed = 0.1f;					// player's ascend/descend spd (scale spd)
 	public float ascDelay = 0.01f;					// player's ascend/descend input delay (more is slower)
 	
@@ -26,7 +27,8 @@ public class GrappleScript : MonoBehaviour {
 	float ascInputDelay;			// asc/desc input delay
 	
 	//FpsMovement FPSController;
-	
+	//Inventory inventory;
+
 	void Start() {
 		//FPSController = this.GetComponent<FpsMovement>();
 		rightHand = Camera.main.transform.FindChild(RHandName);
@@ -48,17 +50,17 @@ public class GrappleScript : MonoBehaviour {
 
 
 	void Update() {
-		if(Input.GetButtonDown("Grapple")) 	
-		{
-			if(theGrapple == null)				// if player havent launch grapple
-			{
-				FireGrapple();
-			}
-			else
-			{
-				ReleaseGrapple();
-			}
-		}
+//		if(Input.GetButtonDown("Grapple")) 	
+//		{
+//			if(theGrapple == null)				// if player havent launch grapple
+//			{
+//				FireGrapple();
+//			}
+//			else
+//			{
+//				ReleaseGrapple();
+//			}
+//		}
 
 		if(theGrapple != null)
 		{
@@ -153,8 +155,9 @@ public class GrappleScript : MonoBehaviour {
 		}
 	}
 	
-	void FireGrapple()
+	public void FireGrapple()
 	{
+		isGrappling = true;
 		Camera cam = Camera.main;
 		Vector3 rightHandPos = rightHand.position;				// temp pos storage
 		rightHandPos.y += grappleSpawnOffset.y;					// so we can offset spawn Y pos
@@ -189,8 +192,9 @@ public class GrappleScript : MonoBehaviour {
 		// So spawn grapple ascended - i.e. 'shortened' with 19u length)
 	}
 	
-	void ReleaseGrapple()
+	public void ReleaseGrapple()
 	{
+		isGrappling = false;
 		theGrapple = null;
 		this.gameObject.GetComponent<Rigidbody>().isKinematic = true;	
 		Destroy(this.GetComponent<FixedJoint>());

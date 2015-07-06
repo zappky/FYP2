@@ -11,3 +11,5 @@ EditorBuildSettings:
     path: Assets/Scenes/winscreen.unity
   - enabled: 1
     path: Assets/Scenes/losescreen.unity
+  - enabled: 1
+    path: Assets/Scenes/main_menu.unity

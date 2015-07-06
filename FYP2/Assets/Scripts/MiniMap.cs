@@ -82,20 +82,27 @@ public class MiniMap : MonoBehaviour {
 		radarObjectsO = new List<GameObject> ();
 		borderObjectsO = new List<GameObject> ();
 
-		foreach(GameObject o in objectives)
+		if(objectives.Length > 0)
 		{
-			GameObject k = Instantiate(objectivePrefab, o.transform.position, Quaternion.identity) as GameObject;
-			radarObjectsO.Add(k);
-			GameObject j = Instantiate(objectivePrefab, o.transform.position, Quaternion.identity) as GameObject;
-			borderObjectsO.Add(j);
+			foreach(GameObject o in objectives)
+			{
+				GameObject k = Instantiate(objectivePrefab, o.transform.position, Quaternion.identity) as GameObject;
+				radarObjectsO.Add(k);
+				GameObject j = Instantiate(objectivePrefab, o.transform.position, Quaternion.identity) as GameObject;
+				borderObjectsO.Add(j);
+			}
 		}
 
-		for(int i = 0; i < ai.Count; i++)
+		if(ai.Count > 0)
 		{
-			GameObject k = Instantiate(enemyPrefab, ai[i].transform.position, Quaternion.identity) as GameObject;
-			radarObjectsE.Add(k);
-			GameObject j = Instantiate(enemyPrefab, ai[i].transform.position, Quaternion.identity) as GameObject;
-			borderObjectsE.Add(j);
+			for(int i = 0; i < ai.Count; i++)
+			{
+				GameObject k = Instantiate(enemyPrefab, ai[i].transform.position, Quaternion.identity) as GameObject;
+				//k.GetComponent<MeshRenderer>().enabled = false;
+				radarObjectsE.Add(k);
+				GameObject j = Instantiate(enemyPrefab, ai[i].transform.position, Quaternion.identity) as GameObject;
+				borderObjectsE.Add(j);
+			}
 		}
 	}
 }

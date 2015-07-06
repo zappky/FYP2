@@ -1,8 +1,22 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TriggerEvent.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LevelManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\TriggerEvent.cs" Line="44" Column="3" />
+      <File FileName="Assets\Scripts\Inventory.cs" Line="506" Column="28" />
+      <File FileName="Assets\Scripts\GrappleScript.cs" Line="195" Column="9" />
+      <File FileName="Assets\gamedata\itemdatas.xml" Line="1" Column="1" />
+      <File FileName="Assets\gamedata\dialogdatas.xml" Line="42" Column="29" />
+      <File FileName="Assets\gamedata\predefined_inventory.xml" Line="10" Column="12" />
+      <File FileName="Assets\Scripts\FileManager.cs" Line="173" Column="18" />
+      <File FileName="Assets\Scripts\LevelManager.cs" Line="400" Column="57" />
+      <File FileName="Assets\Scripts\FpsMovement.cs" Line="47" Column="45" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MiniMap.cs">
+    <Files>
+      <File FileName="Assets\Scripts\MiniMap.cs" Line="19" Column="2" />
+      <File FileName="Assets\Scripts\volumecontrol.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PauseMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MainMenu.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -13,6 +13,10 @@ TagManager:
   - Waypoint
   - GrappleEnd
   - GrappleHook
+  - Floor
+  - AImanager
+  - Enemy
+  - MainMenu
   layers:
   - Default
   - TransparentFX

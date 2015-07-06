@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-//using System.Linq;
+using System.Linq;
 using System.Xml;
 
 [System.Serializable]
@@ -38,13 +38,21 @@ public class LevelManager : MonoBehaviour {
 	}
 	public void Initialize()
 	{
-		CheckPoint[] temparray = null;
-		temparray =  FindObjectsOfType<CheckPoint>();
-		for(int index = 0 ; index < temparray.Length; ++index)
+		//CheckPoint[] temparray = null;
+		List<CheckPoint> tempCheckPointList = new List<CheckPoint>();
+		//temparray =  FindObjectsOfType<CheckPoint>();
+//		for(int index = 0 ; index < temparray.Length; ++index)
+//		{
+//			temparray[index].indexInList = index;
+//			this.checkPointList.Add(temparray[index]);
+//		}
+		tempCheckPointList = FindObjectsOfType<CheckPoint>().OrderBy(go=>go.name).ToList();
+		for(int index = 0 ; index < tempCheckPointList.Count; ++index)
 		{
-			temparray[index].indexInList = index;
-			this.checkPointList.Add(temparray[index]);
+			tempCheckPointList[index].indexInList = index;
+			this.checkPointList.Add(tempCheckPointList[index]);
 		}
+
 		//this.checkPointList = FindObjectsOfType<CheckPoint>().ToList();//find and insert all gameobject with checkpoint script
 		this.filemanager = FileManager.Instance;
 
@@ -388,6 +396,8 @@ public class LevelManager : MonoBehaviour {
 			case "checkpoint":
 				int checkpointindex = int.Parse(playerinfosection.Attributes["index"].Value);
 				playerobj.transform.position = checkPointList[checkpointindex].transform.position;
+				playerobj.transform.rotation = Quaternion.identity;
+				Camera.main.transform.rotation = Quaternion.identity;
 				break;
 
 			case "Inventory":
@@ -541,6 +551,14 @@ public class LevelManager : MonoBehaviour {
 				attvalue.Add(checkPointList[currentCheckPointIndex].transform.position.y.ToString());	
 				attkey.Add("z");
 				attvalue.Add(checkPointList[currentCheckPointIndex].transform.position.z.ToString());	
+				attkey.Add("rx");
+				attvalue.Add(checkPointList[currentCheckPointIndex].transform.rotation.x.ToString());	
+				attkey.Add("ry");
+				attvalue.Add(checkPointList[currentCheckPointIndex].transform.rotation.y.ToString());		
+				attkey.Add("rz");
+				attvalue.Add(checkPointList[currentCheckPointIndex].transform.rotation.z.ToString());	
+				attkey.Add("rw");
+				attvalue.Add(checkPointList[currentCheckPointIndex].transform.rotation.w.ToString());
 			entrylist.Add(new my_XmlEntry("checkpoint",null,attkey,attvalue));
 		}else
 		{
