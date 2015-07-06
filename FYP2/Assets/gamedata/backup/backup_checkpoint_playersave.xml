@@ -13,6 +13,7 @@
 			<layer index="1" />
 			<layer index="2" />
 		</quickcast>
+		<checkpoint id="-1" name="0" index="0" x="-84.9" y="86.163" z="-45.4" rx="0" ry="0" rz="0" rw="1" />
 		<inventory weight="0" />
 	</player>
 </database>

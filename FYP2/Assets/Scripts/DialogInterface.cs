@@ -36,6 +36,7 @@ public class DialogInterface : MonoBehaviour {
 	private int reservedOptionRectCount = 4;
 	private List<Rect>optionRects = new List<Rect>();
 	private LevelManager levelmanager = null;
+	private GameObject Player;
 
 	public static DialogInterface instance = null;
 		
@@ -53,6 +54,7 @@ public class DialogInterface : MonoBehaviour {
 	}
 	public void Initialize()
 	{
+		Player = GameObject.FindGameObjectWithTag("Player");
 		dialogDatabase = DialogDatabase.Instance;
 		levelmanager = LevelManager.Instance;
 		dialogTree = dialogDatabase.GetDialogTree("main-scene");
@@ -104,14 +106,14 @@ public class DialogInterface : MonoBehaviour {
 //	}
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown("b"))
-		{
-			StartNewDialogSessionUsingBookmark("main-scene","1");
-		}
-		if(Input.GetKeyDown("v"))
-		{
-			StartNewDialogSessionUsingBookmark("main-scene","0");
-		}
+//		if(Input.GetKeyDown("b"))
+//		{
+//			StartNewDialogSessionUsingBookmark("main-scene","1");
+//		}
+//		if(Input.GetKeyDown("v"))
+//		{
+//			StartNewDialogSessionUsingBookmark("main-scene","0");
+//		}
 	}
 	public bool StartNewDialogSessionUsingBookmark(string gameLevelName,string bookmark_node_name)
 	{
@@ -188,8 +190,10 @@ public class DialogInterface : MonoBehaviour {
 	{
 		if(display == true && CurrentDialogNode != null)
 		{
+			Player.GetComponent<CastSlot>().display = false;
 			if(CurrentDialogNode.nodeId < 0)
 			{
+				Player.GetComponent<CastSlot>().display = true;
 				return;
 			}
 
@@ -237,12 +241,19 @@ public class DialogInterface : MonoBehaviour {
 					if(currentevent.button == 0 && currentevent.type == EventType.mouseUp )//left click and button up
 					{
 						CurrentDialogNode = CurrentDialogNode.options[0].nextDialog;
-						if(CurrentDialogNode.options.Count == 0)//stop the display once the node has no more linkage
+						if(CurrentDialogNode == null)
 						{
-							CurrentDialogNode = null;
 							display = false;
+							Player.GetComponent<CastSlot>().display = true;
 							return;
 						}
+						//      if(CurrentDialogNode.options.Count == 0)//stop the display once the node has no more linkage
+						//      {
+						//       CurrentDialogNode = null;
+						//       display = false;
+						//
+						//       return;
+						//      }
 					}
 				}
 

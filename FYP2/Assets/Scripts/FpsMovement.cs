@@ -31,6 +31,7 @@ public class FpsMovement : MonoBehaviour
 	public float SFX_DELAY = 2.0f;
 	float runSFXdelay = 0.0f;
 
+	Inventory inventory;
 
 	public bool debugFlyMode = false;		// rmb to turn off after use
 
@@ -38,6 +39,7 @@ public class FpsMovement : MonoBehaviour
 	void Start () 
 	{
 		cc = GetComponent<CharacterController>();
+		inventory = GetComponent<Inventory>();
 	}
 	
 	// Update is called once per frame
@@ -56,7 +58,7 @@ public class FpsMovement : MonoBehaviour
 			Camera.main.transform.localRotation = Quaternion.Euler (vertRotation, 0, 0);
 		}
 
-		if(Input.GetButton("Run"))
+		if(Input.GetButton("Run") && inventory.CheckContainsItem("Running Shoes"))
 		{
 			if(cc.isGrounded)
 			{
@@ -109,7 +111,8 @@ public class FpsMovement : MonoBehaviour
 			{
 				vertVelo = jumpSpeed;
 			}
-			else if(!cc.isGrounded && Input.GetButtonDown("parachute"))	//button v
+			else if(!cc.isGrounded && Input.GetButtonDown("parachute") 
+			     && inventory.CheckContainsItem("Parachute"))	//button v
 			{
 				useParachute = !useParachute;
 			}

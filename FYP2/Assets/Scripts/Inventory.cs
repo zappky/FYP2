@@ -436,7 +436,7 @@ public class Inventory : MonoBehaviour {
 			}
 		}
 	}
-	bool CheckContainsItem(Item a_item)
+	public bool CheckContainsItem(Item a_item)
 	{
 
 		if( a_item.itemindexinlist >= 0 && a_item.itemindexinlist < inventory.Count)
@@ -458,7 +458,7 @@ public class Inventory : MonoBehaviour {
 		return false;
 	}
 
-	bool CheckContainsItem(string itemname)
+	public bool CheckContainsItem(string itemname)
 	{
 
 		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
@@ -470,7 +470,7 @@ public class Inventory : MonoBehaviour {
 		}
 		return false;
 	}
-	bool CheckContainsItem(int id)
+	public bool CheckContainsItem(int id)
 	{
 		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
 		{

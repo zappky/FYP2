@@ -54,8 +54,6 @@ public class CastSlot : MonoBehaviour {
 
 //	// Use this for initialization
 	void Start () {
-
-
 		UpdateSlotStartingPosition();
 
 		playerinventory = this.GetComponent<Inventory>();
@@ -393,5 +391,10 @@ public class CastSlot : MonoBehaviour {
 	int CalculateMaximisedSlotLayerCount()
 	{
 		return playerinventory.inventory.Count / maxSlotsColumn;
+	}
+
+	public void ToggleDisplay()
+	{
+		display = !display;
 	}
 }

@@ -4,12 +4,14 @@ using System.Collections;
 public class PauseMenu : MonoBehaviour {
 
 	public bool paused = false;
-	public Canvas pauseMenu;
+	Canvas pauseMenu;
+	GameObject Player;
 
 	// Use this for initialization
 	void Start () 
 	{
-		pauseMenu = pauseMenu.GetComponent<Canvas>();
+		Player = GameObject.FindGameObjectWithTag("Player");
+		pauseMenu = GetComponent<Canvas>();
 		pauseMenu.enabled = false;
 		Time.timeScale = 1.0f;
 	}
@@ -20,6 +22,7 @@ public class PauseMenu : MonoBehaviour {
 		if(Input.GetButtonDown("Escape"))
 		{
 			paused = togglePause();
+			Player.GetComponent<CastSlot>().ToggleDisplay();
 		}
 
 		if(paused)
@@ -47,10 +50,15 @@ public class PauseMenu : MonoBehaviour {
 			return (true);
 		}
 	}
+	
+	public void reloadCheckpoint()
+	{
+		LevelManager.Instance.LoadPlayerInfo();
+	}
 
 	public void restartlevel()
 	{
-		Application.LoadLevel(Application.loadedLevelName);
+		LevelManager.Instance.LoadLevel(LevelManager.Instance.CurrentLevelName, true);
 	}
 
 	public void MainMenu()

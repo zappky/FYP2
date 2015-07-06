@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\GrappleCollisionScript.cs" />
      <Compile Include="Assets\Scripts\GrappleScript.cs" />
      <Compile Include="Assets\Scripts\HideCursorScript.cs" />
+     <Compile Include="Assets\Scripts\Interact.cs" />
      <Compile Include="Assets\Scripts\Interactable.cs" />
      <Compile Include="Assets\Scripts\Inventory.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />
@@ -84,14 +85,15 @@
      <Compile Include="Assets\Scripts\SingetonSetUp.cs" />
      <Compile Include="Assets\Scripts\SoundEffect.cs" />
      <Compile Include="Assets\Scripts\SpawnSpot.cs" />
+     <Compile Include="Assets\Scripts\TriggerEvent.cs" />
      <Compile Include="Assets\Scripts\VendorDatabase.cs" />
      <Compile Include="Assets\Scripts\alertbar.cs" />
+     <Compile Include="Assets\Scripts\volumecontrol.cs" />
      <None Include="Assets\gamedata\backup\backup_checkpoint_playersave.xml" />
      <None Include="Assets\gamedata\backup\backup_craftdatas.xml" />
      <None Include="Assets\gamedata\backup\backup_vendordatas.xml" />
      <None Include="Assets\gamedata\dump\mytest.xml" />
      <None Include="Assets\gamedata\questlogdatas.xml" />
-     <None Include="Assets\gamedata\checkpoint_playersave.xml" />
      <None Include="Assets\gamedata\itemdatas.xml" />
      <None Include="Assets\gamedata\backup\backup_dialogdatas.xml" />
      <None Include="Assets\gamedata\predefined_inventory.xml" />

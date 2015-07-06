@@ -1,22 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LevelManager.cs">
-    <Files>
-      <File FileName="Assets\Scripts\Inventory.cs" Line="506" Column="28" />
-      <File FileName="Assets\Scripts\GrappleScript.cs" Line="195" Column="9" />
-      <File FileName="Assets\gamedata\itemdatas.xml" Line="1" Column="1" />
-      <File FileName="Assets\gamedata\dialogdatas.xml" Line="42" Column="29" />
-      <File FileName="Assets\gamedata\predefined_inventory.xml" Line="10" Column="12" />
-      <File FileName="Assets\Scripts\FileManager.cs" Line="173" Column="18" />
-      <File FileName="Assets\Scripts\LevelManager.cs" Line="400" Column="57" />
-      <File FileName="Assets\Scripts\FpsMovement.cs" Line="47" Column="45" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MiniMap.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Interactable.cs">
     <Files>
-      <File FileName="Assets\Scripts\MiniMap.cs" Line="19" Column="2" />
-      <File FileName="Assets\Scripts\volumecontrol.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PauseMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MainMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PauseMenu.cs" Line="34" Column="30" />
+      <File FileName="Assets\Scripts\LevelManager.cs" Line="625" Column="1" />
+      <File FileName="Assets\Scripts\CastSlot.cs" Line="396" Column="27" />
+      <File FileName="Assets\Scripts\DialogInterface.cs" Line="245" Column="8" />
+      <File FileName="Assets\Scripts\volumecontrol.cs" Line="31" Column="1" />
+      <File FileName="Assets\gamedata\dialogdatas.xml" Line="13" Column="29" />
+      <File FileName="Assets\Scripts\SingetonSetUp.cs" Line="19" Column="41" />
+      <File FileName="Assets\gamedata\questlogdatas.xml" Line="18" Column="12" />
+      <File FileName="Assets\Scripts\Interactable.cs" Line="40" Column="4" />
+      <File FileName="Assets\Scripts\QuestManager.cs" Line="31" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

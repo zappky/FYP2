@@ -4,7 +4,6 @@
 		<level id = "main-scene">
 			<item id = "6" amount = "1"></item>
 			<item id = "7" amount = "1"></item>
-			<item id = "1" amount = "1"></item>
 		</level>
 	</inventory>
 </database>

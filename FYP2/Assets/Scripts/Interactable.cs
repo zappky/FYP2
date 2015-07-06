@@ -6,16 +6,18 @@ public class Interactable : MonoBehaviour {
 
 	private Inventory playerInventory;
 	private VendorDatabase vendordatabase;
+	private QuestManager questManager;
 
 	// Use this for initialization
 	void Start () {
 		playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
 		vendordatabase = VendorDatabase.Instance;
+		questManager = QuestManager.Instance;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
 	//for picking up effect
