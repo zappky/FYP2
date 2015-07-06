@@ -175,11 +175,13 @@ public class DialogInterface : MonoBehaviour {
 		{
 			UpdateDisplayRect();
 		}
-
-		if(display == true && CurrentDialogNode != null)
+		if(CurrentDialogNode == null)
 		{
-
-
+			display = false;
+			return;
+		}
+		if(display == true)
+		{
 			if(CurrentDialogNode.nodeId < 0)
 			{
 				Player.GetComponent<CastSlot>().display = true;
