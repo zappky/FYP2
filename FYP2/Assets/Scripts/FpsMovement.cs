@@ -46,12 +46,15 @@ public class FpsMovement : MonoBehaviour
 		//camera rotate left right
 		float rotateLR = Input.GetAxis ("Mouse X") * mouseSensitivity;
 
-		transform.Rotate (0, rotateLR, 0);
-		//Camera.main.transform.Rotate (0, rotateLR, 0);
-		//camera rotate up down
-		vertRotation -= Input.GetAxis ("Mouse Y") * mouseSensitivity;
-		vertRotation = Mathf.Clamp (vertRotation, -viewRange, viewRange);
-		Camera.main.transform.localRotation = Quaternion.Euler (vertRotation, 0, 0);
+		if(Time.timeScale == 1.0)
+		{
+			transform.Rotate (0, rotateLR, 0);
+			//Camera.main.transform.Rotate (0, rotateLR, 0);
+			//camera rotate up down
+			vertRotation -= Input.GetAxis ("Mouse Y") * mouseSensitivity;
+			vertRotation = Mathf.Clamp (vertRotation, -viewRange, viewRange);
+			Camera.main.transform.localRotation = Quaternion.Euler (vertRotation, 0, 0);
+		}
 
 		if(Input.GetButton("Run"))
 		{

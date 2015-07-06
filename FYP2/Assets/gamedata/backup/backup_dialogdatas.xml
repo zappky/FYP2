@@ -49,33 +49,4 @@
 			</dialog>
 		</dialogtree>
 	</level>
-	<level>
-		<dialogtree>
-			<dialog id="0" actorname="npc">
-				<test>Hell warrior!</test>
-				<option nextdialogid="1" nextdialogid_raw="1" resultid="0">sup noob</option>
-				<option nextdialogid="2" nextdialogid_raw="2" resultid="0">hello strange voice</option>
-			</dialog>
-			<dialog id="1" actorname="npc">
-				<test>I dont want to talk to you</test>
-				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Aww</option>
-			</dialog>
-			<dialog id="2" actorname="npc">
-				<test>I have a quest for you</test>
-				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Ok bye</option>
-				<option nextdialogid="4" nextdialogid_raw="4" resultid="0">What is it?</option>
-				<option nextdialogid="3" nextdialogid_raw="3" resultid="0">What is the pay?</option>
-			</dialog>
-			<dialog id="3" actorname="npc">
-				<test>You will get 5 gold</test>
-				<option nextdialogid="4" nextdialogid_raw="4" resultid="0">Ok, what is it?</option>
-				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">That sucks i am out</option>
-			</dialog>
-			<dialog id="4" actorname="npc">
-				<test>Collect 10 dandilions</test>
-				<option nextdialogid="" nextdialogid_raw="-1" resultid="1">Let do it</option>
-				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">No way</option>
-			</dialog>
-		</dialogtree>
-	</level>
 </database>

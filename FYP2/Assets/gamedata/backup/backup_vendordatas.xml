@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <database>
 	<vendor id="0">
-		<name>test vendor</name>
-		<output id="3" name="clock" amount="1" />
+		<name>BoxofPaperclips</name>
+		<output id="8" name="Paper Clip" amount="1" />
+	</vendor>
+	<vendor id="1">
+		<name>Yarn</name>
+		<output id="8" name="Paper Clip" amount="1" />
+		<output id="9" name="String" amount="1" />
+	</vendor>
+	<vendor id="2">
+		<name>TearableBook</name>
+		<output id="8" name="Paper Clip" amount="1" />
+		<output id="9" name="String" amount="1" />
+		<output id="10" name="Paper" amount="1" />
 	</vendor>
 </database>
