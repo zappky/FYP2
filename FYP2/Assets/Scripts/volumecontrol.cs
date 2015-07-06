@@ -17,6 +17,7 @@ public class volumecontrol : MonoBehaviour
 	void Start () 
 	{
 		BGM = this.GetComponent<AudioSource>();
+
 		volumeslider = Resources.Load ("slider") as GUISkin;
 	}
 
@@ -27,11 +28,15 @@ public class volumecontrol : MonoBehaviour
 
 	void OnGUI()
 	{
-		GUI.skin = volumeslider;
-		if(MMscript.GetComponent<MainMenu>().optionMenu.enabled)
+		if(LevelManager.Instance.CurrentLevelName == "main_menu")
 		{
-			adjustvolume();
+			GUI.skin = volumeslider;
+			if(MMscript.GetComponent<MainMenu>().optionMenu.enabled)
+			{
+				adjustvolume();
+			}
 		}
+
 	}
 	
 	// Update is called once per frame

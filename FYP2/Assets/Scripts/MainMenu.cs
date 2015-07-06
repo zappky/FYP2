@@ -37,6 +37,8 @@ public class MainMenu : MonoBehaviour {
 		optionB = optionB.GetComponent<Button>();
 		extraB = extraB.GetComponent<Button>();
 		exitB = exitB.GetComponent<Button>();
+		FileManager.Instance.Initialize();
+		LevelManager.Instance.Initialize();//temporary placement
 	}
 
 	void DisableButton()
@@ -104,21 +106,30 @@ public class MainMenu : MonoBehaviour {
 		optionMenu.enabled = true;
 		DisableButton();
 	}
-
-	public void Level1()
+	public void ContinuePress()
 	{
-		Application.LoadLevel("main-scene");
+		string level = LevelManager.Instance.GetLastCheckPointScene();
+		LevelManager.Instance.loadFromContinue = true;
+		Application.LoadLevel(level);
 	}
-
-	/*public void Level2()
+	public void LoadLevel(int number)
 	{
-		Application.LoadLevel("main-scene");
+		switch(number)
+		{
+		case 0:
+		case 1:
+			Application.LoadLevel("main-scene");
+			break;
+		case 2:
+
+			break;
+		case 3:
+			break;
+		default:
+			Debug.Log("cannot load level: " + number);
+			break;
+		}
 	}
-
-	public void Level3()
-	{
-		Application.LoadLevel("main-scene");
-	}*/
 
 	public void QuitGame()
 	{

@@ -19,7 +19,17 @@ public class Interactable : MonoBehaviour {
 	void Update () {
 		
 	}
-
+	public void CompleteQuest()
+	{
+		switch(this.name)
+		{
+		case "BoxofPaperclips":
+			questManager.GetQuestLog("Collect Paper Clips").statues = true;
+			break;
+		default:
+			break;
+		}
+	}
 	//for picking up effect
 	public void SpawnItemWithName()//add item using name
 	{

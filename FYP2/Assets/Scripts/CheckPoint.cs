@@ -7,6 +7,7 @@ public class CheckPoint : MonoBehaviour {
 
 	public int id = -1;
 	public int indexInList = -1;
+	public int orderPlacement = -1;
 	public LevelManager levelManager = null;
 
 	public enum CheckPoint_Type
@@ -34,13 +35,9 @@ public class CheckPoint : MonoBehaviour {
 	{
 		this.id = another.id;
 		this.indexInList = another.indexInList;
+		this.orderPlacement = another.orderPlacement;
 	}
-
-	public void RepositionPlayerAt(GameObject playerobj)
-	{
-		playerobj.transform.position = this.transform.position;
-	}
-
+	
 	void OnTriggerEnter(Collider other)
 	{
 		if(other.gameObject.tag == "Player")

@@ -47,14 +47,15 @@ public class my_QuestLog
 
 public class QuestManager : MonoBehaviour {
 	public bool display = false;
-	public QuestLogDatabase questdatabase = null;
-	public my_QuestLogList questLogList = null;
+	public QuestLogDatabase questlogdatabase = null;
+	public my_QuestLogList questLogListDatabase = null;
 	public List<my_QuestLog> questLogs = new List<my_QuestLog>();
 	public static QuestManager instance = null;
 	public Rect questDisplayRect;
 	public List<Rect>questLogRects = new List<Rect>();
 	public int maxQuestLog = 5;
 	public int currentGameLevel = 1;
+	private float questLogHeight = -1.0f;
 
 	public static QuestManager Instance
 	{
@@ -71,14 +72,73 @@ public class QuestManager : MonoBehaviour {
 
 	public void FetchNewQuest()
 	{
-		this.questLogList = questdatabase.GetQuestLogListByLevel(currentGameLevel);
+		this.questLogListDatabase = questlogdatabase.GetQuestLogListByLevel(currentGameLevel);
 
-		for(int i = 0 ; i < questLogList.questlogs.Count ; ++i)
+		for(int i = 0 ; i < questLogListDatabase.questlogs.Count ; ++i)
 		{
-			AddQuestLog(questLogList[i]);
+			AddQuestLog(questLogListDatabase[i]);
 		}
 	}
+	public void RemoveQuestLog(int questId)
+	{
+		if(questId >= 0 && questId <questLogs.Count)
+		{
+			if(questLogs[questId].id == questId)
+			{
+				questLogs[questId] = new my_QuestLog();
+			}
+		}
+		
+		for(int i = 0 ; i< questLogs.Count; ++i)
+		{
+			if(questLogs[i].id == questId)
+			{
+				questLogs[i] = new my_QuestLog();
+			}
+		}
 
+	}
+	public my_QuestLog RemoveQuestLog(string questLogName)
+	{
+		for(int i = 0 ; i< questLogs.Count; ++i)
+		{
+			if(questLogs[i].questname == questLogName)
+			{
+				questLogs[i] = new my_QuestLog();
+			}
+		}
+		return null;
+	}
+	public my_QuestLog GetQuestLog(int questId)
+	{
+		if(questId >= 0 && questId <questLogs.Count)
+		{
+			if(questLogs[questId].id == questId)
+			{
+				return questLogs[questId];
+			}
+		}
+		
+		for(int i = 0 ; i< questLogs.Count; ++i)
+		{
+			if(questLogs[i].id == questId)
+			{
+				return questLogs[i];
+			}
+		}
+		return null;
+	}
+	public my_QuestLog GetQuestLog(string questLogName)
+	{
+		for(int i = 0 ; i< questLogs.Count; ++i)
+		{
+			if(questLogs[i].questname == questLogName)
+			{
+				return questLogs[i];
+			}
+		}
+		return null;
+	}
 	public bool AddQuestLog(int questid,string newQuestName)
 	{
 		return AddQuestLog(new my_QuestLog(questid,newQuestName));
@@ -121,11 +181,11 @@ public class QuestManager : MonoBehaviour {
 	}
 	public void Initialize()
 	{
-		questdatabase = QuestLogDatabase.instance;
-		questLogList = questdatabase.GetQuestLogListByLevel(currentGameLevel);
+		questlogdatabase = QuestLogDatabase.instance;
+		questLogListDatabase = questlogdatabase.GetQuestLogListByLevel(currentGameLevel);
 
-		questDisplayRect = new Rect (0.0f,Screen.height * 0.3f,Screen.width * 0.3f,Screen.width * 0.3f);
-		float questLogHeight = questDisplayRect.height / (maxQuestLog+1);
+		questDisplayRect = new Rect (0.0f,Screen.height * 0.01f,Screen.width * 0.25f,Screen.width * 0.25f);
+		questLogHeight = questDisplayRect.height / (maxQuestLog+1);
 		for (int i = 0; i<maxQuestLog; ++i)//reserve some rect 
 		{
 			questLogRects.Add (new Rect (questDisplayRect.xMin,questDisplayRect.yMin + (i+1) *questLogHeight,questDisplayRect.width,questLogHeight));
@@ -133,7 +193,7 @@ public class QuestManager : MonoBehaviour {
 
 		FetchNewQuest();
 	}
-	
+
 	public void OnApplicationQuit()
 	{
 		DestroyInstance();
@@ -143,17 +203,33 @@ public class QuestManager : MonoBehaviour {
 	{
 		instance = null;
 	}
-
-	void OnGUI()
+	void Update()
 	{
-		questDisplayRect = new Rect (0.0f,Screen.height * 0.3f,Screen.width * 0.3f,Screen.width * 0.3f);
-		float questLogHeight = questDisplayRect.height / (maxQuestLog+1);
+		if(Input.GetButtonDown("QuestInterface"))
+		{
+			ToggleDisplay();
+		}
+	}
+	void UpdateDisplayRect()
+	{
+		questDisplayRect = new Rect (0.0f,Screen.height * 0.01f,Screen.width * 0.25f,Screen.width * 0.25f);
+		questLogHeight = questDisplayRect.height / (maxQuestLog+1);
 		for (int i = 0; i<maxQuestLog; ++i)//reserve some rect 
 		{
 			questLogRects[i] = new Rect(questDisplayRect.xMin,questDisplayRect.yMin + (i+1) *questLogHeight,questDisplayRect.width,questLogHeight);
 		}
+	}
+	void OnGUI()
+	{
+		if(ScreenManager.Instance.CheckAspectChanged() == true)
+		{
+			UpdateDisplayRect();
+		}
+
 		if(display == true)
 		{
+
+
 			GUI.Box(questDisplayRect,"Quest Logs");
 			for (int i = 0; i < questLogs.Count; ++i) 
 			{

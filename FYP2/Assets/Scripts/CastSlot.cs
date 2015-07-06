@@ -72,7 +72,7 @@ public class CastSlot : MonoBehaviour {
 		}
 
 		labelStyle = new GUIStyle(skin.GetStyle("slot"));
-		
+		UpdateSlotSize();
 		labelStyle.fontSize = (int)slotSize;
 		labelStyle.alignment = TextAnchor.MiddleCenter;
 		labelRect = new Rect(slotsXstartposition - slotSize, slotsYstartposition ,slotSize,slotSize);
@@ -118,6 +118,10 @@ public class CastSlot : MonoBehaviour {
 		if (display == true)
 		{
 			GUI.skin = skin;
+			if(ScreenManager.Instance.CheckAspectChanged() == true)
+			{
+				UpdateDisplayRect();
+			}
 
 			DrawCastSlot();
 
@@ -133,7 +137,20 @@ public class CastSlot : MonoBehaviour {
 			}
 		}
 	}
-
+	void UpdateSlotSize()
+	{
+		slotSize = Screen.width *0.065f;
+	}
+	void UpdateDisplayRect()
+	{
+		UpdateSlotSize();
+		UpdateSlotStartingPosition();
+		labelStyle.fontSize = (int)slotSize;
+		labelStyle.alignment = TextAnchor.MiddleCenter;
+		labelRect = new Rect(slotsXstartposition - slotSize, slotsYstartposition ,slotSize,slotSize);
+		dragItemIconRect.width = slotSize;
+		dragItemIconRect.height = slotSize;
+	}
 	void DrawCastSlot()
 	{
 		int index = 0;

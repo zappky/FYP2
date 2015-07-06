@@ -53,6 +53,8 @@ public class Inventory : MonoBehaviour {
 	private Rect toolTipRect = new Rect();
 	private Rect dragItemIconRect = new Rect();
 	private bool updateCraftSlotDisplayNow = false;
+	private float tabWidth = -1.0f;
+	private float tabHeight = -1.0f;
 	//private bool messageNullTextureError = false;
 
 	// Use this for initialization
@@ -63,8 +65,9 @@ public class Inventory : MonoBehaviour {
 		playerinfo = this.GetComponent<PlayerInfo>();//should be relative the player object attached
 		playercastslot = this.GetComponent<CastSlot>();
 
-		float tabWidth = Screen.width*0.05f;
-		float tabHeight = tabWidth*0.5f;
+		tabWidth = Screen.width*0.05f;
+		tabHeight = tabWidth*0.5f;
+		slotsize = Screen.width*0.08f;
 		
 		for (int i = 0 ; i < tabAmount; ++i)
 		{
@@ -126,13 +129,23 @@ public class Inventory : MonoBehaviour {
 		toolTipRect.height = toolTipRect.width;
 		dragItemIconRect.width = slotsize;
 		dragItemIconRect.height = dragItemIconRect.width;
+		if(LevelManager.Instance.loadFromContinue == false)
+		{
+			Debug.Log("load PREDEFINED inventory detected");
+			LevelManager.Instance.LoadPreDefinedInventory(LevelManager.Instance.CurrentLevelName);
+		}else
+		{
+			Debug.Log("load from CONTINUE inventory detected");
+			LevelManager.Instance.LoadPlayerInfo();
+		}
 	}
+
 	// Update is called once per frame
 	void Update () {
 			if(Input.GetButtonDown("Inventory"))
 			{
 				ToggleDisplay();
-				Cursor.visible = !Cursor.visible;
+				//Cursor.visible = !Cursor.visible;
 			}
 			if(display == true)
 			{
@@ -551,11 +564,38 @@ public class Inventory : MonoBehaviour {
 	{
 		display = !display;
 	}
+	void UpdateDisplayRect()
+	{
+		tabWidth = Screen.width*0.05f;
+		tabHeight = tabWidth*0.5f;
+		slotsize = Screen.width*0.08f;
+		
+		for (int i = 0 ; i < tabAmount; ++i)
+		{
+			tabRectList[i] = new Rect( Screen.width *0.15f + (i)*tabWidth ,Screen.height*0.15f,tabWidth,tabHeight);
+			
+		}
+		backgroundRect = new Rect(tabRectList[0].xMin,tabRectList[tabAmount-1].yMax,Screen.width *0.65f,Screen.height *0.65f);
+		float finePadding = slotsize *0.25f;
+		slotsXstartposition = backgroundRect.xMin + finePadding * 2.5f;
+		slotsYstartposition = backgroundRect.yMin + finePadding * 2.5f;
+		slotYpadding = slotXpadding = 1.25f;
+		toolTipRect.width = slotsize*5;
+		toolTipRect.height = toolTipRect.width;
+		dragItemIconRect.width = slotsize;
+		dragItemIconRect.height = dragItemIconRect.width;
+	}
 	void OnGUI()
 	{
-		
+		if(ScreenManager.Instance.CheckAspectChanged() == true)
+		{
+			UpdateDisplayRect();
+		}
+
 		if(display == true)
 		{
+
+
 			GUI.skin = skin;
 
 			currentevent = Event.current;

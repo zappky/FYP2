@@ -8,7 +8,7 @@ public class PlayerInfo : MonoBehaviour {
 	public bool gender = false; // false means girl
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 
 	}
 	

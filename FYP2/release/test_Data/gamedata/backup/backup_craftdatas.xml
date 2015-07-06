@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database>
+	<recipe id="1">
+		<name>Grapple</name>
+		<description>For easier travelling. Not to be used for fighting titans.</description>
+		<recipeIconName>Grapple</recipeIconName>
+		<ingrediant id="6" name="Broken Grapple" amount="1" />
+		<ingrediant id="8" name="Paper Clip" amount="1" />
+		<output id="1" name="Grapple" amount="1" />
+	</recipe>
+	<recipe id="2">
+		<name>Running Shoes</name>
+		<description>Gotta go fast!</description>
+		<recipeIconName>Running Shoes</recipeIconName>
+		<ingrediant id="7" name="Old Running Shoes" amount="1" />
+		<ingrediant id="9" name="String" amount="1" />
+		<output id="0" name="Running Shoes" amount="1" />
+	</recipe>
+	<recipe id="3">
+		<name>Parachute</name>
+		<description>Defy gravity for x seconds.</description>
+		<recipeIconName>Parachute</recipeIconName>
+		<ingrediant id="10" name="Paper" amount="1" />
+		<ingrediant id="9" name="String" amount="1" />
+		<output id="2" name="Parachute" amount="1" />
+	</recipe>
+	<recipe id="4">
+		<name>Toy Bell</name>
+		<description>Useful decoy. Works on pets only.</description>
+		<recipeIconName>Toy Bell</recipeIconName>
+		<ingrediant id="11" name="Capsule Ball" amount="1" />
+		<ingrediant id="8" name="Paper Clip" amount="1" />
+		<output id="3" name="Toy Bell" amount="1" />
+	</recipe>
+	<recipe id="4">
+		<name>Sticky Noisemaker</name>
+		<description>Useful decoy. Works on humans only.</description>
+		<recipeIconName>Sticky Noisemaker</recipeIconName>
+		<ingrediant id="12" name="Chip" amount="1" />
+		<ingrediant id="8" name="Paper Clip" amount="1" />
+		<output id="4" name="Sticky Noisemaker" amount="1" />
+	</recipe>
+	<recipe id="5">
+		<name>Remote Control</name>
+		<description>Long range alarm clock disruptor.</description>
+		<recipeIconName>Remote Control</recipeIconName>
+		<ingrediant id="12" name="Chip" amount="1" />
+		<ingrediant id="13" name="Battery" amount="1" />
+		<output id="5" name="Remote Control" amount="1" />
+	</recipe>
+</database>

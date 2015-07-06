@@ -107,6 +107,8 @@ public class CTimer :MonoBehaviour {
 	public bool display = false;  // whether to draw the ui
 	public bool alert   = false; // whether to ring alarm
 	public Rect timerRect;
+	public float timerWidth = 50.0f;
+	public float timerHeight = 20.0f;
 
 
 	//public my_timedata resetTimer;
@@ -129,9 +131,7 @@ public class CTimer :MonoBehaviour {
 		//operate = false;
 		sound = this.GetComponent<SoundEffect>();		
 		timerLowerLimit.second = 0.0f;
-
-		float timerWidth = 50.0f;
-		float timerHeight = 20.0f;
+		UpdateTimerRect();
 
 		switch(this.tag)//configuration,cos i want to reuse this script as game clock
 		{
@@ -161,7 +161,28 @@ public class CTimer :MonoBehaviour {
 			break;
 		}
 	}
-	
+	void UpdateTimerRect()
+	{
+		timerWidth = Screen.width *0.08f;
+		timerHeight = timerWidth*0.5f;
+	}
+	void UpdateDisplayRect()
+	{
+		UpdateTimerRect();
+		switch(this.tag)
+		{
+		default:
+			break;
+			
+		case "Alarm":			
+			timerRect = new Rect(Screen.width*0.01f,Screen.height*0.01f,timerWidth,timerHeight);
+			break;
+			
+		case "Game Session":
+			timerRect = new Rect(Screen.width - timerWidth,Screen.height*0.01f,timerWidth,timerHeight);
+			break;
+		}
+	}
 	// Update is called once per frame
 	void Update () {
 
@@ -350,6 +371,11 @@ public class CTimer :MonoBehaviour {
 		{
 			if(display == true)
 			{
+				if(ScreenManager.Instance.CheckAspectChanged() == true)
+				{
+					UpdateDisplayRect();
+				}
+
 				switch (timerformat)
 				{
 				default:

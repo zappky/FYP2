@@ -1,17 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Interactable.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PauseMenu.cs">
     <Files>
-      <File FileName="Assets\Scripts\PauseMenu.cs" Line="34" Column="30" />
-      <File FileName="Assets\Scripts\LevelManager.cs" Line="625" Column="1" />
-      <File FileName="Assets\Scripts\CastSlot.cs" Line="396" Column="27" />
-      <File FileName="Assets\Scripts\DialogInterface.cs" Line="245" Column="8" />
-      <File FileName="Assets\Scripts\volumecontrol.cs" Line="31" Column="1" />
-      <File FileName="Assets\gamedata\dialogdatas.xml" Line="13" Column="29" />
-      <File FileName="Assets\Scripts\SingetonSetUp.cs" Line="19" Column="41" />
-      <File FileName="Assets\gamedata\questlogdatas.xml" Line="18" Column="12" />
-      <File FileName="Assets\Scripts\Interactable.cs" Line="40" Column="4" />
-      <File FileName="Assets\Scripts\QuestManager.cs" Line="31" Column="16" />
+      <File FileName="Assets\Scripts\LevelManager.cs" Line="137" Column="22" />
+      <File FileName="Assets\Scripts\FpsMovement.cs" Line="41" Column="3" />
+      <File FileName="Assets\Scripts\MainMenu.cs" Line="25" Column="34" />
+      <File FileName="Assets\Scripts\PauseMenu.cs" Line="58" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

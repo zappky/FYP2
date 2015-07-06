@@ -35,6 +35,8 @@ public class CSelect : MonoBehaviour {
 				if(iScript != null)
 				{
 					iScript.SpawnItem();
+					iScript.CompleteQuest();
+
 				}
 			}
 			if (Input.GetButtonDown ("Pick Up")) 
@@ -43,6 +45,7 @@ public class CSelect : MonoBehaviour {
 				if(iScript != null)
 				{
 					iScript.SpawnItem();
+					iScript.CompleteQuest();
 				}
 			}
 		} else 
@@ -61,7 +64,7 @@ public class CSelect : MonoBehaviour {
 			if(onguihelper == true)
 			{
 				//Debug.Log (interacthelpertext.Length);
-				GUI.Box(new Rect(Screen.width*0.5f,Screen.height*0.95f,interacthelpertext.Length*6.0f,20.0f), interacthelpertext);
+				//GUI.Box(new Rect(Screen.width*0.5f,Screen.height*0.95f,interacthelpertext.Length*6.0f,20.0f), interacthelpertext);
 			}
 		}
 	}

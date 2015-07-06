@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database>
+	<item id = "0">
+		<name>Running Shoes</name>
+		<type>equipable</type>
+		<description>Gotta go fast!</description>
+		<weight>0</weight>
+		<stackable>true</stackable>
+	</item>
+	
+	<item id = "1">
+		<name>Grapple</name>
+		<type>useable</type>
+		<description>For easier travelling. Not to be used for fighting titans.</description>
+		<weight>0</weight>
+		<stackable>true</stackable>
+	</item>
+	
+	
+	<item id = "2">
+		<name>Parachute</name>
+		<type>consumable</type>
+		<description>Defy gravity for x seconds.</description>
+		<weight>1</weight>
+		<stackable>true</stackable>
+	</item>	
+	
+	<item id = "3">
+		<name>Toy Bell</name>
+		<type>consumable</type>
+		<description>Useful decoy. Works on pets only.</description>
+		<weight>1</weight>
+		<stackable>true</stackable>
+	</item>	
+	
+	<item id = "4">
+		<name>Sticky Noisemaker</name>
+		<type>consumable</type>
+		<description>Useful decoy. Works on humans only.</description>
+		<weight>1</weight>
+		<stackable>true</stackable>
+	</item>	
+	
+	<item id = "5">
+		<name>Remote Control</name>
+		<type>consumable</type>
+		<description>Long range alarm clock disruptor.</description>
+		<weight>1</weight>
+		<stackable>true</stackable>
+	</item>	
+	
+	
+	<item id = "6">
+		<name>Broken Grapple</name>
+		<type>craftmaterial</type>
+		<description>A grapple with a broken hook.</description>
+		<weight>0</weight>
+		<stackable>true</stackable>
+	</item>
+	
+	<item id = "7">
+		<name>Old Running Shoes</name>
+		<type>craftmaterial</type>
+		<description>Missing shoelaces. Gift from Mom.</description>
+		<weight>0</weight>
+		<stackable>true</stackable>
+	</item>
+	
+	<item id = "8">
+		<name>Paper Clip</name>
+		<type>craftmaterial</type>
+		<description>An ordinary household paper clip.</description>
+		<weight>1</weight>
+		<stackable>true</stackable>
+	</item>
+	
+	<item id = "9">
+		<name>String</name>
+		<type>craftmaterial</type>
+		<description>Great for tying things together. Doesn't contain char.</description>
+		<weight>1</weight>
+		<stackable>true</stackable>
+	</item>
+	
+	<item id = "10">
+		<name>Paper</name>
+		<type>craftmaterial</type>
+		<description>Piece of sheet.</description>
+		<weight>1</weight>
+		<stackable>true</stackable>
+	</item>
+	
+	<item id = "11">
+		<name>Capsule Ball</name>
+		<type>craftmaterial</type>
+		<description>Contains air inside.</description>
+		<weight>1</weight>
+		<stackable>true</stackable>
+	</item>
+	
+	<item id = "12">
+		<name>Chip</name>
+		<type>craftmaterial</type>
+		<description>Micro-sized.</description>
+		<weight>1</weight>
+		<stackable>true</stackable>
+	</item>
+	
+	<item id = "13">
+		<name>Battery</name>
+		<type>craftmaterial</type>
+		<description>3V Lithium battery.</description>
+		<weight>1</weight>
+		<stackable>true</stackable>
+	</item>
+	
+	
+	<item id = "14">
+		<name>Cake...?</name>
+		<type>quest</type>
+		<description>It's a lie. This is a sweet roll.</description>
+		<weight>0</weight>
+		<stackable>true</stackable>
+	</item>
+</database>

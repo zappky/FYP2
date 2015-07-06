@@ -8,6 +8,7 @@ using System.Xml;
 public class LevelManager : MonoBehaviour {
 
 	public List<CheckPoint> checkPointList = new List<CheckPoint>();
+	public bool loadFromContinue = false;
 
 	public FileManager filemanager = null;
 	public GameObject playerobj = null;
@@ -15,6 +16,7 @@ public class LevelManager : MonoBehaviour {
 	public Inventory playerinventory = null;
 	public CastSlot playercastslot = null;
 	public DialogInterface playerdialoginferface = null;
+	public HideCursorScript playercursor = null;
 
 	public string playerSaveFileName = "checkpoint_playersave";
 	public string playerdataPath = "";
@@ -31,39 +33,37 @@ public class LevelManager : MonoBehaviour {
 			if(instance == null)
 			{
 				instance = new GameObject("Level Manager").AddComponent<LevelManager>();
-				//DontDestroyOnLoad(instance);
+				DontDestroyOnLoad(instance);
 			}
 			return instance;
 		}
 	}
 	public void Initialize()
 	{
-		//CheckPoint[] temparray = null;
-		List<CheckPoint> tempCheckPointList = new List<CheckPoint>();
-		//temparray =  FindObjectsOfType<CheckPoint>();
-//		for(int index = 0 ; index < temparray.Length; ++index)
-//		{
-//			temparray[index].indexInList = index;
-//			this.checkPointList.Add(temparray[index]);
-//		}
-		tempCheckPointList = FindObjectsOfType<CheckPoint>().OrderBy(go=>go.name).ToList();
-		for(int index = 0 ; index < tempCheckPointList.Count; ++index)
-		{
-			tempCheckPointList[index].indexInList = index;
-			this.checkPointList.Add(tempCheckPointList[index]);
-		}
+
 
 		//this.checkPointList = FindObjectsOfType<CheckPoint>().ToList();//find and insert all gameobject with checkpoint script
 		this.filemanager = FileManager.Instance;
+		this.playercursor = FindObjectOfType<HideCursorScript>();
+		if(CurrentLevelName == "main-scene")
+		{
+			List<CheckPoint> tempCheckPointList = new List<CheckPoint>();
+			tempCheckPointList = FindObjectsOfType<CheckPoint>().OrderBy(go=>go.orderPlacement).ToList();
+			for(int index = 0 ; index < tempCheckPointList.Count; ++index)
+			{
+				tempCheckPointList[index].indexInList = index;
+				this.checkPointList.Add(tempCheckPointList[index]);
+			}
 
-		this.playerobj = GameObject.FindGameObjectWithTag("Player");
-		this.playerinfo = playerobj.GetComponent<PlayerInfo>();
-		this.playerinventory = playerobj.GetComponent<Inventory>();
-		this.playercastslot = playerobj.GetComponent<CastSlot>();
-		this.playerdialoginferface = DialogInterface.Instance;
+			this.playerobj = GameObject.FindGameObjectWithTag("Player");
+			this.playerinfo = playerobj.GetComponent<PlayerInfo>();
+			this.playerinventory = playerobj.GetComponent<Inventory>();
+			this.playercastslot = playerobj.GetComponent<CastSlot>();
+			this.playerdialoginferface = DialogInterface.Instance;
+		}
 
 		this.playerdataPath = filemanager.GetGameDataPath() + "/" + filemanager.backupFolderName +"/"+ "backup_"+playerSaveFileName + ".xml";
-		this.predefinedInventorySaveFileName = filemanager.GetGameDataPath() + "/" + predefinedInventorySaveFileName + ".xml";
+		this.predefinedInventoryPath = filemanager.GetGameDataPath() + "/" + predefinedInventorySaveFileName + ".xml";
 	}
 
 	public void DestroyInstance()
@@ -74,8 +74,22 @@ public class LevelManager : MonoBehaviour {
 	public void OnApplicationQuit()
 	{
 		//for testing purpose,please remove the save playerinfo call when release
-		SavePlayerInfo();
+		if(CurrentLevelName == "main-scene")
+		{
+			SavePlayerInfo();
+		}
+
 		DestroyInstance();
+	}
+	public void AddCheckPoint(CheckPoint a_checkpoint)
+	{
+		a_checkpoint.indexInList = checkPointList.Count+1;
+		a_checkpoint.orderPlacement = a_checkpoint.indexInList;
+		if(a_checkpoint.id < 0)
+		{
+			a_checkpoint.id = a_checkpoint.orderPlacement;
+		}
+		this.checkPointList.Add(a_checkpoint);
 	}
 	public int CurrentLevelIndex
 	{
@@ -90,6 +104,12 @@ public class LevelManager : MonoBehaviour {
 		{
 			return Application.loadedLevelName;
 		}
+	}
+	public void LoadLevelWithCheckPoint(string levelname)
+	{
+		Application.LoadLevel(levelname);
+
+		LoadPlayerInfo(false);
 	}
 	public void LoadLevel(string levelname,bool loadPredefinedInventory)
 	{
@@ -107,42 +127,58 @@ public class LevelManager : MonoBehaviour {
 			LoadPreDefinedInventory(levelindex);
 		}
 	}
-//	void Start()
-//	{
-//		this.checkPointList = FindObjectsOfType<CheckPoint>().ToList();//find and insert all gameobject with checkpoint script
-//		this.playerobj = GameObject.FindGameObjectWithTag("Player");
-//		this.playerinfo = playerobj.GetComponent<PlayerInfo>();
-//		this.filemanager = FileManager.Instance;
-//		this.playerinventory = playerobj.GetComponent<Inventory>();
-//		this.playercastslot = playerobj.GetComponent<CastSlot>();
-//		this.playerdataPath = filemanager.GetGameDataPath() + "/" + filemanager.backupFolderName +"/"+ "backup_"+playerSaveFileName + ".xml";
-//		this.predefinedInventorySaveFileName = filemanager.GetGameDataPath() + "/" + predefinedInventorySaveFileName + ".xml";
-//	}
+
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown("m"))
+		if(playercursor != null)
 		{
-			LoadPlayerInfo();
-		}
-		if(Input.GetKeyDown("n"))
+			switch(CurrentLevelName)
+			{
+			case "main-scene":
+				if(playerinventory.display == true  || playerdialoginferface.display == true)
+					//|| playercastslot.display == true
+				{
+					playercursor.SetVisiblity(true);
+				}else
+				{
+					playercursor.SetVisiblity(false);
+				}
+				break;
+			default:
+				Cursor.visible = true;
+				break;
+			}
+
+
+
+		}else
 		{
-			LoadPreDefinedInventory(CurrentLevelName);
+			Debug.Log("ERROR: cursor script is null");
 		}
+//		if(Input.GetKeyDown("m"))
+//		{
+//			LoadPlayerInfo();
+//		}
+//		if(Input.GetKeyDown("n"))
+//		{
+//			LoadPreDefinedInventory(CurrentLevelName);
+//		}
 
 	}
 
 
 	public void LoadPreDefinedInventory(int levelIndex)
 	{
-		if( filemanager.CheckFile(predefinedInventorySaveFileName,false) == false)
+		if( filemanager.CheckFile(predefinedInventoryPath,false) == false)
 		{
 			print ("ERROR: predefined Inventory save data cannot be found, load data aborted");
+			print ("LOG:"+ predefinedInventoryPath);
 			return ;
 			
 		}
 		print ("loading  predefined Inventory save data");
 		XmlDocument xmlDoc = new XmlDocument();
-		xmlDoc.Load(predefinedInventorySaveFileName);
+		xmlDoc.Load(predefinedInventoryPath);
 		
 		XmlNodeList parentList = null;
 		parentList = xmlDoc.GetElementsByTagName("database");
@@ -201,15 +237,17 @@ public class LevelManager : MonoBehaviour {
 	}
 	public void LoadPreDefinedInventory(string levelName)
 	{
-		if( filemanager.CheckFile(predefinedInventorySaveFileName,false) == false)
+		print ("Suspect check: " + predefinedInventoryPath);
+		if( filemanager.CheckFile(predefinedInventoryPath,false) == false)
 		{
 			print ("ERROR: predefined Inventory save data cannot be found, load data aborted");
+			print ("LOG: "+ predefinedInventoryPath);
 			return ;
 			
 		}
 		print ("loading  predefined Inventory save data");
 		XmlDocument xmlDoc = new XmlDocument();
-		xmlDoc.Load(predefinedInventorySaveFileName);
+		xmlDoc.Load(predefinedInventoryPath);
 		
 		XmlNodeList parentList = null;
 		parentList = xmlDoc.GetElementsByTagName("database");
@@ -265,6 +303,55 @@ public class LevelManager : MonoBehaviour {
 		}
 
 	}
+	public string GetLastCheckPointScene()
+	{
+		Debug.Log("player data path: " + playerdataPath);
+		if( filemanager.CheckFile(playerdataPath,false) == false)
+		{
+			print ("ERROR: player checkpoint save data cannot be found, load data aborted");
+			return "";
+			
+		}
+		print ("loading  player checkpoint save data");
+		XmlDocument xmlDoc = new XmlDocument();
+		xmlDoc.Load(playerdataPath);
+		
+		XmlNodeList parentList = null;
+		parentList = xmlDoc.GetElementsByTagName("database");
+		parentList = filemanager.DigToDesiredChildNodeList(parentList,"player");
+		
+		XmlNodeList sectioncontent = null;
+		foreach (XmlNode playerinfosection in parentList)
+		{
+			
+			switch(playerinfosection.Name)
+			{
+				
+			case "Level":
+			case "level":
+				sectioncontent = playerinfosection.ChildNodes;
+				foreach (XmlNode sectionitem in sectioncontent)
+				{
+					switch (sectionitem.Name)
+					{
+						
+						case "currentlevel_unity":
+						{
+							return sectionitem.Attributes["name"].Value;
+						}
+
+							
+						default:
+							print ("ERROR: Unhandled level section item field detected: " + sectionitem.Name);
+							break;
+					}
+				}
+				break;
+			}
+		}
+
+		return "";
+	}
 	public void LoadPlayerInfo()
 	{
 		LoadPlayerInfo(false);
@@ -275,6 +362,7 @@ public class LevelManager : MonoBehaviour {
 		if( filemanager.CheckFile(playerdataPath,false) == false)
 		{
 			print ("ERROR: player checkpoint save data cannot be found, load data aborted");
+			print ("LOG:"+ playerdataPath);
 			return ;
 			
 		}
@@ -423,6 +511,8 @@ public class LevelManager : MonoBehaviour {
 							tempitem.SetItemType(sectionitem.Attributes["type"].Value);
 							tempitem.SetStackable(sectionitem.Attributes["stackable"].Value);
 							tempitem.SelfReloadIcon();
+							Debug.Log("trying add item :" + tempitem.ItemName);
+							Debug.Log("trying add item index :" + tempitem.itemindexinlist);
 							playerinventory.AddItemKnown(tempitem,tempitem.itemindexinlist);
 							
 							break;

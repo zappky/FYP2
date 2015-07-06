@@ -36,8 +36,8 @@ public class DialogInterface : MonoBehaviour {
 	private int reservedOptionRectCount = 4;
 	private List<Rect>optionRects = new List<Rect>();
 	private LevelManager levelmanager = null;
-	private GameObject Player;
-
+	private GameObject Player = null;
+	//private HideCursorScript cursorScript = null;
 	public static DialogInterface instance = null;
 		
 	public static DialogInterface Instance
@@ -55,6 +55,7 @@ public class DialogInterface : MonoBehaviour {
 	public void Initialize()
 	{
 		Player = GameObject.FindGameObjectWithTag("Player");
+		//cursorScript = FindObjectOfType<HideCursorScript>();
 		dialogDatabase = DialogDatabase.Instance;
 		levelmanager = LevelManager.Instance;
 		dialogTree = dialogDatabase.GetDialogTree("main-scene");
@@ -83,37 +84,10 @@ public class DialogInterface : MonoBehaviour {
 	{
 		DestroyInstance();
 	}
-//	// Use this for initialization
-//	void Start () {
-//
-//		dialogDatabase = DialogDatabase.Instance;
-//		levelmanager = GameObject.FindObjectOfType<LevelManager>();
-//		dialogTree = dialogDatabase.GetDialogTree("main-scene");
-//		CurrentDialogNode = dialogTree.GetDialog(0);
-//		for(int i = 0 ; i < reservedOptionRectCount; ++i)
-//		{
-//			//init some temp rect for later uses.
-//			optionRects.Add(new Rect(0,0,0,0));
-//		}
-//
-//
-//		dialogBox = new Rect (0.0f, Screen.height * 0.70f, Screen.width, Screen.height * 0.30f);
-//
-//		personBoxHeight = dialogBox.height * 0.20f;
-//		personBoxWidth = dialogBox.width * 0.20f;
-//
-//		personBox = new Rect (dialogBox.xMin,dialogBox.yMin - personBoxHeight,personBoxWidth,personBoxHeight);
-//	}
+
 	// Update is called once per frame
 	void Update () {
-//		if(Input.GetKeyDown("b"))
-//		{
-//			StartNewDialogSessionUsingBookmark("main-scene","1");
-//		}
-//		if(Input.GetKeyDown("v"))
-//		{
-//			StartNewDialogSessionUsingBookmark("main-scene","0");
-//		}
+
 	}
 	public bool StartNewDialogSessionUsingBookmark(string gameLevelName,string bookmark_node_name)
 	{
@@ -186,16 +160,35 @@ public class DialogInterface : MonoBehaviour {
 		}
 		return false;
 	}
+	void UpdateDisplayRect()
+	{
+		dialogBox = new Rect (0.0f, Screen.height * 0.70f, Screen.width, Screen.height * 0.30f);
+		
+		personBoxHeight = dialogBox.height * 0.20f;
+		personBoxWidth = dialogBox.width * 0.20f;
+		
+		personBox = new Rect (dialogBox.xMin,dialogBox.yMin - personBoxHeight,personBoxWidth,personBoxHeight);
+	}
 	void OnGUI()
 	{
+		if(ScreenManager.Instance.CheckAspectChanged() == true)
+		{
+			UpdateDisplayRect();
+		}
+
 		if(display == true && CurrentDialogNode != null)
 		{
-			Player.GetComponent<CastSlot>().display = false;
+
+
 			if(CurrentDialogNode.nodeId < 0)
 			{
 				Player.GetComponent<CastSlot>().display = true;
+				//cursorScript.toggle = false;
 				return;
 			}
+
+			Player.GetComponent<CastSlot>().display = false;
+			//cursorScript.toggle = true;
 
 			currentevent = Event.current;	
 
@@ -245,15 +238,9 @@ public class DialogInterface : MonoBehaviour {
 						{
 							display = false;
 							Player.GetComponent<CastSlot>().display = true;
+							//cursorScript.toggle = false;
 							return;
 						}
-						//      if(CurrentDialogNode.options.Count == 0)//stop the display once the node has no more linkage
-						//      {
-						//       CurrentDialogNode = null;
-						//       display = false;
-						//
-						//       return;
-						//      }
 					}
 				}
 

@@ -1295,91 +1295,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1276337409}
   m_RootOrder: 0
---- !u!1 &59009771
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 59009776}
-  - 33: {fileID: 59009775}
-  - 135: {fileID: 59009774}
-  - 23: {fileID: 59009773}
-  - 114: {fileID: 59009772}
-  m_Layer: 0
-  m_Name: test vendor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &59009772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 59009771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 671dca06d1d884f43b87371241e7bb9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!23 &59009773
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 59009771}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!135 &59009774
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 59009771}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &59009775
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 59009771}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &59009776
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 59009771}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -82.8000031, y: 77.1999969, z: -167.699997}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
 --- !u!1 &59153355
 GameObject:
   m_ObjectHideFlags: 0
@@ -2784,6 +2699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f04a36f094f0424eb9e34367aa02950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doneSetUp: 0
 --- !u!4 &162652872
 Transform:
   m_ObjectHideFlags: 0
@@ -4874,6 +4790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: -1
   indexInList: -1
+  orderPlacement: 1
   levelManager: {fileID: 0}
   checkpointType: 1
 --- !u!23 &274838099
@@ -8108,70 +8025,6 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 0}
---- !u!1 &505574104
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 505574106}
-  - 114: {fileID: 505574105}
-  m_Layer: 0
-  m_Name: TestDialog
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &505574105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 505574104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e47fbf572808aa746a0282b2b7d22370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogDatabase: {fileID: 0}
-  display: 0
-  displayTransparency: 1
-  autoText: 0
-  autoTextSpeed: 1
-  dialogBox:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  personBox:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  dialogTree:
-    id: -1
-    dialogs: []
-    gameLevelParent: 
-  CurrentDialogNode:
-    nodeId: -1
-    actorName: 
-    text: 
---- !u!4 &505574106
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 505574104}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.2713804, y: -71.1403732, z: -198.486465}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
 --- !u!1 &505585959
 GameObject:
   m_ObjectHideFlags: 0
@@ -11857,7 +11710,7 @@ Transform:
   m_LocalScale: {x: 10000, y: 10000, z: 10000}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!1 &709961960
 GameObject:
   m_ObjectHideFlags: 0
@@ -12755,6 +12608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: -1
   indexInList: -1
+  orderPlacement: 0
   levelManager: {fileID: 0}
   checkpointType: 1
 --- !u!1 &749406703
@@ -23628,6 +23482,8 @@ MonoBehaviour:
     y: 0
     width: 0
     height: 0
+  timerWidth: 50
+  timerHeight: 20
   resetDelay:
     minute_base: 60
     minute_tick: 1
@@ -24412,6 +24268,8 @@ MonoBehaviour:
     y: 0
     width: 0
     height: 0
+  timerWidth: 50
+  timerHeight: 20
   resetDelay:
     minute_base: 60
     minute_tick: 1
@@ -25264,7 +25122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73a9c5dde0d5c9f4ab86fdfd80e4d431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggle: 0
+  display: 0
 --- !u!1 &1491679326
 GameObject:
   m_ObjectHideFlags: 0
@@ -31249,7 +31107,7 @@ MonoBehaviour:
   m_Script: {fileID: 1520322175}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -33708,7 +33566,7 @@ MonoBehaviour:
   m_Script: {fileID: 897405689}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}

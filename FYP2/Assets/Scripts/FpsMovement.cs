@@ -32,6 +32,7 @@ public class FpsMovement : MonoBehaviour
 	float runSFXdelay = 0.0f;
 
 	Inventory inventory;
+	DialogInterface dialoginterface;
 
 	public bool debugFlyMode = false;		// rmb to turn off after use
 
@@ -40,6 +41,7 @@ public class FpsMovement : MonoBehaviour
 	{
 		cc = GetComponent<CharacterController>();
 		inventory = GetComponent<Inventory>();
+		dialoginterface = DialogInterface.Instance;
 	}
 	
 	// Update is called once per frame
@@ -48,7 +50,7 @@ public class FpsMovement : MonoBehaviour
 		//camera rotate left right
 		float rotateLR = Input.GetAxis ("Mouse X") * mouseSensitivity;
 
-		if(Time.timeScale == 1.0)
+		if(Time.timeScale == 1.0 && inventory.display == false && dialoginterface.display == false)
 		{
 			transform.Rotate (0, rotateLR, 0);
 			//Camera.main.transform.Rotate (0, rotateLR, 0);

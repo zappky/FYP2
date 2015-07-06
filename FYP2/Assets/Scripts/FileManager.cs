@@ -95,14 +95,14 @@ public class my_XmlEntry // a class to describle a xml node
 public class FileManager : MonoBehaviour {
 	//singeton//it should persist until game ends
 	private static FileManager instance = null;
-	private string path = null;
-	private string backupPath = null;
-	private string gamedataPath = null;
-	private string itemdataPath = null;
-	private string craftdataPath = null;
-	private string vendordataPath = null;
-	private string dialogdataPath = null;
-	private string questlogdataPath = null;
+	public string path = null;
+	public string backupPath = null;
+	public string gamedataPath = null;
+	public string itemdataPath = null;
+	public string craftdataPath = null;
+	public string vendordataPath = null;
+	public string dialogdataPath = null;
+	public string questlogdataPath = null;
 
 	public string backupFolderName = "backup";
 	public string gamedataFolderName = "gamedata";
