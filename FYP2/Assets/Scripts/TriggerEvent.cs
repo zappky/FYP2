@@ -42,8 +42,6 @@ public class TriggerEvent : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		print ("in trigger area");
-		print (other.tag);
 		if(other.tag == "Player")
 		{
 			if(!animationEvent.enabled)
