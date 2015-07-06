@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\DialogDatabase.cs" />
      <Compile Include="Assets\Scripts\DialogInterface.cs" />
      <Compile Include="Assets\Scripts\DialogTree.cs" />
+     <Compile Include="Assets\Scripts\FallResponse.cs" />
      <Compile Include="Assets\Scripts\FileManager.cs" />
      <Compile Include="Assets\Scripts\FpsMovement.cs" />
      <Compile Include="Assets\Scripts\GrappleCollisionScript.cs" />
@@ -69,9 +70,11 @@
      <Compile Include="Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Scripts\ItemDatabase.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
+     <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\MiniMap.cs" />
      <Compile Include="Assets\Scripts\ObjectCollisionResponse.cs" />
      <Compile Include="Assets\Scripts\Parachute.cs" />
+     <Compile Include="Assets\Scripts\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\PlayerInfo.cs" />
      <Compile Include="Assets\Scripts\PointSystem.cs" />
      <Compile Include="Assets\Scripts\QuestLogDatabase.cs" />
