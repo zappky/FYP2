@@ -9,11 +9,16 @@
 			<weight>45</weight>
 		</info>
 		<quickcast>
-			<layer index="0" />
+			<layer index="0">
+				<item id="2" name="Parachute" index="0" />
+			</layer>
 			<layer index="1" />
 			<layer index="2" />
 		</quickcast>
-		<checkpoint id="-1" name="0" index="0" x="-74.49" y="78.4" z="-264" />
-		<inventory weight="0" />
+		<checkpoint id="-1" name="test checkpoint" index="0" x="-87.93" y="87.83" z="-27.09" />
+		<inventory weight="3">
+			<item index="0" id="8" name="Paper Clip" amount="1" weight="1" description="An ordinary household paper clip." stackable="True" type="craftmaterial" />
+			<item index="1" id="2" name="Parachute" amount="1" weight="1" description="Defy gravity for x seconds." stackable="True" type="consumable" />
+		</inventory>
 	</player>
 </database>
