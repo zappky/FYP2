@@ -129,6 +129,7 @@ public class Inventory : MonoBehaviour {
 		toolTipRect.height = toolTipRect.width;
 		dragItemIconRect.width = slotsize;
 		dragItemIconRect.height = dragItemIconRect.width;
+
 		if(LevelManager.Instance.loadFromContinue == false)
 		{
 			Debug.Log("load PREDEFINED inventory detected");

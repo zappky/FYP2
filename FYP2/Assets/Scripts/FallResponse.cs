@@ -34,7 +34,9 @@ public class FallResponse : MonoBehaviour {
 			// check fall dist 
 			if(fallDist >= maxFallDist)					// if fall ht too high
 			{
-				Application.LoadLevel("losescreen");	// gameover screen
+				//Application.LoadLevel("losescreen");	// gameover screen
+				ResetFallDist();
+				LevelManager.Instance.LoadPlayerInfo();
 			}
 			else
 			{

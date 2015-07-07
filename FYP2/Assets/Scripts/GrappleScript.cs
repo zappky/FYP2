@@ -80,7 +80,7 @@ public class GrappleScript : MonoBehaviour {
 				ascInputDelay -= Time.deltaTime;
 
 				// Ascend
-				if(Input.GetButton("Fire1") && ascInputDelay <= 0)
+				if(Input.GetButton("Fire2") && ascInputDelay <= 0)
 				{
 					ascInputDelay = ascDelay;
 
@@ -119,7 +119,7 @@ public class GrappleScript : MonoBehaviour {
 				}
 
 				// Descend
-				if(Input.GetButton("Fire2") && ascInputDelay <= 0) 
+				if(Input.GetButton("Fire3") && ascInputDelay <= 0) 
 				{
 					ascInputDelay = ascDelay;
 

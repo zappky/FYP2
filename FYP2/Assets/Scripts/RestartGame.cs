@@ -12,7 +12,11 @@ public class RestartGame : MonoBehaviour {
 	void Update () {
 		if(Input.GetButtonDown("Escape"))
 		{
-			Application.LoadLevel("main-scene");
+			LevelManager.Instance.Initialize();
+			LevelManager.Instance.loadFromContinue = true;
+			Application.LoadLevel("main-scene"); 
+
+			//LevelManager.Instance.LoadPlayerInfo();
 		}
 	}
 }
