@@ -19,6 +19,7 @@ public class Interactable : MonoBehaviour {
 	void Update () {
 		
 	}
+	
 	public void CompleteQuest()
 	{
 		switch(this.name)

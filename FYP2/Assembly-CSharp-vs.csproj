@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_5_0_0;UNITY_5_0;UNITY_5;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_5_0_1;UNITY_5_0;UNITY_5;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -51,10 +51,14 @@
      <Compile Include="Assets\Scripts\AI\EnemyManager.cs" />
      <Compile Include="Assets\Scripts\AI\EnemySight.cs" />
      <Compile Include="Assets\Scripts\AI\EnemyStats.cs" />
+     <Compile Include="Assets\Scripts\AchievementManager.cs" />
+     <Compile Include="Assets\Scripts\ApplicationLevelBoard.cs" />
+     <Compile Include="Assets\Scripts\ApplicationPlayerBoard.cs" />
      <Compile Include="Assets\Scripts\CSelect.cs" />
      <Compile Include="Assets\Scripts\CTimer.cs" />
      <Compile Include="Assets\Scripts\CastSlot.cs" />
      <Compile Include="Assets\Scripts\CheckPoint.cs" />
+     <Compile Include="Assets\Scripts\Collectible.cs" />
      <Compile Include="Assets\Scripts\ControllerCollisionScript.cs" />
      <Compile Include="Assets\Scripts\DialogDatabase.cs" />
      <Compile Include="Assets\Scripts\DialogInterface.cs" />
@@ -76,6 +80,7 @@
      <Compile Include="Assets\Scripts\ObjectCollisionResponse.cs" />
      <Compile Include="Assets\Scripts\Parachute.cs" />
      <Compile Include="Assets\Scripts\PauseMenu.cs" />
+     <Compile Include="Assets\Scripts\PersistentSetUp.cs" />
      <Compile Include="Assets\Scripts\PlayerInfo.cs" />
      <Compile Include="Assets\Scripts\PointSystem.cs" />
      <Compile Include="Assets\Scripts\QuestLogDatabase.cs" />
@@ -90,12 +95,15 @@
      <Compile Include="Assets\Scripts\alertbar.cs" />
      <Compile Include="Assets\Scripts\volumecontrol.cs" />
      <None Include="Assets\gamedata\backup\backup_checkpoint_playersave.xml" />
+     <None Include="Assets\gamedata\backup\backup_gameleveldatas.xml" />
      <None Include="Assets\gamedata\backup\backup_craftdatas.xml" />
+     <None Include="Assets\gamedata\gameleveldatas.xml" />
      <None Include="Assets\gamedata\backup\backup_vendordatas.xml" />
      <None Include="Assets\gamedata\dump\mytest.xml" />
      <None Include="Assets\gamedata\questlogdatas.xml" />
      <None Include="Assets\gamedata\itemdatas.xml" />
      <None Include="Assets\gamedata\backup\backup_dialogdatas.xml" />
+     <None Include="Assets\gamedata\backup\backup_achievementdatas.xml" />
      <None Include="Assets\gamedata\predefined_inventory.xml" />
      <None Include="Assets\gamedata\backup\backup_questlogdatas.xml" />
      <None Include="Assets\gamedata\dialogdatas.xml" />
@@ -104,6 +112,9 @@
      <None Include="Assets\gamedata\craftdatas.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+ <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

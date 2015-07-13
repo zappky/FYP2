@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database>
+	<level name="main-scene">
+		<collectible>
+			<amount>1</amount>
+		</collectible>
+	</level>
+</database>

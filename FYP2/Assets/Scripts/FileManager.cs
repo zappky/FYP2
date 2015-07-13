@@ -103,6 +103,8 @@ public class FileManager : MonoBehaviour {
 	public string vendordataPath = null;
 	public string dialogdataPath = null;
 	public string questlogdataPath = null;
+	public string achievementdataPath = null;
+	public string gameleveldataPath = null;
 
 	public string backupFolderName = "backup";
 	public string gamedataFolderName = "gamedata";
@@ -111,6 +113,8 @@ public class FileManager : MonoBehaviour {
 	public string dialogDataFileName = "dialogdatas";
 	public string vendorDataFileName = "vendordatas";
 	public string questlogDataFileName = "questlogdatas";
+	public string achievementdataFileName = "achievementdatas";
+	public string gameleveldataFileName = "gameleveldatas";
 
 	public enum UpdateFileMode
 	{
@@ -124,7 +128,7 @@ public class FileManager : MonoBehaviour {
 		{
 			if(instance == null)
 			{
-				instance = new GameObject("FileManager").AddComponent<FileManager>();
+				instance = new GameObject("File Manager").AddComponent<FileManager>();
 				DontDestroyOnLoad(instance);
 			}
 			return instance;
@@ -438,6 +442,186 @@ public class FileManager : MonoBehaviour {
 		CreateXMLFile("gamedata/" + backupFolderName,"backup_"+ itemDataFileName,"xml",BuildXMLData(rootentry,inputlist),"plaintext");
 	}
 
+	public void SaveAchievementData()
+	{
+		AchievementManager targetobj =  AchievementManager.Instance;
+		if(targetobj.collectibleAchievedList.Count == 0)
+		{
+			print ("collectible Achieved List is empty,saving aborted");
+			return;
+		}
+		
+		my_XmlEntry rootentry = new my_XmlEntry("database",null);
+		
+		List<my_XmlBuildEntry> inputlist = new List<my_XmlBuildEntry>();
+		List<string> attkey = new List<string>();
+		List<string> attvalue = new List<string>();
+		
+		List<string> parentlist = new List<string>();
+		List<my_XmlEntry> entrylist = new List<my_XmlEntry>();
+		
+		//each list represent one level.
+		foreach (my_CollectibleList item in targetobj.collectibleAchievedList)
+		{
+			parentlist.Add(rootentry.name);
+			attkey.Clear();
+			attvalue.Clear();
+			attkey.Add("name");
+			attvalue.Add(item.listName);
+			entrylist.Add(new my_XmlEntry("level",null,attkey,attvalue));
+			
+			parentlist.Add("level");
+			entrylist.Add(new my_XmlEntry("collectible",null,null,null));
+
+			parentlist.Add("collectible");
+			entrylist.Add(new my_XmlEntry("amount",item.collectibleList.Count.ToString(),null,null));
+
+		}	
+		inputlist = CreateXmlBuildEntryList(parentlist,entrylist);	
+		CreateXMLFile("gamedata/" + backupFolderName,"backup_"+ achievementdataFileName,"xml",BuildXMLData(rootentry,inputlist),"plaintext");
+
+	}
+	
+	public void LoadAchievementData()
+	{
+		if( CheckFile(achievementdataPath,false) == false)
+		{
+			print ("ERROR: acheivement data file cannot be found, load data aborted");
+			return ;
+			
+		}
+		print ("loading acheivement datas");
+		XmlDocument xmlDoc = new XmlDocument();
+		xmlDoc.Load(achievementdataPath);
+		
+		XmlNodeList parentList = null;
+		
+		parentList = xmlDoc.GetElementsByTagName("database");
+		parentList = DigToDesiredParentNodeList(parentList,"level");
+		AchievementManager targetobj =  AchievementManager.Instance;
+		
+		foreach(XmlNode childInfo in parentList)
+		{
+			//print ("loading achievement data , child info name: " + childInfo.Name);
+			switch(childInfo.Name)
+			{
+
+			case "level":
+
+				string levelname = childInfo.Attributes["name"].Value;
+
+				XmlNodeList childContent = childInfo.ChildNodes;
+
+				foreach (XmlNode childItem in childContent)
+				{
+					//print ("loading achievement data , child item name: " + childItem.Name);
+					switch(childItem.Name)
+					{
+					case "collectible":
+						XmlNodeList innerchildContent = childItem.ChildNodes;
+						foreach (XmlNode innerchildItem in innerchildContent)
+						{
+							//print ("loading achievement data , inner child item name: " + innerchildItem.Name);
+							switch(innerchildItem.Name)
+							{
+							case "amount":
+								targetobj.AddCollectibleLevel(levelname,int.Parse(innerchildItem.InnerText));	
+								break;
+							default:
+								print("ERROR: Unknown load achievement inner childItem data field detected: " + innerchildItem.Name);
+								break;
+							}
+						}
+						break;
+					default:
+						print("ERROR: Unknown load achievement childItem data field detected: " + childItem.Name);
+						break;
+					}
+				}
+				break;
+				
+			default:
+				print("ERROR: Unknown load achievement childinfo data field detected: " + childInfo.Name);
+				break;
+			}
+		}
+	}
+
+	public void SaveGameLevelInformation()
+	{
+		ApplicationLevelBoard targetobj =  ApplicationLevelBoard.Instance;
+
+		if(targetobj.gameLevelNameList.Count == 0)
+		{
+			print ("gameLevelName List  is empty,saving aborted");
+			return;
+		}
+		
+		my_XmlEntry rootentry = new my_XmlEntry("database",null);
+		
+		List<my_XmlBuildEntry> inputlist = new List<my_XmlBuildEntry>();
+		List<string> attkey = new List<string>();
+		List<string> attvalue = new List<string>();
+		
+		List<string> parentlist = new List<string>();
+		List<my_XmlEntry> entrylist = new List<my_XmlEntry>();
+		
+		parentlist.Add(rootentry.name);
+		entrylist.Add(new my_XmlEntry("maxlevelcount",targetobj.maxLevelCount.ToString(),null,null));
+		foreach (string item in targetobj.gameLevelNameList)
+		{
+			parentlist.Add(rootentry.name);
+			attkey.Clear();
+			attvalue.Clear();
+			attkey.Add("name");
+			attvalue.Add(item);
+			entrylist.Add(new my_XmlEntry("level",null,attkey,attvalue));
+			
+		}	
+		inputlist = CreateXmlBuildEntryList(parentlist,entrylist);	
+		CreateXMLFile("gamedata/" + backupFolderName,"backup_"+ gameleveldataFileName,"xml",BuildXMLData(rootentry,inputlist),"plaintext");
+	}
+
+	public void LoadGameLevelInformation()
+	{
+		if( CheckFile(gameleveldataPath,false) == false)
+		{
+			print ("ERROR: game level data file cannot be found, load data aborted");
+			return;
+			
+		}
+		print ("loading game level datas");
+		XmlDocument xmlDoc = new XmlDocument();
+		xmlDoc.Load(gameleveldataPath);
+		
+		XmlNodeList parentList = null;
+
+		parentList = xmlDoc.GetElementsByTagName("database");
+		//parentList = DigToDesiredChildNodeList(parentList,"database");
+		parentList = parentList.Item(0).ChildNodes;
+		ApplicationLevelBoard targetobj =  ApplicationLevelBoard.Instance;
+
+		foreach(XmlNode childInfo in parentList)
+		{
+			switch(childInfo.Name)
+			{
+
+			case "maxlevelcount":
+				targetobj.maxLevelCount = int.Parse(childInfo.InnerText);
+				break;
+
+			case "level":
+				targetobj.AddGameLevelNameList(childInfo.Attributes["name"].Value);
+
+				break;
+
+			default:
+				print("ERROR: Unknown load game level childInfo data field detected: " + childInfo.Name);
+				break;
+			}
+		}
+	}
+
 	public List<my_QuestLogList> LoadQuestLogData()
 	{
 		List<my_QuestLogList> resultlist = new List<my_QuestLogList>();
@@ -527,7 +711,7 @@ public class FileManager : MonoBehaviour {
 
 			foreach (XmlNode childItem in childContent)
 			{
-				print ("looking at childItem name: "+ childItem.Name );
+				//print ("looking at childItem name: "+ childItem.Name );
 				tempdialog = new my_DialogNode();
 				tempdialog.actorName = childItem.Attributes["actorname"].Value;
 				tempdialog.nodeId = int.Parse(childItem.Attributes["id"].Value);
@@ -615,13 +799,13 @@ public class FileManager : MonoBehaviour {
 		
 		foreach(XmlNode childInfo in parentList)
 		{
-			print ("looking at child info "+ childInfo.Name );
+			//print ("looking at child info "+ childInfo.Name );
 			tempitem.id = int.Parse(childInfo.Attributes["id"].Value);
 			XmlNodeList childContent = childInfo.ChildNodes;
 			
 			foreach (XmlNode childItem in childContent)
 			{
-				print ("looking at child item "+ childItem.Name );
+				//print ("looking at child item "+ childItem.Name );
 				switch(childItem.Name)
 				{
 					
@@ -838,6 +1022,8 @@ public class FileManager : MonoBehaviour {
 		dialogdataPath = gamedataPath + "/" + dialogDataFileName + ".xml";
 		vendordataPath = gamedataPath + "/" + vendorDataFileName + ".xml";
 		questlogdataPath = gamedataPath + "/" + questlogDataFileName + ".xml";
+		gameleveldataPath = gamedataPath + "/" + gameleveldataFileName + ".xml";
+		achievementdataPath = gamedataPath + "/" + backupFolderName + "/" +"backup_"+ achievementdataFileName + ".xml";
 
 		if (CheckDirectory(gamedataFolderName) == false)
 		{

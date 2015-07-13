@@ -17,6 +17,7 @@ TagManager:
   - AImanager
   - Enemy
   - MainMenu
+  - Collectible
   layers:
   - Default
   - TransparentFX

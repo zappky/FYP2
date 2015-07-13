@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour {
 	public List<CheckPoint> checkPointList = new List<CheckPoint>();
 	public bool loadFromContinue = false;
 
+	public AchievementManager achievementmanager = null;
 	public FileManager filemanager = null;
 	public GameObject playerobj = null;
 	public PlayerInfo playerinfo = null;
@@ -40,10 +41,9 @@ public class LevelManager : MonoBehaviour {
 	}
 	public void Initialize()
 	{
-
-
 		//this.checkPointList = FindObjectsOfType<CheckPoint>().ToList();//find and insert all gameobject with checkpoint script
 		this.filemanager = FileManager.Instance;
+		this.achievementmanager = AchievementManager.Instance;
 		this.playercursor = FindObjectOfType<HideCursorScript>();
 		if(CurrentLevelName == "main-scene")
 		{
@@ -237,7 +237,6 @@ public class LevelManager : MonoBehaviour {
 	}
 	public void LoadPreDefinedInventory(string levelName)
 	{
-		print ("Suspect check: " + predefinedInventoryPath);
 		if( filemanager.CheckFile(predefinedInventoryPath,false) == false)
 		{
 			print ("ERROR: predefined Inventory save data cannot be found, load data aborted");
@@ -285,11 +284,11 @@ public class LevelManager : MonoBehaviour {
 					isNumeric = int.TryParse(itemsection.Attributes["id"].Value, out n);
 					if(isNumeric == true)
 					{
-						print ("load predefined inventory add item amount: " + amountToAdd);
+						//print ("load predefined inventory add item amount: " + amountToAdd);
 						playerinventory.AddItem(n,amountToAdd);
 					}else
 					{
-						print ("load predefined inventory add item amount: " + amountToAdd);
+						//print ("load predefined inventory add item amount: " + amountToAdd);
 						playerinventory.AddItem(itemsection.Attributes["id"].Value,amountToAdd);
 					}
 

@@ -37,8 +37,6 @@ public class MainMenu : MonoBehaviour {
 		optionB = optionB.GetComponent<Button>();
 		extraB = extraB.GetComponent<Button>();
 		exitB = exitB.GetComponent<Button>();
-		FileManager.Instance.Initialize();
-		LevelManager.Instance.Initialize();//temporary placement
 	}
 
 	void DisableButton()
