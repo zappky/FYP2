@@ -4,10 +4,12 @@ using System.Collections;
 public class Collectible : MonoBehaviour {
 
 	public LevelManager levelManager = null;
+	public my_CollectibleList currentCollectibleLevel = null;
 
 	// Use this for initialization
 	void Start () {
 		levelManager = LevelManager.Instance;
+		currentCollectibleLevel = levelManager.achievementmanager.GetCollectibleLevel(levelManager.CurrentLevelName);
 	}
 	
 	// Update is called once per frame
@@ -19,13 +21,15 @@ public class Collectible : MonoBehaviour {
 		switch(other.gameObject.tag)
 		{
 		case "Player":
-			if(levelManager.achievementmanager.AddCollectible(levelManager.CurrentLevelName) == true)
+			if(currentCollectibleLevel.DuplicateCollectibleCheck(this.name) == false)
 			{
+				levelManager.achievementmanager.AddCollectible(levelManager.CurrentLevelName,new my_Collectible(this.name));
 				Destroy(this.gameObject);//destroy self	
 			}else
 			{
-				Debug.Log("ERROR: Cannot find collectible list to record,so gameobject wouldnt be destroy");
+				print("duplicate detected: " +this.name );
 			}
+
 			break;
 
 		default:

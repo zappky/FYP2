@@ -1,17 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SingetonSetUp.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\AchievementManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\Collectible.cs" Line="10" Column="31" />
-      <File FileName="Assets\Scripts\AchievementManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LevelManager.cs" Line="296" Column="6" />
-      <File FileName="Assets\Scripts\PersistentSetUp.cs" Line="41" Column="4" />
-      <File FileName="Assets\Scripts\SingetonSetUp.cs" Line="38" Column="4" />
-      <File FileName="Assets\Scripts\ApplicationLevelBoard.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FileManager.cs" Line="714" Column="7" />
-      <File FileName="Assets\Scripts\CheckPoint.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ApplicationPlayerBoard.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AI\EnemyAI.cs" Line="379" Column="29" />
+      <File FileName="Assets\Scripts\Collectible.cs" Line="24" Column="48" />
+      <File FileName="Assets\Scripts\AchievementManager.cs" Line="369" Column="81" />
+      <File FileName="Assets\Scripts\FileManager.cs" Line="523" Column="63" />
+      <File FileName="Assets\Scripts\ItemDatabase.cs" Line="25" Column="24" />
+      <File FileName="Assets\Scripts\LevelManager.cs" Line="24" Column="40" />
+      <File FileName="Assets\Scripts\DialogTree.cs" Line="156" Column="1" />
+      <File FileName="Assets\Scripts\PersistentSetUp.cs" Line="33" Column="1" />
+      <File FileName="Assets\Scripts\SingetonSetUp.cs" Line="43" Column="42" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

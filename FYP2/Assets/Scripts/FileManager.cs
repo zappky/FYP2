@@ -466,15 +466,26 @@ public class FileManager : MonoBehaviour {
 			parentlist.Add(rootentry.name);
 			attkey.Clear();
 			attvalue.Clear();
+			attkey.Add("id");
+			attvalue.Add(item.id.ToString());
 			attkey.Add("name");
 			attvalue.Add(item.listName);
 			entrylist.Add(new my_XmlEntry("level",null,attkey,attvalue));
 			
 			parentlist.Add("level");
-			entrylist.Add(new my_XmlEntry("collectible",null,null,null));
+			entrylist.Add(new my_XmlEntry("collectibles",null,null,null));
 
-			parentlist.Add("collectible");
-			entrylist.Add(new my_XmlEntry("amount",item.collectibleList.Count.ToString(),null,null));
+			foreach(my_Collectible a_collectible in item)
+			{
+				parentlist.Add("collectibles");
+				attkey.Clear();
+				attvalue.Clear();
+				attkey.Add("id");
+				attvalue.Add(a_collectible.id.ToString());
+				attkey.Add("name");
+				attvalue.Add(a_collectible.collectibleName);
+				entrylist.Add(new my_XmlEntry("collectible",null,attkey,attvalue));
+			}
 
 		}	
 		inputlist = CreateXmlBuildEntryList(parentlist,entrylist);	
@@ -509,23 +520,24 @@ public class FileManager : MonoBehaviour {
 			case "level":
 
 				string levelname = childInfo.Attributes["name"].Value;
-
+				int levelId = int.Parse(childInfo.Attributes["id"].Value);
 				XmlNodeList childContent = childInfo.ChildNodes;
-
+				targetobj.AddCollectibleLevel(new my_CollectibleList(levelname));
 				foreach (XmlNode childItem in childContent)
 				{
 					//print ("loading achievement data , child item name: " + childItem.Name);
 					switch(childItem.Name)
 					{
-					case "collectible":
+					case "collectibles":
 						XmlNodeList innerchildContent = childItem.ChildNodes;
 						foreach (XmlNode innerchildItem in innerchildContent)
 						{
 							//print ("loading achievement data , inner child item name: " + innerchildItem.Name);
 							switch(innerchildItem.Name)
 							{
-							case "amount":
-								targetobj.AddCollectibleLevel(levelname,int.Parse(innerchildItem.InnerText));	
+							case "collectible":
+								targetobj.AddCollectible(levelId,new my_Collectible(innerchildItem.Attributes["name"].Value));
+								//targetobj.AddCollectibleLevel(levelname,int.Parse(innerchildItem.InnerText));	
 								break;
 							default:
 								print("ERROR: Unknown load achievement inner childItem data field detected: " + innerchildItem.Name);
