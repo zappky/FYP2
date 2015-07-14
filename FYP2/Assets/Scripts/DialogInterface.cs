@@ -6,12 +6,14 @@ using System.Collections.Generic;
 //desired result would be similar to visual novel style
 public class DialogInterface : MonoBehaviour {
 
+	public static DialogInterface instance = null;
+	public static bool initedBefore = false;
 	public DialogDatabase dialogDatabase = null;
-
+	
 	public bool display = false;
-	public float displayTransparency = 1.0f;
-	public bool autoText = false;
-	public float autoTextSpeed = 1.0f;
+	//public float displayTransparency = 1.0f;
+	//public bool autoText = false;
+	//public float autoTextSpeed = 1.0f;
 	//public int CurrentTextLine = 0;
 
 	public Rect dialogBox;
@@ -35,10 +37,11 @@ public class DialogInterface : MonoBehaviour {
 	private float optionWidth;
 	private int reservedOptionRectCount = 4;
 	private List<Rect>optionRects = new List<Rect>();
-	private LevelManager levelmanager = null;
+	//private LevelManager levelmanager = null;
 	private GameObject Player = null;
 	//private HideCursorScript cursorScript = null;
-	public static DialogInterface instance = null;
+
+
 		
 	public static DialogInterface Instance
 	{
@@ -54,25 +57,42 @@ public class DialogInterface : MonoBehaviour {
 	}
 	public void Initialize()
 	{
-		Player = GameObject.FindGameObjectWithTag("Player");
-		//cursorScript = FindObjectOfType<HideCursorScript>();
-		dialogDatabase = DialogDatabase.Instance;
-		levelmanager = LevelManager.Instance;
-		dialogTree = dialogDatabase.GetDialogTree("main-scene");
-		CurrentDialogNode = dialogTree.GetDialogBookmarkedWithIndex(0);
-		for(int i = 0 ; i < reservedOptionRectCount; ++i)
+		Initialize(true);// allow reinitalize of this class by default
+	}
+
+	public void Initialize(bool re_init)
+	{
+		if(initedBefore == false || re_init == true)
 		{
-			//init some temp rect for later uses.
-			optionRects.Add(new Rect(0,0,0,0));
+			Player = GameObject.FindGameObjectWithTag("Player");
+			//cursorScript = FindObjectOfType<HideCursorScript>();
+			dialogDatabase = DialogDatabase.Instance;
+			//levelmanager = LevelManager.Instance;
+			dialogTree = dialogDatabase.GetDialogTree(Application.loadedLevelName);
+			//Debug.Log("current checkpoint index: " +levelmanager.currentCheckPointIndex);
+			//if(levelmanager.currentCheckPointIndex <0)
+			//{
+				//CurrentDialogNode = dialogTree.GetDialogBookmarkedWithIndex(0);
+			//}else
+			//{
+				//CurrentDialogNode = dialogTree.GetDialogBookmarkedWithIndex(levelmanager.currentCheckPointIndex);
+			//}
+
+			for(int i = 0 ; i < reservedOptionRectCount; ++i)
+			{
+				//init some temp rect for later uses.
+				optionRects.Add(new Rect(0,0,0,0));
+			}
+
+
+			dialogBox = new Rect (0.0f, Screen.height * 0.70f, Screen.width, Screen.height * 0.30f);
+
+			personBoxHeight = dialogBox.height * 0.20f;
+			personBoxWidth = dialogBox.width * 0.20f;
+
+			personBox = new Rect (dialogBox.xMin,dialogBox.yMin - personBoxHeight,personBoxWidth,personBoxHeight);
+			initedBefore = true;
 		}
-
-
-		dialogBox = new Rect (0.0f, Screen.height * 0.70f, Screen.width, Screen.height * 0.30f);
-
-		personBoxHeight = dialogBox.height * 0.20f;
-		personBoxWidth = dialogBox.width * 0.20f;
-
-		personBox = new Rect (dialogBox.xMin,dialogBox.yMin - personBoxHeight,personBoxWidth,personBoxHeight);
 	}
 
 	public void DestroyInstance()
@@ -253,8 +273,8 @@ public class DialogInterface : MonoBehaviour {
 		}
 	}
 
-	void ToggleAutoText()
-	{
-		autoText = !autoText;
-	}
+//	void ToggleAutoText()
+//	{
+//		autoText = !autoText;
+//	}
 }

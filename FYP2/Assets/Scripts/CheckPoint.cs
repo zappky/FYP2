@@ -49,6 +49,7 @@ public class CheckPoint : MonoBehaviour {
 				switch (this.checkpointType)
 				{
 				case CheckPoint_Type.CHECKPOINT_DIALOG_TRIGGER:
+					Debug.Log("Triggering dialog trigger: " +this.name );
 					levelManager.playerdialoginferface.StartNewDialogSessionUsingBookmark(levelManager.CurrentLevelName,this.name);
 					levelManager.SavePlayerInfo();
 					break;

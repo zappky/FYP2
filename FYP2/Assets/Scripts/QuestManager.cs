@@ -46,17 +46,21 @@ public class my_QuestLog
 }
 
 public class QuestManager : MonoBehaviour {
+
+	public static QuestManager instance = null;
+	public static bool initedBefore = false;
+
 	public bool display = false;
+
 	public QuestLogDatabase questlogdatabase = null;
 	public my_QuestLogList questLogListDatabase = null;
 	public List<my_QuestLog> questLogs = new List<my_QuestLog>();
-	public static QuestManager instance = null;
+
 	public Rect questDisplayRect;
 	public List<Rect>questLogRects = new List<Rect>();
 	public int maxQuestLog = 5;
-	public int currentGameLevel = 1;
 	private float questLogHeight = -1.0f;
-
+	int currentGameLevel = -1;
 	public static QuestManager Instance
 	{
 		get
@@ -69,10 +73,44 @@ public class QuestManager : MonoBehaviour {
 			return instance;
 		}
 	}
+	public void Initialize()
+	{
+		Initialize(true);// allow reinitalize of this class by default
+	}
+	
+	public void Initialize(bool re_init)
+	{
+		if(initedBefore == false || re_init == true)
+		{
+			questlogdatabase = QuestLogDatabase.instance;
 
+			//temporary solution
+			List<string> gamelevelnamelist = ApplicationLevelBoard.Instance.gameLevelNameList;
+			for(int i = 0 ; i < gamelevelnamelist.Count; ++i)
+			{
+				if(gamelevelnamelist[i] == Application.loadedLevelName)
+				{
+					currentGameLevel = i;
+					break;
+				}
+			}
+			Debug.Log("current game level in quest manager:" + currentGameLevel);
+			questLogListDatabase = questlogdatabase[currentGameLevel];
+			
+			questDisplayRect = new Rect (0.0f,Screen.height * 0.01f,Screen.width * 0.25f,Screen.width * 0.25f);
+			questLogHeight = questDisplayRect.height / (maxQuestLog+1);
+			for (int i = 0; i<maxQuestLog; ++i)//reserve some rect 
+			{
+				questLogRects.Add (new Rect (questDisplayRect.xMin,questDisplayRect.yMin + (i+1) *questLogHeight,questDisplayRect.width,questLogHeight));
+			}
+			questLogs.Clear();
+			FetchNewQuest();
+			initedBefore = true;
+		}
+	}
 	public void FetchNewQuest()
 	{
-		this.questLogListDatabase = questlogdatabase.GetQuestLogListByLevel(currentGameLevel);
+		this.questLogListDatabase = questlogdatabase[currentGameLevel];
 
 		for(int i = 0 ; i < questLogListDatabase.questlogs.Count ; ++i)
 		{
@@ -179,20 +217,7 @@ public class QuestManager : MonoBehaviour {
 
 		return false;
 	}
-	public void Initialize()
-	{
-		questlogdatabase = QuestLogDatabase.instance;
-		questLogListDatabase = questlogdatabase.GetQuestLogListByLevel(currentGameLevel);
 
-		questDisplayRect = new Rect (0.0f,Screen.height * 0.01f,Screen.width * 0.25f,Screen.width * 0.25f);
-		questLogHeight = questDisplayRect.height / (maxQuestLog+1);
-		for (int i = 0; i<maxQuestLog; ++i)//reserve some rect 
-		{
-			questLogRects.Add (new Rect (questDisplayRect.xMin,questDisplayRect.yMin + (i+1) *questLogHeight,questDisplayRect.width,questLogHeight));
-		}
-
-		FetchNewQuest();
-	}
 
 	public void OnApplicationQuit()
 	{

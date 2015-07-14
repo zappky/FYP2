@@ -67,6 +67,7 @@ public class QuestLogDatabase : MonoBehaviour {
 	//the index of the list will be used to mark as level.,in game.
 	public List<my_QuestLogList>questLogDatabase = new List<my_QuestLogList>();
 	public static QuestLogDatabase instance = null;
+	public static bool initedBefore = false;
 
 	public static QuestLogDatabase Instance
 	{
@@ -98,8 +99,17 @@ public class QuestLogDatabase : MonoBehaviour {
 		return null;
 	}
 	public void Initialize()
-	{	
-		LoadQuestLogData();
+	{
+		Initialize(false);//dont allow reinitalize of this class by default
+	}
+	
+	public void Initialize(bool re_init)
+	{
+		if(initedBefore == false || re_init == true)
+		{
+			LoadQuestLogData();
+			initedBefore = true;
+		}
 	}
 	public void SaveQuestLogData()
 	{

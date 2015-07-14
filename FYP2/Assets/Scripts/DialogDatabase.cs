@@ -9,6 +9,7 @@ public class DialogDatabase : MonoBehaviour {
 
 	public List<DialogTree> dialogDatabase = new List<DialogTree>();//the index of the list of dialog tree is used as levels
 	public static DialogDatabase instance = null;
+	public static bool initedBefore = false;
 
 	public static DialogDatabase Instance
 	{
@@ -31,7 +32,16 @@ public class DialogDatabase : MonoBehaviour {
 	}
 	public void Initialize()
 	{
-		LoadDialogTreeDatas();
+		Initialize(false);//don allow reinitalize of this class by default
+	}
+
+	public void Initialize(bool re_init)
+	{
+		if(initedBefore == false || re_init == true)
+		{
+			LoadDialogTreeDatas();
+			initedBefore = true;
+		}
 	}
 
 	public void OnApplicationQuit()

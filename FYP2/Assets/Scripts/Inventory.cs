@@ -148,31 +148,44 @@ public class Inventory : MonoBehaviour {
 				ToggleDisplay();
 				//Cursor.visible = !Cursor.visible;
 			}
-			if(display == true)
-			{
-				if(Input.GetKeyDown("s"))
-				{
-					SaveInventory();
-				}
-				if(Input.GetKeyDown("l"))
-				{
-					LoadInventory();
-				}
-			}
-			
 		}
 
 
 	//brute force loop and return a reference to the item based on the search id
 	public Item GetItem(int id)
 	{
-		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+		if(id < 0 )
 		{
-			if(inventory[i].id == id)
+			Debug.Log("ERROR: GetItem trying to access inventory list argument out of range");
+			return null;
+		}
+		
+		if(id > inventory.Count)
+		{
+			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
 			{
-				return inventory[i];
+				if(inventory[i].id == id)
+				{
+					return inventory[i];
+				}
+			}
+		}else
+		{
+			if(inventory[id].id == id)
+			{
+				return inventory[id];
+			}else
+			{
+				for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+				{
+					if(inventory[i].id == id)
+					{
+						return inventory[i];
+					}
+				}
 			}
 		}
+		
 		return null;
 	}
 	//brute force loop and return a reference to the item based on the search name
@@ -441,14 +454,41 @@ public class Inventory : MonoBehaviour {
 	}
 	void RemoveItem(int id)
 	{
-		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+		if(id < 0 )
 		{
-			if(inventory[i].id == id)
+			Debug.Log("ERROR: Remove Item trying to access inventory list argument out of range");
+			return;
+		}
+
+		if(id > inventory.Count)
+		{
+			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
 			{
-				RemoveKnownItem(i);
-				break;
+				if(inventory[i].id == id)
+				{
+					RemoveKnownItem(i);
+					break;
+				}
+			}
+		}else
+		{
+			if(inventory[id].id == id)
+			{
+				RemoveKnownItem(id);
+				return;
+			}else
+			{
+				for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+				{
+					if(inventory[i].id == id)
+					{
+						RemoveKnownItem(i);
+						break;
+					}
+				}
 			}
 		}
+
 	}
 	public bool CheckContainsItem(Item a_item)
 	{
@@ -474,7 +514,6 @@ public class Inventory : MonoBehaviour {
 
 	public bool CheckContainsItem(string itemname)
 	{
-
 		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
 		{
 			if(inventory[i].itemname == itemname)
@@ -484,16 +523,158 @@ public class Inventory : MonoBehaviour {
 		}
 		return false;
 	}
+
 	public bool CheckContainsItem(int id)
 	{
-		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+		if(id < 0 )
 		{
-			if(inventory[i].id == id)
+			Debug.Log("ERROR: CheckContainsItem trying to access inventory list argument out of range");
+			return false;
+		}
+		
+		if(id > inventory.Count)
+		{
+			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+			{
+				if(inventory[i].id == id)
+				{
+					return true;
+				}
+			}
+		}else
+		{
+			if(inventory[id].id == id)
 			{
 				return true;
+			}else
+			{
+				for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+				{
+					if(inventory[i].id == id)
+					{
+						return true;
+					}
+				}
 			}
 		}
+
 		return false;
+	}
+	public void ActivateItemEffect(Item item)
+	{
+		ActivateItemEffect(item.id);
+	}
+	public void ActivateItemEffect(Item item,int itemIndex)
+	{
+		ActivateItemEffect(item.id,itemIndex);
+	}
+	public void ActivateItemEffect(int itemId)
+	{
+		ActivateItemEffect(itemId,-1);
+	}
+	public void ActivateItemEffect(int itemId,int itemIndex)
+	{
+		bool validIndex = false;
+
+		if(itemIndex < 0 || itemIndex > inventory.Count)
+		{
+			validIndex = false;
+		}
+
+		switch(itemId)
+		{
+		
+		//case 0:
+		default:
+			Debug.Log("nill effect");
+		break;
+
+		case 0:
+			Debug.Log("Running Shoes effect");
+		break;
+		case 1:
+			Debug.Log("grapple effect");
+			GrappleScript gscript = GetComponent<GrappleScript>();
+			if(!gscript.isGrappling)
+			{
+				gscript.FireGrapple();
+			}
+			else
+			{
+				gscript.ReleaseGrapple();
+			}
+			break;
+		case 2:
+			Debug.Log("Parachute effect");
+			break;
+		case 3:
+			Debug.Log("Toy Bell effect");
+			break;
+
+		case 4:
+			Debug.Log("Sticky Noisemaker effect");
+			GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
+			CTimer escript = obj.GetComponent<CTimer>();
+			escript.OnLookInteract();
+			if(validIndex == false)
+			{
+				RemoveItem(itemId);
+			}else
+			{
+				RemoveKnownItem(itemIndex);
+			}
+
+			break;
+
+		case 5:
+			Debug.Log("Remote Controll effect");
+			break;
+
+		}
+	}
+	public void ActivateItemEffect(string itemName)
+	{
+		switch(itemName)
+		{
+
+		default:
+		case "":
+			Debug.Log("nill effect");
+		break;
+
+		case "Running Shoes":
+		break;
+
+		case "Grapple":
+			GrappleScript gscript = GetComponent<GrappleScript>();
+			if(!gscript.isGrappling)
+			{
+				gscript.FireGrapple();
+			}	
+			else
+			{
+				gscript.ReleaseGrapple();
+			}
+				
+		break;
+
+		case "Parachute":
+		break;
+
+		case "Toy Bell":
+		break;
+
+		case "Sticky Noisemaker":
+			GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
+			CTimer escript = obj.GetComponent<CTimer>();
+			escript.OnLookInteract();
+			RemoveItem(itemName);
+		break;
+
+		case "Remote Control":
+		break;
+
+		}
 	}
 	public void UseItem(Item item)
 	{
@@ -502,63 +683,109 @@ public class Inventory : MonoBehaviour {
 			Debug.Log("Inventory doesnt contain item: " + item.itemname + "use item aborted");
 			return;
 		}
-
-		switch(item.id)
-		{
-			default:
-			case 0:
-			{
-				Debug.Log("nill effect");
-			}
-			break;
-			case 1:
-			{
-				GrappleScript gscript = GetComponent<GrappleScript>();
-				if(!gscript.isGrappling)
-					gscript.FireGrapple();
-				else
-					gscript.ReleaseGrapple();
-			}
-			break;
-			case 3:
-			{
-				GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
-				CTimer escript = obj.GetComponent<CTimer>();
-				escript.OnLookInteract();
-
-				RemoveItem(item.id);
-			}
-			break;
-		}
-
+		ActivateItemEffect(item);
 	}
-
-	public void UseItem(Item item,int itemindex)
+	public void UseItem(Item item,int itemIndex)
 	{
 		if(CheckContainsItem(item) == false)
 		{
 			Debug.Log("Inventory doesnt contain item: " + item.itemname + "use item aborted");
 			return;
 		}
-		switch(item.id)
-		{
-			default:
-			case 0:
-			{
-				Debug.Log("nill effect");
-			}break;
-				
-			case 3:
-			{
-				GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
-				CTimer escript = obj.GetComponent<CTimer>() as CTimer;
-				escript.OnLookInteract();
-
-				RemoveKnownItem(itemindex);
-	
-			}break;
-		}
+		ActivateItemEffect(item,itemIndex);
 	}
+	public void UseItem(int itemId)
+	{
+		if(CheckContainsItem(itemId) == false)
+		{
+			Debug.Log("Inventory doesnt contain item: " + itemId.ToString() + "use item aborted");
+			return;
+		}
+		ActivateItemEffect(itemId);
+	}
+	public void UseItem(int itemId,int itemIndex)
+	{
+		if(CheckContainsItem(itemId) == false)
+		{
+			Debug.Log("Inventory doesnt contain item: " + itemId.ToString() + "use item aborted");
+			return;
+		}
+		ActivateItemEffect(itemId,itemIndex);
+	}
+	public void UseItem(string itemName)
+	{
+		if(CheckContainsItem(itemName) == false)
+		{
+			Debug.Log("Inventory doesnt contain item: " + itemName + "use item aborted");
+			return;
+		}
+		ActivateItemEffect(itemName);
+	}
+//	old codes
+//	public void UseItem(Item item)
+//	{
+//		if(CheckContainsItem(item) == false)
+//		{
+//			Debug.Log("Inventory doesnt contain item: " + item.itemname + "use item aborted");
+//			return;
+//		}
+//
+//		switch(item.id)
+//		{
+//			default:
+//			case 0:
+//			{
+//				Debug.Log("nill effect");
+//			}
+//			break;
+//			case 1:
+//			{
+//				GrappleScript gscript = GetComponent<GrappleScript>();
+//				if(!gscript.isGrappling)
+//					gscript.FireGrapple();
+//				else
+//					gscript.ReleaseGrapple();
+//			}
+//			break;
+//			case 3:
+//			{
+//				GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
+//				CTimer escript = obj.GetComponent<CTimer>();
+//				escript.OnLookInteract();
+//
+//				RemoveItem(item.id);
+//			}
+//			break;
+//		}
+//
+//	}
+//
+//	public void UseItem(Item item,int itemindex)
+//	{
+//		if(CheckContainsItem(item) == false)
+//		{
+//			Debug.Log("Inventory doesnt contain item: " + item.itemname + "use item aborted");
+//			return;
+//		}
+//		switch(item.id)
+//		{
+//			default:
+//			case 0:
+//			{
+//				Debug.Log("nill effect");
+//			}break;
+//				
+//			case 3:
+//			{
+//				GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
+//				CTimer escript = obj.GetComponent<CTimer>() as CTimer;
+//				escript.OnLookInteract();
+//
+//				RemoveKnownItem(itemindex);
+//	
+//			}break;
+//		}
+//	}
 	
 	
 	public void ToggleDisplay()
@@ -883,18 +1110,21 @@ public class Inventory : MonoBehaviour {
 	
 	void LoadInventory()
 	{
-		for(int i = 0 ; i<inventory.Count;++i)
-		{
-			inventory[i] = PlayerPrefs.GetInt("Inventory " + i, -1) >= 0 ? database.itemDatabase[PlayerPrefs.GetInt("Inventory " + i)]: new Item();
-		}
+//		for(int i = 0 ; i<inventory.Count;++i)
+//		{
+//			inventory[i] = PlayerPrefs.GetInt("Inventory " + i, -1) >= 0 ? database.itemDatabase[PlayerPrefs.GetInt("Inventory " + i)]: new Item();
+//		}
+
+		FileManager.Instance.LoadPlayerInfo();
 	}
 	
 	void SaveInventory()
 	{
-		for(int i = 0 ; i<inventory.Count;++i)
-		{
-			PlayerPrefs.SetInt("Inventory " + i,inventory[i].id);
-		}
+//		for(int i = 0 ; i<inventory.Count;++i)
+//		{
+//			PlayerPrefs.SetInt("Inventory " + i,inventory[i].id);
+//		}
+		FileManager.Instance.SavePlayerInfo();
 	}
 	void AddItemAmountWithWeight(Item a_item,int amountToAdd)//warning, it is a += ,not = ,so the resulting amount may differ from expectation
 	{
@@ -930,5 +1160,35 @@ public class Inventory : MonoBehaviour {
 	{
 		//backpack weight limit is usually 20%~30% of the person weight
 		this.weightlimit = playerinfo.weight * 0.2f;
+	}
+	public void ClearInventoryCraftItem()
+	{
+		craftslots.Clear();
+		for (int i = 0; i<(slotX*slotY); ++i) //populate the slot list
+		{
+			craftslots.Add(new Item());
+		}
+	}
+	public void ClearInventoryItem()
+	{
+		slots.Clear();
+		inventory.Clear();
+		for (int i = 0; i<(slotX*slotY); ++i) //populate the slot list
+		{
+			slots.Add(new Item());
+			inventory.Add(new Item());
+		}
+	}
+	public void CleanInventory()
+	{
+		slots.Clear();
+		craftslots.Clear();
+		inventory.Clear();
+		for (int i = 0; i<(slotX*slotY); ++i) //populate the slot list
+		{
+			slots.Add(new Item());
+			craftslots.Add(new Item());
+			inventory.Add(new Item());
+		}
 	}
 }

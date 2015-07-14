@@ -353,6 +353,7 @@ public class CraftingRecipe//i do this purely because i want to view the item in
 
 public class ItemDatabase : MonoBehaviour {
 	private static ItemDatabase instance = null;
+	public static bool initedBefore = false;
 	public List<Item> itemDatabase = new List<Item>();//containing all unique game item,crafted item and materals
 	public List<CraftingRecipe> craftDatabase = new List<CraftingRecipe>();//containing all game item crafting combination
 
@@ -368,11 +369,18 @@ public class ItemDatabase : MonoBehaviour {
 			return instance;
 		}
 	}
-
 	public void Initialize()
-	{	
-		LoadItemsData();
-		LoadCraftsData();
+	{
+		Initialize(false);//don allow reinitalize of this class by default
+	}
+	public void Initialize(bool re_init)
+	{
+		if(initedBefore == false || re_init == true)
+		{
+			LoadItemsData();
+			LoadCraftsData();
+			initedBefore = true;
+		}
 	}
 
 	public void OnApplicationQuit()//this will be auto called like start and update function

@@ -240,6 +240,8 @@ public class my_CollectibleList: IEnumerable<my_Collectible>
 public class AchievementManager : MonoBehaviour {
 
 	public static AchievementManager instance = null;
+	public static bool initedBefore = false;
+
 	public ApplicationLevelBoard levelboard = null;
 	public List<my_CollectibleList> collectibleAchievedList = new List<my_CollectibleList>();//index of this list represent the level, each level for its list of collectible
 
@@ -263,11 +265,19 @@ public class AchievementManager : MonoBehaviour {
 			return instance;
 		}
 	}
-
 	public void Initialize()
 	{
-		levelboard = ApplicationLevelBoard.Instance;
-		LoadAchievementData();
+		Initialize(false);//don allow reinitalize of this class by default
+	}
+	public void Initialize(bool re_init)
+	{
+		if(initedBefore == false || re_init == true)
+		{
+			Debug.Log("acheivement system init");
+			levelboard = ApplicationLevelBoard.Instance;
+			LoadAchievementData();
+			initedBefore = true;
+		}
 	}
 
 	// Update is called once per frame

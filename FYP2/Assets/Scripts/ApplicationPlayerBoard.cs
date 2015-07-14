@@ -5,6 +5,7 @@ using System.Collections;
 public class ApplicationPlayerBoard : MonoBehaviour {
 
 	public static ApplicationPlayerBoard instance = null;
+	public static bool initedBefore = false;
 
 	public static ApplicationPlayerBoard Instance
 	{
@@ -18,10 +19,17 @@ public class ApplicationPlayerBoard : MonoBehaviour {
 			return instance;
 		}
 	}
-	
 	public void Initialize()
 	{
-		instance.gameObject.AddComponent<HideCursorScript>();
+		Initialize(false);//don allow reinitalize of this class by default
+	}
+	public void Initialize(bool re_init)
+	{
+		if(initedBefore == false || re_init == true)
+		{
+			instance.gameObject.AddComponent<HideCursorScript>();
+			initedBefore = true;
+		}
 	}
 	
 	public void LoadGameLevelInformation()

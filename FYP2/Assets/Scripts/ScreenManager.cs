@@ -9,6 +9,7 @@ public class ScreenManager : MonoBehaviour {
 	private bool screenAspectChanged = false;
 
 	public static ScreenManager instance = null;
+	public static bool initedBefore = false;
 
 	public static ScreenManager Instance
 	{
@@ -24,8 +25,17 @@ public class ScreenManager : MonoBehaviour {
 	}
 	public void Initialize()
 	{
-		prevScreenWidth = currScreenWidth = Screen.width;
-		prevScreenHeight = currScreenHeight = Screen.height;
+		Initialize(true);// allow reinitalize of this class by default
+	}
+	
+	public void Initialize(bool re_init)
+	{
+		if(initedBefore == false || re_init == true)
+		{
+			prevScreenWidth = currScreenWidth = Screen.width;
+			prevScreenHeight = currScreenHeight = Screen.height;
+			initedBefore = true;
+		}
 	}
 	
 	public void OnApplicationQuit()

@@ -46,6 +46,7 @@ public class my_VendorEntry
 public class VendorDatabase : MonoBehaviour {
 
 	public static VendorDatabase instance = null;
+	public static bool initedBefore = false;
 	public List<my_VendorEntry> vendorList = new List<my_VendorEntry>();
 
 	public static VendorDatabase Instance
@@ -60,10 +61,18 @@ public class VendorDatabase : MonoBehaviour {
 			return instance;
 		}
 	}
-
 	public void Initialize()
-	{	
-		LoadVendorsData();
+	{
+		Initialize(false);// dont allow reinitalize of this class by default
+	}
+	
+	public void Initialize(bool re_init)
+	{
+		if(initedBefore == false || re_init == true)
+		{
+			LoadVendorsData();
+			initedBefore = true;
+		}
 	}
 
 	public void LoadVendorsData()

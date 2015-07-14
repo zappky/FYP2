@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class ApplicationLevelBoard : MonoBehaviour {
 
 	public static ApplicationLevelBoard instance = null;
+	public static bool initedBefore = false;
 
 	public int maxLevelCount = -1;
 	public List<string>gameLevelNameList = new List<string>();
@@ -21,10 +22,18 @@ public class ApplicationLevelBoard : MonoBehaviour {
 			return instance;
 		}
 	}
-	
 	public void Initialize()
 	{
-		LoadGameLevelInformation();
+		Initialize(false);//don allow reinitalize of this class by default
+	}
+	public void Initialize(bool re_init)
+	{
+		if(initedBefore == false || re_init == true)
+		{
+			gameLevelNameList.Clear();
+			LoadGameLevelInformation();
+			initedBefore = true;
+		}
 	}
 
 	public void OnApplicationQuit()

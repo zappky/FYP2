@@ -53,11 +53,14 @@ public class PauseMenu : MonoBehaviour {
 	
 	public void reloadCheckpoint()
 	{
+		Inventory playerinventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+		playerinventory.ClearInventoryItem();
 		LevelManager.Instance.LoadPlayerInfo();
 	}
 
 	public void restartlevel()
 	{
+		LevelManager.Instance.loadFromContinue = false;
 		LevelManager.Instance.LoadLevel(LevelManager.Instance.CurrentLevelName, true);
 	}
 
