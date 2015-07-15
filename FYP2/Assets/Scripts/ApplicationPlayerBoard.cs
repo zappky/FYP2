@@ -32,16 +32,6 @@ public class ApplicationPlayerBoard : MonoBehaviour {
 		}
 	}
 	
-	public void LoadGameLevelInformation()
-	{
-		
-	}
-	
-	public void SaveGameLevelInformation()
-	{
-		
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		

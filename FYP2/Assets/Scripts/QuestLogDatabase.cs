@@ -48,7 +48,29 @@ public class my_QuestLogList : IEnumerable<my_QuestLog>
 	}
 	public my_QuestLog GetQuestLog(int questId)
 	{
-		for(int i = 0 ; i< questlogs.Count; ++i)
+		if(questId < 0 )
+		{
+			Debug.Log("ERROR: GetQuestLog with id is negative value");
+			return null;
+		}
+		if(questId < questlogs.Count )
+		{
+			if(questlogs[questId].id == questId)
+			{
+				return questlogs[questId];
+			}
+		}else
+		{
+			Debug.Log("ERROR: GetQuestLog with id is over list size, brute force will be performed");
+		}
+		for(int i = 0 ; i< questId; ++i)
+		{
+			if(questlogs[i].id == questId)
+			{
+				return questlogs[i];
+			}
+		}
+		for(int i = questId+1 ; i< questlogs.Count; ++i)
 		{
 			if(questlogs[i].id == questId)
 			{

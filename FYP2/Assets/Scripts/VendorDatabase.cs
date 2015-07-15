@@ -93,11 +93,33 @@ public class VendorDatabase : MonoBehaviour {
 
 	public my_VendorEntry GetVendor(int id)
 	{
-		foreach  (my_VendorEntry item in vendorList)
+		if(id < 0)
 		{
-			if(item.id == id)
+			Debug.Log("ERROR: GetVendor with id is negative value");
+			return null;
+		}
+		if(id < vendorList.Count)
+		{
+			if(vendorList[id].id == id)
 			{
-				return item;
+				return vendorList[id];
+			}
+		}else
+		{
+			Debug.Log("WARNING: GetVendor with id is over list size,brute force will be performed");
+		}
+		for(int i = 0 ; i < id; ++i)
+		{
+			if(vendorList[i].id == id)
+			{
+				return vendorList[i];
+			}
+		}
+		for(int i = id+1 ; i < vendorList.Count; ++i)
+		{
+			if(vendorList[i].id == id)
+			{
+				return vendorList[i];
 			}
 		}
 		return null;

@@ -193,37 +193,70 @@ public class DialogTree : IEnumerable<my_DialogNode>
 	}
 	public my_DialogNode GetDialogBookmarked(int id)
 	{
-		if(id >= 0 && id < dialogSections.Count)
+		if(id <0)
+		{
+			Debug.Log("ERROR: GetDialogBookmarked id search is negative value");
+			return null;
+		}
+
+		if(id < dialogSections.Count)
 		{
 			if(dialogSections[id].id == id)
 			{
 				return dialogSections[id].bookmarkedDialogNode;
 			}
-		}
-
-		foreach (my_DialogBookmark a_bookmark in dialogSections)
+		}else
 		{
-			if(a_bookmark.id == id)
+			Debug.Log("WARNING: GetDialogBookmarked id search is over list size,brute force search will be performed");
+		}
+		for(int i = 0 ; i <id ; ++i )
+		{
+			if(dialogSections[i].id == id)
 			{
-				return a_bookmark.bookmarkedDialogNode;
+				return dialogSections[i].bookmarkedDialogNode;
 			}
 		}
+		for(int i = id+1 ; i <dialogSections.Count ; ++i )
+		{
+			if(dialogSections[i].id == id)
+			{
+				return dialogSections[i].bookmarkedDialogNode;
+			}
+		}
+
 		Debug.Log("ERROR: GetDialogBookmarked cannot find with: " + id);
 		return null;
 	}
 	public my_DialogNode GetDialog(int nodeid)
 	{
-		if( nodeid >= 0 && nodeid < dialogs.Count && dialogs[nodeid].nodeId == nodeid)//early test
+		if(nodeid < 0)
 		{
-			return dialogs[nodeid];
+			Debug.Log("ERROR: GetDialog with id is negative value : " + nodeid);
+			return null;
+		}
+		if(nodeid < dialogs.Count)
+		{
+			if(dialogs[nodeid].nodeId == nodeid)
+			{
+				return dialogs[nodeid];
+			}
 		}else
 		{
-			for(int i = 0 ; i < dialogs.Count ; ++i)
+			Debug.Log("WARNING: GetDialog with id is over list size,brute force search will be performed : " + nodeid);
+		}
+
+		for(int i = 0 ; i < nodeid ; ++i)
+		{
+			if(dialogs[i].nodeId == nodeid)
 			{
-				if(dialogs[i].nodeId == nodeid)
-				{
-					return dialogs[i];
-				}
+				return dialogs[i];
+			}
+		}
+		for(int i = nodeid+1 ; i < dialogs.Count ; ++i)
+		{
+			if(dialogs[i].nodeId == nodeid)
+			{
+				return dialogs[i];
 			}
 		}
 

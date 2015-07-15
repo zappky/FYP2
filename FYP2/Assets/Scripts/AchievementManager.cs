@@ -123,25 +123,31 @@ public class my_CollectibleList: IEnumerable<my_Collectible>
 			return null;
 		}
 		
-		if(collectibleId > collectibleList.Count)
-		{
-			//brute force check
-			for(int i = 0; i < collectibleList.Count; ++i)
-			{
-				if(collectibleList[i].id == collectibleId)
-				{
-					return collectibleList[i];
-				}
-			}
-		}else
+		if(collectibleId < collectibleList.Count)
 		{
 			//if collectible id is withing range
-			if(collectibleList[collectibleId].id == collectibleId)
+			if(collectibleList[collectibleId].id == collectibleId)//prediction check
 			{
 				return collectibleList[collectibleId];
 			}
-			
 		}
+
+		for(int i = 0; i < collectibleId; ++i)
+		{
+			if(collectibleList[i].id == collectibleId)
+			{
+				return collectibleList[i];
+			}
+		}
+		for(int i = collectibleId+1; i < collectibleList.Count; ++i)
+		{
+			if(collectibleList[i].id == collectibleId)
+			{
+				return collectibleList[i];
+			}
+		}
+
+
 		return null;
 	}
 	public my_Collectible GetCollectible(string collectibleName)
@@ -182,30 +188,7 @@ public class my_CollectibleList: IEnumerable<my_Collectible>
 			return false;
 		}
 		
-		if(a_collectible.id  > collectibleList.Count)
-		{
-			//brute force check
-			if(a_collectible.collectibleName == "")//if sample name is invalid then skip the checking of name
-			{
-				for(int i = 0; i < collectibleList.Count; ++i)
-				{
-					if(collectibleList[i].id == a_collectible.id )
-					{
-						return true;
-					}
-				}
-			}else
-			{
-				for(int i = 0; i < collectibleList.Count; ++i)//else check both id and name
-				{
-					if(collectibleList[i].id == a_collectible.id || collectibleList[i].collectibleName == a_collectible.collectibleName)
-					{
-						return true;
-					}
-				}
-			}
-
-		}else
+		if(a_collectible.id  < collectibleList.Count)
 		{
 			//if collectible id is withing range//perform early check
 			if(collectibleList[a_collectible.id].id == a_collectible.id || collectibleList[a_collectible.id].collectibleName == a_collectible.collectibleName)
@@ -214,6 +197,22 @@ public class my_CollectibleList: IEnumerable<my_Collectible>
 			}
 			
 		}
+
+		for(int i = 0; i < a_collectible.id; ++i)
+		{
+			if(collectibleList[i].id == a_collectible.id )
+			{
+				return true;
+			}
+		}
+		for(int i = a_collectible.id+1; i < collectibleList.Count; ++i)
+		{
+			if(collectibleList[i].id == a_collectible.id )
+			{
+				return true;
+			}
+		}
+
 		return false;
 	}
 	public bool DuplicateCollectibleCheck(int collectibleId)
@@ -304,25 +303,35 @@ public class AchievementManager : MonoBehaviour {
 	{
 		if(collectibleLevelId < 0)
 		{
-			Debug.Log("ERROR: accessing out of range collectible Achieved List");
+			Debug.Log("ERROR: GetCollectibleLevel id search is negative value");
 			return null;
 		}
 		
-		if(collectibleLevelId > collectibleAchievedList.Count)
-		{
-			for (int i = 0 ; i<collectibleAchievedList.Count;++i )//brute force loop check , cos there still a chance the id is correct;
-			{
-				if(collectibleAchievedList[i].id == collectibleLevelId)
-				{
-					collectibleAchievedList[i].id = i;//auto correcting id
-					return collectibleAchievedList[i];
-				}
-			}
-		}else
+		if(collectibleLevelId < collectibleAchievedList.Count)
 		{
 			if(collectibleAchievedList[collectibleLevelId].id == collectibleLevelId)//if early check found
 			{
 				return collectibleAchievedList[collectibleLevelId];
+			}
+		}else
+		{
+			Debug.Log("WARNING: GetCollectibleLevel id search is over list size value,brute force will be performed");
+		}
+
+		for (int i = 0 ; i<collectibleLevelId;++i )//brute force loop check , cos there still a chance the id is correct;
+		{
+			if(collectibleAchievedList[i].id == collectibleLevelId)
+			{
+				collectibleAchievedList[i].id = i;//auto correcting id
+				return collectibleAchievedList[i];
+			}
+		}
+		for (int i = collectibleLevelId+1 ; i<collectibleAchievedList.Count;++i )//brute force loop check , cos there still a chance the id is correct;
+		{
+			if(collectibleAchievedList[i].id == collectibleLevelId)
+			{
+				collectibleAchievedList[i].id = i;//auto correcting id
+				return collectibleAchievedList[i];
 			}
 		}
 		

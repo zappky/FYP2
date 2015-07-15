@@ -449,22 +449,39 @@ public class ItemDatabase : MonoBehaviour {
 	}
 	public Item GetItem(int id)//beware that this is getting a reference, whatever you do to the returned item,gonna affect the database
 	{
-		if(id >= 0 && id <itemDatabase.Count)//early prediction
+		if(id < 0 )
+		{
+			Debug.Log("ERROR: GetItem with id is negative value");
+			return null;
+		}
+
+		if(id <itemDatabase.Count)//early prediction
 		{
 			if(id == itemDatabase[id].id)
 			{
 				return itemDatabase[id];
 			}
+		}else
+		{
+			Debug.Log("WARNING: GetItem with id is over list size,brute force will be performed");
 		}
 
-		for(int i = 0 ; i < itemDatabase.Count; ++i)
+		for(int i = 0 ; i < id; ++i)
 		{
 			if(id == itemDatabase[i].id)
 			{
 				return itemDatabase[i];
 			}
 		}
-		return new Item();
+		for(int i = id+1 ; i < itemDatabase.Count; ++i)
+		{
+			if(id == itemDatabase[i].id)
+			{
+				return itemDatabase[i];
+			}
+		}
+
+		return null;
 	}
 	public Item CreateItemWithIndex(int index)
 	{
@@ -479,28 +496,78 @@ public class ItemDatabase : MonoBehaviour {
 				return new Item(itemDatabase[i]);
 			}
 		}
-		return new Item();
+		return null;
 	}
 	public Item CreateItem(int id)//duplicate a new item same as the database one
 	{
-		for(int i = 0 ; i < itemDatabase.Count; ++i)
+
+		if(id < 0 )
+		{
+			Debug.Log("ERROR: CreateItem with id is negative value");
+			return null;
+		}
+		
+		if(id <itemDatabase.Count)//early prediction
+		{
+			if(id == itemDatabase[id].id)
+			{
+				return new Item(itemDatabase[id]);
+			}
+		}else
+		{
+			Debug.Log("WARNING: CreateItem with id is over list size,brute force will be performed");
+		}
+		
+		for(int i = 0 ; i < id; ++i)
 		{
 			if(id == itemDatabase[i].id)
 			{
 				return new Item(itemDatabase[i]);
 			}
 		}
-		return new Item();
+		for(int i = id+1 ; i < itemDatabase.Count; ++i)
+		{
+			if(id == itemDatabase[i].id)
+			{
+				return new Item(itemDatabase[i]);
+			}
+		}
+		return null;
 	}
 	public bool CheckValidItemId(int id)
 	{
-		for(int i = 0 ; i < itemDatabase.Count; ++i)
+		if(id < 0 )
+		{
+			Debug.Log("ERROR: CheckValidItemId with id is negative value");
+			return false;
+		}
+		
+		if(id <itemDatabase.Count)//early prediction
+		{
+			if(id == itemDatabase[id].id)
+			{
+				return true;
+			}
+		}else
+		{
+			Debug.Log("WARNING: CheckValidItemId with id is over list size,brute force will be performed");
+		}
+		
+		for(int i = 0 ; i < id; ++i)
 		{
 			if(id == itemDatabase[i].id)
 			{
 				return true;
 			}
 		}
+		for(int i = id+1 ; i < itemDatabase.Count; ++i)
+		{
+			if(id == itemDatabase[i].id)
+			{
+				return true;
+			}
+		}
+
 		return false;
 	}
 	public bool CheckValidItemName(string name)
@@ -762,26 +829,41 @@ public class ItemDatabase : MonoBehaviour {
 				return craftDatabase[i];
 			}
 		}
-		return new CraftingRecipe();
+		return null;
 	}
 	public CraftingRecipe GetCraftRecipe(int id)//beware that it is getting as reference
 	{
-		if(id >= 0 && id < craftDatabase.Count)//early prediction
+		if(id <0)
+		{
+			Debug.Log("ERROR: GetCraftRecipe with id is negative value");
+			return null;
+		}
+		if(id < craftDatabase.Count)//early prediction
 		{
 			if(id == craftDatabase[id].id)
 			{
 				return craftDatabase[id];
 			}
+		}else
+		{
+			Debug.Log("WARNING: GetCraftRecipe with id is over list size,brute force will be performed");
 		}
 
-		for(int i = 0 ; i < craftDatabase.Count; ++i)
+		for(int i = 0 ; i < id; ++i)
 		{
 			if(id == craftDatabase[i].id)
 			{
 				return craftDatabase[i];
 			}
 		}
-		return new CraftingRecipe();
+		for(int i = id+1 ; i < craftDatabase.Count; ++i)
+		{
+			if(id == craftDatabase[i].id)
+			{
+				return craftDatabase[i];
+			}
+		}
+		return null;
 	}
 	
 	public CraftingRecipe CreateCraftRecipe(string name)//creating new crafting recipe based on the database one
@@ -797,15 +879,31 @@ public class ItemDatabase : MonoBehaviour {
 	}
 	public CraftingRecipe CreateCraftRecipe(int id)///creating new crafting recipe based on the database one
 	{
-		if(id >= 0 && id < craftDatabase.Count)//early prediction
+		if(id <0)
+		{
+			Debug.Log("ERROR: CreateCraftRecipe with id is negative value");
+			return null;
+		}
+		if(id < craftDatabase.Count)//early prediction
 		{
 			if(id == craftDatabase[id].id)
 			{
 				return new CraftingRecipe(craftDatabase[id]);
 			}
+		}else
+		{
+			Debug.Log("ERROR: CreateCraftRecipe with id over list size,brute force will be performed");
 		}
 
-		for(int i = 0 ; i < craftDatabase.Count; ++i)
+		for(int i = 0 ; i < id; ++i)
+		{
+			if(id == craftDatabase[i].id)
+			{
+				return new CraftingRecipe(craftDatabase[i]);
+			}
+		}
+
+		for(int i = id+1 ; i < craftDatabase.Count; ++i)
 		{
 			if(id == craftDatabase[i].id)
 			{
@@ -817,15 +915,30 @@ public class ItemDatabase : MonoBehaviour {
 	
 	public bool CheckValidCraftRecipe(int id)
 	{
-		if(id >= 0 && id < craftDatabase.Count)//early prediction
+		if(id <0)
+		{
+			Debug.Log("ERROR: CheckValidCraftRecipe with id is negative value");
+			return false;
+		}
+		if(id < craftDatabase.Count)//early prediction
 		{
 			if(id == craftDatabase[id].id)
 			{
 				return true;
 			}
+		}else
+		{
+			Debug.Log("WARNING: CheckValidCraftRecipe with id is over list size,brute force will be performed");
 		}
-
-		for(int i = 0 ; i < craftDatabase.Count; ++i)
+		
+		for(int i = 0 ; i < id; ++i)
+		{
+			if(id == craftDatabase[i].id)
+			{
+				return true;
+			}
+		}
+		for(int i = id+1 ; i < craftDatabase.Count; ++i)
 		{
 			if(id == craftDatabase[i].id)
 			{

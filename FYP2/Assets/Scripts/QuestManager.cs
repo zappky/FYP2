@@ -119,7 +119,13 @@ public class QuestManager : MonoBehaviour {
 	}
 	public void RemoveQuestLog(int questId)
 	{
-		if(questId >= 0 && questId <questLogs.Count)
+		if(questId <0)
+		{
+			Debug.Log("ERROR: RemoveQuestLog with questId is negative value");
+			return;
+		}
+
+		if(questId <questLogs.Count)
 		{
 			if(questLogs[questId].id == questId)
 			{
@@ -127,7 +133,14 @@ public class QuestManager : MonoBehaviour {
 			}
 		}
 		
-		for(int i = 0 ; i< questLogs.Count; ++i)
+		for(int i = 0 ; i< questId; ++i)
+		{
+			if(questLogs[i].id == questId)
+			{
+				questLogs[i] = new my_QuestLog();
+			}
+		}
+		for(int i = questId+1 ; i< questLogs.Count; ++i)
 		{
 			if(questLogs[i].id == questId)
 			{
@@ -149,7 +162,13 @@ public class QuestManager : MonoBehaviour {
 	}
 	public my_QuestLog GetQuestLog(int questId)
 	{
-		if(questId >= 0 && questId <questLogs.Count)
+		if(questId < 0 )
+		{
+			Debug.Log("ERROR: GetQuestLog with questId is negative value");
+			return null;
+		}
+
+		if(questId <questLogs.Count)
 		{
 			if(questLogs[questId].id == questId)
 			{
@@ -157,7 +176,14 @@ public class QuestManager : MonoBehaviour {
 			}
 		}
 		
-		for(int i = 0 ; i< questLogs.Count; ++i)
+		for(int i = 0 ; i< questId; ++i)
+		{
+			if(questLogs[i].id == questId)
+			{
+				return questLogs[i];
+			}
+		}
+		for(int i = questId+1 ; i< questLogs.Count; ++i)
 		{
 			if(questLogs[i].id == questId)
 			{
@@ -206,11 +232,32 @@ public class QuestManager : MonoBehaviour {
 	}
 	public bool DuplicateQuestLogCheck(my_QuestLog a_questlog)
 	{
-		foreach (my_QuestLog a_log in questLogs)
+		if(a_questlog.id < 0)
 		{
-			if(a_log.id == a_questlog.id)
+			Debug.Log("ERROR: DuplicateQuestLogCheck with quest log id is negative value: " + a_questlog.id );
+			return false;
+		}
+		if(a_questlog.id < questLogs.Count)
+		{
+			if(questLogs[a_questlog.id].id == a_questlog.id)
 			{
-				print ("ERROR: duplicate quest add detected, abort operation");
+				return true;
+			}
+		}else
+		{
+			Debug.Log("WARNING: DuplicateQuestLogCheck with quest log id is over list value: " + a_questlog.id);
+		}
+		for(int i = 0 ; i < a_questlog.id; ++i)
+		{
+			if(questLogs[i].id == a_questlog.id)
+			{
+				return true;
+			}
+		}
+		for(int i = a_questlog.id+1 ; i < questLogs.Count; ++i)
+		{
+			if(questLogs[i].id == a_questlog.id)
+			{
 				return true;
 			}
 		}

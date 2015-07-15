@@ -156,36 +156,34 @@ public class Inventory : MonoBehaviour {
 	{
 		if(id < 0 )
 		{
-			Debug.Log("ERROR: GetItem trying to access inventory list argument out of range");
+			Debug.Log("ERROR: GetItem id is negative value");
 			return null;
 		}
 		
-		if(id > inventory.Count)
-		{
-			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
-			{
-				if(inventory[i].id == id)
-				{
-					return inventory[i];
-				}
-			}
-		}else
+		if(id < inventory.Count)
 		{
 			if(inventory[id].id == id)
 			{
 				return inventory[id];
-			}else
+			}
+		}else
+		{
+			Debug.Log("WARNING: GetItem id is over list size,brute force search will be performed");
+		}
+		for(int i = 0 ; i < id; ++i)//loop through whole inventory
+		{
+			if(inventory[i].id == id)
 			{
-				for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
-				{
-					if(inventory[i].id == id)
-					{
-						return inventory[i];
-					}
-				}
+				return inventory[i];
 			}
 		}
-		
+		for(int i = id+1 ; i < inventory.Count; ++i)//loop through whole inventory
+		{
+			if(inventory[i].id == id)
+			{
+				return inventory[i];
+			}
+		}
 		return null;
 	}
 	//brute force loop and return a reference to the item based on the search name
@@ -456,59 +454,75 @@ public class Inventory : MonoBehaviour {
 	{
 		if(id < 0 )
 		{
-			Debug.Log("ERROR: Remove Item trying to access inventory list argument out of range");
+			Debug.Log("ERROR: RemoveItem id search is negative value");
 			return;
 		}
 
-		if(id > inventory.Count)
-		{
-			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
-			{
-				if(inventory[i].id == id)
-				{
-					RemoveKnownItem(i);
-					break;
-				}
-			}
-		}else
+		if(id < inventory.Count)
 		{
 			if(inventory[id].id == id)
 			{
 				RemoveKnownItem(id);
 				return;
-			}else
+			}
+		}else
+		{
+			Debug.Log("ERROR: RemoveItem id search is over list size,brute force search will be performed");
+		}
+
+		for(int i = 0 ; i < id; ++i)//loop through whole inventory
+		{
+			if(inventory[i].id == id)
 			{
-				for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
-				{
-					if(inventory[i].id == id)
-					{
-						RemoveKnownItem(i);
-						break;
-					}
-				}
+				RemoveKnownItem(i);
+				return;
+			}
+		}
+		for(int i = id+1 ; i < inventory.Count; ++i)//loop through whole inventory
+		{
+			if(inventory[i].id == id)
+			{
+				RemoveKnownItem(i);
+				return;
 			}
 		}
 
 	}
 	public bool CheckContainsItem(Item a_item)
 	{
+		if(a_item.itemindexinlist < 0)
+		{
+			Debug.Log("ERROR: CheckContainsItem index in list search is negative value");
+			return false;
+		}
 
-		if( a_item.itemindexinlist >= 0 && a_item.itemindexinlist < inventory.Count)
+		//early prediction check
+		if( a_item.itemindexinlist < inventory.Count)
 		{
 			if( inventory[a_item.itemindexinlist].id == a_item.id || inventory[a_item.itemindexinlist].itemname == a_item.itemname)//early prediction
 			{
 				return true;
 			}
+		}else
+		{
+			Debug.Log("WARNING: CheckContainsItem index in list search is over list size,brute force search will be perfomed");
 		}
 
-
-		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+		for(int i = 0 ; i < a_item.itemindexinlist; ++i)//loop through whole inventory
 		{
 			if(inventory[i].id == a_item.id || inventory[i].itemname == a_item.itemname)
 			{
 				return true;
 			}
 		}
+		for(int i = a_item.itemindexinlist+1 ; i < inventory.Count; ++i)//loop through whole inventory
+		{
+			if(inventory[i].id == a_item.id || inventory[i].itemname == a_item.itemname)
+			{
+				return true;
+			}
+		}
+
 		return false;
 	}
 
@@ -526,38 +540,39 @@ public class Inventory : MonoBehaviour {
 
 	public bool CheckContainsItem(int id)
 	{
-		if(id < 0 )
+		if(id < 0)
 		{
-			Debug.Log("ERROR: CheckContainsItem trying to access inventory list argument out of range");
+			Debug.Log("ERROR: CheckContainsItem id is negative value");
 			return false;
 		}
 		
-		if(id > inventory.Count)
+		//early prediction check
+		if( id < inventory.Count)
 		{
-			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+			if( inventory[id].id == id)//early prediction
 			{
-				if(inventory[i].id == id)
-				{
-					return true;
-				}
+				return true;
 			}
 		}else
 		{
-			if(inventory[id].id == id)
+			Debug.Log("WARNING: CheckContainsItem id is over list size,brute force search will be perfomed");
+		}
+		
+		for(int i = 0 ; i < id; ++i)//loop through whole inventory
+		{
+			if(inventory[i].id == id)
 			{
 				return true;
-			}else
-			{
-				for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
-				{
-					if(inventory[i].id == id)
-					{
-						return true;
-					}
-				}
 			}
 		}
-
+		for(int i = id+1 ; i < inventory.Count; ++i)//loop through whole inventory
+		{
+			if(inventory[i].id == id)
+			{
+				return true;
+			}
+		}
+		
 		return false;
 	}
 	public void ActivateItemEffect(Item item)
@@ -721,73 +736,7 @@ public class Inventory : MonoBehaviour {
 		}
 		ActivateItemEffect(itemName);
 	}
-//	old codes
-//	public void UseItem(Item item)
-//	{
-//		if(CheckContainsItem(item) == false)
-//		{
-//			Debug.Log("Inventory doesnt contain item: " + item.itemname + "use item aborted");
-//			return;
-//		}
-//
-//		switch(item.id)
-//		{
-//			default:
-//			case 0:
-//			{
-//				Debug.Log("nill effect");
-//			}
-//			break;
-//			case 1:
-//			{
-//				GrappleScript gscript = GetComponent<GrappleScript>();
-//				if(!gscript.isGrappling)
-//					gscript.FireGrapple();
-//				else
-//					gscript.ReleaseGrapple();
-//			}
-//			break;
-//			case 3:
-//			{
-//				GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
-//				CTimer escript = obj.GetComponent<CTimer>();
-//				escript.OnLookInteract();
-//
-//				RemoveItem(item.id);
-//			}
-//			break;
-//		}
-//
-//	}
-//
-//	public void UseItem(Item item,int itemindex)
-//	{
-//		if(CheckContainsItem(item) == false)
-//		{
-//			Debug.Log("Inventory doesnt contain item: " + item.itemname + "use item aborted");
-//			return;
-//		}
-//		switch(item.id)
-//		{
-//			default:
-//			case 0:
-//			{
-//				Debug.Log("nill effect");
-//			}break;
-//				
-//			case 3:
-//			{
-//				GameObject obj = Instantiate(Resources.Load("DecoyAlarm"),Camera.main.transform.position,new Quaternion(0,0,0,0)) as GameObject;
-//				CTimer escript = obj.GetComponent<CTimer>() as CTimer;
-//				escript.OnLookInteract();
-//
-//				RemoveKnownItem(itemindex);
-//	
-//			}break;
-//		}
-//	}
-	
-	
+
 	public void ToggleDisplay()
 	{
 		display = !display;

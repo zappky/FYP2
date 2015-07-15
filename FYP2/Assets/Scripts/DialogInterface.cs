@@ -11,24 +11,12 @@ public class DialogInterface : MonoBehaviour {
 	public DialogDatabase dialogDatabase = null;
 	
 	public bool display = false;
-	//public float displayTransparency = 1.0f;
-	//public bool autoText = false;
-	//public float autoTextSpeed = 1.0f;
-	//public int CurrentTextLine = 0;
 
 	public Rect dialogBox;
-	//public string dialogOutput = "";
 	public Rect personBox;
-	//public string personName = "";
-
-	//public float delayTime = 5.0f;
-	//public float delayTimer = 0.0f;
-	//private bool delayFlag = false;
-
 	private Event currentevent = null;
 	public DialogTree dialogTree = null;
-
-	//public int CurrentDialogNodeIndex = 0;
+	
 	public my_DialogNode CurrentDialogNode = null;
 
 	private float personBoxHeight;
@@ -37,12 +25,8 @@ public class DialogInterface : MonoBehaviour {
 	private float optionWidth;
 	private int reservedOptionRectCount = 4;
 	private List<Rect>optionRects = new List<Rect>();
-	//private LevelManager levelmanager = null;
 	private GameObject Player = null;
-	//private HideCursorScript cursorScript = null;
-
-
-		
+	
 	public static DialogInterface Instance
 	{
 		get
@@ -65,25 +49,14 @@ public class DialogInterface : MonoBehaviour {
 		if(initedBefore == false || re_init == true)
 		{
 			Player = GameObject.FindGameObjectWithTag("Player");
-			//cursorScript = FindObjectOfType<HideCursorScript>();
 			dialogDatabase = DialogDatabase.Instance;
-			//levelmanager = LevelManager.Instance;
 			dialogTree = dialogDatabase.GetDialogTree(Application.loadedLevelName);
-			//Debug.Log("current checkpoint index: " +levelmanager.currentCheckPointIndex);
-			//if(levelmanager.currentCheckPointIndex <0)
-			//{
-				//CurrentDialogNode = dialogTree.GetDialogBookmarkedWithIndex(0);
-			//}else
-			//{
-				//CurrentDialogNode = dialogTree.GetDialogBookmarkedWithIndex(levelmanager.currentCheckPointIndex);
-			//}
 
 			for(int i = 0 ; i < reservedOptionRectCount; ++i)
 			{
 				//init some temp rect for later uses.
 				optionRects.Add(new Rect(0,0,0,0));
 			}
-
 
 			dialogBox = new Rect (0.0f, Screen.height * 0.70f, Screen.width, Screen.height * 0.30f);
 
@@ -272,9 +245,4 @@ public class DialogInterface : MonoBehaviour {
 			}
 		}
 	}
-
-//	void ToggleAutoText()
-//	{
-//		autoText = !autoText;
-//	}
 }

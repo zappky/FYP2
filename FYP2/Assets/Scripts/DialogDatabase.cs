@@ -111,18 +111,34 @@ public class DialogDatabase : MonoBehaviour {
 
 	public my_DialogNode GetDialogNode(DialogTree dialogTree , int node_id)
 	{
-		if(node_id >= 0 && node_id < dialogTree.dialogs.Count)
+		if(node_id <0)
+		{
+			Debug.Log("ERROR: GetDialogNode id is negative search ");
+			return null;
+		}
+
+		if(node_id < dialogTree.dialogs.Count)
 		{
 			if(node_id == dialogTree.dialogs[node_id].nodeId)
 			{
 				return dialogTree.dialogs[node_id];
 			}
-		}
-		foreach (my_DialogNode a_node in dialogTree)
+		}else
 		{
-			if(node_id == a_node.nodeId)
+			Debug.Log("WARNING: GetDialogNode id is over list size search,brute force search will be performed");
+		}
+		for(int i = 0 ; i < node_id; ++i)
+		{
+			if(dialogTree.dialogs[i].nodeId == node_id)
 			{
-				return a_node;
+				return dialogTree.dialogs[i];
+			}
+		}
+		for(int i = node_id+1 ; i < dialogTree.dialogs.Count; ++i)
+		{
+			if(dialogTree.dialogs[i].nodeId == node_id)
+			{
+				return dialogTree.dialogs[i];
 			}
 		}
 
@@ -144,15 +160,23 @@ public class DialogDatabase : MonoBehaviour {
 
 	public DialogTree GetDialogTree(int id)
 	{	
-		if(id >= 0 && id < dialogDatabase.Count)
+		if(id <0)
 		{
-			if(dialogDatabase[id].id == id)
+			Debug.Log("ERROR: GetDialogTree id is negative search ");
+			return null;
+		}
+		
+		if(id < dialogDatabase.Count)
+		{
+			if(id == dialogDatabase[id].id)
 			{
 				return dialogDatabase[id];
 			}
-
-		}	
-
+		}else
+		{
+			Debug.Log("WARNING: GetDialogTree id is over list size search,brute force search will be performed");
+		}
+		
 		foreach(DialogTree a_tree in dialogDatabase)
 		{
 			if(a_tree.id == id)
@@ -160,6 +184,8 @@ public class DialogDatabase : MonoBehaviour {
 				return a_tree;
 			}
 		}
+
+
 		Debug.Log("ERROR: GetDialogTree cannot find dialogtree with: " + id);
 		return null	;	
 	}
