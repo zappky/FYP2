@@ -9,13 +9,15 @@
 			<weight>45</weight>
 		</info>
 		<quickcast>
-			<layer index="0" />
+			<layer index="0">
+				<item id="1" name="Grapple" index="0" />
+			</layer>
 			<layer index="1" />
 			<layer index="2" />
 		</quickcast>
-		<checkpoint id="1" name="1" index="1" x="-90.51" y="97.55" z="11.78" rx="0" ry="0" rz="0" rw="1" />
-		<inventory weight="0">
-			<item index="0" id="6" name="Broken Grapple" amount="1" weight="0" description="A grapple with a broken hook." stackable="True" type="craftmaterial" />
+		<checkpoint id="-1" name="3" index="3" x="-71.13" y="35.34" z="110.69" rx="0" ry="0" rz="0" rw="1" />
+		<inventory weight="1">
+			<item index="0" id="1" name="Grapple" amount="1" weight="0" description="For easier travelling. Not to be used for fighting titans." stackable="True" type="useable" />
 			<item index="1" id="7" name="Old Running Shoes" amount="1" weight="0" description="Missing shoelaces. Gift from Mom." stackable="True" type="craftmaterial" />
 		</inventory>
 	</player>

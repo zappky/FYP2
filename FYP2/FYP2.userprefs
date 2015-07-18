@@ -1,8 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\FpsMovement.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Inventory.cs">
     <Files>
-      <File FileName="Assets\Scripts\FpsMovement.cs" Line="19" Column="2" />
+      <File FileName="Assets\Scripts\FileManager.cs" Line="1272" Column="12" />
+      <File FileName="Assets\Scripts\PauseMenu.cs" Line="58" Column="30" />
+      <File FileName="Assets\Scripts\Inventory.cs" Line="689" Column="25" />
+      <File FileName="Assets\Scripts\CastSlot.cs" Line="113" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
