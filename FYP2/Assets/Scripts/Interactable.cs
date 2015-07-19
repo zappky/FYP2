@@ -4,32 +4,69 @@ using System.Collections;
 //this script is suppose to attached to all interactable game object to toggle effect,I.E picking up item
 public class Interactable : MonoBehaviour {
 
-	private Inventory playerInventory;
-	private VendorDatabase vendordatabase;
-	private QuestManager questManager;
-
+	private Inventory playerInventory = null;
+	private VendorDatabase vendordatabase = null;
+	private QuestManager questManager = null;	
+	public bool lighting = true;
+	public my_QuestLog questReference = null;
+	private Behaviour theHalo = null;
 	// Use this for initialization
 	void Start () {
 		playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
 		vendordatabase = VendorDatabase.Instance;
 		questManager = QuestManager.Instance;
+
+		switch(this.name)
+		{
+			case "BoxofPaperclips":
+				theHalo = ((Behaviour)GetComponent("Halo"));//not all object with interact script will use halo 
+				questReference = questManager.GetQuestLog("Collect Paper Clips");
+				break;
+			default:
+				break;
+		}
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 	
 	public void CompleteQuest()
 	{
-		switch(this.name)
+		if(questReference != null)
 		{
-		case "BoxofPaperclips":
-			questManager.GetQuestLog("Collect Paper Clips").statues = true;
-			break;
-		default:
-			break;
+			questReference.statues = true;
+			SetLighting(false);
+		}else
+		{
+			Debug.Log(this.name + "has null quest reference");
 		}
+
+	}
+	public void SetLighting(bool lighting)
+	{
+		if(theHalo != null)
+		{
+			this.lighting = lighting;
+			theHalo.enabled = lighting;
+		}else
+		{
+			Debug.Log(this.name + "has null halo reference");
+		}
+
+	}
+	public void ToggleLighting()
+	{
+		if(theHalo != null)
+		{
+			this.lighting = !this.lighting;
+			theHalo.enabled = lighting;
+		}else
+		{
+			Debug.Log(this.name + "has null halo reference");
+		}
+		this.lighting = !this.lighting;
 	}
 	//for picking up effect
 	public void SpawnItemWithName()//add item using name
