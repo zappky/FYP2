@@ -17116,13 +17116,13 @@ MonoBehaviour:
   isRunning: 0
   isGrappling: 0
   useParachute: 0
-  moveSpeed: 15
+  moveSpeed: 10
   jumpSpeed: 7
   runSpeed: 2
   paraSpeed: 5
   airSpeed: 10
-  swingSpeed: 10
-  mouseSensitivity: 5
+  swingSpeed: .100000001
+  mouseSensitivity: 3
   viewRange: 60
   runSound: {fileID: 8300000, guid: c7423b364c5e7d044a97399d48a7852c, type: 3}
   SFX_DELAY: .349999994

@@ -18,7 +18,7 @@ public class FpsMovement : MonoBehaviour
 	float sideSpeed = 0.0f;
 
 	//mouselook stuff
-	public float mouseSensitivity = 5.0f; //balance mouse scrolling
+	public float mouseSensitivity = 3.0f; //balance mouse scrolling
 	public float viewRange = 60.0f;
 	float vertRotation = 0.0f;
 

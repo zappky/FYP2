@@ -693,11 +693,25 @@ public class Inventory : MonoBehaviour {
 	}
 	public void UseItem(Item item)
 	{
-		if(CheckContainsItem(item) == false)
+		if(item.itemindexinlist < 0)
 		{
-			Debug.Log("Inventory doesnt contain item: " + item.itemname + "use item aborted");
-			return;
+			if(item.itemname != "")
+			{
+				if(CheckContainsItem(item.itemname) == false)
+				{
+					Debug.Log("Inventory doesnt contain item: " + item.itemname + "use item aborted");
+					return;
+				}
+			}
+		}else
+		{
+			if(CheckContainsItem(item.itemindexinlist) == false)
+			{
+				Debug.Log("Inventory doesnt contain item: " + item.itemname + "use item aborted");
+				return;
+			}
 		}
+
 		ActivateItemEffect(item);
 	}
 	public void UseItem(Item item,int itemIndex)
