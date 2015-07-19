@@ -5,8 +5,7 @@ public class GrappleScript : MonoBehaviour {
 
 	public bool isGrappling = false;
 	public float ascSpeed = 0.1f;					// player's ascend/descend spd (scale spd)
-	public float ascDelay = 0.01f;					// player's ascend/descend input delay (more is slower)
-	
+
 	public string RHandName = "RHand";				// name of gameobj.
 	public string GrappleHookName = "GrappleHook";	// name of gameobj.
 	public string GrappleEndName = "GrappleEnd";	// name of gameobj.
@@ -20,47 +19,33 @@ public class GrappleScript : MonoBehaviour {
 	GameObject theGrapple;
 	Transform grappleHook; 
 	Transform grappleEnd; 
+	Transform grappleRope;
 	Transform rightHand;
 
-	int currentRope;				// current rope (child) in grapple player is at 
-	int totalRopeCt;				// total rope (child) in grapple 
-	float ascInputDelay;			// asc/desc input delay
-	
-	//FpsMovement FPSController;
-	//Inventory inventory;
+	float maxRopeScale;
+	float ropeLength;
 
 	void Start() {
-		//FPSController = this.GetComponent<FpsMovement>();
 		rightHand = Camera.main.transform.FindChild(RHandName);
 
-		currentRope = 0;
-		// Get current rope player is on (to be done when fired if doing raycasting for grapple - see #NOTE1)
-		foreach(Transform child in grapplePrefab.transform)
-		{
-			if(child.name != GrappleHookName 
-			&& child.name != GrappleEndName
-			&& child.name != "GrappleEnd(Connector)")	// if child is a rope
-				++currentRope;
-		}
+		//maxRopeScale = grapplePrefab.transform.GetChild(1).localScale.y;
 
-		totalRopeCt = currentRope;
-
-		ascInputDelay = 0;
+		ropeLength = grapplePrefab.transform.GetChild(3).GetComponent<SkinnedMeshRenderer>().bounds.size.y;
 	}
 
 
 	void Update() {
-//		if(Input.GetButtonDown("Grapple")) 	
-//		{
-//			if(theGrapple == null)				// if player havent launch grapple
-//			{
-//				FireGrapple();
-//			}
-//			else
-//			{
-//				ReleaseGrapple();
-//			}
-//		}
+		if(Input.GetButtonDown("Grapple")) 	
+		{
+			if(theGrapple == null)				// if player havent launch grapple
+			{
+				FireGrapple();
+			}
+			else
+			{
+				ReleaseGrapple();
+			}
+		}
 
 		if(theGrapple != null)
 		{
@@ -69,92 +54,75 @@ public class GrappleScript : MonoBehaviour {
 			// check if player use grapple successfully (hooks sth)
 			if(hook.GetGrappleHooked())		
 			{
-				if(this.gameObject.GetComponent<Rigidbody>().isKinematic)
-					this.gameObject.GetComponent<Rigidbody>().isKinematic = false;			// enable rigidbody
-
-				// current rope
-				Transform grappleRope = theGrapple.transform.GetChild(currentRope);
-
-				grappleRope.GetComponentInChildren<Renderer>().enabled = true;
-		
-				ascInputDelay -= Time.deltaTime;
+				if(!this.GetComponent<CharacterController>().isGrounded)
+					this.GetComponent<Rigidbody>().isKinematic = false;			// enable player rb
+				else
+					this.GetComponent<Rigidbody>().isKinematic = true;			// disable player rb
 
 				// Ascend
-				if(Input.GetButton("Fire2") && ascInputDelay <= 0)
-				{
-					ascInputDelay = ascDelay;
+				if(Input.GetButton("Fire2"))
+				{				
+					if(this.GetComponent<Rigidbody>().isKinematic)
+						this.GetComponent<Rigidbody>().isKinematic = false;	
 
-					if(!(currentRope == 1 && grappleRope.localScale.y <= 0))
+					if(grappleRope.localScale.x > 0.1f)
 					{
-						grappleRope.localScale -= Vector3.up*ascSpeed;
-					
-						// Make sure setting of asc/desc wont over scale 
-						grappleRope.localScale = new Vector3(grappleRope.localScale.x,
-						                                     Mathf.Clamp(grappleRope.localScale.y, 0, 1),
-						                                     grappleRope.localScale.z);
-
-						// btm of grappleEnd to cur. rope (needs fixing...)
-						//grappleEnd.transform.position = grappleRope.position;
-						Vector3 ropeBtmPos = new Vector3(grappleRope.GetComponentInChildren<Renderer>().bounds.center.x, 
-						                                 grappleRope.GetComponentInChildren<Renderer>().bounds.center.y-
-						                                 grappleRope.GetComponentInChildren<Renderer>().bounds.extents.y,
-						                                 grappleRope.GetComponentInChildren<Renderer>().bounds.center.z);
-
-						grappleEnd.transform.position = ropeBtmPos;
-					
-						// re-hinge to current rope
-						grappleEnd.GetComponent<HingeJoint>().connectedBody = grappleRope.GetComponent<Rigidbody>();
-					}
-
-					// if reached limit for current rope, go to next one
-					if(grappleRope.localScale.y <= 0)
-					{
-						// if still got other rope to asc
-						if(currentRope > 1)
-						{
-							grappleRope.GetComponentInChildren<Renderer>().enabled = false;
-							--currentRope;
-						}
+						print (grappleRope.localScale.x);
+						TraverseHierarchy(grappleRope, ascSpeed);	// update rope bones scale
 					}
 				}
 
 				// Descend
-				if(Input.GetButton("Fire3") && ascInputDelay <= 0) 
-				{
-					ascInputDelay = ascDelay;
-
-					if(!(currentRope == totalRopeCt && grappleRope.localScale.y >= 1))
+				if(Input.GetButton("Fire3")) 
+				{										
+					if(grappleRope.localScale.x < maxRopeScale)
 					{
-						grappleRope.localScale += Vector3.up*ascSpeed;
-						
-						// Make sure setting of asc/desc wont over scale 
-						grappleRope.localScale = new Vector3(grappleRope.localScale.x,
-						                                     Mathf.Clamp(grappleRope.localScale.y, 0, 1),
-						                                     grappleRope.localScale.z);	
-						// btm of grappleEnd to cur. rope
-						//grappleEnd.transform.position = grappleRope.position;
-						Vector3 ropeBtmPos = new Vector3(grappleRope.GetComponentInChildren<Renderer>().bounds.center.x, 
-						                                 grappleRope.GetComponentInChildren<Renderer>().bounds.center.y-
-						                                 grappleRope.GetComponentInChildren<Renderer>().bounds.extents.y,
-						                                 grappleRope.GetComponentInChildren<Renderer>().bounds.center.z);
-						
-						grappleEnd.transform.position = ropeBtmPos;
-						
-						// re-hinge to current rope
-						grappleEnd.GetComponent<HingeJoint>().connectedBody = grappleRope.GetComponent<Rigidbody>();
-					}
-					// if reached limit for current rope, go to next one
-					if(grappleRope.localScale.y >= 1)
-					{
-						// if still got other rope to asc
-						if(currentRope < totalRopeCt)
-							++currentRope;
+						print (grappleRope.localScale.x);
+						TraverseHierarchy(grappleRope, -ascSpeed);	// update rope bones scale
 					}
 				}
 			}
 		}
 	}
-	
+
+	void TraverseHierarchy(Transform root, float _ascSpeed)
+	{
+		root.GetComponent<Rigidbody>().isKinematic = true;		// 'freeze' rb
+
+		// rescale
+		root.localScale -= Vector3.right*_ascSpeed;
+
+		// Make sure setting of asc/desc wont over scale 
+		root.localScale = new Vector3(Mathf.Clamp(root.localScale.x, 0.1f, maxRopeScale), 
+		                              root.localScale.y, 
+		                              root.localScale.z);
+
+		root.localScale = new Vector3(Mathf.Round(root.localScale.x*100f)/100f, 
+		                              root.localScale.y, 
+		                              root.localScale.z);
+
+		if(root.name == "Bone001")
+		{
+			print (root.GetChild(0).localPosition);
+//			// get parent's end(btm) by its collider
+//			Bounds parentColBounds = root.parent.GetComponent<Collider>().bounds;
+//			//+ or -?
+//			Vector3 parentEndPos = new Vector3(parentColBounds.center.x-parentColBounds.extents.x*2,
+//			                                   parentColBounds.center.y,
+//			                                   parentColBounds.center.z);
+//			if(root.name == "Bone002")
+//				print ("current pos: " + root.position + "parent end pos: " + parentEndPos);
+//			// shift to endpos
+//			root.localPosition = parentEndPos;
+		}
+
+		root.GetComponent<Rigidbody>().isKinematic = false;		// 'unfreeze' rb
+
+		// move to next transform(child) in hierarchy (if any)
+		if(root.childCount > 0)
+			TraverseHierarchy(root.GetChild(0), _ascSpeed);
+	}
+
 	public void FireGrapple()
 	{
 		isGrappling = true;
@@ -168,6 +136,8 @@ public class GrappleScript : MonoBehaviour {
 		                                     rightHand.forward*grappleSpawnOffset.x+
 		                                     rightHand.right*grappleSpawnOffset.z, 
 		                                     rightHand.rotation);
+		
+		grappleRope = theGrapple.transform.GetChild(1);
 
 		// Get grapple's end (to let player 'hold on' to)
 		grappleEnd = theGrapple.transform.FindChild(GrappleEndName);
@@ -175,7 +145,8 @@ public class GrappleScript : MonoBehaviour {
 		// Make player rHand hold grapple end
 		this.gameObject.AddComponent<FixedJoint>().connectedBody = grappleEnd.GetComponent<Rigidbody>();
 
-		grappleHook = theGrapple.transform.FindChild(GrappleHookName);
+		grappleHook = theGrapple.GetComponentInChildren<GrappleCollisionScript>().transform;
+		grappleHook.position = rightHandPos;
 
 		// Throw grapple (adding force to hook i.e. front of grapple)
 		Rigidbody theGrappleHook_rb = grappleHook.GetComponent<Rigidbody>();
