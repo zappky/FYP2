@@ -8,12 +8,12 @@ public class FpsMovement : MonoBehaviour
 	public bool isRunning = false;
 	public bool isGrappling = false;				 
 	public bool useParachute = false;
-	public float moveSpeed = 7.0f; //movement speed
+	public float moveSpeed = 7.0f; 		//movement speed
 	public float jumpSpeed = 5.0f;
 	public float runSpeed = 1.2f;
-	public float paraSpeed = 1.0f; //Parachute speed
-	public float airSpeed = 3.0f;  //on air speed
-	public float swingSpeed = 0.1f;	//grapple swing speed
+	public float paraSpeed = 1.0f; 		//Parachute speed
+	public float airSpeed = 3.0f;  		//on air speed
+	public float swingSpeed = 0.1f;		//grapple swing speed
 	float forwardSpeed = 0.0f;
 	float sideSpeed = 0.0f;
 
@@ -96,7 +96,7 @@ public class FpsMovement : MonoBehaviour
 
 		isGrappling = updateGrappleCheck();
 
-		if(!isGrappling)	//temp grapple test - Hazim
+		if(!isGrappling)	 
 		{
 			//jump
 			if(!debugFlyMode)
@@ -106,7 +106,7 @@ public class FpsMovement : MonoBehaviour
 			}
 			else
 			{
-				vertVelo = Input.GetAxis("Fly") * moveSpeed;	//dunno how do real fly mode
+				vertVelo = Input.GetAxis("Fly") * moveSpeed;	 
 			}
 
 			if(cc.isGrounded && Input.GetButton("Jump"))
@@ -114,7 +114,7 @@ public class FpsMovement : MonoBehaviour
 				vertVelo = jumpSpeed;
 			}
 			else if(!cc.isGrounded && Input.GetButtonDown("parachute") 
-			     && inventory.CheckContainsItem("Parachute"))	//button v
+			     && inventory.CheckContainsItem("Parachute"))	
 			{
 				useParachute = !useParachute;
 			}
@@ -122,21 +122,14 @@ public class FpsMovement : MonoBehaviour
 			//activate parachute
 			if (useParachute) 
 			{
+				//set back parachute to false
+				if(cc.isGrounded)
+					useParachute = false;
+
 				vertVelo = -paraSpeed;
 				forwardSpeed = Input.GetAxis ("Vertical") * airSpeed;
 				sideSpeed = Input.GetAxis ("Horizontal") * airSpeed;
 			}
-
-			//set back parachute to false
-			if(cc.isGrounded && useParachute)
-				useParachute = false;
-
-			//lose from height
-//			if(vertVelo < -25.0f)
-//			{
-//				if(cc.isGrounded)
-//					Application.LoadLevel("losescreen");
-//			}
 
 			Vector3 speed = new Vector3 (sideSpeed, vertVelo, forwardSpeed);
 			speed = transform.rotation * speed;
@@ -145,22 +138,14 @@ public class FpsMovement : MonoBehaviour
 		}		
 		else
 		{
-			//temp grapple test - Hazim
-//			Vector3 speed = new Vector3 (this.GetComponent<Rigidbody>().velocity.x+sideSpeed, 
-//			                             this.GetComponent<Rigidbody>().velocity.y, 
-//			                             this.GetComponent<Rigidbody>().velocity.z+forwardSpeed);
-
-			Vector3 speed = new Vector3 (sideSpeed, this.GetComponent<Rigidbody>().velocity.y, forwardSpeed);
-			speed = transform.rotation * speed;
-
-			//if(!cc.isGrounded)
-			this.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(sideSpeed*swingSpeed, 0, forwardSpeed*swingSpeed),
-			                                                   ForceMode.Impulse);
-			//else
-			//cc.Move (speed * Time.deltaTime);
-			//Debug.Log(this.gameObject.GetComponent<Rigidbody>().velocity);
+			Vector3 speed = new Vector3 (sideSpeed, 0, forwardSpeed);
+			speed = Camera.main.transform.rotation * speed;
+			print(speed);
+			this.gameObject.GetComponent<Rigidbody>().AddForce(speed,
+			                                                   ForceMode.Force);
 		}
 	}
+
 	
 	bool updateGrappleCheck()
 	{
