@@ -48,22 +48,22 @@ public class CheckPoint : MonoBehaviour {
 
 				switch (this.checkpointType)
 				{
-				case CheckPoint_Type.CHECKPOINT_DIALOG_TRIGGER:
-					Debug.Log("Triggering dialog trigger: " +this.name );
-					levelManager.playerdialoginferface.StartNewDialogSessionUsingBookmark(levelManager.CurrentLevelName,this.name);
-					levelManager.SavePlayerInfo();
-					break;
-					
-				case CheckPoint_Type.CHECKPOINT_SAVE_TRIGGER:
-					levelManager.SavePlayerInfo();
-					break;
-					
-				case CheckPoint_Type.CHECKPOINT_NONE://dont care
-					break;
-					
-				default:
-					Debug.Log("ERROR: Unhandled checkpoint type trigger : " + this.checkpointType.ToString());
-					break;
+					case CheckPoint_Type.CHECKPOINT_DIALOG_TRIGGER:
+						Debug.Log("Triggering dialog trigger: " +this.name );
+						levelManager.playerdialoginferface.StartNewDialogSessionUsingBookmark(levelManager.CurrentLevelName,this.name);
+						levelManager.SavePlayerInfo();
+						break;
+						
+					case CheckPoint_Type.CHECKPOINT_SAVE_TRIGGER:
+						levelManager.SavePlayerInfo();
+						break;
+						
+					case CheckPoint_Type.CHECKPOINT_NONE://dont care
+						break;
+						
+					default:
+						Debug.Log("ERROR: Unhandled checkpoint type trigger : " + this.checkpointType.ToString());
+						break;
 				}
 			}
 

@@ -34,8 +34,12 @@ public class FallResponse : MonoBehaviour {
 			// check fall dist 
 			if(fallDist >= maxFallDist)					// if fall ht too high
 			{
-				//Application.LoadLevel("losescreen");	// gameover screen
+				// reload from last checkpt
 				ResetFallDist();
+				Application.LoadLevel(Application.loadedLevelName);
+				Inventory playerinventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+				playerinventory.ClearInventoryItem();
+				LevelManager.Instance.loadFromContinue = true;
 				LevelManager.Instance.LoadPlayerInfo();
 			}
 			else

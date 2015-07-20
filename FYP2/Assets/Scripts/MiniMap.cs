@@ -23,7 +23,7 @@ public class MiniMap : MonoBehaviour {
 		enemies = GameObject.FindGameObjectsWithTag ("Enemy");
 		for(int i = 0; i < enemies.Length; i++)
 		{
-			Debug.Log(enemies[i].name);
+			//Debug.Log(enemies[i].name);
 			ai.Add(enemies[i].GetComponent<EnemyAI>());
 		}
 		createRadarObjects();

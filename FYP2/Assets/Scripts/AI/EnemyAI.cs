@@ -374,20 +374,9 @@ public class EnemyAI : MonoBehaviour {
 		if (other.gameObject.tag != "Floor")
 		{
 			// static obj is in AI's way (e.g. chair, bed)
-			if(other.gameObject.GetComponent<Rigidbody>() == null)
-			{
+			if(other.gameObject.GetComponent<Rigidbody>() == null 
+			|| other.gameObject.GetComponent<Rigidbody>().isKinematic)
 				collideWithOther = true;
-				Debug.Log("COL W STATIC OBJ: " + other.gameObject.name);
-			}
-			else
-			{
-				// static game obj is in AI's way (e.g. grappable wall)
-				if(other.gameObject.GetComponent<Rigidbody>().isKinematic)
-				{
-					collideWithOther = true;
-					Debug.Log("COL W STATIC GAME OBJ: " + other.gameObject.name);
-				}
-			}
 		}
 	}
 	void OnCollisionExit()

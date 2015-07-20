@@ -24,11 +24,11 @@ public class Interactable : MonoBehaviour {
 	{
 		switch(this.name)
 		{
-		case "BoxofPaperclips":
-			questManager.GetQuestLog("Collect Paper Clips").statues = true;
-			break;
-		default:
-			break;
+			case "BoxofPaperclips":
+				questManager.GetQuestLog("Collect Paper Clip").statues = true;
+				break;
+			default:
+				break;
 		}
 	}
 	//for picking up effect
