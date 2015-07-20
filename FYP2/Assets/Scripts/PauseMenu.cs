@@ -7,7 +7,8 @@ public class PauseMenu : MonoBehaviour {
 	Canvas pauseMenu;
 	GameObject Player;
 
-	// Use this for initialization
+	public AudioSource clickSound;
+
 	void Start () 
 	{
 		Player = GameObject.FindGameObjectWithTag("Player");
@@ -70,5 +71,10 @@ public class PauseMenu : MonoBehaviour {
 	public void MainMenu()
 	{
 		Application.LoadLevel("main_menu");
+	}
+
+	public void playClickSound()
+	{
+		clickSound.Play();
 	}
 }
