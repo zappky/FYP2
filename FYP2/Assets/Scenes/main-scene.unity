@@ -2768,8 +2768,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -.670403719, z: 0, w: .741996586}
   m_LocalPosition: {x: -91.6999969, y: 89.7099991, z: -52.7200012}
   m_LocalScale: {x: 3, y: 3, z: 3}
-  m_Children:
-  - {fileID: 1842342813}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
 --- !u!114 &156730415
@@ -2799,7 +2798,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: e89716cc0d4a9594db4f6f9447c14bbf, type: 2}
+  - {fileID: 2100000, guid: 3e2d9e463e39b1941bd0fc21364b0395, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -3136,9 +3135,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 522681069}
-  - {fileID: 724814825}
   m_Father: {fileID: 1605547994}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1 &172345174
 GameObject:
   m_ObjectHideFlags: 0
@@ -5063,6 +5061,7 @@ GameObject:
   - 23: {fileID: 270600192}
   - 64: {fileID: 270600191}
   - 114: {fileID: 270600194}
+  - 122: {fileID: 270600195}
   m_Layer: 0
   m_Name: BoxofPaperclips
   m_TagString: Untagged
@@ -5140,6 +5139,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671dca06d1d884f43b87371241e7bb9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lighting: 1
+  questReference:
+    id: -1
+    questname: 
+    statues: 0
+--- !u!122 &270600195
+Halo:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 270600189}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4286611584
+  m_Size: 8.46000004
 --- !u!1 &274567359
 GameObject:
   m_ObjectHideFlags: 0
@@ -10552,7 +10567,7 @@ Transform:
   - {fileID: 1340008068}
   - {fileID: 1430730702}
   m_Father: {fileID: 1605547994}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &604230832
 GameObject:
   m_ObjectHideFlags: 0
@@ -10782,7 +10797,7 @@ Transform:
   - {fileID: 862117342}
   - {fileID: 677496167}
   m_Father: {fileID: 983329786}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1 &623439405
 GameObject:
   m_ObjectHideFlags: 0
@@ -11148,7 +11163,7 @@ Transform:
   - {fileID: 1625590155}
   - {fileID: 1166828395}
   m_Father: {fileID: 1605547994}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &645356236
 GameObject:
   m_ObjectHideFlags: 0
@@ -11870,6 +11885,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671dca06d1d884f43b87371241e7bb9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lighting: 1
+  questReference:
+    id: -1
+    questname: 
+    statues: 0
+--- !u!1 &679812887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 135186, guid: 70c6a439f9ea58545b88d603b92f8bf9, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 679812888}
+  m_Layer: 0
+  m_Name: RHand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &679812888
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 405136, guid: 70c6a439f9ea58545b88d603b92f8bf9, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 679812887}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .389999986, y: .100000001, z: .689999998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 944740335}
+  m_RootOrder: 2
 --- !u!1 &681735243
 GameObject:
   m_ObjectHideFlags: 0
@@ -12770,7 +12817,7 @@ GameObject:
   - 23: {fileID: 724814826}
   - 114: {fileID: 724814829}
   m_Layer: 0
-  m_Name: Collectibles - glowing trophy
+  m_Name: Area1
   m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12787,8 +12834,8 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 186649229}
-  m_Father: {fileID: 166842454}
-  m_RootOrder: 1
+  m_Father: {fileID: 985080927}
+  m_RootOrder: 0
 --- !u!23 &724814826
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12800,7 +12847,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: e89716cc0d4a9594db4f6f9447c14bbf, type: 2}
+  - {fileID: 2100000, guid: 3e2d9e463e39b1941bd0fc21364b0395, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -15437,6 +15484,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671dca06d1d884f43b87371241e7bb9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lighting: 1
+  questReference:
+    id: -1
+    questname: 
+    statues: 0
 --- !u!1 &866326672
 GameObject:
   m_ObjectHideFlags: 0
@@ -16813,6 +16865,7 @@ Transform:
   m_Children:
   - {fileID: 1450447086}
   - {fileID: 1401029171}
+  - {fileID: 679812888}
   m_Father: {fileID: 955072674}
   m_RootOrder: 2
 --- !u!1 &951090584
@@ -17618,7 +17671,7 @@ Transform:
   - {fileID: 2127049346}
   - {fileID: 1762966547}
   m_Father: {fileID: 1760532572}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!1 &981837860
 GameObject:
   m_ObjectHideFlags: 0
@@ -17671,11 +17724,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1536202225}
   - {fileID: 621588228}
   - {fileID: 1126859367}
   m_Father: {fileID: 1605547994}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &983840547
 GameObject:
   m_ObjectHideFlags: 0
@@ -17703,6 +17755,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1494820405}
   m_RootOrder: 0
+--- !u!1 &985080926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 985080927}
+  m_Layer: 0
+  m_Name: Collectibles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &985080927
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 985080926}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 724814825}
+  - {fileID: 1536202225}
+  - {fileID: 1657496498}
+  m_Father: {fileID: 1605547994}
+  m_RootOrder: 1
 --- !u!1 &997302573
 GameObject:
   m_ObjectHideFlags: 0
@@ -20335,7 +20417,7 @@ Transform:
   - {fileID: 1743543455}
   - {fileID: 1598172584}
   m_Father: {fileID: 983329786}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!1 &1127872610
 GameObject:
   m_ObjectHideFlags: 0
@@ -21218,7 +21300,7 @@ Transform:
   m_PrefabParentObject: {fileID: 432482, guid: 6cc4d622907b0394c947df2ec0ddf671, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1200860748}
-  m_LocalRotation: {x: -.00926726218, y: .670082927, z: -.742155015, w: -.0104364539}
+  m_LocalRotation: {x: -.00926726311, y: .670082986, z: -.742155075, w: -.0104364548}
   m_LocalPosition: {x: .909999967, y: 37.3837776, z: 81.5183182}
   m_LocalScale: {x: 28.647501, y: 49.1884995, z: 2.86284757}
   m_Children: []
@@ -25795,7 +25877,7 @@ Transform:
   m_Children:
   - {fileID: 1550557152}
   m_Father: {fileID: 1760532572}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1 &1439293794
 GameObject:
   m_ObjectHideFlags: 0
@@ -27345,7 +27427,7 @@ GameObject:
   - 23: {fileID: 1536202226}
   - 114: {fileID: 1536202229}
   m_Layer: 0
-  m_Name: Collectibles - glowing trophy 1
+  m_Name: Area3
   m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27362,8 +27444,8 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 320434373}
-  m_Father: {fileID: 983329786}
-  m_RootOrder: 0
+  m_Father: {fileID: 985080927}
+  m_RootOrder: 1
 --- !u!23 &1536202226
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27375,7 +27457,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: e89716cc0d4a9594db4f6f9447c14bbf, type: 2}
+  - {fileID: 2100000, guid: 3e2d9e463e39b1941bd0fc21364b0395, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -27838,6 +27920,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671dca06d1d884f43b87371241e7bb9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lighting: 1
+  questReference:
+    id: -1
+    questname: 
+    statues: 0
 --- !u!1 &1552502624
 GameObject:
   m_ObjectHideFlags: 0
@@ -28849,6 +28936,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2018953524}
+  - {fileID: 985080927}
   - {fileID: 166842454}
   - {fileID: 644378867}
   - {fileID: 983329786}
@@ -29934,7 +30022,7 @@ GameObject:
   - 23: {fileID: 1657496499}
   - 114: {fileID: 1657496502}
   m_Layer: 0
-  m_Name: Collectibles - glowing trophy 1
+  m_Name: Area4
   m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29951,8 +30039,8 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 1869445085}
-  m_Father: {fileID: 1760532572}
-  m_RootOrder: 0
+  m_Father: {fileID: 985080927}
+  m_RootOrder: 2
 --- !u!23 &1657496499
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29964,7 +30052,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: e89716cc0d4a9594db4f6f9447c14bbf, type: 2}
+  - {fileID: 2100000, guid: 3e2d9e463e39b1941bd0fc21364b0395, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -32079,11 +32167,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1657496498}
   - {fileID: 1436376606}
   - {fileID: 978918485}
   m_Father: {fileID: 1605547994}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1 &1762464871
 GameObject:
   m_ObjectHideFlags: 0
@@ -33937,84 +34024,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2115438265}
   m_RootOrder: 0
---- !u!1 &1842342811
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 155516, guid: 2ca293e3a4fb0d141b1f71b9eb8a0fbf, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1842342813}
-  - 108: {fileID: 1842342812}
-  - 114: {fileID: 1842342814}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &1842342812
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 10848532, guid: 2ca293e3a4fb0d141b1f71b9eb8a0fbf,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1842342811}
-  m_Enabled: 1
-  serializedVersion: 6
-  m_Type: 2
-  m_Color: {r: 1, g: .974645019, b: .0808823705, a: 1}
-  m_Intensity: 8
-  m_Range: 8.25
-  m_SpotAngle: 54
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_Strength: 1
-    m_Bias: .0500000007
-    m_NormalBias: .400000006
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 1
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_BounceIntensity: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
---- !u!4 &1842342813
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 430230, guid: 2ca293e3a4fb0d141b1f71b9eb8a0fbf, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1842342811}
-  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: 0, y: .0920000002, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 156730414}
-  m_RootOrder: 0
---- !u!114 &1842342814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1842342811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 326896cf293b9c049ae4a05197d24a3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
-  currentCollectibleLevel:
-    listName: 
-    id: -1
-    collectibleList: []
 --- !u!1 &1843009517
 GameObject:
   m_ObjectHideFlags: 0
