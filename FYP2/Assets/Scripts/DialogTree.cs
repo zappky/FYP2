@@ -205,24 +205,33 @@ public class DialogTree : IEnumerable<my_DialogNode>
 			{
 				return dialogSections[id].bookmarkedDialogNode;
 			}
+			//if still cannot be found,brute force search
+			for(int i = 0 ; i <id ; ++i )
+			{
+				if(dialogSections[i].id == id)
+				{
+					return dialogSections[i].bookmarkedDialogNode;
+				}
+			}
+			for(int i = id+1 ; i <dialogSections.Count ; ++i )
+			{
+				if(dialogSections[i].id == id)
+				{
+					return dialogSections[i].bookmarkedDialogNode;
+				}
+			}
 		}else
 		{
 			Debug.Log("WARNING: GetDialogBookmarked id search is over list size,brute force search will be performed");
-		}
-		for(int i = 0 ; i <id ; ++i )
-		{
-			if(dialogSections[i].id == id)
+			for(int i = 0 ; i <dialogSections.Count ; ++i )
 			{
-				return dialogSections[i].bookmarkedDialogNode;
+				if(dialogSections[i].id == id)
+				{
+					return dialogSections[i].bookmarkedDialogNode;
+				}
 			}
 		}
-		for(int i = id+1 ; i <dialogSections.Count ; ++i )
-		{
-			if(dialogSections[i].id == id)
-			{
-				return dialogSections[i].bookmarkedDialogNode;
-			}
-		}
+
 
 		Debug.Log("ERROR: GetDialogBookmarked cannot find with: " + id);
 		return null;
@@ -240,25 +249,34 @@ public class DialogTree : IEnumerable<my_DialogNode>
 			{
 				return dialogs[nodeid];
 			}
+			//if still cannot be found,brute force search
+			for(int i = 0 ; i < nodeid ; ++i)
+			{
+				if(dialogs[i].nodeId == nodeid)
+				{
+					return dialogs[i];
+				}
+			}
+			for(int i = nodeid+1 ; i < dialogs.Count ; ++i)
+			{
+				if(dialogs[i].nodeId == nodeid)
+				{
+					return dialogs[i];
+				}
+			}
 		}else
 		{
 			Debug.Log("WARNING: GetDialog with id is over list size,brute force search will be performed : " + nodeid);
+			for(int i = 0 ; i < dialogs.Count ; ++i)
+			{
+				if(dialogs[i].nodeId == nodeid)
+				{
+					return dialogs[i];
+				}
+			}
 		}
 
-		for(int i = 0 ; i < nodeid ; ++i)
-		{
-			if(dialogs[i].nodeId == nodeid)
-			{
-				return dialogs[i];
-			}
-		}
-		for(int i = nodeid+1 ; i < dialogs.Count ; ++i)
-		{
-			if(dialogs[i].nodeId == nodeid)
-			{
-				return dialogs[i];
-			}
-		}
+
 
 		return null;
 	}

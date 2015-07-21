@@ -43,6 +43,10 @@ public class my_QuestLog
 			return "Not Done";
 		}
 	}
+	public void ClearQuest()
+	{
+		this.statues = true;
+	}
 }
 
 public class QuestManager : MonoBehaviour {
@@ -58,9 +62,10 @@ public class QuestManager : MonoBehaviour {
 
 	public Rect questDisplayRect;
 	public List<Rect>questLogRects = new List<Rect>();
-	public int maxQuestLog = 5;
+	public const int maxQuestLog = 1;
 	private float questLogHeight = -1.0f;
-	int currentGameLevel = -1;
+	public int currentGameLevel = -1;
+	public int currentQuestIndex = 0;
 	public static QuestManager Instance
 	{
 		get
@@ -82,7 +87,7 @@ public class QuestManager : MonoBehaviour {
 	{
 		if(initedBefore == false || re_init == true)
 		{
-			questlogdatabase = QuestLogDatabase.instance;
+			this.questlogdatabase = QuestLogDatabase.Instance;
 
 			//temporary solution
 			List<string> gamelevelnamelist = ApplicationLevelBoard.Instance.gameLevelNameList;
@@ -95,26 +100,84 @@ public class QuestManager : MonoBehaviour {
 				}
 			}
 			Debug.Log("current game level in quest manager:" + currentGameLevel);
-			questLogListDatabase = questlogdatabase[currentGameLevel];
+			this.questLogListDatabase = questlogdatabase[currentGameLevel];
 			
-			questDisplayRect = new Rect (0.0f,Screen.height * 0.01f,Screen.width * 0.25f,Screen.width * 0.25f);
+			questDisplayRect = new Rect (0.0f,Screen.height * 0.01f,Screen.width * 0.25f,Screen.height * 0.25f);
 			questLogHeight = questDisplayRect.height / (maxQuestLog+1);
 			for (int i = 0; i<maxQuestLog; ++i)//reserve some rect 
 			{
+				//questLogs.Add(new my_QuestLog());
 				questLogRects.Add (new Rect (questDisplayRect.xMin,questDisplayRect.yMin + (i+1) *questLogHeight,questDisplayRect.width,questLogHeight));
 			}
-			questLogs.Clear();
-			FetchNewQuest();
+			FetchCurrentQuest();
 			initedBefore = true;
 		}
 	}
+
+	public void ClearQuest(my_QuestLog theQuest)
+	{
+		theQuest.ClearQuest();
+		questLogs.Remove(theQuest);
+		FetchNewQuest();
+	}
+	public void ClearQuest(int questId)
+	{
+		my_QuestLog theQuest = GetQuestLog(questId);
+		if(theQuest != null)
+		{
+			theQuest.ClearQuest();
+			questLogs.Remove(theQuest);
+		}else
+		{
+			Debug.Log("ERROR: ClearQuest is using null theQuest reference");
+		}
+		FetchNewQuest();
+	}
+	public void ClearQuest(string questName)
+	{
+		my_QuestLog theQuest = GetQuestLog(questName);
+		if(theQuest != null)
+		{
+			theQuest.ClearQuest();
+			questLogs.Remove(theQuest);
+		}else
+		{
+			Debug.Log("ERROR: ClearQuest is using null theQuest reference");
+		}
+		FetchNewQuest();
+	}
+	public void RemoveClearedQuestLogs()
+	{
+		RemoveQuestLogs(true);
+	}
+	public void RemoveQuestLogs(bool questStatues)
+	{
+		for(int i = 0 ; i < questLogs.Count; ++i)
+		{
+			if(questLogs[i].statues == questStatues)
+			{
+				questLogs.Remove(questLogs[i]);
+			}
+		}
+	}
+	public my_QuestLog GetCurrentQuest()
+	{
+		return questLogListDatabase[currentQuestIndex];
+	}
+	public void FetchCurrentQuest()
+	{
+		AddQuestLog( questLogListDatabase[currentQuestIndex]);
+	}
 	public void FetchNewQuest()
 	{
-		this.questLogListDatabase = questlogdatabase[currentGameLevel];
-
-		for(int i = 0 ; i < questLogListDatabase.questlogs.Count ; ++i)
+		///this.questLogListDatabase = questlogdatabase[currentGameLevel];//should be reloaded whenever new game scene is loaded
+		for(int i = currentQuestIndex+1 ; i < questLogListDatabase.questlogs.Count ; ++i)
 		{
-			AddQuestLog(questLogListDatabase[i]);
+			if(AddQuestLog(questLogListDatabase[i] ) == true)//it is ok to use reference from database in this case
+			{
+				currentQuestIndex = i;
+				break;
+			}
 		}
 	}
 	public void RemoveQuestLog(int questId)
@@ -127,38 +190,60 @@ public class QuestManager : MonoBehaviour {
 
 		if(questId <questLogs.Count)
 		{
+			//early prediction
 			if(questLogs[questId].id == questId)
 			{
-				questLogs[questId] = new my_QuestLog();
+				questLogs.Remove(questLogs[questId]);
+				return;
+				//questLogs[questId] = new my_QuestLog();
+			}
+			//if still cannot be found, brute force search
+			for(int i = 0 ; i< questId; ++i)
+			{
+				if(questLogs[i].id == questId)
+				{
+					questLogs.Remove(questLogs[i]);
+					return;
+					//questLogs[i] = new my_QuestLog();
+				}
+			}
+			for(int i = questId+1 ; i< questLogs.Count; ++i)
+			{
+				if(questLogs[i].id == questId)
+				{
+					questLogs.Remove(questLogs[i]);
+					return;
+					//questLogs[i] = new my_QuestLog();
+				}
+			}
+		}else
+		{
+			Debug.Log("WARNING: RemoveQuestLog with quest id is over list count,brute force search");
+			for(int i = 0 ; i< questLogs.Count; ++i)
+			{
+				if(questLogs[i].id == questId)
+				{
+					questLogs.Remove(questLogs[i]);
+					return;
+					//questLogs[i] = new my_QuestLog();
+				}
 			}
 		}
 		
-		for(int i = 0 ; i< questId; ++i)
-		{
-			if(questLogs[i].id == questId)
-			{
-				questLogs[i] = new my_QuestLog();
-			}
-		}
-		for(int i = questId+1 ; i< questLogs.Count; ++i)
-		{
-			if(questLogs[i].id == questId)
-			{
-				questLogs[i] = new my_QuestLog();
-			}
-		}
+
 
 	}
-	public my_QuestLog RemoveQuestLog(string questLogName)
+	public void RemoveQuestLog(string questLogName)
 	{
 		for(int i = 0 ; i< questLogs.Count; ++i)
 		{
 			if(questLogs[i].questname == questLogName)
 			{
-				questLogs[i] = new my_QuestLog();
+				questLogs.Remove(questLogs[i]);
+				return;
+				//questLogs[i] = new my_QuestLog();
 			}
 		}
-		return null;
 	}
 	public my_QuestLog GetQuestLog(int questId)
 	{
@@ -170,26 +255,38 @@ public class QuestManager : MonoBehaviour {
 
 		if(questId <questLogs.Count)
 		{
+			//early prediction
 			if(questLogs[questId].id == questId)
 			{
 				return questLogs[questId];
 			}
-		}
-		
-		for(int i = 0 ; i< questId; ++i)
-		{
-			if(questLogs[i].id == questId)
+			//if still cannot be found, brute force search
+			for(int i = 0 ; i< questId; ++i)
 			{
-				return questLogs[i];
+				if(questLogs[i].id == questId)
+				{
+					return questLogs[i];
+				}
+			}
+			for(int i = questId+1 ; i< questLogs.Count; ++i)
+			{
+				if(questLogs[i].id == questId)
+				{
+					return questLogs[i];
+				}
+			}
+		}else
+		{
+			Debug.Log("WARNING: GetQuestLog with questId is over list count,brute force search");
+			for(int i = 0 ; i< questLogs.Count; ++i)
+			{
+				if(questLogs[i].id == questId)
+				{
+					return questLogs[i];
+				}
 			}
 		}
-		for(int i = questId+1 ; i< questLogs.Count; ++i)
-		{
-			if(questLogs[i].id == questId)
-			{
-				return questLogs[i];
-			}
-		}
+
 		return null;
 	}
 	public my_QuestLog GetQuestLog(string questLogName)
@@ -243,22 +340,29 @@ public class QuestManager : MonoBehaviour {
 			{
 				return true;
 			}
+			for(int i = 0 ; i < a_questlog.id; ++i)
+			{
+				if(questLogs[i].id == a_questlog.id)
+				{
+					return true;
+				}
+			}
+			for(int i = a_questlog.id+1 ; i < questLogs.Count; ++i)
+			{
+				if(questLogs[i].id == a_questlog.id)
+				{
+					return true;
+				}
+			}
 		}else
 		{
 			Debug.Log("WARNING: DuplicateQuestLogCheck with quest log id is over list value: " + a_questlog.id);
-		}
-		for(int i = 0 ; i < a_questlog.id; ++i)
-		{
-			if(questLogs[i].id == a_questlog.id)
+			for(int i = 0 ; i <questLogs.Count ; ++i)
 			{
-				return true;
-			}
-		}
-		for(int i = a_questlog.id+1 ; i < questLogs.Count; ++i)
-		{
-			if(questLogs[i].id == a_questlog.id)
-			{
-				return true;
+				if(questLogs[i].id == a_questlog.id)
+				{
+					return true;
+				}
 			}
 		}
 
