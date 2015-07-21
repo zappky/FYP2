@@ -16,6 +16,8 @@ public class MainMenu : MonoBehaviour {
 	public Button extraB;
 	public Button exitB;
 
+	public AudioSource clickSound;
+
 	void Start () 
 	{
 		quitMenu = quitMenu.GetComponent<Canvas>();
@@ -132,5 +134,10 @@ public class MainMenu : MonoBehaviour {
 	public void QuitGame()
 	{
 		Application.Quit ();
+	}
+
+	public void playClickSound()
+	{
+		clickSound.Play();
 	}
 }
