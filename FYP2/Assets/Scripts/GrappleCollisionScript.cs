@@ -3,20 +3,15 @@ using System.Collections;
 
 public class GrappleCollisionScript : MonoBehaviour {
 
-	public float throwForce = 100f;
-	
 	bool isHooked = false;					//to check if grapple hooked to sth successfully
-	//GameObject theGrapple;
 
 	Rigidbody theGrappleHook_rb;
 	FixedJoint grabJoint;
-	
-	// Use this for initialization
+
 	void Start () {
 		theGrappleHook_rb = this.GetComponent<Rigidbody>();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		if(!isHooked)
 		{ 
@@ -26,11 +21,10 @@ public class GrappleCollisionScript : MonoBehaviour {
 	// Hook's collision with sth
 	void OnCollisionEnter(Collision col)
 	{
-		if(col.rigidbody == null || !col.rigidbody.isKinematic)	//if that sth dont have rb or isKinematic, return
+		//if gameobj dont have rb or !isKinematic, or players hand, return
+		if(col.rigidbody == null || !col.rigidbody.isKinematic 
+		|| col.transform == Camera.main.transform.GetChild(0))	
 			return;
-
-		// check if wall/obj can be 'hookable'
-		//if(col.tag == "Hookable")
 
 		if(!isHooked)	 
 		{

@@ -18,9 +18,22 @@ public class Interactable : MonoBehaviour {
 
 		switch(this.name)
 		{
+			case "testquest":
+				questReference = questManager.questLogListDatabase.GetQuestLog("Push Blocks");
+			break;
+			case "testquest2":
+				questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest2");
+			break;
+			case "testquest3":
+				questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest4");
+			break;
+			case "testquest4":
+				questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest5");
+			break;
+
 			case "BoxofPaperclips":
 				theHalo = ((Behaviour)GetComponent("Halo"));//not all object with interact script will use halo 
-				questReference = questManager.GetQuestLog("Collect Paper Clips");
+				questReference = questManager.questLogListDatabase.GetQuestLog("Collect Paper Clip");
 				break;
 			default:
 				break;
@@ -34,9 +47,15 @@ public class Interactable : MonoBehaviour {
 	
 	public void CompleteQuest()
 	{
-		if(questReference != null)
+		if(questReference != null )
 		{
-			questReference.statues = true;
+			if(questReference != questManager.GetCurrentQuest())
+			{
+				Debug.Log("WARNING: Attempting to clear quest that is not current quest");
+				return;
+			}
+			Debug.Log("clearing quest " + questReference.questname);
+			questManager.ClearQuest(questReference);
 			SetLighting(false);
 		}else
 		{
