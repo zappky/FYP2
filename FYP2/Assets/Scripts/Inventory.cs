@@ -55,6 +55,9 @@ public class Inventory : MonoBehaviour {
 	private bool updateCraftSlotDisplayNow = false;
 	private float tabWidth = -1.0f;
 	private float tabHeight = -1.0f;
+
+	public AudioSource successSound;
+	public AudioSource failSound;
 	//private bool messageNullTextureError = false;
 
 	// Use this for initialization
@@ -166,33 +169,24 @@ public class Inventory : MonoBehaviour {
 			{
 				return inventory[id];
 			}
-			//if still cannot be found, brute force search
-			for(int i = 0 ; i < id; ++i)//loop through whole inventory
-			{
-				if(inventory[i].id == id)
-				{
-					return inventory[i];
-				}
-			}
-			for(int i = id+1 ; i < inventory.Count; ++i)//loop through whole inventory
-			{
-				if(inventory[i].id == id)
-				{
-					return inventory[i];
-				}
-			}
 		}else
 		{
 			Debug.Log("WARNING: GetItem id is over list size,brute force search will be performed");
-			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+		}
+		for(int i = 0 ; i < id; ++i)//loop through whole inventory
+		{
+			if(inventory[i].id == id)
 			{
-				if(inventory[i].id == id)
-				{
-					return inventory[i];
-				}
+				return inventory[i];
 			}
 		}
-
+		for(int i = id+1 ; i < inventory.Count; ++i)//loop through whole inventory
+		{
+			if(inventory[i].id == id)
+			{
+				return inventory[i];
+			}
+		}
 		return null;
 	}
 	//brute force loop and return a reference to the item based on the search name
@@ -469,43 +463,32 @@ public class Inventory : MonoBehaviour {
 
 		if(id < inventory.Count)
 		{
-			//early prediction
 			if(inventory[id].id == id)
 			{
 				RemoveKnownItem(id);
 				return;
 			}
-			//if still cannot be found, brute force search
-			for(int i = 0 ; i < id; ++i)//loop through whole inventory
-			{
-				if(inventory[i].id == id)
-				{
-					RemoveKnownItem(i);
-					return;
-				}
-			}
-			for(int i = id+1 ; i < inventory.Count; ++i)//loop through whole inventory
-			{
-				if(inventory[i].id == id)
-				{
-					RemoveKnownItem(i);
-					return;
-				}
-			}
 		}else
 		{
 			Debug.Log("ERROR: RemoveItem id search is over list size,brute force search will be performed");
-			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
-			{
-				if(inventory[i].id == id)
-				{
-					RemoveKnownItem(i);
-					return;
-				}
-			}
 		}
 
-
+		for(int i = 0 ; i < id; ++i)//loop through whole inventory
+		{
+			if(inventory[i].id == id)
+			{
+				RemoveKnownItem(i);
+				return;
+			}
+		}
+		for(int i = id+1 ; i < inventory.Count; ++i)//loop through whole inventory
+		{
+			if(inventory[i].id == id)
+			{
+				RemoveKnownItem(i);
+				return;
+			}
+		}
 
 	}
 	public bool CheckContainsItem(Item a_item)
@@ -573,34 +556,25 @@ public class Inventory : MonoBehaviour {
 			{
 				return true;
 			}
-			//if still cannot be found, brute force search
-			for(int i = 0 ; i < id; ++i)//loop through whole inventory
-			{
-				if(inventory[i].id == id)
-				{
-					return true;
-				}
-			}
-			for(int i = id+1 ; i < inventory.Count; ++i)//loop through whole inventory
-			{
-				if(inventory[i].id == id)
-				{
-					return true;
-				}
-			}
 		}else
 		{
 			Debug.Log("WARNING: CheckContainsItem id is over list size,brute force search will be perfomed");
-			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
-			{
-				if(inventory[i].id == id)
-				{
-					return true;
-				}
-			}
 		}
 		
-
+		for(int i = 0 ; i < id; ++i)//loop through whole inventory
+		{
+			if(inventory[i].id == id)
+			{
+				return true;
+			}
+		}
+		for(int i = id+1 ; i < inventory.Count; ++i)//loop through whole inventory
+		{
+			if(inventory[i].id == id)
+			{
+				return true;
+			}
+		}
 		
 		return false;
 	}
@@ -962,8 +936,19 @@ public class Inventory : MonoBehaviour {
 						tooltip = craftslots[index].description;
 						if(currentevent.button == 0 &&currentevent.type == EventType.mouseDown && currentevent.clickCount == 2)//double click
 						{
-							AddItem(database.CraftItem(inventory,database.GetCraftRecipe(craftslots[index].id)));
-							ManageCraftRecipeIconDisplay(craftslots[index]);
+							List<Item> requestList = database.CraftItem(inventory,database.GetCraftRecipe(craftslots[index].id));
+							if(requestList.Count <= 0)
+							{
+								Debug.Log("nothing to craft");
+								failSound.Play();
+							}else
+							{
+								AddItem(requestList);
+								successSound.Play();
+								//AddItem(database.CraftItem(inventory,database.GetCraftRecipe(craftslots[index].id)));
+								//ManageCraftRecipeIconDisplay(craftslots[index]);
+							}
+
 						}
 					}
 				}else//if current slot contain invalid item
