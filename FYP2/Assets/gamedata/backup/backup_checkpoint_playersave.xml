@@ -13,7 +13,7 @@
 			<layer index="1" />
 			<layer index="2" />
 		</quickcast>
-		<checkpoint id="1" name="1" index="1" x="-95.51" y="86.13" z="-57.03" rx="0" ry="0.2376859" rz="0" rw="0.9713421" />
+		<checkpoint id="0" name="0" index="0" x="-95.51" y="86.13" z="-57.03" rx="0" ry="0.2376859" rz="0" rw="0.9713421" />
 		<inventory weight="0">
 			<item index="0" id="6" name="Broken Grapple" amount="1" weight="0" description="A grapple with a broken hook." stackable="True" type="craftmaterial" />
 			<item index="1" id="7" name="Old Running Shoes" amount="1" weight="0" description="Missing shoelaces. Gift from Mom." stackable="True" type="craftmaterial" />

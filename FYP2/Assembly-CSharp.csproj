@@ -85,7 +85,6 @@
      <Compile Include="Assets\Scripts\PointSystem.cs" />
      <Compile Include="Assets\Scripts\QuestLogDatabase.cs" />
      <Compile Include="Assets\Scripts\QuestManager.cs" />
-     <Compile Include="Assets\Scripts\RestartGame.cs" />
      <Compile Include="Assets\Scripts\ScreenManager.cs" />
      <Compile Include="Assets\Scripts\SingetonSetUp.cs" />
      <Compile Include="Assets\Scripts\SoundEffect.cs" />
@@ -95,7 +94,9 @@
      <Compile Include="Assets\Scripts\alertbar.cs" />
      <Compile Include="Assets\Scripts\volumecontrol.cs" />
      <None Include="Assets\gamedata\backup\backup_checkpoint_playersave.xml" />
+     <None Include="Assets\gamedata\backup\backup_questmanagerdatas.xml" />
      <None Include="Assets\gamedata\backup\backup_gameleveldatas.xml" />
+     <None Include="Assets\gamedata\backup\backup_dialoginterfacedatas.xml" />
      <None Include="Assets\gamedata\backup\backup_craftdatas.xml" />
      <None Include="Assets\gamedata\gameleveldatas.xml" />
      <None Include="Assets\gamedata\backup\backup_vendordatas.xml" />

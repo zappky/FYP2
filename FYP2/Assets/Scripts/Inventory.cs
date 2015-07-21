@@ -56,8 +56,8 @@ public class Inventory : MonoBehaviour {
 	private float tabWidth = -1.0f;
 	private float tabHeight = -1.0f;
 
-	public AudioSource successSound;
-	public AudioSource failSound;
+	public AudioClip successSound;
+	public AudioClip failSound;
 	//private bool messageNullTextureError = false;
 
 	// Use this for initialization
@@ -940,11 +940,11 @@ public class Inventory : MonoBehaviour {
 							if(requestList.Count <= 0)
 							{
 								Debug.Log("nothing to craft");
-								failSound.Play();
+								AudioSource.PlayClipAtPoint(failSound, transform.position);
 							}else
 							{
 								AddItem(requestList);
-								successSound.Play();
+								AudioSource.PlayClipAtPoint(successSound, transform.position);
 								//AddItem(database.CraftItem(inventory,database.GetCraftRecipe(craftslots[index].id)));
 								//ManageCraftRecipeIconDisplay(craftslots[index]);
 							}
