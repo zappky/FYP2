@@ -100,28 +100,38 @@ public class VendorDatabase : MonoBehaviour {
 		}
 		if(id < vendorList.Count)
 		{
+			//early prediction
 			if(vendorList[id].id == id)
 			{
 				return vendorList[id];
 			}
+			//if still cannot be found,brute force search
+			for(int i = 0 ; i < id; ++i)
+			{
+				if(vendorList[i].id == id)
+				{
+					return vendorList[i];
+				}
+			}
+			for(int i = id+1 ; i < vendorList.Count; ++i)
+			{
+				if(vendorList[i].id == id)
+				{
+					return vendorList[i];
+				}
+			}
 		}else
 		{
 			Debug.Log("WARNING: GetVendor with id is over list size,brute force will be performed");
-		}
-		for(int i = 0 ; i < id; ++i)
-		{
-			if(vendorList[i].id == id)
+			for(int i = 0 ; i < vendorList.Count; ++i)
 			{
-				return vendorList[i];
+				if(vendorList[i].id == id)
+				{
+					return vendorList[i];
+				}
 			}
 		}
-		for(int i = id+1 ; i < vendorList.Count; ++i)
-		{
-			if(vendorList[i].id == id)
-			{
-				return vendorList[i];
-			}
-		}
+
 		return null;
 	}
 	public my_VendorEntry GetVendor(string vendorname)

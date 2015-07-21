@@ -143,6 +143,11 @@ public class LevelManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+//		if(Input.GetKeyDown("p"))
+//		{
+//			DialogInterface.Instance.LoadDialogInterface();
+//			QuestManager.Instance.LoadQuestManager();
+//		}
 		if(playercursor != null)
 		{
 			switch(CurrentLevelName)

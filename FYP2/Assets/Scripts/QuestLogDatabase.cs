@@ -55,28 +55,38 @@ public class my_QuestLogList : IEnumerable<my_QuestLog>
 		}
 		if(questId < questlogs.Count )
 		{
+			//early prediction
 			if(questlogs[questId].id == questId)
 			{
 				return questlogs[questId];
 			}
+			//if still cannot be found,brute force search
+			for(int i = 0 ; i< questId; ++i)
+			{
+				if(questlogs[i].id == questId)
+				{
+					return questlogs[i];
+				}
+			}
+			for(int i = questId+1 ; i< questlogs.Count; ++i)
+			{
+				if(questlogs[i].id == questId)
+				{
+					return questlogs[i];
+				}
+			}
 		}else
 		{
 			Debug.Log("ERROR: GetQuestLog with id is over list size, brute force will be performed");
-		}
-		for(int i = 0 ; i< questId; ++i)
-		{
-			if(questlogs[i].id == questId)
+			for(int i = 0 ; i< questlogs.Count; ++i)
 			{
-				return questlogs[i];
+				if(questlogs[i].id == questId)
+				{
+					return questlogs[i];
+				}
 			}
 		}
-		for(int i = questId+1 ; i< questlogs.Count; ++i)
-		{
-			if(questlogs[i].id == questId)
-			{
-				return questlogs[i];
-			}
-		}
+
 
 		return null;
 	}
@@ -149,6 +159,34 @@ public class QuestLogDatabase : MonoBehaviour {
 	public void DestroyInstance()
 	{
 		instance = null;
+	}
+	public void ResetAllQuestForward(int level,int startingIndex)
+	{
+		for(int i = startingIndex; i < questLogDatabase[level].questlogs.Count; ++i)
+		{
+			questLogDatabase[level].questlogs[i].ResetStatues();
+		}
+	}
+	public void ResetAllQuest(int level)
+	{
+
+		foreach(my_QuestLogList loglist in questLogDatabase)
+		{
+			foreach(my_QuestLog log in loglist)
+			{
+				log.ResetStatues();
+			}
+		}
+	}
+	public void ResetAllQuest()
+	{
+		foreach(my_QuestLogList loglist in questLogDatabase)
+		{
+			foreach(my_QuestLog log in loglist)
+			{
+				log.ResetStatues();
+			}
+		}
 	}
 
 

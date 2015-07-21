@@ -17492,6 +17492,8 @@ MonoBehaviour:
   weightlimit: 10
   currentweight: 0
   currentPage: 0
+  successSound: {fileID: 0}
+  failSound: {fileID: 0}
 --- !u!114 &955072681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33797,6 +33799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paused: 0
+  clickSound: {fileID: 0}
 --- !u!1 &1787139180
 GameObject:
   m_ObjectHideFlags: 0

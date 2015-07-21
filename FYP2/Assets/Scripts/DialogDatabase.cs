@@ -70,7 +70,13 @@ public class DialogDatabase : MonoBehaviour {
 			{
 				foreach (my_DialogOption a_dialogoption in a_dialognode.options)
 				{
+					if(a_dialogoption.nextDialogId < 0)
+					{
+						a_dialogoption.nextDialog = null;
+					}
+
 					my_DialogNode thenextdialognode = templist[i].GetDialog(a_dialogoption.nextDialogId);
+					//Debug.Log("Suspect: " + a_dialogoption.nextDialogId);
 					a_dialogoption.nextDialog = thenextdialognode;
 				}
 				
@@ -123,24 +129,34 @@ public class DialogDatabase : MonoBehaviour {
 			{
 				return dialogTree.dialogs[node_id];
 			}
+			//if still cannot be found,brute force search
+			for(int i = 0 ; i < node_id; ++i)
+			{
+				if(dialogTree.dialogs[i].nodeId == node_id)
+				{
+					return dialogTree.dialogs[i];
+				}
+			}
+			for(int i = node_id+1 ; i < dialogTree.dialogs.Count; ++i)
+			{
+				if(dialogTree.dialogs[i].nodeId == node_id)
+				{
+					return dialogTree.dialogs[i];
+				}
+			}
+
 		}else
 		{
 			Debug.Log("WARNING: GetDialogNode id is over list size search,brute force search will be performed");
-		}
-		for(int i = 0 ; i < node_id; ++i)
-		{
-			if(dialogTree.dialogs[i].nodeId == node_id)
+			for(int i = 0; i < dialogTree.dialogs.Count; ++i)
 			{
-				return dialogTree.dialogs[i];
+				if(dialogTree.dialogs[i].nodeId == node_id)
+				{
+					return dialogTree.dialogs[i];
+				}
 			}
 		}
-		for(int i = node_id+1 ; i < dialogTree.dialogs.Count; ++i)
-		{
-			if(dialogTree.dialogs[i].nodeId == node_id)
-			{
-				return dialogTree.dialogs[i];
-			}
-		}
+
 
 		return null;
 	}
@@ -168,24 +184,37 @@ public class DialogDatabase : MonoBehaviour {
 		
 		if(id < dialogDatabase.Count)
 		{
-			if(id == dialogDatabase[id].id)
+			if(dialogDatabase[id].id == id)
 			{
 				return dialogDatabase[id];
+			}
+			//if still cannot be found
+
+			for(int i = 0 ; i <id;++i)
+			{
+				if(dialogDatabase[i].id == id)
+				{
+					return dialogDatabase[i];
+				}
+			}
+			for(int i = id+1 ; i <id;++i)
+			{
+				if(dialogDatabase[i].id == id)
+				{
+					return dialogDatabase[i];
+				}
 			}
 		}else
 		{
 			Debug.Log("WARNING: GetDialogTree id is over list size search,brute force search will be performed");
-		}
-		
-		foreach(DialogTree a_tree in dialogDatabase)
-		{
-			if(a_tree.id == id)
+			foreach(DialogTree a_tree in dialogDatabase)
 			{
-				return a_tree;
+				if(a_tree.id == id)
+				{
+					return a_tree;
+				}
 			}
 		}
-
-
 		Debug.Log("ERROR: GetDialogTree cannot find dialogtree with: " + id);
 		return null	;	
 	}

@@ -461,25 +461,34 @@ public class ItemDatabase : MonoBehaviour {
 			{
 				return itemDatabase[id];
 			}
+			//if still cannot be found,brute force search
+			for(int i = 0 ; i < id; ++i)
+			{
+				if(id == itemDatabase[i].id)
+				{
+					return itemDatabase[i];
+				}
+			}
+			for(int i = id+1 ; i < itemDatabase.Count; ++i)
+			{
+				if(id == itemDatabase[i].id)
+				{
+					return itemDatabase[i];
+				}
+			}
 		}else
 		{
 			Debug.Log("WARNING: GetItem with id is over list size,brute force will be performed");
+			for(int i = 0 ; i < itemDatabase.Count; ++i)
+			{
+				if(id == itemDatabase[i].id)
+				{
+					return itemDatabase[i];
+				}
+			}
 		}
 
-		for(int i = 0 ; i < id; ++i)
-		{
-			if(id == itemDatabase[i].id)
-			{
-				return itemDatabase[i];
-			}
-		}
-		for(int i = id+1 ; i < itemDatabase.Count; ++i)
-		{
-			if(id == itemDatabase[i].id)
-			{
-				return itemDatabase[i];
-			}
-		}
+
 
 		return null;
 	}
@@ -513,25 +522,34 @@ public class ItemDatabase : MonoBehaviour {
 			{
 				return new Item(itemDatabase[id]);
 			}
+			//if still cannot be found, brute force search
+			for(int i = 0 ; i < id; ++i)
+			{
+				if(id == itemDatabase[i].id)
+				{
+					return new Item(itemDatabase[i]);
+				}
+			}
+			for(int i = id+1 ; i < itemDatabase.Count; ++i)
+			{
+				if(id == itemDatabase[i].id)
+				{
+					return new Item(itemDatabase[i]);
+				}
+			}
 		}else
 		{
 			Debug.Log("WARNING: CreateItem with id is over list size,brute force will be performed");
+			for(int i = 0 ; i < itemDatabase.Count; ++i)
+			{
+				if(id == itemDatabase[i].id)
+				{
+					return new Item(itemDatabase[i]);
+				}
+			}
 		}
 		
-		for(int i = 0 ; i < id; ++i)
-		{
-			if(id == itemDatabase[i].id)
-			{
-				return new Item(itemDatabase[i]);
-			}
-		}
-		for(int i = id+1 ; i < itemDatabase.Count; ++i)
-		{
-			if(id == itemDatabase[i].id)
-			{
-				return new Item(itemDatabase[i]);
-			}
-		}
+
 		return null;
 	}
 	public bool CheckValidItemId(int id)
@@ -548,25 +566,34 @@ public class ItemDatabase : MonoBehaviour {
 			{
 				return true;
 			}
+			//if still cannot be found,brute force search
+			for(int i = 0 ; i < id; ++i)
+			{
+				if(id == itemDatabase[i].id)
+				{
+					return true;
+				}
+			}
+			for(int i = id+1 ; i < itemDatabase.Count; ++i)
+			{
+				if(id == itemDatabase[i].id)
+				{
+					return true;
+				}
+			}
 		}else
 		{
 			Debug.Log("WARNING: CheckValidItemId with id is over list size,brute force will be performed");
+			for(int i = 0 ; i < itemDatabase.Count; ++i)
+			{
+				if(id == itemDatabase[i].id)
+				{
+					return true;
+				}
+			}
 		}
 		
-		for(int i = 0 ; i < id; ++i)
-		{
-			if(id == itemDatabase[i].id)
-			{
-				return true;
-			}
-		}
-		for(int i = id+1 ; i < itemDatabase.Count; ++i)
-		{
-			if(id == itemDatabase[i].id)
-			{
-				return true;
-			}
-		}
+
 
 		return false;
 	}
@@ -844,25 +871,34 @@ public class ItemDatabase : MonoBehaviour {
 			{
 				return craftDatabase[id];
 			}
+			//if still cannot be found, brute force search
+			for(int i = 0 ; i < id; ++i)
+			{
+				if(id == craftDatabase[i].id)
+				{
+					return craftDatabase[i];
+				}
+			}
+			for(int i = id+1 ; i < craftDatabase.Count; ++i)
+			{
+				if(id == craftDatabase[i].id)
+				{
+					return craftDatabase[i];
+				}
+			}
 		}else
 		{
 			Debug.Log("WARNING: GetCraftRecipe with id is over list size,brute force will be performed");
+			for(int i = 0 ; i < craftDatabase.Count; ++i)
+			{
+				if(id == craftDatabase[i].id)
+				{
+					return craftDatabase[i];
+				}
+			}
 		}
 
-		for(int i = 0 ; i < id; ++i)
-		{
-			if(id == craftDatabase[i].id)
-			{
-				return craftDatabase[i];
-			}
-		}
-		for(int i = id+1 ; i < craftDatabase.Count; ++i)
-		{
-			if(id == craftDatabase[i].id)
-			{
-				return craftDatabase[i];
-			}
-		}
+
 		return null;
 	}
 	
@@ -890,26 +926,35 @@ public class ItemDatabase : MonoBehaviour {
 			{
 				return new CraftingRecipe(craftDatabase[id]);
 			}
+			//if still cannot be found, brute force search
+			for(int i = 0 ; i < id; ++i)
+			{
+				if(id == craftDatabase[i].id)
+				{
+					return new CraftingRecipe(craftDatabase[i]);
+				}
+			}
+			
+			for(int i = id+1 ; i < craftDatabase.Count; ++i)
+			{
+				if(id == craftDatabase[i].id)
+				{
+					return new CraftingRecipe(craftDatabase[i]);
+				}
+			}
 		}else
 		{
 			Debug.Log("ERROR: CreateCraftRecipe with id over list size,brute force will be performed");
-		}
-
-		for(int i = 0 ; i < id; ++i)
-		{
-			if(id == craftDatabase[i].id)
+			for(int i = 0 ; i < craftDatabase.Count; ++i)
 			{
-				return new CraftingRecipe(craftDatabase[i]);
+				if(id == craftDatabase[i].id)
+				{
+					return new CraftingRecipe(craftDatabase[i]);
+				}
 			}
 		}
 
-		for(int i = id+1 ; i < craftDatabase.Count; ++i)
-		{
-			if(id == craftDatabase[i].id)
-			{
-				return new CraftingRecipe(craftDatabase[i]);
-			}
-		}
+
 		return new CraftingRecipe();
 	}
 	
@@ -926,25 +971,34 @@ public class ItemDatabase : MonoBehaviour {
 			{
 				return true;
 			}
+			//if still cannot be found,brute force search
+			for(int i = 0 ; i < id; ++i)
+			{
+				if(id == craftDatabase[i].id)
+				{
+					return true;
+				}
+			}
+			for(int i = id+1 ; i < craftDatabase.Count; ++i)
+			{
+				if(id == craftDatabase[i].id)
+				{
+					return true;
+				}
+			}
 		}else
 		{
 			Debug.Log("WARNING: CheckValidCraftRecipe with id is over list size,brute force will be performed");
+			for(int i = 0 ; i < craftDatabase.Count; ++i)
+			{
+				if(id == craftDatabase[i].id)
+				{
+					return true;
+				}
+			}
 		}
 		
-		for(int i = 0 ; i < id; ++i)
-		{
-			if(id == craftDatabase[i].id)
-			{
-				return true;
-			}
-		}
-		for(int i = id+1 ; i < craftDatabase.Count; ++i)
-		{
-			if(id == craftDatabase[i].id)
-			{
-				return true;
-			}
-		}
+
 		return false;
 	}
 	public bool CheckValidCraftRecipe(string name)

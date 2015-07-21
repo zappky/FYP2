@@ -109,6 +109,8 @@ public class FileManager : MonoBehaviour {
 	public string gameleveldataPath = null;
 	public string playerdataPath = null;
 	public string predefinedInventoryPath = null;
+	public string questmanagerPath = null;
+	public string dialoginterfacePath = null;
 
 	public string backupFolderName = "backup";
 	public string gamedataFolderName = "gamedata";
@@ -121,6 +123,8 @@ public class FileManager : MonoBehaviour {
 	public string gameleveldataFileName = "gameleveldatas";
 	public string playerSaveFileName = "checkpoint_playersave";
 	public string predefinedInventorySaveFileName = "predefined_inventory";
+	public string questmanagerSaveFileName = "questmanagerdatas";
+	public string dialoginterfaceSaveFileName = "dialoginterfacedatas";
 
 	public enum UpdateFileMode
 	{
@@ -164,6 +168,8 @@ public class FileManager : MonoBehaviour {
 			achievementdataPath = gamedataPath + "/" + backupFolderName + "/" +"backup_"+ achievementdataFileName + ".xml";
 			playerdataPath = gamedataPath + "/" + backupFolderName +"/"+ "backup_"+playerSaveFileName + ".xml";
 			predefinedInventoryPath = gamedataPath + "/" + predefinedInventorySaveFileName + ".xml";
+			questmanagerPath = gamedataPath + "/" + backupFolderName +"/"+ "backup_" + questmanagerSaveFileName + ".xml";
+			dialoginterfacePath = gamedataPath + "/"+ backupFolderName +"/"+ "backup_"  + dialoginterfaceSaveFileName + ".xml";
 			
 			if (CheckDirectory(gamedataFolderName) == false)
 			{
@@ -224,7 +230,189 @@ public class FileManager : MonoBehaviour {
 
 		return null;
 	}
+	public void LoadDialogInterface()
+	{
+		DialogInterface targetobj = DialogInterface.instance;
+		if(targetobj != null)
+		{
+			if( CheckFile(dialoginterfacePath,false) == false)
+			{
+				print ("ERROR: dialog interface data file cannot be found, load data aborted");
+				return ;
+				
+			}
+			print ("loading dialog interface datas");
+			XmlDocument xmlDoc = new XmlDocument();
+			xmlDoc.Load(dialoginterfacePath);
+			
+			XmlNodeList parentList = null;
+			
+			parentList = xmlDoc.GetElementsByTagName("database");
+			parentList = DigToDesiredChildNodeList(parentList,"dialoginterface");
+			int dialognodeIndex = -1;
 
+			foreach(XmlNode childInfo in parentList)
+			{
+				//print ("loading achievement data , child info name: " + childInfo.Name);
+				switch(childInfo.Name)
+				{
+				case "currentdialognode":
+					dialognodeIndex = int.Parse(childInfo.Attributes["id"].Value);
+					if(dialognodeIndex < 0)
+					{
+						targetobj.CurrentDialogNode = null;
+					}else
+					{
+						targetobj.CurrentDialogNode = targetobj.dialogTree[dialognodeIndex];
+						targetobj.StartNewDialogSession(targetobj.CurrentDialogNode );
+					}
+
+					break;
+				default:
+					Debug.Log("ERROR: Unhandled LoadDialogInterface childInfo field name: " + childInfo.Name);
+					break;
+				}
+			}
+		}
+		else
+		{
+			Debug.Log("LoadDialogInterface has null targetobj ref");
+		}
+	}
+	public void SaveDialogInterface()
+	{
+		DialogInterface targetobj = DialogInterface.instance;
+		if(targetobj != null)
+		{
+			my_XmlEntry rootentry = new my_XmlEntry("database",null);
+			
+			List<my_XmlBuildEntry> inputlist = new List<my_XmlBuildEntry>();
+			List<string> attkey = new List<string>();
+			List<string> attvalue = new List<string>();
+			
+			List<string> parentlist = new List<string>();
+			List<my_XmlEntry> entrylist = new List<my_XmlEntry>();
+
+			parentlist.Add("database");
+			entrylist.Add(new my_XmlEntry("dialoginterface",null,null,null));
+
+			parentlist.Add("dialoginterface");
+			attkey.Clear();
+			attvalue.Clear();
+
+			if(targetobj.CurrentDialogNode != null)
+			{
+				Debug.Log("some current dialog node save");
+				attkey.Add("id");
+				attvalue.Add(targetobj.CurrentDialogNode.nodeId.ToString());
+				attkey.Add("text");
+				attvalue.Add(targetobj.CurrentDialogNode.text);
+
+			}else
+			{
+				Debug.Log("null current dialog node save");
+				attkey.Add("id");
+				attvalue.Add( (-1).ToString());
+				attkey.Add("text");
+				attvalue.Add("");
+			}
+			entrylist.Add(new my_XmlEntry("currentdialognode",null,attkey,attvalue));
+			
+			inputlist = CreateXmlBuildEntryList(parentlist,entrylist);	
+			CreateXMLFile("gamedata/" + backupFolderName,"backup_"+ dialoginterfaceSaveFileName,"xml",BuildXMLData(rootentry,inputlist),"plaintext");
+		}
+		else
+		{
+			Debug.Log("SaveDialogInterface has null targetobj ref");
+		}
+	}
+	public void LoadQuestManager()
+	{
+		QuestManager targetobj = QuestManager.instance;
+		if(targetobj != null)
+		{
+			if( CheckFile(questmanagerPath,false) == false)
+			{
+				print ("ERROR: questmanager data file cannot be found, load data aborted");
+				return ;
+				
+			}
+			print ("loading QuestManager datas");
+			XmlDocument xmlDoc = new XmlDocument();
+			xmlDoc.Load(questmanagerPath);
+			
+			XmlNodeList parentList = null;
+			
+			parentList = xmlDoc.GetElementsByTagName("database");
+			parentList = DigToDesiredChildNodeList(parentList,"questmanager");
+			foreach(XmlNode childInfo in parentList)
+			{
+				//print ("loading achievement data , child info name: " + childInfo.Name);
+				switch(childInfo.Name)
+				{
+				case "currentgamelevel":
+					//targetobj.currentGameLevel = int.Parse(childInfo.Attributes["index"].Value);
+					//no need do anything
+					break;
+				case "currentquestindex":
+					targetobj.currentQuestIndex = int.Parse(childInfo.Attributes["index"].Value);
+					targetobj.questLogs.Clear();
+					targetobj.FetchCurrentQuest();
+					targetobj.questlogdatabase.ResetAllQuestForward(targetobj.currentGameLevel,targetobj.currentQuestIndex);
+					break;
+				default:
+					Debug.Log("ERROR: Unhandled LoadQuestManager childInfo field name: " + childInfo.Name);
+					break;
+				}
+			}
+
+		}
+		else
+		{
+			Debug.Log("LoadQuestManager has null targetobj ref");
+		}
+	}
+	public void SaveQuestManager()
+	{
+		QuestManager targetobj = QuestManager.instance;
+		if(targetobj != null)
+		{
+			my_XmlEntry rootentry = new my_XmlEntry("database",null);
+			
+			List<my_XmlBuildEntry> inputlist = new List<my_XmlBuildEntry>();
+			List<string> attkey = new List<string>();
+			List<string> attvalue = new List<string>();
+			
+			List<string> parentlist = new List<string>();
+			List<my_XmlEntry> entrylist = new List<my_XmlEntry>();
+
+			parentlist.Add("database");
+			entrylist.Add(new my_XmlEntry("questmanager",null,null,null));
+			
+			parentlist.Add("questmanager");
+			attkey.Clear();
+			attvalue.Clear();
+			attkey.Add("index");
+			attvalue.Add(targetobj.currentGameLevel.ToString());
+			attkey.Add("name");
+			attvalue.Add(ApplicationLevelBoard.Instance.gameLevelNameList[targetobj.currentGameLevel]);
+			entrylist.Add(new my_XmlEntry("currentgamelevel",null,attkey,attvalue));
+
+			parentlist.Add("questmanager");
+			attkey.Clear();
+			attvalue.Clear();
+			attkey.Add("index");
+			attvalue.Add(targetobj.currentQuestIndex.ToString());
+			entrylist.Add(new my_XmlEntry("currentquestindex",null,attkey,attvalue));
+
+			inputlist = CreateXmlBuildEntryList(parentlist,entrylist);	
+			CreateXMLFile("gamedata/" + backupFolderName,"backup_"+ questmanagerSaveFileName,"xml",BuildXMLData(rootentry,inputlist),"plaintext");
+		}
+		else
+		{
+			Debug.Log("SaveQuestManager has null targetobj ref");
+		}
+	}
 	public void SaveQuestDatabase()
 	{
 		if(QuestLogDatabase.Instance.questLogDatabase.Count == 0)
@@ -1286,7 +1474,7 @@ public class FileManager : MonoBehaviour {
 		PlayerInfo playerinfo = playerobj.GetComponent<PlayerInfo>();
 		Inventory playerinventory = playerobj.GetComponent<Inventory>();
 		CastSlot playercastslot = playerobj.GetComponent<CastSlot>();
-		
+
 		XmlNodeList sectioncontent = null;
 		foreach (XmlNode playerinfosection in parentList)
 		{
@@ -1315,7 +1503,6 @@ public class FileManager : MonoBehaviour {
 					}
 				}
 				break;
-				
 			case "Info":
 			case "info":
 				if(playerinfo != null)
@@ -1389,7 +1576,6 @@ public class FileManager : MonoBehaviour {
 				}	
 				
 				break;
-				
 			case "Checkpoint":
 			case "checkpoint":
 				//int checkpointindex = int.Parse(playerinfosection.Attributes["index"].Value);
@@ -1449,7 +1635,8 @@ public class FileManager : MonoBehaviour {
 			}
 			
 		}
-		
+		LoadDialogInterface();
+		LoadQuestManager();
 		
 	}
 	public void SavePlayerInfo()
@@ -1539,7 +1726,7 @@ public class FileManager : MonoBehaviour {
 		{
 			print ("ERROR: Player castslot script null detected, castslot save skipped");
 		}
-		
+
 		List<CheckPoint>checkPointList = LevelManager.Instance.checkPointList;
 		int currentCheckPointIndex = LevelManager.Instance.currentCheckPointIndex;
 		
@@ -1630,6 +1817,9 @@ public class FileManager : MonoBehaviour {
 		
 		inputlist = CreateXmlBuildEntryList(parentlist,entrylist);	
 		CreateXMLFile("gamedata/" + backupFolderName,"backup_"+ playerSaveFileName,"xml",BuildXMLData(rootentry,inputlist),"plaintext");
+
+		SaveDialogInterface();
+		SaveQuestManager();
 		
 	}
 

@@ -19,6 +19,22 @@ public class Interactable : MonoBehaviour {
 
 		switch(this.name)
 		{
+			case "testquest 1":
+				questReference = questManager.questLogListDatabase.GetQuestLog("Collect Paper Clips");
+			break;
+			case "testquest 2":
+				questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest2");
+			break;
+			case "testquest 3":
+				questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest3");
+			break;
+			case "testquest 4":
+				questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest4");
+			break;
+			case "testquest 5":
+			questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest5");
+			break;
+
 			case "BoxofPaperclips":
 			questReference = questManager.GetQuestLog("Collect Paper Clip to Fix Grapple");
 				break;
@@ -43,9 +59,15 @@ public class Interactable : MonoBehaviour {
 	
 	public void CompleteQuest()
 	{
-		if(questReference != null)
+		if(questReference != null )
 		{
-			questReference.statues = true;
+			if(questReference != questManager.GetCurrentQuest())
+			{
+				Debug.Log("WARNING: Attempting to clear quest that is not current quest");
+				return;
+			}
+			Debug.Log("clearing quest " + questReference.questname);
+			questManager.ClearQuest(questReference);
 			SetLighting(false);
 		}
 		else
