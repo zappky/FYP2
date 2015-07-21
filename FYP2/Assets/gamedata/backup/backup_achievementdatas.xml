@@ -3,6 +3,7 @@
 	<level id="0" name="main-scene">
 		<collectibles>
 			<collectible id="0" name="test collectible" />
+			<collectible id="1" name="Area1" />
 		</collectibles>
 	</level>
 </database>

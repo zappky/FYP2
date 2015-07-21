@@ -2,57 +2,63 @@
 <database>
 	<level>
 		<dialogtree id = "0" gamelevelparent = "main-scene">
-			<dialog id = "0" actorname = "npc" newdialogsection = "true">
-				<text>Hell warrior!</text>
-				<option nextdialogid = "1" resultid = "0">sup noob</option>
-				<option nextdialogid = "2" resultid = "0">hello strange voice</option>
+			<dialog id = "0" actorname = "Enpisi" newdialogsection = "true">
+				<text>Hey Eddy! You know what you're supposed to look for right?</text>
+				<option nextdialogid = "1" resultid = "0">Uhh...yeah?</option>
+			</dialog>
+			<dialog id = "1" actorname = "Enpisi">
+				<text>*sighs* The Cake, remember? The one I told you about. The last time I went out, I saw those humans leaving it on the coffee table outside, in the living room. It should still be there.</text>
+				<option nextdialogid = "2" resultid = "0">Yeah, yeah...remind me again why I'm the one doing this?</option>
+			</dialog>
+			<dialog id = "2" actorname = "Enpisi">
+				<text>We had a bet, and you lost. Besides, you're the main character of this game. So, go out there and have fun!</text>
+				<option nextdialogid = "3" resultid = "0">...</option>
+			</dialog>
+			<dialog id = "3" actorname = "Enpisi">
+				<text>Oh yeah, I almost forgot. It's been a long time since you've last stepped outside right? You still remember the basics?</text>
+				<option nextdialogid = "4" resultid = "0">Nope.</option>
+				<option nextdialogid = "6" resultid = "0">Of course...can I go now?</option>
 			</dialog>
 			
-			<dialog id = "1" actorname = "npc">
-				<text>I dont want to talk to you</text>
-				<option nextdialogid = "" resultid = "0">Aww</option>
+			<dialog id = "4" actorname = "Enpisi">
+				<text>You move by holding down the [WASD] keys, and jump by hitting the [SPACEBAR]. Don't ask me why.</text> 
+				<option nextdialogid = "5" resultid = "0">Go on.</option>
+			</dialog>
+			<dialog id = "5" actorname = "Enpisi">
+				<text>You're strong enough to push objects your size and those smaller than you, as well as those made of cardboard and plastic. I think. *Stares at you*</text>
+				<option nextdialogid = "6" resultid = "0">Don't look down on me!</option>
 			</dialog>
 			
-			<dialog id = "2" actorname = "npc">
-				<text>I have a quest for you</text>
-				<option nextdialogid = "" resultid = "0">Ok bye</option>
-				<option nextdialogid = "4" resultid = "0">What is it?</option>
-				<option nextdialogid = "3" resultid = "0">What is the pay?</option>
+			<dialog id = "6" actorname = "Enpisi">
+				<text>Okay then, the first thing you should do is to repair your grapple. Seems like its hook is broken. Go get a paper clip to fix that. It should still be on the Worktop table there.</text>
+				<option nextdialogid = "7" resultid = "0">Is that all?</option>
 			</dialog>
 			
-			<dialog id = "3" actorname = "npc">
-				<text>You will get 5 gold</text>
-				<option nextdialogid = "4" resultid = "0">Ok, what is it?</option>
-				<option nextdialogid = "" resultid = "0">That sucks i am out</option>
+			<dialog id = "7" actorname = "Enpisi">
+				<text>Alright, alright, I'll be in touch with you through my telepathy as usual. Be careful~</text>
+				<option nextdialogid = "" resultid = "0">Okay, I'm leaving.</option>
 			</dialog>
 			
-			<dialog id = "4" actorname = "npc">
-				<text>Collect 10 dandilions</text>
-				<option nextdialogid = "" resultid = "1">Let do it</option>
-				<option nextdialogid = "" resultid = "0">No way</option>
+			
+			
+			<dialog id = "8" actorname = "You" newdialogsection = "true">
+				<text>Hmm, let's see... [WASD] to move, [SPACEBAR] to jump.</text>
+				<option nextdialogid = "" resultid = "0">I should be fine.</option>
 			</dialog>
 			
-			<dialog id = "5" actorname = "npc2" newdialogsection = "true">
-				<text>Next dialog session test ,dialog 5</text>
-				<option nextdialogid = "6" resultid = "0">go dialog 6</option>
-				<option nextdialogid = "7" resultid = "0">go dialog 7</option>
-			</dialog>
-			<dialog id = "6" actorname = "npc2">
-				<text>Next dialog session test,dialog 6</text>
-				<option nextdialogid = "7" resultid = "0">go dialog 7</option>
-				<option nextdialogid = "8" resultid = "0">go dialog 8</option>
-			</dialog>
-			<dialog id = "7" actorname = "npc2">
-				<text>Next dialog session test,dialog 7</text>
-				<option nextdialogid = "8" resultid = "0">go dialog 8</option>
-				<option nextdialogid = "5" resultid = "0">go dialog 5</option>
-			</dialog>
-			<dialog id = "8" actorname = "npc2">
-				<text>Next dialog session test,dialog 8</text>
-				<option nextdialogid = "0" resultid = "0">go dialog session 1</option>
-				<option nextdialogid = "" resultid = "0">end dialog </option>
+			
+			
+			<dialog id = "9" actorname = "Enpisi" newdialogsection = "true">
+				<text>Eddy, don't do anything stupid here...</text>
+				<option nextdialogid = "" resultid = "0">I know, I'm not an idiot.</option>
 			</dialog>
 			
+			
+			
+			<dialog id = "10" actorname = "Enpisi" newdialogsection = "true">
+				<text>Hi</text>
+				<option nextdialogid = "" resultid = "0">Bye</option>
+			</dialog>
 		</dialogtree>
 	</level>	
 </database>

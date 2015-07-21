@@ -9,26 +9,35 @@ public class Interactable : MonoBehaviour {
 	private QuestManager questManager = null;	
 	public bool lighting = true;
 	public my_QuestLog questReference = null;
-	private Behaviour theHalo = null;
-	// Use this for initialization
+	public ParticleRenderer particleRender = null;
+
 	void Start () {
 		playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
 		vendordatabase = VendorDatabase.Instance;
 		questManager = QuestManager.Instance;
+		particleRender = this.gameObject.GetComponentInChildren<ParticleRenderer>();
 
 		switch(this.name)
 		{
 			case "BoxofPaperclips":
-				theHalo = ((Behaviour)GetComponent("Halo"));//not all object with interact script will use halo 
-				questReference = questManager.GetQuestLog("Collect Paper Clip");
+			questReference = questManager.GetQuestLog("Collect Paper Clip to Fix Grapple");
 				break;
+			
+			case "Yarn":
+				// need collect max amt (till full inventory) of strings to fin quest 
+				questReference = questManager.GetQuestLog("Get Some Strings");
+				break;
+			
+			case "TearableBook":
+				questReference = questManager.GetQuestLog("Tear Book Page for Paper Pieces");
+				break;
+
 			default:
 				break;
 		}
 
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 	}
 	
@@ -38,7 +47,8 @@ public class Interactable : MonoBehaviour {
 		{
 			questReference.statues = true;
 			SetLighting(false);
-		}else
+		}
+		else
 		{
 			Debug.Log(this.name + "has null quest reference");
 		}
@@ -46,28 +56,31 @@ public class Interactable : MonoBehaviour {
 	}
 	public void SetLighting(bool lighting)
 	{
-		if(theHalo != null)
+		if(particleRender != null)
 		{
 			this.lighting = lighting;
-			theHalo.enabled = lighting;
-		}else
+			particleRender.enabled = lighting;
+		}
+		else
 		{
-			Debug.Log(this.name + "has null halo reference");
+			Debug.Log(this.name + "has null particleRender reference");
 		}
 
 	}
 	public void ToggleLighting()
 	{
-		if(theHalo != null)
+		if(particleRender != null)
 		{
 			this.lighting = !this.lighting;
-			theHalo.enabled = lighting;
-		}else
+			particleRender.enabled = lighting;
+		}
+		else
 		{
-			Debug.Log(this.name + "has null halo reference");
+			Debug.Log(this.name + "has null particleRender reference");
 		}
 		this.lighting = !this.lighting;
 	}
+
 	//for picking up effect
 	public void SpawnItemWithName()//add item using name
 	{
@@ -107,10 +120,12 @@ public class Interactable : MonoBehaviour {
 			}
 		}
 	}
+
 	public void SpawnItem()
 	{
 		SpawnItem(true);
 	}
+
 	//for picking up effect
 	public void SpawnItem(bool preferNameAsIdentifier)//preferred default call, prority is given to add item using id first.
 	{

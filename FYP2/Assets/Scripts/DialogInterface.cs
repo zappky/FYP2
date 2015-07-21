@@ -187,7 +187,12 @@ public class DialogInterface : MonoBehaviour {
 
 			currentevent = Event.current;	
 
-			GUI.Box(dialogBox,CurrentDialogNode.text);
+			GUIStyle guiStyle = new GUIStyle(GUI.skin.box);
+			//guiStyle.font = Resources.Load<Font>("Fonts/POIRETONE-REGULAR");
+			//guiStyle.
+			guiStyle.wordWrap = true;
+
+			GUI.Box(dialogBox,CurrentDialogNode.text, guiStyle);
 			GUI.Box(personBox,CurrentDialogNode.actorName);
 			
 			if(CurrentDialogNode.options.Count >1)//meaning there are other link than a single process link
@@ -239,6 +244,7 @@ public class DialogInterface : MonoBehaviour {
 					}
 				}
 
+				optionHeight = dialogBox.height * 0.2f ;
 				optionWidth = dialogBox.width ;
 				optionRects[0] = new Rect( 0,dialogBox.yMax - optionHeight,optionWidth,optionHeight);
 				GUI.Box(optionRects[0],CurrentDialogNode.options[0].text);

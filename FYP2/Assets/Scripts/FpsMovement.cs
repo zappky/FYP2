@@ -50,42 +50,45 @@ public class FpsMovement : MonoBehaviour
 		//camera rotate left right
 		float rotateLR = Input.GetAxis ("Mouse X") * mouseSensitivity;
 
-		if(Time.timeScale == 1.0 && inventory.display == false && dialoginterface.display == false)
+		if(inventory.display == false && dialoginterface.display == false)
 		{
-			transform.Rotate (0, rotateLR, 0);
-			//Camera.main.transform.Rotate (0, rotateLR, 0);
-			//camera rotate up down
-			vertRotation -= Input.GetAxis ("Mouse Y") * mouseSensitivity;
-			vertRotation = Mathf.Clamp (vertRotation, -viewRange, viewRange);
-			Camera.main.transform.localRotation = Quaternion.Euler (vertRotation, 0, 0);
-		}
-
-		if(Input.GetButton("Run") && inventory.CheckContainsItem("Running Shoes"))
-		{
-			if(cc.isGrounded)
+			if(Time.timeScale == 1.0)
 			{
-				forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed * runSpeed;	
-				sideSpeed = Input.GetAxis ("Horizontal") * moveSpeed * runSpeed;
+				transform.Rotate (0, rotateLR, 0);
+				//Camera.main.transform.Rotate (0, rotateLR, 0);
+				//camera rotate up down
+				vertRotation -= Input.GetAxis ("Mouse Y") * mouseSensitivity;
+				vertRotation = Mathf.Clamp (vertRotation, -viewRange, viewRange);
+				Camera.main.transform.localRotation = Quaternion.Euler (vertRotation, 0, 0);
+			}
 
-				if(forwardSpeed != 0 || sideSpeed != 0)
+			if(Input.GetButton("Run") && inventory.CheckContainsItem("Running Shoes"))
+			{
+				if(cc.isGrounded)
 				{
-					isRunning = true;
+					forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed * runSpeed;	
+					sideSpeed = Input.GetAxis ("Horizontal") * moveSpeed * runSpeed;
 
-					runSFXdelay -= Time.deltaTime;
-					if(runSFXdelay <= 0)	 
+					if(forwardSpeed != 0 || sideSpeed != 0)
 					{
-						runSFXdelay = SFX_DELAY;
-						AudioSource.PlayClipAtPoint(runSound, transform.position);
+						isRunning = true;
+
+						runSFXdelay -= Time.deltaTime;
+						if(runSFXdelay <= 0)	 
+						{
+							runSFXdelay = SFX_DELAY;
+							AudioSource.PlayClipAtPoint(runSound, transform.position);
+						}
 					}
 				}
 			}
-		}
-		else
-		{
-			//movement
-			isRunning = false;
-			forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed;	
-			sideSpeed = Input.GetAxis ("Horizontal") * moveSpeed;
+			else
+			{
+				//movement
+				isRunning = false;
+				forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed;	
+				sideSpeed = Input.GetAxis ("Horizontal") * moveSpeed;
+			}
 		}
 
 		if(isRunning && !cc.isGrounded)	// reduce spd when in air after a run jump
@@ -109,7 +112,7 @@ public class FpsMovement : MonoBehaviour
 				vertVelo = Input.GetAxis("Fly") * moveSpeed;	 
 			}
 
-			if(cc.isGrounded && Input.GetButton("Jump"))
+			if(cc.isGrounded && Input.GetButton("Jump") && !(inventory.display || dialoginterface.display))
 			{
 				vertVelo = jumpSpeed;
 			}
@@ -132,17 +135,20 @@ public class FpsMovement : MonoBehaviour
 			}
 
 			Vector3 speed = new Vector3 (sideSpeed, vertVelo, forwardSpeed);
+
+			if(inventory.display || dialoginterface.display)
+				speed = new Vector3 (0, vertVelo, 0);
+
 			speed = transform.rotation * speed;
-			
+
 			cc.Move (speed * Time.deltaTime);
 		}		
 		else
 		{
 			Vector3 speed = new Vector3 (sideSpeed, 0, forwardSpeed);
 			speed = Camera.main.transform.rotation * speed;
-			print(speed);
-			this.gameObject.GetComponent<Rigidbody>().AddForce(speed,
-			                                                   ForceMode.Force);
+
+			this.gameObject.GetComponent<Rigidbody>().AddForce(speed, ForceMode.Force);
 		}
 	}
 
