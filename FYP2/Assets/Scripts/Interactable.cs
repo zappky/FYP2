@@ -18,17 +18,20 @@ public class Interactable : MonoBehaviour {
 
 		switch(this.name)
 		{
-			case "testquest":
-				questReference = questManager.questLogListDatabase.GetQuestLog("Push Blocks");
+			case "testquest 1":
+				questReference = questManager.questLogListDatabase.GetQuestLog("Collect Paper Clips");
 			break;
-			case "testquest2":
+			case "testquest 2":
 				questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest2");
 			break;
-			case "testquest3":
+			case "testquest 3":
+				questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest3");
+			break;
+			case "testquest 4":
 				questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest4");
 			break;
-			case "testquest4":
-				questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest5");
+			case "testquest 5":
+			questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest5");
 			break;
 
 			case "BoxofPaperclips":

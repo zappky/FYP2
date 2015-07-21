@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <database>
 	<dialoginterface>
-		<currentdialognode id="-1" text="" />
+		<currentdialognode id="0" text="Hell warrior!" />
 	</dialoginterface>
 </database>
