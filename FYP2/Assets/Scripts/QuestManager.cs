@@ -47,6 +47,10 @@ public class my_QuestLog
 	{
 		this.statues = true;
 	}
+	public void ResetStatues()
+	{
+		this.statues = false;
+	}
 }
 
 public class QuestManager : MonoBehaviour {
@@ -65,7 +69,7 @@ public class QuestManager : MonoBehaviour {
 	public const int maxQuestLog = 1;
 	private float questLogHeight = -1.0f;
 	public int currentGameLevel = -1;
-	public int currentQuestIndex = 0;
+	public int currentQuestIndex = -1;
 	public static QuestManager Instance
 	{
 		get
@@ -109,6 +113,8 @@ public class QuestManager : MonoBehaviour {
 				//questLogs.Add(new my_QuestLog());
 				questLogRects.Add (new Rect (questDisplayRect.xMin,questDisplayRect.yMin + (i+1) *questLogHeight,questDisplayRect.width,questLogHeight));
 			}
+			currentQuestIndex = 0;
+			questLogs.Clear();
 			FetchCurrentQuest();
 			initedBefore = true;
 		}
@@ -372,6 +378,7 @@ public class QuestManager : MonoBehaviour {
 
 	public void OnApplicationQuit()
 	{
+		SaveQuestManager();
 		DestroyInstance();
 	}
 	
@@ -414,8 +421,17 @@ public class QuestManager : MonoBehaviour {
 		}
 
 	}
+	public void LoadQuestManager()
+	{
+		FileManager.Instance.LoadQuestManager();
+	}
+	public void SaveQuestManager()
+	{
+		FileManager.Instance.SaveQuestManager();
+	}
 	public void ToggleDisplay()
 	{
 		display = !display;
 	}
+
 }

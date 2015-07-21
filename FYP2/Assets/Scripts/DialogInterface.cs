@@ -75,6 +75,7 @@ public class DialogInterface : MonoBehaviour {
 	
 	public void OnApplicationQuit()
 	{
+		SaveDialogInterface();
 		DestroyInstance();
 	}
 
@@ -238,11 +239,20 @@ public class DialogInterface : MonoBehaviour {
 						}
 					}
 				}
-
+				optionHeight = dialogBox.height* 0.2f ;
 				optionWidth = dialogBox.width ;
 				optionRects[0] = new Rect( 0,dialogBox.yMax - optionHeight,optionWidth,optionHeight);
 				GUI.Box(optionRects[0],CurrentDialogNode.options[0].text);
 			}
 		}
+	}
+
+	public void LoadDialogInterface()
+	{
+		FileManager.Instance.LoadDialogInterface();
+	}
+	public void SaveDialogInterface()
+	{
+		FileManager.Instance.SaveDialogInterface();
 	}
 }

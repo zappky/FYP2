@@ -160,6 +160,34 @@ public class QuestLogDatabase : MonoBehaviour {
 	{
 		instance = null;
 	}
+	public void ResetAllQuestForward(int level,int startingIndex)
+	{
+		for(int i = startingIndex; i < questLogDatabase[level].questlogs.Count; ++i)
+		{
+			questLogDatabase[level].questlogs[i].ResetStatues();
+		}
+	}
+	public void ResetAllQuest(int level)
+	{
+
+		foreach(my_QuestLogList loglist in questLogDatabase)
+		{
+			foreach(my_QuestLog log in loglist)
+			{
+				log.ResetStatues();
+			}
+		}
+	}
+	public void ResetAllQuest()
+	{
+		foreach(my_QuestLogList loglist in questLogDatabase)
+		{
+			foreach(my_QuestLog log in loglist)
+			{
+				log.ResetStatues();
+			}
+		}
+	}
 
 
 }

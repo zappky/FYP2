@@ -70,7 +70,13 @@ public class DialogDatabase : MonoBehaviour {
 			{
 				foreach (my_DialogOption a_dialogoption in a_dialognode.options)
 				{
+					if(a_dialogoption.nextDialogId < 0)
+					{
+						a_dialogoption.nextDialog = null;
+					}
+
 					my_DialogNode thenextdialognode = templist[i].GetDialog(a_dialogoption.nextDialogId);
+					//Debug.Log("Suspect: " + a_dialogoption.nextDialogId);
 					a_dialogoption.nextDialog = thenextdialognode;
 				}
 				
