@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <database>
 	<questmanager>
-		<currentgamelevel index="0" name="main-scene" />
+		<currentgamelevel index="1" name="Level2" />
 		<currentquestindex index="0" />
 	</questmanager>
 </database>

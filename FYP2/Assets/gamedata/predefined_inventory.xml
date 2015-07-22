@@ -5,5 +5,10 @@
 			<item id = "6" amount = "1"></item>
 			<item id = "7" amount = "1"></item>
 		</level>
+		
+		<level id = "Level2">
+			<item id = "0" amount = "1"></item>
+			<item id = "1" amount = "1"></item>
+		</level>
 	</inventory>
 </database>

@@ -2,4 +2,5 @@
 <database>
 	<maxlevelcount>2</maxlevelcount>
 	<level name = "main-scene"></level>
+	<level name = "Level2"></level>
 </database>
