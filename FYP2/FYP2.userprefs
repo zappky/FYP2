@@ -1,9 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Interactable.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\gamedata\backup\backup_dialogdatas.xml">
     <Files>
-      <File FileName="Assets\Scripts\Interactable.cs" Line="8" Column="36" />
-      <File FileName="Assets\gamedata\questlogdatas.xml" Line="4" Column="47" />
+      <File FileName="Assets\gamedata\backup\backup_dialogdatas.xml" Line="32" Column="54" />
+      <File FileName="Assets\Scripts\ApplicationLevelBoard.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LevelManager.cs" Line="134" Column="3" />
+      <File FileName="Assets\gamedata\dialogdatas.xml" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FileManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\DialogDatabase.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\DialogInterface.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\DialogTree.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CheckPoint.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

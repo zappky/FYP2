@@ -35,7 +35,28 @@ public class ApplicationLevelBoard : MonoBehaviour {
 			initedBefore = true;
 		}
 	}
-
+	public int GetInternalGamelevelIndex(string gamelevelname)
+	{
+		for(int i = 0 ; i < gameLevelNameList.Count; ++i)
+		{
+			if(gameLevelNameList[i] == gamelevelname)
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+	public bool CheckValidGameLevelName(string gamelevelname)
+	{
+		for(int i = 0 ; i < gameLevelNameList.Count; ++i)
+		{
+			if(gameLevelNameList[i] == gamelevelname)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	public void OnApplicationQuit()
 	{
 		SaveGameLevelInformation();

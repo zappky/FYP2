@@ -61,4 +61,12 @@
 			</dialog>
 		</dialogtree>
 	</level>	
+	<level>
+			<dialogtree id = "0" gamelevelparent = "Level2">
+				<dialog id = "0" actorname = "Enpisi" newdialogsection = "true">
+					<text>Level2 test text</text>
+					<option nextdialogid = "" resultid = "0">Uhh...yeah?</option>
+				</dialog>
+			</dialogtree>
+	</level>
 </database>

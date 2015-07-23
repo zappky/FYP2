@@ -6,6 +6,6 @@
 		<quest id="2" name="Tear Book Page for Paper Pieces" />
 	</level>
 	<level>
-		<quest id="0" name="xmltestquest1" />
+		<quest id="0" name="level 2 test quest" />
 	</level>
 </database>

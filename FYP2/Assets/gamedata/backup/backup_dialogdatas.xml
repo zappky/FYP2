@@ -33,19 +33,27 @@
 			</dialog>
 			<dialog id="7" actorname="Enpisi">
 				<test>Alright, alright, I'll be in touch with you through my telepathy as usual. Be careful~</test>
-				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Okay, I'm leaving.</option>
+				<option nextdialogid="-1" nextdialogid_raw="-1" resultid="0">Okay, I'm leaving.</option>
 			</dialog>
 			<dialog id="8" actorname="You">
 				<test>Hmm, let's see... [WASD] to move, [SPACEBAR] to jump.</test>
-				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">I should be fine.</option>
+				<option nextdialogid="-1" nextdialogid_raw="-1" resultid="0">I should be fine.</option>
 			</dialog>
 			<dialog id="9" actorname="Enpisi">
 				<test>Eddy, don't do anything stupid here...</test>
-				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">I know, I'm not an idiot.</option>
+				<option nextdialogid="-1" nextdialogid_raw="-1" resultid="0">I know, I'm not an idiot.</option>
 			</dialog>
 			<dialog id="10" actorname="Enpisi">
 				<test>Hi</test>
-				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Bye</option>
+				<option nextdialogid="-1" nextdialogid_raw="-1" resultid="0">Bye</option>
+			</dialog>
+		</dialogtree>
+	</level>
+	<level>
+		<dialogtree>
+			<dialog id="0" actorname="Enpisi">
+				<test>Level2 test text</test>
+				<option nextdialogid="-1" nextdialogid_raw="-1" resultid="0">Uhh...yeah?</option>
 			</dialog>
 		</dialogtree>
 	</level>
