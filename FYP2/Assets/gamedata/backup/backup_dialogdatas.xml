@@ -28,12 +28,12 @@
 				<option nextdialogid="6" nextdialogid_raw="6" resultid="0">Don't look down on me!</option>
 			</dialog>
 			<dialog id="6" actorname="Enpisi">
-				<test>Okay then, the first thing you should do is to repair your grapple. Seems like its hook is broken. Go get a paper clip to fix that. It should still be on the Worktop table there.</test>
+				<test>Okay then, the first thing you should do is to repair your grapple. Seems like its hook is broken. Go get a paper clip to fix that. It should still be there, on the Desk below.</test>
 				<option nextdialogid="7" nextdialogid_raw="7" resultid="0">Is that all?</option>
 			</dialog>
 			<dialog id="7" actorname="Enpisi">
 				<test>Alright, alright, I'll be in touch with you through my telepathy as usual. Be careful~</test>
-				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Okay, I'm leaving.</option>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Okaaay, I'm leaving.</option>
 			</dialog>
 			<dialog id="8" actorname="You">
 				<test>Hmm, let's see... [WASD] to move, [SPACEBAR] to jump.</test>
@@ -44,8 +44,13 @@
 				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">I know, I'm not an idiot.</option>
 			</dialog>
 			<dialog id="10" actorname="Enpisi">
-				<test>Hi</test>
-				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Bye</option>
+				<test>I don't think I need to mention this, but you do know you can push objects down to make a platform to break your fall right? So long as you don't fall from such a great height.</test>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Got it, thanks.</option>
+			</dialog>
+			<dialog id="11" actorname="Enpisi">
+				<test>See that mysterious light particles over there? You can find what you're looking for in it. Press [E] to interact with it.</test>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">
+				</option>
 			</dialog>
 		</dialogtree>
 	</level>

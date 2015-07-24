@@ -1580,7 +1580,6 @@ public class FileManager : MonoBehaviour {
 			case "checkpoint":
 				//int checkpointindex = int.Parse(playerinfosection.Attributes["index"].Value);
 				//playerobj.transform.position = checkPointList[checkpointindex].transform.position;
-				LevelManager.Instance.currentCheckPointIndex = int.Parse(playerinfosection.Attributes["index"].Value);
 				float playerX = float.Parse(playerinfosection.Attributes["x"].Value);
 				float playerY = float.Parse(playerinfosection.Attributes["y"].Value);
 				float playerZ = float.Parse(playerinfosection.Attributes["z"].Value);

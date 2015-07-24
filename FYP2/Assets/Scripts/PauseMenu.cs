@@ -65,9 +65,9 @@ public class PauseMenu : MonoBehaviour {
 	public void restartlevel()
 	{
 		LevelManager.Instance.loadFromContinue = false;
+
 		LevelManager.Instance.LoadLevel(LevelManager.Instance.CurrentLevelName, true);
 	}
-
 	public void MainMenu()
 	{
 		Application.LoadLevel("main_menu");

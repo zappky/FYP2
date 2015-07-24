@@ -35,7 +35,17 @@ public class ApplicationLevelBoard : MonoBehaviour {
 			initedBefore = true;
 		}
 	}
-
+    public bool CheckValidGameLevelName(string gamelevelname)
+    {
+        for (int i = 0; i < gameLevelNameList.Count; ++i)
+        {
+            if (gameLevelNameList[i] == gamelevelname)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 	public void OnApplicationQuit()
 	{
 		SaveGameLevelInformation();

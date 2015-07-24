@@ -30,13 +30,13 @@
 			</dialog>
 			
 			<dialog id = "6" actorname = "Enpisi">
-				<text>Okay then, the first thing you should do is to repair your grapple. Seems like its hook is broken. Go get a paper clip to fix that. It should still be on the Worktop table there.</text>
+				<text>Okay then, the first thing you should do is to repair your grapple. Seems like its hook is broken. Go get a paper clip to fix that. It should still be there, on the Desk below.</text>
 				<option nextdialogid = "7" resultid = "0">Is that all?</option>
 			</dialog>
 			
 			<dialog id = "7" actorname = "Enpisi">
 				<text>Alright, alright, I'll be in touch with you through my telepathy as usual. Be careful~</text>
-				<option nextdialogid = "" resultid = "0">Okay, I'm leaving.</option>
+				<option nextdialogid = "" resultid = "0">Okaaay, I'm leaving.</option>
 			</dialog>
 			
 			
@@ -56,9 +56,24 @@
 			
 			
 			<dialog id = "10" actorname = "Enpisi" newdialogsection = "true">
-				<text>Hi</text>
-				<option nextdialogid = "" resultid = "0">Bye</option>
+				<text>I don't think I need to mention this, but you do know you can push objects down to make a platform to break your fall right? So long as you don't fall from such a great height.</text>
+				<option nextdialogid = "" resultid = "0">Got it, thanks.</option>
+			</dialog>
+			
+			
+			
+			<dialog id = "11" actorname = "Enpisi" newdialogsection = "true">
+				<text>See that mysterious light particles over there? You can find what you're looking for in it. Press [E] to interact with it.</text>
+				<option nextdialogid = "" resultid = "0"></option>
 			</dialog>
 		</dialogtree>
+    
+	    <dialogtree id = "1" gamelevelparent = "Level2">
+	      <dialog id = "0" actorname = "Enpisi" newdialogsection = "true">
+	        <text>level2 text</text>
+	        <option nextdialogid = "" resultid = "0">Uhh...yeah?</option>
+	      </dialog>
+	    </dialogtree>
+    
 	</level>	
 </database>

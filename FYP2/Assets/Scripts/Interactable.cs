@@ -36,7 +36,7 @@ public class Interactable : MonoBehaviour {
 			break;
 
 			case "BoxofPaperclips":
-			questReference = questManager.GetQuestLog("Collect Paper Clip to Fix Grapple");
+				questReference = questManager.GetQuestLog("Collect Paper Clip to Fix Grapple");
 				break;
 			
 			case "Yarn":
@@ -69,6 +69,19 @@ public class Interactable : MonoBehaviour {
 			Debug.Log("clearing quest " + questReference.questname);
 			questManager.ClearQuest(questReference);
 			SetLighting(false);
+
+			switch(this.name)
+			{
+				case "BoxofPaperclips":
+					DialogInterface.Instance.StartNewDialogSessionUsingBookmark("main-scene", 11); 
+					break;
+
+				case "Yarn":
+					break;
+
+				case "TearableBook":
+					break;
+			}
 		}
 		else
 		{

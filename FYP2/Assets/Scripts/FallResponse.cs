@@ -4,6 +4,9 @@ using System.Collections;
 public class FallResponse : MonoBehaviour {
 
 	public float maxFallDist = 25.0f;		// max dist player can land safely
+	public AudioClip fallScreamSFX;
+
+	bool sfxPlayed = false;
 	float lastPosY = 0.0f;
 	float fallDist = 0.0f;
 
@@ -45,6 +48,15 @@ public class FallResponse : MonoBehaviour {
 			else
 			{
 				ResetFallDist();
+			}
+		}
+		
+		if(fallDist >= maxFallDist)	
+		{
+			if(!sfxPlayed)
+			{
+				sfxPlayed = true;
+				AudioSource.PlayClipAtPoint(fallScreamSFX, transform.position);
 			}
 		}
 	}
