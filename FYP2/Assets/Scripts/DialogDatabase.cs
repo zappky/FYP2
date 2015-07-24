@@ -64,7 +64,6 @@ public class DialogDatabase : MonoBehaviour {
 		List<DialogTree>templist = FileManager.Instance.LoadDialogTreeData();//extract out the readied list of dialog tree from file manager
 		for (int i = 0 ; i <templist.Count ; ++i)//do some preparation work before inserting into the real database
 		{
-			
 			//link up each of the dialog option's next dialog node pointer in each dialog node.
 			foreach (my_DialogNode a_dialognode in templist[i].dialogs)
 			{

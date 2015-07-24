@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-//[System.Serializable]
+[System.Serializable]
 public class my_DialogBookmark
 {
 	public string bookmarkName = "";
@@ -31,7 +31,7 @@ public class my_DialogBookmark
 	}
 
 }
-//[System.Serializable]
+[System.Serializable]
 public class my_DialogOption
 {
 	public string text = "";//the text to be displayed

@@ -950,71 +950,75 @@ public class FileManager : MonoBehaviour {
 
 		foreach(XmlNode childInfo in parentList)
 		{
-			XmlNodeList childContent = DigToDesiredChildNodeList(parentList,"dialogtree");
-			//print ("looking at childinfo name:"+ childInfo.Name );
+			//XmlNodeList childContent = DigToDesiredChildNodeList(parentList,"dialogtree");
+			//print ("looking at LoadDialogTreeData childinfo name:"+ childInfo.Name );
 			tempentry = new DialogTree();
-			XmlNode dialogtreenode = childContent.Item(0).ParentNode;
-			tempentry.id = int.Parse(dialogtreenode.Attributes["id"].Value);
-			tempentry.gameLevelParent = dialogtreenode.Attributes["gamelevelparent"].Value;
+			//XmlNode dialogtreenode = childContent.Item(0).ParentNode;
 
 
-
-
-			foreach (XmlNode childItem in childContent)
+			foreach (XmlNode childItem in childInfo)
 			{
-				//print ("looking at childItem name: "+ childItem.Name );
-				tempdialog = new my_DialogNode();
-				tempdialog.actorName = childItem.Attributes["actorname"].Value;
-				tempdialog.nodeId = int.Parse(childItem.Attributes["id"].Value);
-				if(childItem.Attributes["newdialogsection"] != null)
-				{
-					switch (childItem.Attributes["newdialogsection"].Value)
-					{
-						case "true":
-						case "True":
-							tempentry.AddDialogBookmark(tempdialog);
-							break;
-					}
+				//print ("looking at LoadDialogTreeData childItem name: "+ childItem.Name );
+				tempentry.id = int.Parse(childItem.Attributes["id"].Value);
+				tempentry.gameLevelParent = childItem.Attributes["gamelevelparent"].Value;
 
-				}
-				foreach (XmlNode innerchildItem in childItem.ChildNodes)
+				foreach (XmlNode BigInnerchildItem in childItem.ChildNodes)
 				{
-					//print ("looking at innerchildItem name: "+ innerchildItem.Name );
-					switch(innerchildItem.Name)
+					//print ("looking at LoadDialogTreeData BigInnerchildItem name: "+ BigInnerchildItem.Name );
+					tempdialog = new my_DialogNode();
+					tempdialog.actorName = BigInnerchildItem.Attributes["actorname"].Value;
+					tempdialog.nodeId = int.Parse(BigInnerchildItem.Attributes["id"].Value);
+					if(BigInnerchildItem.Attributes["newdialogsection"] != null)
 					{
-					case "text":
-					case "Text":
-					case "texts":
-					case "Texts":
-						tempdialog.text = innerchildItem.InnerText;
-						break;
-
-					case "Option":
-					case "option":
-					case "Options":
-					case "options":
-						tempdialogoption = new my_DialogOption();
-						tempdialogoption.text = innerchildItem.InnerText;
-						string tempstring = innerchildItem.Attributes["nextdialogid"].Value;
-						if( tempstring == "" || tempstring == " ")
+						switch (BigInnerchildItem.Attributes["newdialogsection"].Value)
 						{
-							tempdialogoption.nextDialogId = -1;
-						}else
-						{
-							tempdialogoption.nextDialogId = int.Parse(innerchildItem.Attributes["nextdialogid"].Value);
+							case "true":
+							case "True":
+								tempentry.AddDialogBookmark(tempdialog);
+								break;
 						}
 
-						tempdialogoption.returnStatus = int.Parse(innerchildItem.Attributes["resultid"].Value);
-						tempdialog.AddDialogOption(tempdialogoption);
-						break;
-
-					default:
-						print("ERROR: Unknown load dialog tree data field detected: " + innerchildItem.Name);
-						break;
 					}
+					foreach (XmlNode innerchildItem in BigInnerchildItem.ChildNodes)
+					{
+						//print ("looking at LoadDialogTreeData innerchildItem name: "+ innerchildItem.Name );
+						//print ("looking at LoadDialogTreeData innerchildItem text: "+ innerchildItem.InnerText );
+						switch(innerchildItem.Name)
+						{
+						case "text":
+						case "Text":
+						case "texts":
+						case "Texts":
+							tempdialog.text = innerchildItem.InnerText;
+							break;
+
+						case "Option":
+						case "option":
+						case "Options":
+						case "options":
+							tempdialogoption = new my_DialogOption();
+							tempdialogoption.text = innerchildItem.InnerText;
+							string tempstring = innerchildItem.Attributes["nextdialogid"].Value;
+							if( tempstring == "" || tempstring == " ")
+							{
+								tempdialogoption.nextDialogId = -1;
+							}else
+							{
+								tempdialogoption.nextDialogId = int.Parse(innerchildItem.Attributes["nextdialogid"].Value);
+							}
+
+							tempdialogoption.returnStatus = int.Parse(innerchildItem.Attributes["resultid"].Value);
+							tempdialog.AddDialogOption(tempdialogoption);
+							break;
+
+						default:
+							print("ERROR: Unknown load dialog tree data field detected: " + innerchildItem.Name);
+							break;
+						}
+					}
+					//tempentry.dialogtree.AddDialog(tempdialog);
+					tempentry.AddDialog(tempdialog);
 				}
-				//tempentry.dialogtree.AddDialog(tempdialog);
-				tempentry.AddDialog(tempdialog);
 			}
 			resultlist.Add(tempentry);
 		}

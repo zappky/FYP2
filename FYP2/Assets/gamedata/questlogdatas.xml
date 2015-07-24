@@ -7,6 +7,6 @@
 	</level>
 	
 	<level>
-		<quest id = "0" name = "xmltestquest1"></quest>
+		<quest id = "0" name = "level 2 test quest"></quest>
 	</level>
 </database>

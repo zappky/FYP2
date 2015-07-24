@@ -56,7 +56,7 @@ public class LevelManager : MonoBehaviour {
 			this.playercursor = FindObjectOfType<HideCursorScript>();
 			this.checkPointList.Clear();
 			this.currentCheckPointIndex = -1;
-			if(CurrentLevelName == "main-scene")
+			if(ApplicationLevelBoard.Instance.CheckValidGameLevelName(Application.loadedLevelName) == true)
 			{
 				List<CheckPoint> tempCheckPointList = new List<CheckPoint>();
 				tempCheckPointList = FindObjectsOfType<CheckPoint>().OrderBy(go=>go.orderPlacement).ToList();
@@ -143,11 +143,20 @@ public class LevelManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-//		if(Input.GetKeyDown("p"))
-//		{
-//			DialogInterface.Instance.LoadDialogInterface();
-//			QuestManager.Instance.LoadQuestManager();
-//		}
+		if(Input.GetKeyDown("p"))
+		{
+			//DialogInterface.Instance.LoadDialogInterface();
+			//QuestManager.Instance.LoadQuestManager();
+
+			DialogInterface.Instance.StartNewDialogSessionUsingBookmark(Application.loadedLevelName,2);//can work because there is 2th bookmarked dialog node
+			//DialogInterface.Instance.StartNewDialogSessionUsingBookmark(Application.loadedLevelName,10);//cannot work because there is no 10th bookmarked dialog node
+		}
+		if(Input.GetKeyDown("o"))
+		{
+			//DialogInterface.Instance.LoadDialogInterface();
+			//QuestManager.Instance.LoadQuestManager();
+			DialogInterface.Instance.StartNewDialogSession(Application.loadedLevelName,10);//can work because there is 10th dialog node in the dialog tree
+		}
 		if(playercursor != null)
 		{
 			switch(CurrentLevelName)
