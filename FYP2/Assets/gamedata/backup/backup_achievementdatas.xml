@@ -4,6 +4,7 @@
 		<collectibles>
 			<collectible id="0" name="test collectible" />
 			<collectible id="1" name="Area1" />
+			<collectible id="2" name="Area3" />
 		</collectibles>
 	</level>
 </database>

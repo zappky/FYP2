@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <database>
 	<dialoginterface>
-		<currentdialognode id="10" text="Hi" />
+		<currentdialognode id="8" text="Hmm, let's see... [WASD] to move, [SPACEBAR] to jump." />
 	</dialoginterface>
 </database>

@@ -2,6 +2,6 @@
 <database>
 	<questmanager>
 		<currentgamelevel index="0" name="main-scene" />
-		<currentquestindex index="1" />
+		<currentquestindex index="0" />
 	</questmanager>
 </database>
