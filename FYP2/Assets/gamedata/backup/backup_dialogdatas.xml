@@ -52,6 +52,16 @@
 				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">
 				</option>
 			</dialog>
+			<dialog id="12" actorname="Enpisi">
+				<test>Go ahead and repair your grapple. Open your inventory [I], select the crafting tab, and double-click the Grapple to craft it.</test>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">
+				</option>
+			</dialog>
+			<dialog id="13" actorname="Enpisi">
+				<test>test13</test>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">
+				</option>
+			</dialog>
 		</dialogtree>
 	</level>
 	<level>

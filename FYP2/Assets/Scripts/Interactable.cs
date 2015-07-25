@@ -73,7 +73,7 @@ public class Interactable : MonoBehaviour {
 			switch(this.name)
 			{
 				case "BoxofPaperclips":
-					DialogInterface.Instance.StartNewDialogSessionUsingBookmark("main-scene", 11); 
+					DialogInterface.Instance.StartNewDialogSessionUsingBookmark(LevelManager.Instance.CurrentLevelName, 5); 
 					break;
 
 				case "Yarn":

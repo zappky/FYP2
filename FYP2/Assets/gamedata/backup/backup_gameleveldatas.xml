@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <database>
 	<maxlevelcount>2</maxlevelcount>
-	<level name="main-scene" />
+	<level name="Level1" />
 	<level name="Level2" />
 </database>

@@ -9,7 +9,7 @@ public class CSelect : MonoBehaviour {
 	public float raylength = 10.0f;
 	public bool display = true;
 	public bool onguihelper = true;
-	public string interacthelpertext = "'e' to interact";
+	public string interacthelpertext = "Interact [E]";
 	public Inventory playerinventory;
 	private Interactable iScript = null;
 	Ray ray;
@@ -24,10 +24,10 @@ public class CSelect : MonoBehaviour {
 	void Update () {
 		ray = Camera.main.ScreenPointToRay (new Vector3 (Screen.width *0.5f,Screen.height *0.5f,0.0f)); // update the ray positon
 		
-		if (Physics.Raycast (ray, out hit, raylength)) 
-		{ //ray cast testing
+		if(Physics.Raycast (ray, out hit, raylength)
+		&& hit.transform.GetComponent<Interactable>() != null) 
+		{
 			onguihelper = true;
-
 			if (Input.GetButtonDown ("Interact")) 
 			{
 				//pressing interact or pick up as of now is all picking up item
@@ -39,16 +39,8 @@ public class CSelect : MonoBehaviour {
 
 				}
 			}
-			if (Input.GetButtonDown ("Pick Up")) 
-			{
-				iScript = hit.collider.gameObject.GetComponent<Interactable>();
-				if(iScript != null)
-				{
-					iScript.SpawnItem();
-					iScript.CompleteQuest();
-				}
-			}
-		} else 
+		}
+		else 
 		{
 			onguihelper = false;
 		}
@@ -64,7 +56,7 @@ public class CSelect : MonoBehaviour {
 			if(onguihelper == true)
 			{
 				//Debug.Log (interacthelpertext.Length);
-				//GUI.Box(new Rect(Screen.width*0.5f,Screen.height*0.95f,interacthelpertext.Length*6.0f,20.0f), interacthelpertext);
+				GUI.Box(new Rect(Screen.width*0.5f,Screen.height*0.95f,interacthelpertext.Length*6.0f,20.0f), interacthelpertext);
 			}
 		}
 	}

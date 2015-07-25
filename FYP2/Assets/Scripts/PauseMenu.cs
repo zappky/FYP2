@@ -7,7 +7,7 @@ public class PauseMenu : MonoBehaviour {
 	Canvas pauseMenu;
 	GameObject Player;
 
-	public AudioSource clickSound;
+	AudioSource clickSound;
 
 	void Start () 
 	{
@@ -15,6 +15,7 @@ public class PauseMenu : MonoBehaviour {
 		pauseMenu = GetComponent<Canvas>();
 		pauseMenu.enabled = false;
 		Time.timeScale = 1.0f;
+		clickSound = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -54,6 +55,7 @@ public class PauseMenu : MonoBehaviour {
 	
 	public void reloadCheckpoint()
 	{
+		playClickSound();
 		Application.LoadLevel(Application.loadedLevelName);
 		Inventory playerinventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
 		playerinventory.ClearInventoryItem();
@@ -64,16 +66,17 @@ public class PauseMenu : MonoBehaviour {
 
 	public void restartlevel()
 	{
+		playClickSound();
 		LevelManager.Instance.loadFromContinue = false;
-
 		LevelManager.Instance.LoadLevel(LevelManager.Instance.CurrentLevelName, true);
 	}
 	public void MainMenu()
 	{
+		playClickSound();
 		Application.LoadLevel("main_menu");
 	}
 
-	public void playClickSound()
+	void playClickSound()
 	{
 		clickSound.Play();
 	}

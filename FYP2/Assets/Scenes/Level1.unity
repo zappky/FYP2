@@ -685,7 +685,7 @@ GameObject:
   - 54: {fileID: 29851247}
   - 114: {fileID: 29851245}
   m_Layer: 9
-  m_Name: 8
+  m_Name: 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1076,7 +1076,7 @@ GameObject:
   - 54: {fileID: 44221777}
   - 114: {fileID: 44221776}
   m_Layer: 9
-  m_Name: 5
+  m_Name: 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1089,7 +1089,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 44221774}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
-  m_LocalPosition: {x: -30.3500004, y: 35.5600014, z: 102.919998}
+  m_LocalPosition: {x: -15.8800001, y: 35.5999985, z: 102.900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1468704641}
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   indexInList: -1
   orderPlacement: 5
   levelManager: {fileID: 0}
-  checkpointType: 2
+  checkpointType: 1
 --- !u!54 &44221777
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4430,7 +4430,7 @@ GameObject:
   - 54: {fileID: 232520380}
   - 114: {fileID: 232520378}
   m_Layer: 9
-  m_Name: 7
+  m_Name: 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6346,7 +6346,7 @@ GameObject:
   - 54: {fileID: 317789715}
   - 114: {fileID: 317789713}
   m_Layer: 9
-  m_Name: 13
+  m_Name: 14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6378,7 +6378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: -1
   indexInList: -1
-  orderPlacement: 12
+  orderPlacement: 13
   levelManager: {fileID: 0}
   checkpointType: 2
 --- !u!23 &317789714
@@ -10621,7 +10621,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 581247591}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
-  m_LocalPosition: {x: -45.2999992, y: 35.5999985, z: 102.900002}
+  m_LocalPosition: {x: -43.6599998, y: 35.5999985, z: 102.900002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 237625491}
@@ -10881,7 +10881,7 @@ GameObject:
   - 54: {fileID: 589190498}
   - 114: {fileID: 589190496}
   m_Layer: 9
-  m_Name: 9
+  m_Name: 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17496,7 +17496,7 @@ MonoBehaviour:
   raylength: 10
   display: 1
   onguihelper: 1
-  interacthelpertext: '''e'' to interact'
+  interacthelpertext: Interact [E]
   playerinventory: {fileID: 0}
 --- !u!114 &955072680
 MonoBehaviour:
@@ -21828,7 +21828,7 @@ Transform:
   m_PrefabParentObject: {fileID: 432482, guid: 6cc4d622907b0394c947df2ec0ddf671, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1200860748}
-  m_LocalRotation: {x: -.00926726218, y: .670082927, z: -.742155015, w: -.0104364539}
+  m_LocalRotation: {x: -.00926726311, y: .670082986, z: -.742155075, w: -.0104364548}
   m_LocalPosition: {x: .909999967, y: 37.3837776, z: 81.5183182}
   m_LocalScale: {x: 28.647501, y: 49.1884995, z: 2.86284757}
   m_Children: []
@@ -23825,7 +23825,7 @@ GameObject:
   - 54: {fileID: 1300732906}
   - 114: {fileID: 1300732904}
   m_Layer: 9
-  m_Name: 11
+  m_Name: 12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23857,7 +23857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: -1
   indexInList: -1
-  orderPlacement: 10
+  orderPlacement: 11
   levelManager: {fileID: 0}
   checkpointType: 2
 --- !u!23 &1300732905
@@ -27390,7 +27390,7 @@ GameObject:
   - 54: {fileID: 1483534606}
   - 114: {fileID: 1483534604}
   m_Layer: 9
-  m_Name: 12
+  m_Name: 13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27422,7 +27422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: -1
   indexInList: -1
-  orderPlacement: 11
+  orderPlacement: 12
   levelManager: {fileID: 0}
   checkpointType: 2
 --- !u!23 &1483534605
@@ -28542,8 +28542,8 @@ Transform:
   m_PrefabParentObject: {fileID: 434490, guid: 6cc4d622907b0394c947df2ec0ddf671, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1548223125}
-  m_LocalRotation: {x: .408217937, y: -.234569728, z: .109381661, w: .875426114}
-  m_LocalPosition: {x: 2.6400001, y: 3.42000008, z: -3.8599999}
+  m_LocalRotation: {x: .906823158, y: 0, z: 0, w: .421511292}
+  m_LocalPosition: {x: 2.6400001, y: 6.68999958, z: -3.86000013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 684931455}
@@ -31683,7 +31683,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1694217762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.76000023, y: 10.8900003, z: 19.8299999}
+  m_LocalPosition: {x: -9.60000038, y: 1.19000006, z: 32.3800011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 684931455}
@@ -33826,6 +33826,7 @@ GameObject:
   - 114: {fileID: 1785380674}
   - 114: {fileID: 1785380673}
   - 114: {fileID: 1785380677}
+  - 82: {fileID: 1785380678}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -33918,7 +33919,75 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paused: 0
-  clickSound: {fileID: 0}
+--- !u!82 &1785380678
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1785380672}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 03315360466fbaa4d8d1b83e6d0f70ef, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1787139180
 GameObject:
   m_ObjectHideFlags: 0
@@ -34575,7 +34644,7 @@ GameObject:
   - 54: {fileID: 1813964638}
   - 114: {fileID: 1813964636}
   m_Layer: 9
-  m_Name: 15
+  m_Name: 16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34607,7 +34676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: -1
   indexInList: -1
-  orderPlacement: 14
+  orderPlacement: 15
   levelManager: {fileID: 0}
   checkpointType: 2
 --- !u!23 &1813964637
@@ -34843,7 +34912,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1819803631
 Transform:
   m_ObjectHideFlags: 0
@@ -35223,7 +35292,7 @@ GameObject:
   - 54: {fileID: 1853716056}
   - 114: {fileID: 1853716054}
   m_Layer: 9
-  m_Name: 10
+  m_Name: 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37073,7 +37142,7 @@ GameObject:
   - 54: {fileID: 1959697358}
   - 114: {fileID: 1959697356}
   m_Layer: 9
-  m_Name: 14
+  m_Name: 15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37105,7 +37174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: -1
   indexInList: -1
-  orderPlacement: 13
+  orderPlacement: 14
   levelManager: {fileID: 0}
   checkpointType: 2
 --- !u!23 &1959697357
@@ -38169,7 +38238,7 @@ GameObject:
   - 54: {fileID: 2022365867}
   - 114: {fileID: 2022365865}
   m_Layer: 9
-  m_Name: 6
+  m_Name: 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

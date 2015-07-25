@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <database>
 	<level>
-		<dialogtree id = "0" gamelevelparent = "main-scene">
+		<dialogtree id = "0" gamelevelparent = "Level1">
 			<dialog id = "0" actorname = "Enpisi" newdialogsection = "true">
 				<text>Hey Eddy! You know what you're supposed to look for right?</text>
 				<option nextdialogid = "1" resultid = "0">Uhh...yeah?</option>
@@ -59,6 +59,18 @@
 			
 			<dialog id = "11" actorname = "Enpisi" newdialogsection = "true">
 				<text>See that mysterious light particles over there? You can find what you're looking for in it. Press [E] to interact with it.</text>
+				<option nextdialogid = "" resultid = "0"></option>
+			</dialog>
+			
+			
+			<dialog id = "12" actorname = "Enpisi" newdialogsection = "true">
+				<text>Go ahead and repair your grapple. Open your inventory [I], select the crafting tab, and double-click the Grapple to craft it.</text>
+				<option nextdialogid = "" resultid = "0"></option>
+			</dialog>
+			
+			
+			<dialog id = "13" actorname = "Enpisi" newdialogsection = "true">
+				<text>test13</text>
 				<option nextdialogid = "" resultid = "0"></option>
 			</dialog>
 		</dialogtree>    
