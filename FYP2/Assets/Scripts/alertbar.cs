@@ -22,5 +22,6 @@ public class alertbar : MonoBehaviour {
 	{
 		// get alertness of nearest AI
 		ab.fillAmount = AImanager.GetClosestAlertness()*0.01f;
+		Mathf.Clamp(ab.fillAmount, 0.0f, 1.0f);
 	}
 }

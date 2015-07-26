@@ -9,16 +9,28 @@ public class Interactable : MonoBehaviour {
 	private QuestManager questManager = null;	
 	public bool lighting = true;
 	public my_QuestLog questReference = null;
-	public ParticleRenderer particleRender = null;
+	ParticleSystem particles;
 
 	void Start () {
 		playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
 		vendordatabase = VendorDatabase.Instance;
 		questManager = QuestManager.Instance;
-		particleRender = this.gameObject.GetComponentInChildren<ParticleRenderer>();
+		particles = gameObject.GetComponentInChildren<ParticleSystem>();
 
 		switch(this.name)
 		{
+			case "BoxofPaperclips":
+				questReference = questManager.questLogListDatabase.GetQuestLog("Collect Paper Clip to Fix Grapple");
+				break;
+				
+			case "Yarn":
+				questReference = questManager.questLogListDatabase.GetQuestLog("Get Some Strings");
+				break;
+				
+			case "TearableBook":
+				questReference = questManager.questLogListDatabase.GetQuestLog("Tear Book Page for Paper Pieces");
+				break;
+
 			case "testquest 1":
 				questReference = questManager.questLogListDatabase.GetQuestLog("Collect Paper Clips");
 			break;
@@ -34,19 +46,6 @@ public class Interactable : MonoBehaviour {
 			case "testquest 5":
 			questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest5");
 			break;
-
-			case "BoxofPaperclips":
-				questReference = questManager.GetQuestLog("Collect Paper Clip to Fix Grapple");
-				break;
-			
-			case "Yarn":
-				// need collect max amt (till full inventory) of strings to fin quest 
-				questReference = questManager.GetQuestLog("Get Some Strings");
-				break;
-			
-			case "TearableBook":
-				questReference = questManager.GetQuestLog("Tear Book Page for Paper Pieces");
-				break;
 
 			default:
 				break;
@@ -67,8 +66,8 @@ public class Interactable : MonoBehaviour {
 				return;
 			}
 			Debug.Log("clearing quest " + questReference.questname);
+
 			questManager.ClearQuest(questReference);
-			SetLighting(false);
 
 			switch(this.name)
 			{
@@ -77,11 +76,13 @@ public class Interactable : MonoBehaviour {
 					break;
 
 				case "Yarn":
+					DialogInterface.Instance.StartNewDialogSessionUsingBookmark(LevelManager.Instance.CurrentLevelName, 10); 
 					break;
 
 				case "TearableBook":
 					break;
 			}
+			SetLighting(false);
 		}
 		else
 		{
@@ -91,23 +92,28 @@ public class Interactable : MonoBehaviour {
 	}
 	public void SetLighting(bool lighting)
 	{
-		if(particleRender != null)
+		if(particles != null)
 		{
 			this.lighting = lighting;
-			particleRender.enabled = lighting;
+			particles.enableEmission = lighting;
 		}
 		else
 		{
 			Debug.Log(this.name + "has null particleRender reference");
+
+			if(this.name == "Yarn")
+			{
+				transform.parent.GetComponentInChildren<ParticleSystem>().enableEmission = false;
+			}
 		}
 
 	}
 	public void ToggleLighting()
 	{
-		if(particleRender != null)
+		if(particles != null)
 		{
 			this.lighting = !this.lighting;
-			particleRender.enabled = lighting;
+			particles.enableEmission = lighting;
 		}
 		else
 		{

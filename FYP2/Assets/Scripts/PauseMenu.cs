@@ -23,8 +23,19 @@ public class PauseMenu : MonoBehaviour {
 	{
 		if(Input.GetButtonDown("Escape"))
 		{
-			paused = togglePause();
-			Player.GetComponent<CastSlot>().ToggleDisplay();
+			if(DialogInterface.Instance.display)
+			{
+				DialogInterface.Instance.display = false;
+				Player.GetComponent<CastSlot>().display = true;
+			}
+			else if(Player.GetComponent<Inventory>().display)
+			{
+				Player.GetComponent<Inventory>().display = false;
+			}
+			else
+			{
+				paused = togglePause();
+			}
 		}
 
 		if(paused)
@@ -41,14 +52,16 @@ public class PauseMenu : MonoBehaviour {
 	{
 		if(Time.timeScale == 0.0f)
 		{
-			Cursor.visible = false;
 			Time.timeScale = 1.0f;
+			Player.GetComponent<CastSlot>().display = true;
 			return (false);
 		}
 		else
 		{
-			Cursor.visible = true;
 			Time.timeScale = 0.0f;
+			Player.GetComponent<CastSlot>().display = false;
+			Player.GetComponent<CSelect>().display = false;
+			Player.GetComponent<Inventory>().display = false;
 			return (true);
 		}
 	}
@@ -68,7 +81,7 @@ public class PauseMenu : MonoBehaviour {
 	{
 		playClickSound();
 		LevelManager.Instance.loadFromContinue = false;
-		LevelManager.Instance.LoadLevel(LevelManager.Instance.CurrentLevelName, true);
+		LevelManager.Instance.LoadLevel(Application.loadedLevelName, true);
 	}
 	public void MainMenu()
 	{

@@ -6,7 +6,7 @@ public class FallResponse : MonoBehaviour {
 	public float maxFallDist = 25.0f;		// max dist player can land safely
 	public AudioClip fallScreamSFX;
 
-	bool sfxPlayed = false;
+	public bool sfxPlayed = false;
 	float lastPosY = 0.0f;
 	float fallDist = 0.0f;
 
@@ -65,5 +65,6 @@ public class FallResponse : MonoBehaviour {
 	void ResetFallDist()
 	{
 		fallDist = lastPosY = 0;
+		sfxPlayed = false;
 	}
 }

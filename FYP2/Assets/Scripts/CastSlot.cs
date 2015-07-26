@@ -84,10 +84,10 @@ public class CastSlot : MonoBehaviour {
 	void Update () {
 
 
-		if(Input.GetKeyDown("tab"))
-		{
-			IncrementClampSlotLayer(1,true);
-		}
+//		if(Input.GetKeyDown("tab"))
+//		{
+//			IncrementClampSlotLayer(1,true);
+//		}
 		//Debug.Log("recieved key: " + Input.inputString);
 
 	}
@@ -156,7 +156,7 @@ public class CastSlot : MonoBehaviour {
 		int index = 0;
 
 		//labelRect = new Rect(slotsXstartposition - slotSize, slotsYstartposition ,slotSize,slotSize);
-		GUI.Box(labelRect,(currentSlotLayer+1).ToString(),labelStyle);
+		//GUI.Box(labelRect,(currentSlotLayer+1).ToString(),labelStyle);
 
 		for (int x = 0; x < maxSlotsColumn; ++x) 
 		{

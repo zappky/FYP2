@@ -44,8 +44,11 @@ public class CSelect : MonoBehaviour {
 		{
 			onguihelper = false;
 		}
+
+		if(DialogInterface.Instance.display)
+			onguihelper = false;
 	}
-	void ToggleDisplay()
+	public void ToggleDisplay()
 	{
 		display = !display;
 	}

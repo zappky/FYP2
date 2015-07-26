@@ -11,11 +11,11 @@
 				<option nextdialogid="2" nextdialogid_raw="2" resultid="0">Yeah, yeah...remind me again why I'm the one doing this?</option>
 			</dialog>
 			<dialog id="2" actorname="Enpisi">
-				<test>We had a bet, and you lost. Besides, you're the main character of this game. So, go out there and have fun!</test>
+				<test>We had a bet, and you lost. Besides, it's been a long time since you've last stepped outside. So go out there, and have fun!</test>
 				<option nextdialogid="3" nextdialogid_raw="3" resultid="0">...</option>
 			</dialog>
 			<dialog id="3" actorname="Enpisi">
-				<test>Oh yeah, I almost forgot. It's been a long time since you've last stepped outside right? You still remember the basics?</test>
+				<test>Oh yeah, you still remember the basics?</test>
 				<option nextdialogid="4" nextdialogid_raw="4" resultid="0">Nope.</option>
 				<option nextdialogid="6" nextdialogid_raw="6" resultid="0">Of course...can I go now?</option>
 			</dialog>
@@ -24,15 +24,15 @@
 				<option nextdialogid="5" nextdialogid_raw="5" resultid="0">Go on.</option>
 			</dialog>
 			<dialog id="5" actorname="Enpisi">
-				<test>You're strong enough to push objects your size and those smaller than you, as well as those made of cardboard and plastic. I think. *Stares at you*</test>
+				<test>You're strong enough to push objects your size and those smaller than you, as well as those made of cardboard and plastic. I think. *stares at you*</test>
 				<option nextdialogid="6" nextdialogid_raw="6" resultid="0">Don't look down on me!</option>
 			</dialog>
 			<dialog id="6" actorname="Enpisi">
-				<test>Okay then, the first thing you should do is to repair your grapple. Seems like its hook is broken. Go get a paper clip to fix that. It should still be there, on the Desk below.</test>
+				<test>Alright, alright, the first thing you should do is to repair your grapple. Seems like its hook is broken. Go get a paper clip to fix that. It should still be there, on the Desk below.</test>
 				<option nextdialogid="7" nextdialogid_raw="7" resultid="0">Is that all?</option>
 			</dialog>
 			<dialog id="7" actorname="Enpisi">
-				<test>Alright, alright, I'll be in touch with you through my telepathy as usual. Be careful~</test>
+				<test>I'll be in touch with you  as usual. Be careful~</test>
 				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Okaaay, I'm leaving.</option>
 			</dialog>
 			<dialog id="8" actorname="You">
@@ -49,16 +49,94 @@
 			</dialog>
 			<dialog id="11" actorname="Enpisi">
 				<test>See that mysterious light particles over there? You can find what you're looking for in it. Press [E] to interact with it.</test>
-				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">
-				</option>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">How would I be able to miss that?</option>
 			</dialog>
 			<dialog id="12" actorname="Enpisi">
-				<test>Go ahead and repair your grapple. Open your inventory [I], select the crafting tab, and double-click the Grapple to craft it.</test>
+				<test>Go ahead and repair your grapple. Open your inventory [I], select the crafting tab, and double-click on the Grapple to craft it.</test>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Okay.</option>
+			</dialog>
+			<dialog id="13" actorname="Enpisi">
+				<test>Have you repaired your grapple yet?</test>
+				<option nextdialogid="16" nextdialogid_raw="16" resultid="0">Yeah?</option>
+				<option nextdialogid="14" nextdialogid_raw="14" resultid="0">No. What am I supposed to do again?</option>
+			</dialog>
+			<dialog id="14" actorname="Enpisi">
+				<test>Open your inventory [I], select the crafting tab, double-click on the Grapple to craft it. Go get a paper clip if you still haven't do so.</test>
+				<option nextdialogid="15" nextdialogid_raw="15" resultid="0">Alright.</option>
+			</dialog>
+			<dialog id="15" actorname="Enpisi">
+				<test>Before I go, see that out-of-this-world, checkered object hanging there?</test>
+				<option nextdialogid="17" nextdialogid_raw="17" resultid="0">Uh-huh.</option>
+			</dialog>
+			<dialog id="16" actorname="Enpisi">
+				<test>Good, you'll need it here. See that out-of-this-world, checkered object hanging there?</test>
+				<option nextdialogid="17" nextdialogid_raw="17" resultid="0">Uh-huh.</option>
+			</dialog>
+			<dialog id="17" actorname="Enpisi">
+				<test>That's a grapple point. Launch your Grapple on it by pressing [F], or the quick slot it's at. Release it by pressing the same key again. You'd be able to go down safely from there.</test>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Okay.</option>
+			</dialog>
+			<dialog id="18" actorname="You">
+				<test>Hmm, maybe I should get some strings before heading out to the living room. I'd be able to wear my running shoes then.</test>
+				<option nextdialogid="19" nextdialogid_raw="19" resultid="0">
+				</option>
+			</dialog>
+			<dialog id="19" actorname="You">
+				<test>The human here loves to knit - I should be able to find some Yarn by the bedside table.</test>
 				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">
 				</option>
 			</dialog>
-			<dialog id="13" actorname="Enpisi">
-				<test>test13</test>
+			<dialog id="20" actorname="Enpisi">
+				<test>How to get up there? Try clicking the [LMB] once you have your grapple hooked.</test>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">You read my mind!</option>
+			</dialog>
+			<dialog id="21" actorname="Enpisi">
+				<test>You're collecting some strings right? If your inventory's full, click and drag the item you wish to discard, bring it outside of the inventory window, and right click to throw it away.</test>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Got it, thanks.</option>
+			</dialog>
+			<dialog id="22" actorname="Enpisi">
+				<test>Hey Eddy, go ahead and get some more strings. I have a feeling you'd need at least 2 later on.</test>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Okay.</option>
+			</dialog>
+			<dialog id="23" actorname="Enpisi">
+				<test>Great, you've got your running shoes on! Let me read the manual for you. Let's see..."Hold [LShift] while wearing these RUNNING SHOES to run extra-fast!"</test>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">That manual sounds familiar...</option>
+			</dialog>
+			<dialog id="24" actorname="Enpisi">
+				<test>Try not to make any noise here...</test>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">I know.</option>
+			</dialog>
+			<dialog id="25" actorname="Enpisi">
+				<test>You still have some strings right? You need a parachute to get across the gap here.</test>
+				<option nextdialogid="26" nextdialogid_raw="26" resultid="0">Uhh...nope.</option>
+				<option nextdialogid="28" nextdialogid_raw="28" resultid="0">Yeah. Remind me again how to use it once I made one?</option>
+			</dialog>
+			<dialog id="26" actorname="Enpisi">
+				<test>LOL. Have fun going all the way back to get those strings. Good thing your fall just now made the book drop. You can climb back here easily now.</test>
+				<option nextdialogid="27" nextdialogid_raw="27" resultid="0">...</option>
+			</dialog>
+			<dialog id="27" actorname="Enpisi">
+				<test>Right, I might as well teach you on how to use the parachute, since it's a pain for me to come back to you again later on. When in air, press [V] or the parachute quick slot key to deploy it, press the same key again to release it.</test>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Pain +9999</option>
+			</dialog>
+			<dialog id="28" actorname="Enpisi">
+				<test>When in air, press [V] or the parachute quick slot key to deploy it, press the same key again to release it.</test>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Okay, thanks.</option>
+			</dialog>
+			<dialog id="29" actorname="Enpisi">
+				<test>Well, I guess that's it then. You've already made it this far. I've got nothing left to teach you.</test>
+				<option nextdialogid="30" nextdialogid_raw="30" resultid="0">Huh? What are you talking about?</option>
+			</dialog>
+			<dialog id="30" actorname="Enpisi(You)">
+				<test>This is the final test to prepare you(myself) for the journey outside. See those plastic objects over there? Go push them down, climb on them while they're falling, and jump again to the platform above.</test>
+				<option nextdialogid="31" nextdialogid_raw="31" resultid="0">That reminds me...</option>
+			</dialog>
+			<dialog id="31" actorname="You">
+				<test>Right...........Enpisi's a friend I made out of my imagination. Everyone's gone already...I need to be smart, resourceful and agile in order to live in this world.</test>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Most importantly, I need to keep my sanity in check.</option>
+			</dialog>
+			<dialog id="32" actorname="You">
+				<test>I've made it... The door should be just up ahead. Hope the Cake's still there.</test>
 				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">
 				</option>
 			</dialog>

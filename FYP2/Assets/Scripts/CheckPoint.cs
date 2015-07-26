@@ -38,10 +38,15 @@ public class CheckPoint : MonoBehaviour {
 		this.orderPlacement = another.orderPlacement;
 	}
 	
-	void OnTriggerEnter(Collider other)
+	void OnTriggerStay(Collider other)
 	{
 		if(other.gameObject.tag == "Player")
 		{
+			// dont save if player in air or falls from a great ht
+			if(!other.gameObject.GetComponent<CharacterController>().isGrounded
+			|| other.gameObject.GetComponent<FallResponse>().sfxPlayed)	
+				return;
+
 			if(indexInList > levelManager.currentCheckPointIndex  )//check if the current collided checkpoint is further than the last checkpoint
 			{
 				levelManager.currentCheckPointIndex = indexInList;

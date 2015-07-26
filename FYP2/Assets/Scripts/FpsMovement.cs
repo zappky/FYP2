@@ -14,6 +14,7 @@ public class FpsMovement : MonoBehaviour
 	public float paraSpeed = 1.0f; 		//Parachute speed
 	public float airSpeed = 3.0f;  		//on air speed
 	public float swingSpeed = 0.1f;		//grapple swing speed
+	public float pushPower = 2.0f;		// force applied whn pushing object
 	float forwardSpeed = 0.0f;
 	float sideSpeed = 0.0f;
 
@@ -119,6 +120,7 @@ public class FpsMovement : MonoBehaviour
 			else if(!cc.isGrounded && Input.GetButtonDown("parachute") 
 			     && inventory.CheckContainsItem("Parachute"))	
 			{
+				inventory.UseItem("Parachute");
 				useParachute = !useParachute;
 			}
 
@@ -159,5 +161,40 @@ public class FpsMovement : MonoBehaviour
 			return true;
 		else
 			return false;
+	}
+
+
+	void OnControllerColliderHit(ControllerColliderHit col)
+	{
+		//check win
+		if (col.transform.tag == "WinObjective")
+		{
+			//print ("hited");
+			// check level, if 1, go to 2 else win
+			if(LevelManager.Instance.CurrentLevelName == "Level1")
+				Application.LoadLevel("Level2");
+			else
+				Application.LoadLevel("winscreen");
+		}
+
+		if(col.rigidbody == null 
+		|| col.rigidbody.isKinematic 
+		|| col.rigidbody.mass > GetComponent<Rigidbody>().mass)		// if obj too heavy
+			return;
+		
+		// to not push obj below player
+		if (col.moveDirection.y < -0.3)
+			return;
+		
+		// calc push dir from move dir (push obj to sides only)
+		Vector3 pushDir = new Vector3(col.moveDirection.x, 0, col.moveDirection.z);
+		
+		col.rigidbody.velocity = pushDir * pushPower;
+
+		// play sfx
+		col.gameObject.GetComponent<ObjectCollisionResponse>().playCollisionSFX();
+
+		// pass noise info to enemy mgr
+		EnemyManager.Instance.AddAlertGlobally(transform.position);
 	}
 }

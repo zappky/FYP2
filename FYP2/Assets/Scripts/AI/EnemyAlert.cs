@@ -52,7 +52,7 @@ public class EnemyAlert : MonoBehaviour {
 				{
 					alert += alertSpd * Time.deltaTime;
 
-					if(alert < 0)
+					if(alert <= 0)
 					{
 						alert = 0;
 						alertSpd = 0;	// reset
@@ -125,6 +125,9 @@ public class EnemyAlert : MonoBehaviour {
 			{
 				isAlarmed = true;
 			}
+
+			if(alert > ALERT_MAX)
+				alert = ALERT_MAX;
 		}
 		else
 		{

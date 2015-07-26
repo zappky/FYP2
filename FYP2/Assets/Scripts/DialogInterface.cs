@@ -81,7 +81,6 @@ public class DialogInterface : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
 	}
 	public bool StartNewDialogSessionUsingBookmark(string gameLevelName,string bookmark_node_name)
 	{
@@ -250,6 +249,14 @@ public class DialogInterface : MonoBehaviour {
 				GUI.Box(optionRects[0],CurrentDialogNode.options[0].text);
 			}
 		}
+	}
+
+	public void ToggleDisplay()
+	{	
+		display = !display;
+
+		if(CurrentDialogNode == null)
+			display = false;
 	}
 
 	public void LoadDialogInterface()

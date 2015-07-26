@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class Inventory : MonoBehaviour {
 
 	//interface variable section
-	public int slotX = 5;//slot column
+	public int slotX = 6;//slot column
 	public int slotY = 2;//slot rows
 	public float slotXpadding = 1;//as per slotsize 
 	public float slotYpadding = 1;//as per slotsize 
@@ -81,7 +81,7 @@ public class Inventory : MonoBehaviour {
 		tabNameList.Add("I");
 		tabNameList.Add("C");
 
-		pageNameList.Add("Inventory");
+		pageNameList.Add("Inventory " + currentweight  + "g/" + weightlimit + "g");
 		pageNameList.Add("Crafting");
 
 		backgroundRect = new Rect(tabRectList[0].xMin,tabRectList[tabAmount-1].yMax,Screen.width *0.65f,Screen.height *0.65f);
@@ -91,9 +91,9 @@ public class Inventory : MonoBehaviour {
 		slotYpadding = slotXpadding = 1.25f;
 
 
-		slotX = (int) ( (backgroundRect.width - finePadding) / (slotsize*slotXpadding ));
-		slotY = (int) ( (backgroundRect.height - finePadding) / (slotsize*slotYpadding ));
-
+		//slotX = (int) ( (backgroundRect.width - finePadding) / (slotsize*slotXpadding ));
+		//slotY = (int) ( (backgroundRect.height - finePadding) / (slotsize*slotYpadding ));
+		
 		for (int i = 0; i<(slotX*slotY); ++i) //populate the slot list
 		{
 			slots.Add(new Item());
@@ -146,12 +146,15 @@ public class Inventory : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-			if(Input.GetButtonDown("Inventory"))
-			{
-				ToggleDisplay();
-				//Cursor.visible = !Cursor.visible;
-			}
+		// update weight
+		pageNameList[0] = "Inventory  " + currentweight  + "g/" + weightlimit + "g";
+
+		if(Input.GetButtonDown("Inventory"))
+		{
+			ToggleDisplay();
+			//Cursor.visible = !Cursor.visible;
 		}
+	}
 
 
 	//brute force loop and return a reference to the item based on the search id
@@ -221,6 +224,11 @@ public class Inventory : MonoBehaviour {
 		for(int i = 0 ; i < Items.Count; ++i)
 		{
 			AddItem(Items[i]);
+
+			if(Items[i].ItemName == "Running Shoes")
+			{
+				DialogInterface.Instance.StartNewDialogSessionUsingBookmark(LevelManager.Instance.CurrentLevelName, 11);
+			}
 		}
 	}
 	public void AddItem(Item item)//here didnt check if the item is valid or weight predicted is valid
@@ -788,7 +796,11 @@ public class Inventory : MonoBehaviour {
 
 		if(display == true)
 		{
-
+			if(DialogInterface.Instance.display == true)
+			{
+				display = false;
+				return;
+			}
 
 			GUI.skin = skin;
 
@@ -942,7 +954,7 @@ public class Inventory : MonoBehaviour {
 								Debug.Log("nothing to craft");
 								AudioSource.PlayClipAtPoint(failSound, transform.position);
 							}else
-							{
+							{ 
 								AddItem(requestList);
 								AudioSource.PlayClipAtPoint(successSound, transform.position);
 								//AddItem(database.CraftItem(inventory,database.GetCraftRecipe(craftslots[index].id)));
@@ -1167,5 +1179,13 @@ public class Inventory : MonoBehaviour {
 			craftslots.Add(new Item());
 			inventory.Add(new Item());
 		}
+	}
+
+	public bool InventoryFull()
+	{
+		if(this.currentweight >= this.weightlimit)
+			return true;
+
+		return false;
 	}
 }

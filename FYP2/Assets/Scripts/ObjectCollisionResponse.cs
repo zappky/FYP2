@@ -23,6 +23,7 @@ public class ObjectCollisionResponse : MonoBehaviour {
 	bool wasDropped;					// to check if obj was dropped
 	float distToGround;					// dist from this obj's ctr is to its btm end
 	EnemyManager AImanager;				// to add alertness to nearby AIs when this obj collides
+	AudioSource sfxSource;
 
 	void Start () {
 		wasDropped = false;
@@ -32,6 +33,9 @@ public class ObjectCollisionResponse : MonoBehaviour {
 		distToGround = GetComponent<Collider>().bounds.extents.y;
 
 		AImanager = (GameObject.FindGameObjectWithTag("AImanager")).GetComponent<EnemyManager>();
+
+		sfxSource = gameObject.AddComponent<AudioSource>();
+		sfxSource.clip = hitSFX;
 	}
 
 	void Update () {
@@ -108,4 +112,9 @@ public class ObjectCollisionResponse : MonoBehaviour {
 			}
 		}
 	}
+
+	public void playCollisionSFX()
+	{
+		sfxSource.Play();
+	}					
 }

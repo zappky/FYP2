@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour {
 	public CastSlot playercastslot = null;
 	public DialogInterface playerdialoginferface = null;
 	public HideCursorScript playercursor = null;
+	public PauseMenu pauseMenu = null;
 
 	public string playerSaveFileName = "checkpoint_playersave";
 	public string playerdataPath = "";
@@ -54,6 +55,7 @@ public class LevelManager : MonoBehaviour {
 			this.filemanager = FileManager.Instance;
 			this.achievementmanager = AchievementManager.Instance;
 			this.playercursor = FindObjectOfType<HideCursorScript>();
+			this.pauseMenu = FindObjectOfType<PauseMenu>();
 			this.checkPointList.Clear();
 			this.currentCheckPointIndex = -1;
 			if(ApplicationLevelBoard.Instance.CheckValidGameLevelName(Application.loadedLevelName) == true)
@@ -143,37 +145,26 @@ public class LevelManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown("p"))
-		{
-			//DialogInterface.Instance.LoadDialogInterface();
-			//QuestManager.Instance.LoadQuestManager();
-
-			DialogInterface.Instance.StartNewDialogSessionUsingBookmark(Application.loadedLevelName,2);//can work because there is 2th bookmarked dialog node
-			//DialogInterface.Instance.StartNewDialogSessionUsingBookmark(Application.loadedLevelName,10);//cannot work because there is no 10th bookmarked dialog node
-		}
-		if(Input.GetKeyDown("o"))
-		{
-			//DialogInterface.Instance.LoadDialogInterface();
-			//QuestManager.Instance.LoadQuestManager();
-			DialogInterface.Instance.StartNewDialogSession(Application.loadedLevelName,10);//can work because there is 10th dialog node in the dialog tree
-		}
 		if(playercursor != null)
 		{
 			switch(CurrentLevelName)
 			{
-			case "main-scene":
-				if(playerinventory.display == true  || playerdialoginferface.display == true)
-					//|| playercastslot.display == true
-				{
-					playercursor.SetVisiblity(true);
-				}else
-				{
-					playercursor.SetVisiblity(false);
-				}
-				break;
-			default:
-				Cursor.visible = true;
-				break;
+				case "Level1":
+				case "Level2":
+					if(playerinventory.display == true  || playerdialoginferface.display == true
+				   	|| pauseMenu.paused == true)
+						//|| playercastslot.display == true
+					{
+						playercursor.SetVisiblity(true);
+					}
+					else
+					{
+						playercursor.SetVisiblity(false);
+					}
+					break;
+				default:
+					Cursor.visible = true;
+					break;
 			}
 		}else
 		{

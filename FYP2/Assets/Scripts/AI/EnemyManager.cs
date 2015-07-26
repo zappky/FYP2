@@ -4,10 +4,24 @@ using System.Collections.Generic;
 
 public class EnemyManager : MonoBehaviour {
 
+	public static EnemyManager _instance = null;
 	public List<EnemyAI> EnemiesList = new List<EnemyAI>();
 	GameObject player;
 
+	public static EnemyManager Instance
+	{
+		get
+		{
+			if(_instance == null)
+				_instance = new GameObject("AI").AddComponent<EnemyManager>();
+
+			return _instance;
+		}
+	}
+
 	void Start () {
+		_instance = this;
+
 		// add all enemies to manager
 		if(transform.childCount > 0)
 		{
@@ -21,7 +35,18 @@ public class EnemyManager : MonoBehaviour {
 	}
 
 	void Update () {
-
+		if(EnemiesList.Count > 0)
+		{
+			if(GetClosestAlertness() >= EnemiesList[0].GetComponent<EnemyAlert>().ALERT_MAX)
+			{
+				// lose, restart from last cp
+				Application.LoadLevel(Application.loadedLevelName);
+				Inventory playerinventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+				playerinventory.ClearInventoryItem();
+				LevelManager.Instance.loadFromContinue = true;
+				LevelManager.Instance.LoadPlayerInfo();
+			}
+		}
 	}
 
 	// fn. to add alert to all AIs 

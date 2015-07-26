@@ -28,7 +28,9 @@ public class GrappleScript : MonoBehaviour {
 
 
 	void Update() {
-		if(Input.GetButtonDown("Grapple")) 	
+		if(Input.GetButtonDown("Grapple")
+		&& this.GetComponent<Inventory>().CheckContainsItem("Grapple")
+		&& !DialogInterface.Instance.display) 	
 		{
 			if(theGrapple == null)				
 				FireGrapple();
@@ -52,7 +54,6 @@ public class GrappleScript : MonoBehaviour {
 			if(Input.GetButton("Fire2") && GetComponent<FixedJoint>() != null)
 			{	
 				reeling = true;
-				//GetComponent<FixedJoint>().connectedBody = null;
 				Destroy(GetComponent<FixedJoint>());
 			}
 
@@ -77,6 +78,9 @@ public class GrappleScript : MonoBehaviour {
 						Destroy(grappleRope.gameObject);
 						Destroy(theGrapple.transform.FindChild("Render").gameObject);
 						Destroy(grappleEnd.gameObject);
+
+						if(GetComponent<CharacterController>().isGrounded)
+							ReleaseGrapple();
 					}
 				}
 			}
@@ -126,7 +130,10 @@ public class GrappleScript : MonoBehaviour {
 	{
 		targetRopePt = null;
 		targetRopePtList.Clear();
-		Destroy(GetComponent<FixedJoint>());
+		if(GetComponent<FixedJoint>() != null)
+			Destroy(GetComponent<FixedJoint>());
+		if(GetComponent<HingeJoint>() != null)
+			Destroy(GetComponent<HingeJoint>());
 		Destroy(theGrapple);
 
 		theGrapple = null;

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <database>
-	<level id="0" name="main-scene">
+	<level id="0" name="Level1">
 		<collectibles>
-			<collectible id="0" name="test collectible" />
-			<collectible id="1" name="Area1" />
-			<collectible id="2" name="Area3" />
+			<collectible id="0" name="Area3" />
 		</collectibles>
 	</level>
 </database>

@@ -14,19 +14,19 @@ public class HideCursorScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetButtonDown ("CursorToggle") ) 
-		{
-			if(manualOverride == true)
-			{
-				ToggleVisiblity();
-			}
-			manualOverride = true;
-
-		}
-		if (Input.GetKeyDown ("right shift") ) 
-		{
-			manualOverride = false;
-		}
+//		if (Input.GetButtonDown ("CursorToggle") ) 
+//		{
+//			if(manualOverride == true)
+//			{
+//				ToggleVisiblity();
+//			}
+//			manualOverride = true;
+//
+//		}
+//		if (Input.GetKeyDown ("right shift") ) 
+//		{
+//			manualOverride = false;
+//		}
 		//Cursor.visible = display;
 	}
 
@@ -38,10 +38,10 @@ public class HideCursorScript : MonoBehaviour {
 	
 	public void SetVisiblity(bool mode)
 	{
-		if(manualOverride == false)
-		{
+		//if(manualOverride == false)
+		//{
 			display = mode;
 			Cursor.visible = display;
-		}
+		//}
 	}
 }

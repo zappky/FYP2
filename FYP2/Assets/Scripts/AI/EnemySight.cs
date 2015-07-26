@@ -3,8 +3,10 @@ using System.Collections;
 
 public class EnemySight : MonoBehaviour 
 {
+	public float eyeHeight = 67.5f;
 	public float fieldOfViewAngle = 110f; 	// how far AI can see 
 	//public bool playerInSight;
+	public LayerMask rayLayers;				// layers raycast would touch
 
 	//public Vector3 targetPos;				// pos to move towards to (player/last seen pos)
 
@@ -12,7 +14,6 @@ public class EnemySight : MonoBehaviour
 	SphereCollider col;
 	GameObject player;
 	EnemyAlert alert;						// AI's alertness calculations
-
 
 	void Start() {
 		col = GetComponent<SphereCollider>();
@@ -35,18 +36,18 @@ public class EnemySight : MonoBehaviour
 			alert.playerInSight = false;		// reset
 			alert.playerInRange = false;		// reset
 
-			Vector3 dir = other.transform.position - transform.position+transform.up;
+			Vector3 origin = transform.position+transform.up*eyeHeight;
+			Vector3 dir = other.transform.position+other.transform.up - origin;
 			float angle = Vector3.Angle(dir, transform.forward);
 
-			// debug ray (line of view)
-			Ray ray = new Ray(transform.position, dir);	
-			
+			Ray ray = new Ray(origin, dir.normalized);	
 			// check if player is within AI's fov  
 			if(angle < fieldOfViewAngle * 0.5f)
 			{ 
 				RaycastHit hit;
-				if(Physics.Raycast(transform.position, dir.normalized, out hit, transform.localScale.x*col.radius))
+				if(Physics.Raycast(ray, out hit, transform.localScale.x*col.radius, rayLayers))
 				{
+					print (hit.collider.name);
 					// if ray hits player (i.e. AI spotted player)
 					if(hit.collider.gameObject == player)
 					{
