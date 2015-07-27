@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Book 8
+  m_Name: Book black
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -145,7 +145,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .0544982702, g: .132352948, b: .0614783242, a: 1}
+        second: {r: .117647052, g: .117647052, b: .117647052, a: 1}
       data:
         first:
           name: _SpecColor
