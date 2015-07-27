@@ -12,6 +12,7 @@ public class volumecontrol : MonoBehaviour
 	public int height = 20;
 
 	public MainMenu MMscript;
+	public PauseMenu PMscript;
 
 	// Use this for initialization
 	void Start () 
@@ -32,6 +33,15 @@ public class volumecontrol : MonoBehaviour
 		{
 			GUI.skin = volumeslider;
 			if(MMscript.GetComponent<MainMenu>().optionMenu.enabled)
+			{
+				adjustvolume();
+			}
+		}
+
+		if(LevelManager.Instance.CurrentLevelName == "Level1" || LevelManager.Instance.CurrentLevelName == "Level2")
+		{
+			GUI.skin = volumeslider;
+			if(PMscript.GetComponent<PauseMenu>().optionMenu.enabled)
 			{
 				adjustvolume();
 			}
