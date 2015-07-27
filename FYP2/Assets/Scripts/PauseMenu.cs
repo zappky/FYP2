@@ -6,6 +6,7 @@ public class PauseMenu : MonoBehaviour {
 	public bool paused = false;
 	Canvas pauseMenu;
 	GameObject Player;
+	public Canvas optionMenu;
 
 	AudioSource clickSound;
 
@@ -14,6 +15,8 @@ public class PauseMenu : MonoBehaviour {
 		Player = GameObject.FindGameObjectWithTag("Player");
 		pauseMenu = GetComponent<Canvas>();
 		pauseMenu.enabled = false;
+		optionMenu = optionMenu.GetComponent<Canvas>();
+		optionMenu.enabled = false;
 		Time.timeScale = 1.0f;
 		clickSound = GetComponent<AudioSource>();
 	}
@@ -37,27 +40,21 @@ public class PauseMenu : MonoBehaviour {
 				paused = togglePause();
 			}
 		}
-
-		if(paused)
-		{
-			pauseMenu.enabled = true;
-		}
-		else
-		{
-			pauseMenu.enabled = false;
-		}
 	}
 
 	bool togglePause()
 	{
 		if(Time.timeScale == 0.0f)
 		{
+			pauseMenu.enabled = false;
+			optionMenu.enabled = false;
 			Time.timeScale = 1.0f;
 			Player.GetComponent<CastSlot>().display = true;
 			return (false);
 		}
 		else
 		{
+			pauseMenu.enabled = true;
 			Time.timeScale = 0.0f;
 			Player.GetComponent<CastSlot>().display = false;
 			Player.GetComponent<CSelect>().display = false;
@@ -92,5 +89,19 @@ public class PauseMenu : MonoBehaviour {
 	void playClickSound()
 	{
 		clickSound.Play();
+	}
+
+	public void OptionPress()
+	{
+		playClickSound();
+		optionMenu.enabled = true;
+		pauseMenu.enabled = false;
+	}
+
+	public void BackPress()
+	{
+		playClickSound();
+		optionMenu.enabled = false;
+		pauseMenu.enabled = true;
 	}
 }

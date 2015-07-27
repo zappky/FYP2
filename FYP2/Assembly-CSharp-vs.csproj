@@ -59,7 +59,6 @@
      <Compile Include="Assets\Scripts\CastSlot.cs" />
      <Compile Include="Assets\Scripts\CheckPoint.cs" />
      <Compile Include="Assets\Scripts\Collectible.cs" />
-     <Compile Include="Assets\Scripts\ControllerCollisionScript.cs" />
      <Compile Include="Assets\Scripts\DialogDatabase.cs" />
      <Compile Include="Assets\Scripts\DialogInterface.cs" />
      <Compile Include="Assets\Scripts\DialogTree.cs" />

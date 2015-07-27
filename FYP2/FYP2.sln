@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{60612BA8-8EA8-8B80-3202-7A73721CD593}") = "FYP2", "Assembly-CSharp.csproj", "{B2D0E592-A81F-BDDF-C6DB-E7E5D25E6B0E}"
 EndProject
+Project("{60612BA8-8EA8-8B80-3202-7A73721CD593}") = "FYP2", "Assembly-CSharp-Editor.csproj", "{8FE98D30-6686-C5CE-7393-A62F443E1D85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +15,15 @@ Global
 		{B2D0E592-A81F-BDDF-C6DB-E7E5D25E6B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2D0E592-A81F-BDDF-C6DB-E7E5D25E6B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2D0E592-A81F-BDDF-C6DB-E7E5D25E6B0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FE98D30-6686-C5CE-7393-A62F443E1D85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FE98D30-6686-C5CE-7393-A62F443E1D85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FE98D30-6686-C5CE-7393-A62F443E1D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FE98D30-6686-C5CE-7393-A62F443E1D85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																																																																																																																																																																																																																													GlobalSection(MonoDevelopProperties) = preSolution
+																																																																																																																																																																																																																																																																																								GlobalSection(MonoDevelopProperties) = preSolution
 =======
 																																																																																																																																													GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> origin/master
