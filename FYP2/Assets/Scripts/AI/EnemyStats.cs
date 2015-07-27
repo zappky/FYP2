@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class EnemyStats : MonoBehaviour {
-	public float moveSpeed = 5.0f;
+	public float moveSpeed = 20.0f;
 	public float rotationSpeed = 450.0f;		// AI's turning spd
 	public float alertSightMoveSpeed = 2.0f;	// move spd multiplier for when in alert state (due to sight of player)
 	public float alertNoiseMoveSpeed = 1.2f;	// move spd multiplier for when in alert state (due to noise)

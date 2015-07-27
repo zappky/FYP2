@@ -181,9 +181,13 @@
 		
 	<level>
 		<dialogtree id = "0" gamelevelparent = "Level2">
-			<dialog id = "0" actorname = "Enpisi" newdialogsection = "true">
-				<text>Level2 test text</text>
-				<option nextdialogid = "" resultid = "0">Uhh...yeah?</option>
+			<dialog id = "0" actorname = "You" newdialogsection = "true">
+				<text>There it is. The Cake must be in one of those boxes there...</text>
+				<option nextdialogid = "1" resultid = "0">I need to find a way to get there.</option>
+			</dialog>
+			<dialog id = "1" actorname = "You">
+				<text>The shelf over there might contain something useful.</text>
+				<option nextdialogid = "" resultid = "0">I better go see what I could use.</option>
 			</dialog>
 		</dialogtree>
 	</level>

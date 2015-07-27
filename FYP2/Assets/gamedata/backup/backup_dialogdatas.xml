@@ -144,9 +144,13 @@
 	</level>
 	<level>
 		<dialogtree>
-			<dialog id="0" actorname="Enpisi">
-				<test>Level2 test text</test>
-				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Uhh...yeah?</option>
+			<dialog id="0" actorname="You">
+				<test>There it is. The Cake must be in one of those boxes there...</test>
+				<option nextdialogid="1" nextdialogid_raw="1" resultid="0">I need to find a way to get there.</option>
+			</dialog>
+			<dialog id="1" actorname="You">
+				<test>The shelf over there might contain something useful.</test>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">I better go see what I could use.</option>
 			</dialog>
 		</dialogtree>
 	</level>
