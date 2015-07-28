@@ -352,6 +352,7 @@ public class Inventory : MonoBehaviour {
 	{	
 		if (this.currentweight >= this.weightlimit)
 		{
+			Debug.Log("WARNING: addItem function Weight exceed limit cannot add anymore item id:" + id.ToString() + "with amount: " +amount.ToString());
 			return false;
 		}
 
@@ -417,14 +418,14 @@ public class Inventory : MonoBehaviour {
 								}
 								return true;
 							}
-
 						}
-						break;	
+						break;//break out if found the item	
 					}
 				}
-				break;			
+				break;//break out if there no more valid slot			
 			}
 		}
+		Debug.Log("WARNING: AddItem function cannot add anymore item id:" + id.ToString() + "with amount: " +amount.ToString());
 		return false;
 	}
 	void RemoveKnownItem(int inventoryindex)
@@ -536,7 +537,63 @@ public class Inventory : MonoBehaviour {
 
 		return false;
 	}
+	public int ItemCountCheck(Item item)
+	{
+		int count = 0;
 
+		if(item.id < 0)
+		{
+			Debug.Log("ERROR: ItemCountCheck is trying to check using negative sample id: " + item.id.ToString());
+			return -1;
+		}
+		if(item.itemname == "")
+		{
+			Debug.Log("ERROR: ItemCountCheck is trying to check using bad sample name");
+			return -1;
+		}
+
+		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+		{
+			if(inventory[i].itemname == item.itemname || inventory[i].id == item.id)
+			{
+				count += inventory[i].amount;
+			}
+		}
+		return count;
+	}
+	public int ItemCountCheck(string itemname)
+	{
+		int count = 0;
+		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+		{
+			if(inventory[i].itemname == itemname)
+			{
+				count += inventory[i].amount;
+			}
+		}
+		return count;
+	}
+	
+	public int ItemCountCheck(int id)
+	{
+		int count = 0;
+
+		if(id < 0)
+		{
+			Debug.Log("ERROR: ItemCountCheck id is negative value");
+			return -1;
+		}
+
+		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
+		{
+			if(inventory[i].id == id)
+			{
+				count += inventory[i].amount;
+			}
+		}
+		
+		return count;
+	}
 	public bool CheckContainsItem(string itemname)
 	{
 		for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
@@ -564,26 +621,34 @@ public class Inventory : MonoBehaviour {
 			{
 				return true;
 			}
+
+			//if still cannot be found
+			for(int i = 0 ; i < id; ++i)//loop through whole inventory
+			{
+				if(inventory[i].id == id)
+				{
+					return true;
+				}
+			}
+			for(int i = id+1 ; i < inventory.Count; ++i)//loop through whole inventory
+			{
+				if(inventory[i].id == id)
+				{
+					return true;
+				}
+			}
+
 		}else
 		{
 			Debug.Log("WARNING: CheckContainsItem id is over list size,brute force search will be perfomed");
-		}
-		
-		for(int i = 0 ; i < id; ++i)//loop through whole inventory
-		{
-			if(inventory[i].id == id)
+			for(int i = 0 ; i < inventory.Count; ++i)//loop through whole inventory
 			{
-				return true;
+				if(inventory[i].id == id)
+				{
+					return true;
+				}
 			}
 		}
-		for(int i = id+1 ; i < inventory.Count; ++i)//loop through whole inventory
-		{
-			if(inventory[i].id == id)
-			{
-				return true;
-			}
-		}
-		
 		return false;
 	}
 	public void ActivateItemEffect(Item item)
@@ -982,21 +1047,35 @@ public class Inventory : MonoBehaviour {
 		
 		if(currentevent.button == 1 && currentevent.type == EventType.mouseUp && draggingitem)//discarding item when leftclick and dragging item//temporary
 		{				
-			if(itemdragged.stackable == true ||  itemdragged.type == Item.ItemType.Consumable)
-			{
+			AddItemAmountWithWeight(itemdragged,-1);
+			Debug.Log("DISCARDING ITEM: " + itemdragged.ItemName + " amount:" + itemdragged.amount);
+			if(itemdragged.amount <= 0)
+			{		
+				Debug.Log("ZERO ITEM detected: " + itemdragged.ItemName + " amount:" + itemdragged.amount);
 
-				AddItemAmountWithWeight(itemdragged,-1);
+				Item representationItem = playercastslot.GetItem(itemdragged);
 
-				if(itemdragged.amount <= 0)
-				{		
-
-					playercastslot.GetItem(itemdragged).displayDisableIcon = true;
-					draggingitem = false;
-					itemdragged = null;
-
+				if(representationItem != null)
+				{
+					if(itemdragged.stackable == true)
+					{
+						if(itemdragged.amount <= 0 )
+						{
+							representationItem.displayDisableIcon = true;
+						}
+					}else
+					{
+						representationItem.amount = ItemCountCheck(representationItem.id);//need to double check whether there are no duplicate of non-stackable item
+						if(representationItem.amount <= 0)
+						{
+							representationItem.displayDisableIcon = true;
+						}
+					}
 				}
-			}
-			
+				//remove the actual item in inventory
+				draggingitem = false;
+				itemdragged = null;
+			}	
 		}
 		
 		for (int y = 0; y < slotY; ++y) 

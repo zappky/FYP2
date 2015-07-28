@@ -2,7 +2,7 @@
 <database>
 	<player>
 		<level>
-			<currentlevel_unity name="Level2" number="2" />
+			<currentlevel_unity name="Level1" number="1" />
 		</level>
 		<info>
 			<name>Eddy</name>
@@ -10,15 +10,21 @@
 		</info>
 		<quickcast>
 			<layer index="0">
-				<item id="1" name="Grapple" index="0" />
+				<item id="16" name="testitem2" index="0" />
+				<item id="19" name="testitem5" index="1" />
 			</layer>
 			<layer index="1" />
 			<layer index="2" />
 		</quickcast>
-		<checkpoint id="0" name="0" index="0" x="149" y="46.2" z="404.5" rx="0" ry="-0.9206175" rz="0" rw="0.3904656" />
+		<checkpoint id="0" name="0" index="0" x="-95.51" y="86.13" z="-57.03" rx="0" ry="0.2376859" rz="0" rw="0.9713421" />
 		<inventory weight="0">
-			<item index="0" id="0" name="Running Shoes" amount="1" weight="0" description="Gotta go fast!" stackable="True" type="equipable" />
-			<item index="1" id="1" name="Grapple" amount="1" weight="0" description="For easier travelling. Not to be used for fighting titans." stackable="True" type="useable" />
+			<item index="0" id="6" name="Broken Grapple" amount="1" weight="0" description="A grapple with a broken hook." stackable="True" type="craftmaterial" />
+			<item index="1" id="7" name="Old Running Shoes" amount="1" weight="0" description="Missing shoelaces. Gift from Mom." stackable="True" type="craftmaterial" />
+			<item index="2" id="15" name="testitem1" amount="2" weight="0" description="equipable,stackable" stackable="True" type="equipable" />
+			<item index="3" id="16" name="testitem2" amount="2" weight="0" description="useable,stackable" stackable="True" type="useable" />
+			<item index="4" id="17" name="testitem3" amount="2" weight="0" description="craftmaterial,stackable" stackable="True" type="craftmaterial" />
+			<item index="5" id="18" name="testitem4" amount="2" weight="0" description="quest,stackable" stackable="True" type="quest" />
+			<item index="6" id="19" name="testitem5" amount="2" weight="0" description="consumable,stackable" stackable="True" type="consumable" />
 		</inventory>
 	</player>
 </database>

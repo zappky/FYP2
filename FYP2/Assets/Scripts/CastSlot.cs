@@ -266,7 +266,52 @@ public class CastSlot : MonoBehaviour {
 		}
 		return null;
 	}
-	public bool CheckItemAlreadyAdded(int item_id)
+	public int ItemCountCheck(Item item)
+	{
+		int count = 0;
+		for (int y = 0 ; y<maxSlotsLayer; ++y )
+		{
+			for (int x = 0 ; x<maxSlotsColumn; ++x )
+			{
+				if(slotsLayerList[y].slots[x].id == item.id || slotsLayerList[y].slots[x].itemname == item.itemname )
+				{
+					++count;
+				}
+			}
+		}
+		return count;
+	}
+	public int ItemCountCheck(string item_name)
+	{
+		int count = 0;
+		for (int y = 0 ; y<maxSlotsLayer; ++y )
+		{
+			for (int x = 0 ; x<maxSlotsColumn; ++x )
+			{
+				if(slotsLayerList[y].slots[x].itemname== item_name)
+				{
+					++count;
+				}
+			}
+		}
+		return count;
+	}
+	public int ItemCountCheck(int item_id)
+	{
+		int count = 0;
+		for (int y = 0 ; y<maxSlotsLayer; ++y )
+		{
+			for (int x = 0 ; x<maxSlotsColumn; ++x )
+			{
+				if(slotsLayerList[y].slots[x].id == item_id)
+				{
+					++count;
+				}
+			}
+		}
+		return count;
+	}
+	public bool DuplicateItemCheck(int item_id)
 	{
 		for (int y = 0 ; y<maxSlotsLayer; ++y )
 		{
