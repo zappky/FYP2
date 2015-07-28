@@ -114,6 +114,7 @@ public class MainMenu : MonoBehaviour {
 	}
 	public void LoadLevel(int number)
 	{
+		LevelManager.Instance.loadFromContinue = false;
 		switch(number)
 		{
 		case 0:

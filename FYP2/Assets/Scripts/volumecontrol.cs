@@ -24,7 +24,7 @@ public class volumecontrol : MonoBehaviour
 
 	void adjustvolume()
 	{
-		hSliderValue = GUI.HorizontalSlider (new Rect(pos.x + 400, pos.y + 300, width, height),hSliderValue, 0.0f, 1.0f);
+		hSliderValue = GUI.HorizontalSlider (new Rect(pos.x + 400, pos.y + 300, width, height), hSliderValue, 0.0f, 1.0f, volumeslider.GetStyle("horizontalslider"), volumeslider.GetStyle("horizontalsliderthumb"));
 	}
 
 	void OnGUI()

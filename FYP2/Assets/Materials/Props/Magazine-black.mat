@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Yarn
+  m_Name: Magazine-black
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -77,6 +77,13 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _SpecGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -101,7 +108,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: .0810000002
+        second: .699999988
       data:
         first:
           name: _BumpScale
@@ -138,7 +145,11 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: .161764681, b: .161764681, a: 1}
+        second: {r: .117647052, g: .117647052, b: .117647052, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .338235319, g: .338235319, b: .338235319, a: 1}
       data:
         first:
           name: _EmissionColorUI
