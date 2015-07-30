@@ -4,6 +4,12 @@
 		<level id = "Level1">
 			<item id = "6" amount = "1"></item>
 			<item id = "7" amount = "1"></item>
+			
+			<item id = "15" amount = "2"></item>
+			<item id = "16" amount = "2"></item>
+			<item id = "17" amount = "2"></item>
+			<item id = "18" amount = "2"></item>
+			<item id = "19" amount = "2"></item>
 		</level>
 		
 		<level id = "Level2">

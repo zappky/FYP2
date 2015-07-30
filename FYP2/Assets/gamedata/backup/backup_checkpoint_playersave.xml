@@ -10,7 +10,8 @@
 		</info>
 		<quickcast>
 			<layer index="0">
-				<item id="1" name="Grapple" index="0" />
+				<item id="16" name="testitem2" index="0" />
+				<item id="19" name="testitem5" index="1" />
 			</layer>
 			<layer index="1" />
 			<layer index="2" />
