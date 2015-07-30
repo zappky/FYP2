@@ -2,7 +2,7 @@
 <database>
 	<player>
 		<level>
-			<currentlevel_unity name="Level2" number="2" />
+			<currentlevel_unity name="Level1" number="1" />
 		</level>
 		<info>
 			<name>Eddy</name>
@@ -15,10 +15,10 @@
 			<layer index="1" />
 			<layer index="2" />
 		</quickcast>
-		<checkpoint id="0" name="0" index="0" x="149" y="46.2" z="404.5" rx="0" ry="-0.9206175" rz="0" rw="0.3904656" />
-		<inventory weight="0">
-			<item index="0" id="0" name="Running Shoes" amount="1" weight="0" description="Gotta go fast!" stackable="True" type="equipable" />
-			<item index="1" id="1" name="Grapple" amount="1" weight="0" description="For easier travelling. Not to be used for fighting titans." stackable="True" type="useable" />
+		<checkpoint id="-1" name="6" index="5" x="-30.8" y="36.1" z="172.9" rx="0" ry="0.7071068" rz="0" rw="0.7071067" />
+		<inventory weight="1">
+			<item index="0" id="1" name="Grapple" amount="1" weight="0" description="For easier travelling. Not to be used for fighting titans." stackable="True" type="useable" />
+			<item index="1" id="7" name="Old Running Shoes" amount="1" weight="0" description="Missing shoelaces. Gift from Mom." stackable="True" type="craftmaterial" />
 		</inventory>
 	</player>
 </database>

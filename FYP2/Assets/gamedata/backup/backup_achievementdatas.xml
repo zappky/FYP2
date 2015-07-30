@@ -3,6 +3,7 @@
 	<level id="0" name="Level1">
 		<collectibles>
 			<collectible id="0" name="Area3" />
+			<collectible id="1" name="Area1" />
 		</collectibles>
 	</level>
 </database>

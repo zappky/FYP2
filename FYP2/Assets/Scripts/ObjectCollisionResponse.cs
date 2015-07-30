@@ -115,6 +115,7 @@ public class ObjectCollisionResponse : MonoBehaviour {
 
 	public void playCollisionSFX()
 	{
-		sfxSource.Play();
+		if(!sfxSource.isPlaying)
+			sfxSource.Play();
 	}					
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <database>
 	<dialoginterface>
-		<currentdialognode id="0" text="There it is. The Cake must be in one of those boxes there..." />
+		<currentdialognode id="13" text="Have you repaired your grapple yet?" />
 	</dialoginterface>
 </database>
