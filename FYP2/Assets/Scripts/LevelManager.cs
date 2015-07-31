@@ -172,6 +172,10 @@ public class LevelManager : MonoBehaviour {
 		}
 
 	}
+	public CheckPoint GetCurrentCheckPoint()
+	{
+		return checkPointList[currentCheckPointIndex];
+	}
 	public void LoadPreDefinedInventory(int levelIndex)
 	{
 		FileManager.Instance.LoadPreDefinedInventory(levelIndex);

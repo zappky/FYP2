@@ -3,6 +3,7 @@ using System.Collections;
 
 public class FallResponse : MonoBehaviour {
 
+	public bool active = true;//whether to do behavioir of the script
 	public float maxFallDist = 25.0f;		// max dist player can land safely
 	public AudioClip fallScreamSFX;
 
@@ -35,7 +36,7 @@ public class FallResponse : MonoBehaviour {
 		if(cc.isGrounded)
 		{
 			// check fall dist 
-			if(fallDist >= maxFallDist)					// if fall ht too high
+			if(fallDist >= maxFallDist && active == true)					// if fall ht too high
 			{
 				// reload from last checkpt
 				ResetFallDist();

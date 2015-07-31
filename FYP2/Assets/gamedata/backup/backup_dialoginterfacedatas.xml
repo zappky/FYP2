@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <database>
 	<dialoginterface>
-		<currentdialognode id="21" text="You're collecting some strings right? If your inventory's full, click and drag the item you wish to discard, bring it outside of the inventory window, and right click to throw it away." />
+		<currentdialognode id="0" text="Hey Eddy! You know what you're supposed to look for right?" />
 	</dialoginterface>
 </database>

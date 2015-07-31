@@ -60,18 +60,24 @@ public class QuestManager : MonoBehaviour {
 	public static QuestManager instance = null;
 	public static bool initedBefore = false;
 
-	public bool display = false;
+	public bool display = true;
 
 	public QuestLogDatabase questlogdatabase = null;
 	public my_QuestLogList questLogListDatabase = null;
 	public List<my_QuestLog> questLogs = new List<my_QuestLog>();
 
 	public Rect questDisplayRect;
+	public Rect notificationDisplayRect;
+	public string notificationText = "";
 	public List<Rect>questLogRects = new List<Rect>();
 	public const int maxQuestLog = 1;
 	private float questLogHeight = -1.0f;
 	public int currentGameLevel = -1;
 	public int currentQuestIndex = -1;
+	public float notificationTimer  = 0.0f;
+	public float notificaitonTimerLimit = 5.0f;//5 sec
+	public GUIStyle notificationlabelStyle;
+	public List<GUIStyle> questlogStyles = new List<GUIStyle>();
 	public static QuestManager Instance
 	{
 		get
@@ -114,16 +120,31 @@ public class QuestManager : MonoBehaviour {
 			{
 				//questLogs.Add(new my_QuestLog());
 				questLogRects.Add (new Rect (questDisplayRect.xMin,questDisplayRect.yMin + (i+1) *questLogHeight,questDisplayRect.width,questLogHeight));
+
+				questlogStyles.Add(new GUIStyle());
+				questlogStyles[i].normal.textColor = Color.white;
+				questlogStyles[i].normal.background = Texture2D.blackTexture;
+				questlogStyles[i].alignment = TextAnchor.MiddleCenter;
+
 			}
+			notificationDisplayRect = new Rect (questDisplayRect.xMin,questDisplayRect.yMin + (maxQuestLog+1) *questLogHeight,questDisplayRect.width,questLogHeight);
 			currentQuestIndex = 0;
 			questLogs.Clear();
 			FetchCurrentQuest();
+
+			notificationlabelStyle = new GUIStyle();
+			notificationlabelStyle.normal.textColor = Color.white;
+			notificationlabelStyle.normal.background = (Texture2D)Resources.Load("Fonts/green");
+			notificationlabelStyle.alignment = TextAnchor.MiddleCenter;
+
 			initedBefore = true;
 		}
 	}
 
 	public void ClearQuest(my_QuestLog theQuest)
 	{
+		notificationText = "CLEARED: " + theQuest.questname;
+		notificationTimer = 0;
 		theQuest.ClearQuest();
 		questLogs.Remove(theQuest);
 		FetchNewQuest();
@@ -133,6 +154,8 @@ public class QuestManager : MonoBehaviour {
 		my_QuestLog theQuest = GetQuestLog(questId);
 		if(theQuest != null)
 		{
+			notificationText = theQuest.questname + "IS CLEARED";
+			notificationTimer = 0;
 			theQuest.ClearQuest();
 			questLogs.Remove(theQuest);
 		}else
@@ -146,6 +169,8 @@ public class QuestManager : MonoBehaviour {
 		my_QuestLog theQuest = GetQuestLog(questName);
 		if(theQuest != null)
 		{
+			notificationText = theQuest.questname + "IS CLEARED";
+			notificationTimer = 0;
 			theQuest.ClearQuest();
 			questLogs.Remove(theQuest);
 		}else
@@ -187,6 +212,9 @@ public class QuestManager : MonoBehaviour {
 				break;
 			}
 		}
+
+
+
 	}
 	public void RemoveQuestLog(int questId)
 	{
@@ -397,31 +425,69 @@ public class QuestManager : MonoBehaviour {
 	}
 	void UpdateDisplayRect()
 	{
-		questDisplayRect = new Rect (0.0f,Screen.height * 0.01f,Screen.width * 0.25f,Screen.width * 0.25f);
+		//questDisplayRect = new Rect (0.0f,Screen.height * 0.001f,Screen.width * 0.25f,Screen.height * 0.1f);
+		questDisplayRect.x = 0.0f;
+		questDisplayRect.y = Screen.height * 0.001f;
+		questDisplayRect.width = Screen.width * 0.25f;
+		questDisplayRect.height = Screen.height * 0.1f;
 		questLogHeight = questDisplayRect.height / (maxQuestLog+1);
 		for (int i = 0; i<maxQuestLog; ++i)//reserve some rect 
 		{
-			questLogRects[i] = new Rect(questDisplayRect.xMin,questDisplayRect.yMin + (i+1) *questLogHeight,questDisplayRect.width,questLogHeight);
+			questLogRects[i] = new Rect (questDisplayRect.xMin,questDisplayRect.yMin + (i+1) *questLogHeight,questDisplayRect.width,questLogHeight);
+	
 		}
+
+
+		notificationDisplayRect.x = questDisplayRect.xMin;
+		notificationDisplayRect.y = questDisplayRect.yMin + (maxQuestLog+1) *questLogHeight;
+		notificationDisplayRect.width = questDisplayRect.width;
+		notificationDisplayRect.height = questLogHeight;
+
+		//notificationlabelStyle.fontSize = (int)(notificationDisplayRect.width/notificationText.Length)*2;
 	}
 	void OnGUI()
 	{
-		if(ScreenManager.Instance.CheckAspectChanged() == true)
+		if(display == true)
 		{
-			UpdateDisplayRect();
+
+
+			if(ScreenManager.Instance.CheckAspectChanged() == true)
+			{
+				UpdateDisplayRect();
+			}
+
+			GUI.Box(questDisplayRect,"Objective");
+			for (int i = 0; i < questLogs.Count; ++i) 
+			{
+				int predictedSize = (int)(questLogRects[i].width/questLogs[i].questname.Length)*2;//the calcution isnt good enough to determine the nice fitting
+				if(predictedSize < questlogStyles[i].fontSize)//dont let it become bigger than default size
+				{
+					questlogStyles[i].fontSize = predictedSize;
+				}
+				GUI.Box(questLogRects[i],questLogs[i].questname/*+ " : "*/+ questLogs[i].StringStatues(),questlogStyles[i]);
+
+		
+				//Vector2 temp = questlogStyles[i].CalcSize(new GUIContent(questLogs[i].questname));
+				//questlogStyles[i].fontSize = (int)temp.x;
+
+			}
+			if(notificationText != "")
+			{
+				notificationTimer += Time.deltaTime;
+				if(notificationTimer < notificaitonTimerLimit)
+				{
+					int predictedSize = (int)(notificationDisplayRect.width/notificationText.Length)*2;
+					if(predictedSize < notificationlabelStyle.fontSize)//dont let it become bigger than default size
+					{
+						notificationlabelStyle.fontSize = predictedSize;
+					}
+					GUI.Box(notificationDisplayRect,notificationText,notificationlabelStyle);
+				}else
+				{
+					notificationText = "";
+				}
+			}
 		}
-
-		//if(display == true)
-		//{
-
-
-		GUI.Box(questDisplayRect,"Objective");
-		for (int i = 0; i < questLogs.Count; ++i) 
-		{
-			GUI.Box(questLogRects[i],questLogs[i].questname/*+ " : "*/+ questLogs[i].StringStatues());
-		}
-		//}
-
 	}
 	public void LoadQuestManager()
 	{

@@ -34,6 +34,7 @@ public class SingetonSetUp : MonoBehaviour {
 		{
 			//checking
 			//PersistentSetUp persistobj =GameObject.FindObjectOfType<PersistentSetUp>();
+
 			FileManager.Instance.Initialize();
 
 			PersistentSetUp persistobj = FindObjectOfType<PersistentSetUp>();
@@ -56,6 +57,7 @@ public class SingetonSetUp : MonoBehaviour {
 			QuestManager.Instance.Initialize();
 			DialogInterface.Instance.Initialize();
 
+			DebugControl.Instance.Initialize();//let it be last
 			Debug.Log ("All Game singeton gameobject initialize complete =D ");
 
 			doneSetUp = true;
