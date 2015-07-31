@@ -106,43 +106,40 @@ public class FpsMovement : MonoBehaviour
 
 		if(!isGrappling)	 
 		{
-			//jump
-			if(!debugFlyMode)
+			// in air
+			if(!cc.isGrounded)
 			{
-				if(!cc.isGrounded)
+				if(!debugFlyMode)
 					vertVelo += Physics.gravity.y * 2 * Time.deltaTime;
+				else
+					vertVelo = Input.GetAxis("Fly") * moveSpeed;	
+
+				if(Input.GetButtonDown("parachute"))
+				{
+					if(!useParachute)
+					{
+						if(inventory.CheckContainsItem("Parachute"))
+							ToggleParachute(true);
+					}
+					else 										 
+						inventory.UseItem("Parachute");		// player fin used parachute alr, so remove it
+				}
+
+				// parachute in use
+				if (useParachute) 
+				{
+					vertVelo = -paraSpeed;
+					forwardSpeed = Input.GetAxis ("Vertical") * airSpeed;
+					sideSpeed = Input.GetAxis ("Horizontal") * airSpeed;
+				}
 			}
 			else
 			{
-				vertVelo = Input.GetAxis("Fly") * moveSpeed;	 
-			}
+				if (useParachute) 
+					inventory.UseItem("Parachute");			// player fin used parachute alr, so remove it
 
-			if(cc.isGrounded && Input.GetButton("Jump") && !(inventory.display || dialoginterface.display))
-			{
-				vertVelo = jumpSpeed;
-			}
-			else if(!cc.isGrounded && Input.GetButtonDown("parachute") 
-			     && inventory.CheckContainsItem("Parachute"))	
-			{
-				useParachute = !useParachute;
-				transform.FindChild("Parachute").gameObject.SetActive(useParachute);
-				if(useParachute)
-					inventory.UseItem("Parachute");
-			}
-
-			//activate parachute
-			if (useParachute) 
-			{
-				//set back parachute to false
-				if(cc.isGrounded)
-				{
-					transform.FindChild("Parachute").gameObject.SetActive(false);
-					useParachute = false;
-				}
-
-				vertVelo = -paraSpeed;
-				forwardSpeed = Input.GetAxis ("Vertical") * airSpeed;
-				sideSpeed = Input.GetAxis ("Horizontal") * airSpeed;
+				if(Input.GetButton("Jump") && !(inventory.display || dialoginterface.display))
+					vertVelo = jumpSpeed;
 			}
 
 			Vector3 speed = new Vector3 (sideSpeed, vertVelo, forwardSpeed);
@@ -166,6 +163,13 @@ public class FpsMovement : MonoBehaviour
 		}
 	}
 
+	public void ToggleParachute(bool usePara)
+	{
+		useParachute = usePara;
+		// deploy parachute 'model'
+		print (useParachute);
+		transform.FindChild("Parachute").gameObject.SetActive(useParachute);
+	}
 	
 	bool updateGrappleCheck()
 	{

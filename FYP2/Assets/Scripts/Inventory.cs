@@ -696,7 +696,16 @@ public class Inventory : MonoBehaviour {
 			}
 			break;
 		case 2:
-			Debug.Log("Parachute effect");
+			FpsMovement fpsMoveScript = GetComponent<FpsMovement>();
+			if(!fpsMoveScript.useParachute)
+			{
+				fpsMoveScript.ToggleParachute(true);
+			}
+			else 						
+			{
+				fpsMoveScript.ToggleParachute(false);
+				RemoveItem(itemId);
+			}
 			break;
 		case 3:
 			Debug.Log("Toy Bell effect");
@@ -750,6 +759,8 @@ public class Inventory : MonoBehaviour {
 		break;
 
 		case "Parachute":
+			GetComponent<FpsMovement>().ToggleParachute(false);
+			RemoveItem(itemName);
 		break;
 
 		case "Toy Bell":
