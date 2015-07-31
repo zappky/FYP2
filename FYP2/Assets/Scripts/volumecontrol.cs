@@ -20,6 +20,11 @@ public class volumecontrol : MonoBehaviour
 		BGM = this.GetComponent<AudioSource>();
 
 		volumeslider = Resources.Load ("slider") as GUISkin;
+
+		if(LevelManager.Instance.CurrentLevelName == "Level1" || LevelManager.Instance.CurrentLevelName == "Level2")
+			PMscript = GameObject.FindObjectOfType<PauseMenu>();
+		else
+			MMscript = GameObject.FindObjectOfType<MainMenu>();
 	}
 
 	void adjustvolume()

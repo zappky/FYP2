@@ -8,21 +8,35 @@ public class EnemySight : MonoBehaviour
 	//public bool playerInSight;
 	public LayerMask rayLayers;				// layers raycast would touch
 
-	//public Vector3 targetPos;				// pos to move towards to (player/last seen pos)
+	//public Vector3 targetPos;		// pos to move towards to (player/last seen pos)
 
-	Vector3 lastSeenPos;					// player last seen pos
+	Vector3 AIpos;					// to move AI sight/hearing pos to its head (originally at feet)
+	Vector3 lastSeenPos;			// player last seen pos
 	SphereCollider col;
+	CapsuleCollider bodyCol;
 	GameObject player;
-	EnemyAlert alert;						// AI's alertness calculations
+	EnemyAlert alert;				// AI's alertness calculations
+	EnemyStats stats;	
 
 	void Start() {
-		col = GetComponent<SphereCollider>();
 		player = GameObject.FindGameObjectWithTag("Player");
-		alert = gameObject.GetComponent<EnemyAlert>();
+		bodyCol = GetComponent<CapsuleCollider>();
+		col = GetComponent<SphereCollider>();
+		alert = GetComponent<EnemyAlert>();
+		stats = GetComponent<EnemyStats>();
+
+		AIpos = transform.position+transform.up*eyeHeight;
 	}
 
 
 	void Update() {
+//		// if player too close to AI, add alert
+//		print((AIpos-player.transform.position).magnitude +" vs "+ stats.attackRange+bodyCol.bounds.extents.x);
+//
+//		if((AIpos-player.transform.position).magnitude < stats.attackRange+bodyCol.bounds.extents.x)
+//		{
+//			alert.AlertIncr(player.transform.position);
+//		}
 	}
 
 
@@ -36,11 +50,10 @@ public class EnemySight : MonoBehaviour
 			alert.playerInSight = false;		// reset
 			alert.playerInRange = false;		// reset
 
-			Vector3 origin = transform.position+transform.up*eyeHeight;
-			Vector3 dir = other.transform.position+other.transform.up - origin;
+			Vector3 dir = other.transform.position+other.transform.up - AIpos;
 			float angle = Vector3.Angle(dir, transform.forward);
 
-			Ray ray = new Ray(origin, dir.normalized);	
+			Ray ray = new Ray(AIpos, dir.normalized);	
 			// check if player is within AI's fov  
 			if(angle < fieldOfViewAngle * 0.5f)
 			{ 
@@ -82,23 +95,12 @@ public class EnemySight : MonoBehaviour
 			||  alert.playerInSight)
 			{
 				// (calc of alert incr depending on player being seen or not is done in this fn.)
-				alert.AlertIncr(new Vector3(player.transform.position.x,
-				                        	transform.position.y,			// since AI is giant, use his y pos
-				                        	player.transform.position.z));
+				alert.AlertIncr(player.transform.position);
 			}
 		}
 	}
 	
 	void OnTriggerExit(Collider other)
 	{
-	}
-
-	void OnDrawGizmos()
-	{
-		// AI's fov
-//		Matrix4x4 temp = Gizmos.matrix;
-//		Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
-//		Gizmos.DrawFrustum(Vector3.zero, fieldOfViewAngle*0.5f, transform.localScale.x, 1, 1);
-//		Gizmos.matrix = temp;
 	}
 }

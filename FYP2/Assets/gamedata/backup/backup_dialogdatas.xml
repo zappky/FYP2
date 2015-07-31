@@ -103,7 +103,7 @@
 				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">That manual sounds familiar...</option>
 			</dialog>
 			<dialog id="24" actorname="Enpisi">
-				<test>Try not to make any noise here...</test>
+				<test>Careful now, don't make any noise here...</test>
 				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">I know.</option>
 			</dialog>
 			<dialog id="25" actorname="Enpisi">
@@ -112,7 +112,7 @@
 				<option nextdialogid="28" nextdialogid_raw="28" resultid="0">Yeah. Remind me again how to use it once I made one?</option>
 			</dialog>
 			<dialog id="26" actorname="Enpisi">
-				<test>LOL. Have fun going all the way back to get those strings. Good thing your fall just now made the book drop. You can climb back here easily now.</test>
+				<test>Have fun going all the way back to get those strings, LOL. Well, at least your fall just now made that thing drop - you can climb back here easily now.</test>
 				<option nextdialogid="27" nextdialogid_raw="27" resultid="0">...</option>
 			</dialog>
 			<dialog id="27" actorname="Enpisi">

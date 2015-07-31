@@ -7,7 +7,7 @@ public class Interactable : MonoBehaviour {
 	private Inventory playerInventory = null;
 	private VendorDatabase vendordatabase = null;
 	private QuestManager questManager = null;	
-	public bool lighting = true;
+	bool lighting = true;
 	public my_QuestLog questReference = null;
 	ParticleSystem particles;
 
@@ -31,29 +31,17 @@ public class Interactable : MonoBehaviour {
 				questReference = questManager.questLogListDatabase.GetQuestLog("Tear Book Page for Paper Pieces");
 				break;
 
-			case "testquest 1":
-				questReference = questManager.questLogListDatabase.GetQuestLog("Collect Paper Clips");
-			break;
-			case "testquest 2":
-				questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest2");
-			break;
-			case "testquest 3":
-				questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest3");
-			break;
-			case "testquest 4":
-				questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest4");
-			break;
-			case "testquest 5":
-			questReference = questManager.questLogListDatabase.GetQuestLog("xmltestquest5");
-			break;
-
 			default:
 				break;
 		}
 
+		if(questReference != questManager.GetCurrentQuest())	
+			SetLighting(false);
 	}
 
 	void Update () {
+		if(!lighting && questReference == questManager.GetCurrentQuest())	
+			SetLighting(true);
 	}
 	
 	public void CompleteQuest()

@@ -37,10 +37,12 @@ public class my_QuestLog
 	{
 		if (statues == true) 
 		{
-			return "Quest Done";
+			//return "Quest Done";
+			return "";
 		} else 
 		{
-			return "Not Done";
+			//return "Not Done";
+			return "";
 		}
 	}
 	public void ClearQuest()
@@ -106,7 +108,7 @@ public class QuestManager : MonoBehaviour {
 			Debug.Log("current game level in quest manager:" + currentGameLevel);
 			this.questLogListDatabase = questlogdatabase[currentGameLevel];
 			
-			questDisplayRect = new Rect (0.0f,Screen.height * 0.01f,Screen.width * 0.25f,Screen.height * 0.25f);
+			questDisplayRect = new Rect (0.0f,Screen.height * 0.001f,Screen.width * 0.25f,Screen.height * 0.1f);
 			questLogHeight = questDisplayRect.height / (maxQuestLog+1);
 			for (int i = 0; i<maxQuestLog; ++i)//reserve some rect 
 			{
@@ -409,16 +411,16 @@ public class QuestManager : MonoBehaviour {
 			UpdateDisplayRect();
 		}
 
-		if(display == true)
+		//if(display == true)
+		//{
+
+
+		GUI.Box(questDisplayRect,"Objective");
+		for (int i = 0; i < questLogs.Count; ++i) 
 		{
-
-
-			GUI.Box(questDisplayRect,"Quest Logs");
-			for (int i = 0; i < questLogs.Count; ++i) 
-			{
-				GUI.Box(questLogRects[i],questLogs[i].questname + " : "+ questLogs[i].StringStatues());
-			}
+			GUI.Box(questLogRects[i],questLogs[i].questname/*+ " : "*/+ questLogs[i].StringStatues());
 		}
+		//}
 
 	}
 	public void LoadQuestManager()

@@ -13,7 +13,6 @@ public class EnemyAlert : MonoBehaviour {
 	public float ALERTSPD_MAX = 500;			// max alert inc/dec spd
 	public float playerNoiseRange = 10;			// if whatever noise made by player (incl. decoy) 
 												// is within this radius, it will add to AI's alertness 
-												// NOTE!!! add & use sphere col. to player if it doesnt give probs
 	public bool isAlarmed = false;				// is true once AI's alert reaches alarmVal. Alert wont dec for a while, dec slowly
 	public bool isAlarmedByDecoy = false;		// is true if source of noise made is far from player (e.g. decoy)
 	public bool playerInSight = false;			// if true, isAlarmed will always be true - alert wont decrease until player is caught/gone. 
@@ -22,6 +21,7 @@ public class EnemyAlert : MonoBehaviour {
 
 	public Vector3 targetPos;					// pos to move towards to (player/last seen pos)
 
+	float eyeHeight;
 	GameObject player;
 	SphereCollider col;							// AI's sight/hearing rng
 	
@@ -30,8 +30,10 @@ public class EnemyAlert : MonoBehaviour {
 
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player");
-		col = gameObject.GetComponent<SphereCollider>();
-		debugRenderer = transform.GetChild(0).GetComponent<Renderer>();
+		col = GetComponent<SphereCollider>();
+		debugRenderer = GetComponentInChildren<Renderer>();
+
+		eyeHeight = GetComponent<EnemySight>().eyeHeight;
 	}
 
 	// updates the dec of alert. Inc of alert done in EnemyAI
@@ -84,16 +86,16 @@ public class EnemyAlert : MonoBehaviour {
 
 	// alertness increment fn. (srcPos is pos of source for AI's alertness (e.g. src of noise, player pos, last seen pos) )
 	public void AlertIncr(Vector3 srcPos) {
+		// transform.position = AI's feet pos
+		Vector3 AIpos = transform.position+transform.up*eyeHeight*0.5f;
 		// get dist of AI from src (the shorter the dist, the faster alert incr will be)
-		float dist = (transform.position - srcPos).magnitude;	
+		float dist = (AIpos - srcPos).magnitude;	
 
 		// if srcPos is not even in AI's sight/hearing rng
-		if(dist > col.bounds.size.x*0.5f)	
+		if(dist > col.bounds.extents.x)	
 			return;
 
-		Vector3 playerPos = new Vector3(player.transform.position.x,
-		                                transform.position.y,			// cos AI is a 'giant'..
-		                                player.transform.position.z);
+		Vector3 playerPos = player.transform.position;
 
 		// if player use decoy too close to himself (within AI's sight/hearing rng)
 		// (is true if player is seen)

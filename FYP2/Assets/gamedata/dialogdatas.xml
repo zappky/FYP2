@@ -131,7 +131,7 @@
 			
 			
 			<dialog id = "24" actorname = "Enpisi" newdialogsection = "true">
-				<text>Try not to make any noise here...</text>
+				<text>Careful now, don't make any noise here...</text>
 				<option nextdialogid = "" resultid = "0">I know.</option>
 			</dialog>
 			
@@ -143,7 +143,7 @@
 				<option nextdialogid = "28" resultid = "0">Yeah. Remind me again how to use it once I made one?</option>
 			</dialog>
 			<dialog id = "26" actorname = "Enpisi">
-				<text>LOL. Have fun going all the way back to get those strings. Good thing your fall just now made the book drop. You can climb back here easily now.</text>
+				<text>Have fun going all the way back to get those strings, LOL. Well, at least your fall just now made that thing drop - you can climb back here easily now.</text>
 				<option nextdialogid = "27" resultid = "0">...</option>
 			</dialog>
 			<dialog id = "27" actorname = "Enpisi">

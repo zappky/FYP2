@@ -47,7 +47,8 @@ public class GrappleScript : MonoBehaviour {
 		{
 			if(!GetComponent<CharacterController>().isGrounded)
 				GetComponent<Rigidbody>().isKinematic = false;			// enable player rb
-			else
+
+			if(GetComponent<FpsMovement>().PlayerRBIsGrounded())
 				GetComponent<Rigidbody>().isKinematic = true;			// disable player rb
 
 			// Ascend
@@ -79,7 +80,7 @@ public class GrappleScript : MonoBehaviour {
 						Destroy(theGrapple.transform.FindChild("Render").gameObject);
 						Destroy(grappleEnd.gameObject);
 
-						if(GetComponent<CharacterController>().isGrounded)
+						if(GetComponent<Rigidbody>().isKinematic)
 							ReleaseGrapple();
 					}
 				}

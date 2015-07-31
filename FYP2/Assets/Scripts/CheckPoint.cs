@@ -10,6 +10,10 @@ public class CheckPoint : MonoBehaviour {
 	public int orderPlacement = -1;
 	public LevelManager levelManager = null;
 
+	bool lighting = false;
+	my_QuestLog questReference = null;
+	ParticleSystem particles = null;
+
 	public enum CheckPoint_Type
 	{
 		CHECKPOINT_NONE,
@@ -21,10 +25,26 @@ public class CheckPoint : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		levelManager = LevelManager.Instance;
+		
+		particles = gameObject.GetComponentInChildren<ParticleSystem>();
+
+		if(particles != null)
+		{
+			SetLighting(false);
+			// Level 1
+			if(levelManager.CurrentLevelName == "Level1")
+				questReference = QuestManager.Instance.questLogListDatabase.GetQuestLog("Reach the Door");
+		}
 	}
 
 	void Update()
 	{
+		print (QuestManager.Instance.GetCurrentQuest().questname);
+		if(particles != null)
+		{
+			if(!lighting && questReference == QuestManager.Instance.GetCurrentQuest())
+				SetLighting(true);
+		}
 	}
 
 	public CheckPoint()
@@ -75,4 +95,12 @@ public class CheckPoint : MonoBehaviour {
 		}
 	}
 
+	public void SetLighting(bool lightUp)
+	{
+		if(particles == null)
+			return;
+
+		this.lighting = lightUp;
+		particles.enableEmission = lighting;
+	}
 }

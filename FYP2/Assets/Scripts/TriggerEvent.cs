@@ -40,11 +40,11 @@ public class TriggerEvent : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider other)
+	void OnTriggerStay(Collider other)
 	{
 		if(other.tag == "Player")
 		{
-			if(!animationEvent.enabled)
+			if(!animationEvent.enabled && other.GetComponent<CharacterController>().isGrounded)
 			{
 				animationEvent.enabled = true;
 				playSFX = true;

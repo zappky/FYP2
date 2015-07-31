@@ -6,7 +6,7 @@ using System.Collections;
 public class FpsMovement : MonoBehaviour 
 {
 	public bool isRunning = false;
-	public bool isGrappling = false;				 
+	public bool isGrappling = false;	// true whn grappling && inAir			 
 	public bool useParachute = false;
 	public float moveSpeed = 7.0f; 		//movement speed
 	public float jumpSpeed = 5.0f;
@@ -25,6 +25,7 @@ public class FpsMovement : MonoBehaviour
 
 	float vertVelo = 0.0f;
 
+	CapsuleCollider playerCol;	// active when player using grapple
 	CharacterController cc;
 
 	//public AudioSource runSound;
@@ -41,6 +42,7 @@ public class FpsMovement : MonoBehaviour
 	void Start () 
 	{
 		cc = GetComponent<CharacterController>();
+		playerCol = GetComponentInChildren<CapsuleCollider>();
 		inventory = GetComponent<Inventory>();
 		dialoginterface = DialogInterface.Instance;
 	}
@@ -48,23 +50,24 @@ public class FpsMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		if(Time.timeScale == 0.0)
+			return;
+
 		//camera rotate left right
 		float rotateLR = Input.GetAxis ("Mouse X") * mouseSensitivity;
 
 		if(inventory.display == false && dialoginterface.display == false)
 		{
-			if(Time.timeScale == 1.0)
-			{
-				transform.Rotate (0, rotateLR, 0);
-				//Camera.main.transform.Rotate (0, rotateLR, 0);
-				//camera rotate up down
-				vertRotation -= Input.GetAxis ("Mouse Y") * mouseSensitivity;
-				vertRotation = Mathf.Clamp (vertRotation, -viewRange, viewRange);
-				Camera.main.transform.localRotation = Quaternion.Euler (vertRotation, 0, 0);
-			}
+			transform.Rotate (0, rotateLR, 0);
+			//Camera.main.transform.Rotate (0, rotateLR, 0);
+			//camera rotate up down
+			vertRotation -= Input.GetAxis ("Mouse Y") * mouseSensitivity;
+			vertRotation = Mathf.Clamp (vertRotation, -viewRange, viewRange);
+			Camera.main.transform.localRotation = Quaternion.Euler (vertRotation, 0, 0);
 
 			if(Input.GetButton("Run") && inventory.CheckContainsItem("Running Shoes"))
 			{
+				// prevent player from running in air
 				if(cc.isGrounded)
 				{
 					forwardSpeed = Input.GetAxis ("Vertical") * moveSpeed * runSpeed;	
@@ -99,6 +102,7 @@ public class FpsMovement : MonoBehaviour
 		}
 
 		isGrappling = updateGrappleCheck();
+		playerCol.isTrigger = !isGrappling;
 
 		if(!isGrappling)	 
 		{
@@ -120,8 +124,10 @@ public class FpsMovement : MonoBehaviour
 			else if(!cc.isGrounded && Input.GetButtonDown("parachute") 
 			     && inventory.CheckContainsItem("Parachute"))	
 			{
-				inventory.UseItem("Parachute");
 				useParachute = !useParachute;
+				transform.FindChild("Parachute").gameObject.SetActive(useParachute);
+				if(useParachute)
+					inventory.UseItem("Parachute");
 			}
 
 			//activate parachute
@@ -129,7 +135,10 @@ public class FpsMovement : MonoBehaviour
 			{
 				//set back parachute to false
 				if(cc.isGrounded)
+				{
+					transform.FindChild("Parachute").gameObject.SetActive(false);
 					useParachute = false;
+				}
 
 				vertVelo = -paraSpeed;
 				forwardSpeed = Input.GetAxis ("Vertical") * airSpeed;
@@ -147,9 +156,12 @@ public class FpsMovement : MonoBehaviour
 		}		
 		else
 		{
-			Vector3 speed = new Vector3 (sideSpeed, 0, forwardSpeed);
-			speed = Camera.main.transform.rotation * speed;
+			float vertSpeed = 0;
+			if(!PlayerRBIsGrounded())
+				vertSpeed = Physics.gravity.y * 2 * Time.deltaTime;
 
+			Vector3 speed = new Vector3 (sideSpeed*5, vertSpeed, forwardSpeed*5);
+			speed = Camera.main.transform.rotation * speed;
 			this.gameObject.GetComponent<Rigidbody>().AddForce(speed, ForceMode.Force);
 		}
 	}
@@ -164,6 +176,14 @@ public class FpsMovement : MonoBehaviour
 	}
 
 
+	// to check if player's rb is grounded (used when grappling only)
+	public bool PlayerRBIsGrounded()
+	{
+		return Physics.Raycast(transform.position, -Vector3.up, 
+		                       GetComponentInChildren<CapsuleCollider>().bounds.extents.y+0.1f);
+	}
+
+
 	void OnControllerColliderHit(ControllerColliderHit col)
 	{
 		//check win
@@ -172,14 +192,21 @@ public class FpsMovement : MonoBehaviour
 			//print ("hited");
 			// check level, if 1, go to 2 else win
 			if(LevelManager.Instance.CurrentLevelName == "Level1")
+			{
+				LevelManager.Instance.loadFromContinue = false;
 				Application.LoadLevel("Level2");
+			}
 			else
 				Application.LoadLevel("winscreen");
 		}
 
-		if(col.rigidbody == null 
+		if(col.transform.tag == "Enemy")
+			col.transform.GetComponent<EnemyAlert>().AlertIncr(transform.position);
+
+		if(col.transform.tag == "Puzzle"						// if obj is puzzle element
+		|| col.rigidbody == null 
 		|| col.rigidbody.isKinematic 
-		|| col.rigidbody.mass > GetComponent<Rigidbody>().mass)		// if obj too heavy
+		|| col.rigidbody.mass > GetComponent<Rigidbody>().mass)	// if obj too heavy		
 			return;
 		
 		// to not push obj below player

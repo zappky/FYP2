@@ -42,7 +42,7 @@ public class EnemyAI : MonoBehaviour {
 		alert = gameObject.GetComponent<EnemyAlert>();
 		col = gameObject.GetComponent<SphereCollider>(); 
 		player = GameObject.FindGameObjectWithTag("Player");
-		debugRenderer = transform.GetChild(0).GetComponent<Renderer>();
+		debugRenderer = GetComponentInChildren<Renderer>();
 
 		stats.attackRange += GetComponent<CapsuleCollider>().bounds.size.x*0.5f;
 
@@ -369,18 +369,14 @@ public class EnemyAI : MonoBehaviour {
 	}
 
 
-	void OnCollisionEnter(Collision other)
+	void OnCollisionStay(Collision other)
 	{
-		if (other.gameObject.tag != "Floor")
-		{
-			// static obj is in AI's way (e.g. chair, bed)
-			if(other.gameObject.GetComponent<Rigidbody>() == null 
-			|| other.gameObject.GetComponent<Rigidbody>().isKinematic)
-				collideWithOther = true;
-		}
-	}
-	void OnCollisionExit()
-	{
-		collideWithOther = false;
+//		if (other.gameObject.tag != "Floor")
+//		{
+//			// static obj is in AI's way (e.g. chair, bed)
+//			if(other.gameObject.GetComponent<Rigidbody>() == null 
+//			|| other.gameObject.GetComponent<Rigidbody>().isKinematic)
+//				collideWithOther = true;
+//		}
 	}
 }

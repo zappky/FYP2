@@ -10,15 +10,14 @@
 		</info>
 		<quickcast>
 			<layer index="0">
-				<item id="16" name="testitem2" index="0" />
-				<item id="19" name="testitem5" index="1" />
+				<item id="1" name="Grapple" index="0" />
 			</layer>
 			<layer index="1" />
 			<layer index="2" />
 		</quickcast>
-		<checkpoint id="-1" name="6" index="5" x="-30.8" y="36.1" z="172.9" rx="0" ry="0.7071068" rz="0" rw="0.7071067" />
+		<checkpoint id="-1" name="9" index="8" x="61.18" y="29.65" z="80.11" rx="0" ry="1" rz="0" rw="-1.629207E-07" />
 		<inventory weight="1">
-			<item index="0" id="1" name="Grapple" amount="1" weight="0" description="For easier travelling. Not to be used for fighting titans." stackable="True" type="useable" />
+			<item index="0" id="1" name="Grapple" amount="1" weight="0" description="For easier travelling. Not to be used for fighting titans." stackable="False" type="useable" />
 			<item index="1" id="7" name="Old Running Shoes" amount="1" weight="0" description="Missing shoelaces. Gift from Mom." stackable="True" type="craftmaterial" />
 		</inventory>
 	</player>

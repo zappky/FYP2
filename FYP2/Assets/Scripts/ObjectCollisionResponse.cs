@@ -47,7 +47,7 @@ public class ObjectCollisionResponse : MonoBehaviour {
 	}
 
 	bool isGrounded() {
-		// check if obj is grounded using raycast
+		// check if obj is grounded by raycasting obj btm to ground
 		return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
 	}
 

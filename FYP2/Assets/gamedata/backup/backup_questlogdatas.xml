@@ -7,6 +7,8 @@
 		<quest id="3" name="Reach the Door" />
 	</level>
 	<level>
-		<quest id="0" name="G" />
+		<quest id="0" name="Reach the Coffee Table Top" />
+		<quest id="1" name="Grab the... Cake?" />
+		<quest id="2" name="Return Safely" />
 	</level>
 </database>

@@ -18,6 +18,7 @@ TagManager:
   - Enemy
   - MainMenu
   - Collectible
+  - Puzzle
   layers:
   - Default
   - TransparentFX
