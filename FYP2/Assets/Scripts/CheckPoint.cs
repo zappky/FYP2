@@ -39,7 +39,6 @@ public class CheckPoint : MonoBehaviour {
 
 	void Update()
 	{
-		print (QuestManager.Instance.GetCurrentQuest().questname);
 		if(particles != null)
 		{
 			if(!lighting && questReference == QuestManager.Instance.GetCurrentQuest())
