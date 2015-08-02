@@ -10,7 +10,6 @@ public class EnemySight : MonoBehaviour
 
 	//public Vector3 targetPos;		// pos to move towards to (player/last seen pos)
 
-	Vector3 AIpos;					// to move AI sight/hearing pos to its head (originally at feet)
 	Vector3 lastSeenPos;			// player last seen pos
 	SphereCollider col;
 	CapsuleCollider bodyCol;
@@ -24,8 +23,6 @@ public class EnemySight : MonoBehaviour
 		col = GetComponent<SphereCollider>();
 		alert = GetComponent<EnemyAlert>();
 		stats = GetComponent<EnemyStats>();
-
-		AIpos = transform.position+transform.up*eyeHeight;
 	}
 
 
@@ -50,17 +47,17 @@ public class EnemySight : MonoBehaviour
 			alert.playerInSight = false;		// reset
 			alert.playerInRange = false;		// reset
 
+			Vector3	AIpos = transform.position+transform.up*eyeHeight;
 			Vector3 dir = other.transform.position+other.transform.up - AIpos;
-			float angle = Vector3.Angle(dir, transform.forward);
+			float angle = Vector3.Angle(new Vector3(dir.x, 0, dir.z), transform.forward);
 
 			Ray ray = new Ray(AIpos, dir.normalized);	
 			// check if player is within AI's fov  
 			if(angle < fieldOfViewAngle * 0.5f)
 			{ 
 				RaycastHit hit;
-				if(Physics.Raycast(ray, out hit, transform.localScale.x*col.radius, rayLayers))
+				if(Physics.Raycast(ray, out hit, Mathf.Infinity, rayLayers))
 				{
-					print (hit.collider.name);
 					// if ray hits player (i.e. AI spotted player)
 					if(hit.collider.gameObject == player)
 					{
@@ -87,8 +84,10 @@ public class EnemySight : MonoBehaviour
 				}
 			}
 			else
+			{
 				Debug.DrawRay(ray.origin, ray.direction*transform.localScale.x*col.radius, Color.black, 1);
-			
+			}
+
 			// if player running near AI or is seen
 			if((player.GetComponent<CharacterController>().isGrounded
 			&&  player.GetComponent<FpsMovement>().isRunning) 
@@ -102,5 +101,7 @@ public class EnemySight : MonoBehaviour
 	
 	void OnTriggerExit(Collider other)
 	{
+		alert.playerInSight = false;		// reset
+		alert.playerInRange = false;		// reset
 	}
 }

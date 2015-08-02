@@ -3,18 +3,21 @@ using System.Collections;
 
 public class EnemyAlert : MonoBehaviour {
 
-	public float alert = 0;						// all AI's current alertness value		
-	public float alarmValue = 50;				// value for AI to go into alert state
-	public float ALERT_MAX = 100;
-	float alertSpd = 0;							// alert inc/dec spd (+ve for inc, -ve for dec)
-	public float alertMultiNormal = 120;		// alert inc/dec spd multiplier - 'accel.' (used when enemy not alerted)
-	public float alertMultiLow = 200;			// " (used when enemy alerted, heard noise/lost sight of player)
-	public float alertMultiHigh = 400;			// " (used when enemy alerted, player in sight)
-	public float ALERTSPD_MAX = 500;			// max alert inc/dec spd
-	public float playerNoiseRange = 10;			// if whatever noise made by player (incl. decoy) 
-												// is within this radius, it will add to AI's alertness 
-	public bool isAlarmed = false;				// is true once AI's alert reaches alarmVal. Alert wont dec for a while, dec slowly
-	public bool isAlarmedByDecoy = false;		// is true if source of noise made is far from player (e.g. decoy)
+	public float alert = 0;						// AI's current alertness value	
+	public float alertAcc = 200;						
+	public float ALARMED_VALUE = 50;			// value for AI to go into alarmed state
+	public float ALERT_MAX = 100;				// gameover once alert = this value
+	public float ALERTSPD_MAX = 15;				// max alert inc/dec spd (may be unnecessary)
+	public float ALERT_DELAY = 5;				// delay (in s) to dec alertness value
+	public float playerNoiseRange = 10;			// if whatever noise player makes (incl. decoy) 
+												// is within this radius (on him), it will add to AI's alertness 
+	
+	int alertLevel;								// (range 1-5, alertSpd multiplier)
+	float alertSpd = 0;	
+	float alertDelay = 0;
+
+	public bool isAlarmed = false;				// alert inc faster, wont dec for a while
+	public bool isAlarmedByDecoy = false;		// is true if source of noise made is not within playerNoiseRange
 	public bool playerInSight = false;			// if true, isAlarmed will always be true - alert wont decrease until player is caught/gone. 
 												// (value is set by EnemySight) 
 	public bool playerInRange = false;			// will only be true if player in atk range and playerInSight
@@ -38,49 +41,47 @@ public class EnemyAlert : MonoBehaviour {
 
 	// updates the dec of alert. Inc of alert done in EnemyAI
 	void Update () {
-		if(alert > 0)
+		if(!isAlarmed)
 		{
-			if(!isAlarmed)
+			// turn AI render color to green 
+			debugRenderer.material.color = Color.green;
+		}
+		else
+		{
+			// turn AI render color to red 
+			debugRenderer.material.color = Color.red;
+		}
+
+		if(alert < 0 || playerInSight)
+			return;
+
+		alertLevel = (int)(alert*0.05) + 1;
+		
+		// alert dec according to alertness levels(alertLvlMax-alertLvl, < alertLvl, > dec spd)
+		alertSpd -= alertAcc*(5-alertLevel)*Time.deltaTime;
+		if(alertSpd < -ALERTSPD_MAX)
+			alertSpd = -ALERTSPD_MAX;
+		
+		if(alertDelay > 0)
+		{
+			alertDelay += alertSpd*Time.deltaTime;		// < alertLvl, < delay
+			if(alertDelay < 0)
 			{
-				// turn AI render color to green (!alarmed)
-				debugRenderer.material.color = Color.green;
-
-				alertSpd -= alertMultiLow*0.5f*Time.deltaTime;	// since AI not alarmed, alert dec is faster
-
-				if(alertSpd < -ALERTSPD_MAX)
-					alertSpd = -ALERTSPD_MAX;
-
-				if(alert > 0)
-				{
-					alert += alertSpd * Time.deltaTime;
-
-					if(alert <= 0)
-					{
-						alert = 0;
-						alertSpd = 0;	// reset
-					}
-				}
+				alertDelay = 0;
+				alertSpd = 0;		// reset 
 			}
-			else
-			{
-				// turn AI render color to red (alarmed)
-				debugRenderer.material.color = Color.red;
 
-				if(!playerInSight)
-				{
-					alertSpd -= alertMultiNormal*0.5f*Time.deltaTime;	// since AI is alarmed, alert dec is slower
-					
-					if(alertSpd < -ALERTSPD_MAX)
-						alertSpd = -ALERTSPD_MAX;
+			return;
+		}
 
-					alert += alertSpd * Time.deltaTime;
-					
-					if(alert < alarmValue)
-						isAlarmed = false;
-				}
-
-				// no alert dec if player is in sight
-			}
+		alert += alertSpd * Time.deltaTime;
+		if(alert < ALARMED_VALUE)
+			isAlarmed = false;
+		
+		if(alert <= 0)
+		{
+			alert = 0;
+			alertSpd = 0;	// reset
 		}
 	}
 
@@ -98,38 +99,25 @@ public class EnemyAlert : MonoBehaviour {
 		Vector3 playerPos = player.transform.position;
 
 		// if player use decoy too close to himself (within AI's sight/hearing rng)
-		// (is true if player is seen)
+		// (is true if player is seen, since srcPos is playerPos)
 		if((playerPos - srcPos).magnitude < playerNoiseRange)
 		{
-			if(!playerInSight)	// i.e. player running near AI/cause noise (decoy) near AI 
-			{
-				if(!isAlarmed)
-					alertSpd += alertMultiNormal*Time.deltaTime; 
-				else
-					alertSpd += alertMultiLow*Time.deltaTime; 
-			}
-			else
-			{
-				if(!playerInRange)
-					alertSpd += alertMultiHigh*Time.deltaTime; 
-				else
-					alertSpd += (alertMultiLow+alertMultiHigh)*Time.deltaTime; 
-			}
+			alertLevel = (int)(alert*0.05) + 1;
 
-			
+			if(playerInSight)
+				alertLevel += 1;		// extra inc if player in sight
+
+			alertSpd += alertAcc*alertLevel; 
 			if(alertSpd > ALERTSPD_MAX)
 				alertSpd = ALERTSPD_MAX;
 
 			// dist here was halved to make AI's 'hearing' more effective
 			alert += (float)(alertSpd/dist*0.5f) * Time.deltaTime; 
 
-			if(alert > alarmValue && !isAlarmed)	
-			{
+			if(alert > ALARMED_VALUE && !isAlarmed)	
 				isAlarmed = true;
-			}
 
-			if(alert > ALERT_MAX)
-				alert = ALERT_MAX;
+			alertDelay = ALERT_DELAY;
 		}
 		else
 		{

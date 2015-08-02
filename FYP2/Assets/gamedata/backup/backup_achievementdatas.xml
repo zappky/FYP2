@@ -6,6 +6,7 @@
 			<collectible id="1" name="Area1" />
 			<collectible id="2" name="Area4" />
 			<collectible id="3" name="CollectibleB" />
+			<collectible id="4" name="CollectibleR" />
 		</collectibles>
 	</level>
 </database>

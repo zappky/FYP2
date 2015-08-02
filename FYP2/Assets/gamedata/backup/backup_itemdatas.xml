@@ -101,43 +101,8 @@
 	<item id="14">
 		<name>Cake...?</name>
 		<type>quest</type>
-		<description>It's a lie. This is a sweet roll.</description>
+		<description>It's a lie. It's a mushroom. Without power-ups.</description>
 		<weight>0</weight>
-		<stackable>True</stackable>
-	</item>
-	<item id="15">
-		<name>testitem1</name>
-		<type>equipable</type>
-		<description>equipable,stackable</description>
-		<weight>0</weight>
-		<stackable>True</stackable>
-	</item>
-	<item id="16">
-		<name>testitem2</name>
-		<type>useable</type>
-		<description>useable,stackable</description>
-		<weight>0</weight>
-		<stackable>True</stackable>
-	</item>
-	<item id="17">
-		<name>testitem3</name>
-		<type>craftmaterial</type>
-		<description>craftmaterial,stackable</description>
-		<weight>0</weight>
-		<stackable>True</stackable>
-	</item>
-	<item id="18">
-		<name>testitem4</name>
-		<type>quest</type>
-		<description>quest,stackable</description>
-		<weight>0</weight>
-		<stackable>True</stackable>
-	</item>
-	<item id="19">
-		<name>testitem5</name>
-		<type>consumable</type>
-		<description>consumable,stackable</description>
-		<weight>0</weight>
-		<stackable>True</stackable>
+		<stackable>False</stackable>
 	</item>
 </database>

@@ -158,16 +158,16 @@
 			
 			
 			<dialog id = "29" actorname = "Enpisi" newdialogsection = "true">
-				<text>Well, I guess that's it then. You've already made it this far. I've got nothing left to teach you.</text>
+				<text>You've already made it this far. I guess I've got nothing left to teach you then.</text>
 				<option nextdialogid = "30" resultid = "0">Huh? What are you talking about?</option>
 			</dialog>
-			<dialog id = "30" actorname = "Enpisi(You)">
-				<text>This is the final test to prepare you(myself) for the journey outside. See those plastic objects over there? Go push them down, climb on them while they're falling, and jump again to the platform above.</text>
-				<option nextdialogid = "31" resultid = "0">That reminds me...</option>
+			<dialog id = "30" actorname = "Enpisi">
+				<text>See those plastic objects over there? Go push them down, climb on them while they're falling, and jump again to the platform above. This will be the final test to prepare you for the journey outside.</text>
+				<option nextdialogid = "" resultid = "0">...and just who set all this up?</option>
 			</dialog>
-			<dialog id = "31" actorname = "You">
-				<text>Right...........Enpisi's a friend I made out of my imagination. Everyone's gone already...I need to be smart, resourceful and agile in order to live in this world.</text>
-				<option nextdialogid = "" resultid = "0">Most importantly, I need to keep my sanity in check.</option>
+			<dialog id = "31" actorname = "Enpisi">
+				<text>Hahaha, I wonder who indeed. Anyway I won't be guiding you anymore, good luck!</text>
+				<option nextdialogid = "" resultid = "0">Who else besides us are this small...</option>
 			</dialog>
 			
 			
@@ -182,12 +182,28 @@
 	<level>
 		<dialogtree id = "0" gamelevelparent = "Level2">
 			<dialog id = "0" actorname = "You" newdialogsection = "true">
-				<text>There it is. The Cake must be in one of those boxes there...</text>
+				<text>There it is. The Cake must be in that box there...</text>
 				<option nextdialogid = "1" resultid = "0">I need to find a way to get there.</option>
 			</dialog>
 			<dialog id = "1" actorname = "You">
-				<text>The shelf over there might contain something useful.</text>
-				<option nextdialogid = "" resultid = "0">I better go see what I could use.</option>
+				<text>The human here is moving about too much. I need to find a way to distract him before getting the Cake.</text>
+				<option nextdialogid = "2" resultid = "0">Hmm...</option>
+			</dialog>
+			<dialog id = "2" actorname = "Enpisi">
+				<text>Need any help?</text>
+				<option nextdialogid = "3" resultid = "0">I thought you were dead.</option>
+				<option nextdialogid = "3" resultid = "0">Wow, a fly's talking to me.</option>
+			</dialog>
+			<dialog id = "3" actorname = "Enpisi">
+				<text>How mean...Anyway, the shelf over there might contain something useful.</text>
+				<option nextdialogid = "" resultid = "0">Bye.</option>
+			</dialog>
+			
+			
+			
+			<dialog id = "2" actorname = "You" newdialogsection = "true">
+				<text>...</text>
+				<option nextdialogid = "" resultid = "0">...</option>
 			</dialog>
 		</dialogtree>
 	</level>

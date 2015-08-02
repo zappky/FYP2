@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class EnemyManager : MonoBehaviour {
 
+	public float alarmedValue;	
 	public static EnemyManager _instance = null;
 	public List<EnemyAI> EnemiesList = new List<EnemyAI>();
 	GameObject player;
@@ -19,7 +20,7 @@ public class EnemyManager : MonoBehaviour {
 		}
 	}
 
-	void Start () {
+	void Awake () {
 		_instance = this;
 
 		// add all enemies to manager
@@ -29,6 +30,8 @@ public class EnemyManager : MonoBehaviour {
 			{
 				EnemiesList.Add(child.GetComponent<EnemyAI>());
 			}
+
+			alarmedValue = EnemiesList[0].GetComponent<EnemyAlert>().ALARMED_VALUE;
 		}
 
 		player = GameObject.FindGameObjectWithTag("Player");
