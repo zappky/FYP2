@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database>
+	<level>
+		<quest id="0" name="Collect Paper Clip to Fix Grapple" />
+		<quest id="1" name="Get Some Strings" />
+		<quest id="2" name="Tear Book Page for Paper Pieces" />
+		<quest id="3" name="Reach the Door" />
+	</level>
+	<level>
+		<quest id="0" name="Grab the... Cake?" />
+		<quest id="1" name="Grab the... Cake?" />
+		<quest id="2" name="Return Safely" />
+	</level>
+</database>

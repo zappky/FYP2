@@ -9,6 +9,8 @@ public class EnemyManager : MonoBehaviour {
 	public List<EnemyAI> EnemiesList = new List<EnemyAI>();
 	GameObject player;
 
+	public DebugControl debugcontrol = null;
+
 	public static EnemyManager Instance
 	{
 		get
@@ -35,13 +37,22 @@ public class EnemyManager : MonoBehaviour {
 		}
 
 		player = GameObject.FindGameObjectWithTag("Player");
+
+		debugcontrol = DebugControl.Instance;
 	}
 
 	void Update () {
+
+		if(debugcontrol.godMode == true)
+		{
+			return;
+		}
+
 		if(EnemiesList.Count > 0)
 		{
 			if(GetClosestAlertness() >= EnemiesList[0].GetComponent<EnemyAlert>().ALERT_MAX)
 			{
+
 				// lose, restart from last cp
 				Application.LoadLevel(Application.loadedLevelName);
 				Inventory playerinventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();

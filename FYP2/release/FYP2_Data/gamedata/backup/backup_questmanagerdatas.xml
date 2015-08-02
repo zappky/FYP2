@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database>
+	<questmanager>
+		<currentgamelevel index="0" name="Level1" />
+		<currentquestindex index="0" />
+	</questmanager>
+</database>

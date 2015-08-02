@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database>
+	<dialoginterface>
+		<currentdialognode id="0" text="Hey Eddy! You know what you're supposed to look for right?" />
+	</dialoginterface>
+</database>

@@ -206,12 +206,12 @@ GameObject:
   - 23: {fileID: 12005722}
   - 64: {fileID: 12005721}
   m_Layer: 0
-  m_Name: Battery 1
+  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &12005721
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5214,12 +5214,12 @@ GameObject:
   - 23: {fileID: 560273883}
   - 64: {fileID: 560273882}
   m_Layer: 0
-  m_Name: Magazine 1
+  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &560273882
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5741,7 +5741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &616461484
 Transform:
   m_ObjectHideFlags: 0
@@ -9920,12 +9920,12 @@ GameObject:
   - 23: {fileID: 1195930960}
   - 64: {fileID: 1195930959}
   m_Layer: 0
-  m_Name: Magazine-open 1
+  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1195930959
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10089,12 +10089,12 @@ GameObject:
   - 23: {fileID: 1219312590}
   - 64: {fileID: 1219312589}
   m_Layer: 0
-  m_Name: Capsule 1
+  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1219312589
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11241,6 +11241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alarmedValue: 0
   EnemiesList: []
+  debugcontrol: {fileID: 0}
 --- !u!4 &1356650818
 Transform:
   m_ObjectHideFlags: 0
@@ -13716,12 +13717,12 @@ GameObject:
   - 23: {fileID: 1574400906}
   - 64: {fileID: 1574400905}
   m_Layer: 0
-  m_Name: Book 1
+  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1574400905
 MeshCollider:
   m_ObjectHideFlags: 0

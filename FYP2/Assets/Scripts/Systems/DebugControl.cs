@@ -27,6 +27,9 @@ public class DebugControl : MonoBehaviour {
 	public float notificaitonTimerLimit = 5.0f;//5 sec
 	public GUIStyle notificationlabelStyle;
 
+	public bool godMode = false;
+	public bool flyMode = false;
+
 	GameObject playerobj;
 
 	public static DebugControl Instance
@@ -332,29 +335,34 @@ public class DebugControl : MonoBehaviour {
 				{
 				case -1:
 				Debug.Log("toggling god mode");
-				fallScript.active = !fallScript.active;
-				if(fallScript.active == true)
-				{
-					notificationlabelStyle.normal.textColor = Color.red;
-					notificationText = "GOD MODE DISABLED";
-				}else
+				godMode = !godMode;
+				//fallScript.active = !fallScript.active;
+				if(godMode == true)
 				{
 					notificationlabelStyle.normal.textColor = Color.green;
 					notificationText = "GOD MODE ENABLED";
+				}else
+				{
+					notificationlabelStyle.normal.textColor = Color.red;
+					notificationText = "GOD MODE DISABLED";
 				}
-					return true;
+				return true;
 
 				case 0:
 					Debug.Log("DeActivating god mode");
 				notificationlabelStyle.normal.textColor = Color.red;
 				notificationText = "GOD MODE DISABLED";
-				fallScript.active = true;
+				//fallScript.active = true;
+				godMode = false;
+				//godMode = fallScript.active;
 					return true;
 				case 1:
 					Debug.Log("Activating god mode");
 				notificationlabelStyle.normal.textColor = Color.green;
 				notificationText = "GOD MODE ENABLED";
-				fallScript.active = false;
+				//fallScript.active = false;
+				godMode = true;
+				//godMode = fallScript.active;
 					return true;
 				default:
 					Debug.Log("ERROR: Unhandled debug appendCode: " + appendCode +" of" + command);
@@ -370,8 +378,9 @@ public class DebugControl : MonoBehaviour {
 				{
 				case -1:
 				Debug.Log("toggling fly mode");
-				movementScript.debugFlyMode = !movementScript.debugFlyMode;
-				if(movementScript.debugFlyMode == true)
+				//movementScript.debugFlyMode = !movementScript.debugFlyMode;
+				flyMode = !flyMode;
+				if(flyMode == true)
 				{
 					notificationlabelStyle.normal.textColor = Color.green;
 					notificationText = "FLY MODE ENABLED";
@@ -380,20 +389,26 @@ public class DebugControl : MonoBehaviour {
 					notificationlabelStyle.normal.textColor = Color.red;
 					notificationText = "FLY MODE DISABLED";
 				}
-					return true;
+				//flyMode = movementScript.debugFlyMode;
+				return true;
+
 				case 0:
 					Debug.Log("DeActivating fly mode");
-				movementScript.debugFlyMode = false;
+				//movementScript.debugFlyMode = false;
 				notificationlabelStyle.normal.textColor = Color.red;
 				notificationText = "FLY MODE DISABLED";
-					return true;
+				flyMode = false;
+				//flyMode = movementScript.debugFlyMode;
+				return true;
 
 				case 1:
 					Debug.Log("Activating fly mode");
-				movementScript.debugFlyMode = true;
+				//movementScript.debugFlyMode = true;
 				notificationlabelStyle.normal.textColor = Color.green;
 				notificationText = "FLY MODE ENABLED";
-					return true;
+				//flyMode = movementScript.debugFlyMode;
+				flyMode = true;
+				return true;
 
 				default:
 					Debug.Log("ERROR: Unhandled debug appendCode: " + appendCode +" of" + command);

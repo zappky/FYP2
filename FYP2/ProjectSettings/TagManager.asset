@@ -19,6 +19,7 @@ TagManager:
   - MainMenu
   - Collectible
   - Puzzle
+  - AchievementCt
   layers:
   - Default
   - TransparentFX

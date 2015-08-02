@@ -163,8 +163,8 @@ public class CTimer :MonoBehaviour {
 	}
 	void UpdateTimerRect()
 	{
-		timerWidth = Screen.width *0.08f;
-		timerHeight = timerWidth*0.5f;
+		timerWidth = Screen.width *0.05f;
+		//timerHeight = timerWidth*0.2f;
 	}
 	void UpdateDisplayRect()
 	{

@@ -36,8 +36,8 @@ public class FpsMovement : MonoBehaviour
 	Inventory inventory;
 	DialogInterface dialoginterface;
 
-	public bool debugFlyMode = false;		// rmb to turn off after use
-
+	//public bool debugFlyMode = false;		// rmb to turn off after use
+	public DebugControl debugcontrol = null;
 	// Use this for initialization
 	void Start () 
 	{
@@ -45,6 +45,7 @@ public class FpsMovement : MonoBehaviour
 		playerCol = GetComponentInChildren<CapsuleCollider>();
 		inventory = GetComponent<Inventory>();
 		dialoginterface = DialogInterface.Instance;
+		debugcontrol = DebugControl.Instance;
 	}
 	
 	// Update is called once per frame
@@ -112,7 +113,7 @@ public class FpsMovement : MonoBehaviour
 			// in air
 			if(!cc.isGrounded)
 			{
-				if(!debugFlyMode)
+				if(debugcontrol.flyMode == false)
 					vertVelo += Physics.gravity.y * 2 * Time.deltaTime;
 				else
 					vertVelo = Input.GetAxis("Fly") * moveSpeed;	

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database>
+	<level>
+		<dialogtree id = "0" gamelevelparent = "Level1">
+			<dialog id = "0" actorname = "Enpisi" newdialogsection = "true">
+				<text>Hey Eddy! You know what you're supposed to look for right?</text>
+				<option nextdialogid = "1" resultid = "0">Uhh...yeah?</option>
+			</dialog>
+			<dialog id = "1" actorname = "Enpisi">
+				<text>*sighs* The Cake, remember? The one I told you about. The last time I went out, I saw those humans leaving it on the coffee table outside, in the living room. It should still be there.</text>
+				<option nextdialogid = "2" resultid = "0">Yeah, yeah...remind me again why I'm the one doing this?</option>
+			</dialog>
+			<dialog id = "2" actorname = "Enpisi">
+				<text>We had a bet, and you lost. Besides, it's been a long time since you've last stepped outside. So go out there, and have fun!</text>
+				<option nextdialogid = "3" resultid = "0">...</option>
+			</dialog>
+			<dialog id = "3" actorname = "Enpisi">
+				<text>Oh yeah, you still remember the basics?</text>
+				<option nextdialogid = "4" resultid = "0">Nope.</option>
+				<option nextdialogid = "6" resultid = "0">Of course...can I go now?</option>
+			</dialog>
+			<dialog id = "4" actorname = "Enpisi">
+				<text>You move by holding down the [WASD] keys, and jump by hitting the [SPACEBAR]. Don't ask me why.</text> 
+				<option nextdialogid = "5" resultid = "0">Go on.</option>
+			</dialog>
+			<dialog id = "5" actorname = "Enpisi">
+				<text>You're strong enough to push objects your size and those smaller than you, as well as those made of cardboard and plastic. I think. *stares at you*</text>
+				<option nextdialogid = "6" resultid = "0">Don't look down on me!</option>
+			</dialog>
+			<dialog id = "6" actorname = "Enpisi">
+				<text>Alright, alright, the first thing you should do is to repair your grapple. Seems like its hook is broken. Go get a paper clip to fix that. It should still be there, on the Desk below.</text>
+				<option nextdialogid = "7" resultid = "0">Is that all?</option>
+			</dialog>
+			<dialog id = "7" actorname = "Enpisi">
+				<text>I'll be in touch with you  as usual. Be careful~</text>
+				<option nextdialogid = "" resultid = "0">Okaaay, I'm leaving.</option>
+			</dialog>
+			
+			
+			<dialog id = "8" actorname = "You" newdialogsection = "true">
+				<text>Hmm, let's see... [WASD] to move, [SPACEBAR] to jump.</text>
+				<option nextdialogid = "" resultid = "0">I should be fine.</option>
+			</dialog>
+			
+			
+			<dialog id = "9" actorname = "Enpisi" newdialogsection = "true">
+				<text>Eddy, don't do anything stupid here...</text>
+				<option nextdialogid = "" resultid = "0">I know, I'm not an idiot.</option>
+			</dialog>
+			
+			
+			<dialog id = "10" actorname = "Enpisi" newdialogsection = "true">
+				<text>You know, you can push objects down to make a platform to break your fall - so long as you don't fall from such a great height.</text>
+				<option nextdialogid = "" resultid = "0">Got it, thanks.</option>
+			</dialog>
+			
+			
+			<dialog id = "11" actorname = "Enpisi" newdialogsection = "true">
+				<text>See that mysterious light particles over there? You can find what you're looking for in it. Press [E] to interact with it.</text>
+				<option nextdialogid = "" resultid = "0">How would I be able to miss that?</option>
+			</dialog>
+			
+			
+			<dialog id = "12" actorname = "Enpisi" newdialogsection = "true">
+				<text>Go ahead and repair your grapple. Open your inventory [I], select the crafting tab, and double-click on the Grapple to craft it.</text>
+				<option nextdialogid = "" resultid = "0">Okay.</option>
+			</dialog>
+			
+			
+			<dialog id = "13" actorname = "Enpisi" newdialogsection = "true">
+				<text>Have you repaired your grapple yet?</text>
+				<option nextdialogid = "16" resultid = "0">Yeah?</option>
+				<option nextdialogid = "14" resultid = "0">No. What am I supposed to do again?</option>
+			</dialog>
+			<dialog id = "14" actorname = "Enpisi">
+				<text>Open your inventory [I], select the crafting tab, double-click on the Grapple to craft it. Go get a paper clip if you still haven't do so.</text>
+				<option nextdialogid = "15" resultid = "0">Alright.</option>
+			</dialog>
+			<dialog id = "15" actorname = "Enpisi">
+				<text>Before I go, see that out-of-this-world, checkered object hanging there?</text>
+				<option nextdialogid = "17" resultid = "0">Uh-huh.</option>
+			</dialog>
+			<dialog id = "16" actorname = "Enpisi">
+				<text>Good, you'll need it here. See that out-of-this-world, checkered object hanging there?</text>
+				<option nextdialogid = "17" resultid = "0">Uh-huh.</option>
+			</dialog>
+			<dialog id = "17" actorname = "Enpisi">
+				<text>That's a grapple point. Launch your Grapple on it by pressing [F], or the quick slot it's at. Release it by pressing the same key again. You'd be able to go down safely from there.</text>
+				<option nextdialogid = "" resultid = "0">Okay.</option>
+			</dialog>
+			
+			
+			
+			<dialog id = "18" actorname = "You" newdialogsection = "true">
+				<text>Hmm, maybe I should get some strings before heading out to the living room. I'd be able to wear my running shoes then.</text>
+				<option nextdialogid = "19" resultid = "0"></option>
+			</dialog>
+			<dialog id = "19" actorname = "You">
+				<text>The human here loves to knit - I should be able to find some Yarn by the bedside table.</text>
+				<option nextdialogid = "" resultid = "0"></option>
+			</dialog>
+			
+			
+			
+			<dialog id = "20" actorname = "Enpisi" newdialogsection = "true">
+				<text>How to get up there? Try clicking the [LMB] once you have your grapple hooked.</text>
+				<option nextdialogid = "" resultid = "0">You read my mind!</option>
+			</dialog>
+			
+			
+			
+			<dialog id = "21" actorname = "Enpisi" newdialogsection = "true">
+				<text>You're collecting some strings right? If your inventory's full, click and drag the item you wish to discard, bring it outside of the inventory window, and right click to throw it away.</text>
+				<option nextdialogid = "" resultid = "0">Got it, thanks.</option>
+			</dialog>
+			
+			
+			
+			<dialog id = "22" actorname = "Enpisi" newdialogsection = "true">
+				<text>Hey Eddy, go ahead and get some more strings. I have a feeling you'd need at least 2 later on.</text>
+				<option nextdialogid = "" resultid = "0">Okay.</option>
+			</dialog>
+			
+			
+			
+			<dialog id = "23" actorname = "Enpisi" newdialogsection = "true">
+				<text>Great, you've got your running shoes on! Let me read the manual for you. Let's see..."Hold [LShift] while wearing these RUNNING SHOES to run extra-fast!"</text>
+				<option nextdialogid = "" resultid = "0">That manual sounds familiar...</option>
+			</dialog>
+			
+			
+			
+			<dialog id = "24" actorname = "Enpisi" newdialogsection = "true">
+				<text>Careful now, don't make any noise here...</text>
+				<option nextdialogid = "" resultid = "0">I know.</option>
+			</dialog>
+			
+			
+			
+			<dialog id = "25" actorname = "Enpisi" newdialogsection = "true">
+				<text>You still have some strings right? You need a parachute to get across the gap here.</text>
+				<option nextdialogid = "26" resultid = "0">Uhh...nope.</option>
+				<option nextdialogid = "28" resultid = "0">Yeah. Remind me again how to use it once I made one?</option>
+			</dialog>
+			<dialog id = "26" actorname = "Enpisi">
+				<text>Have fun going all the way back to get those strings, LOL. Well, at least your fall just now made that thing drop - you can climb back here easily now.</text>
+				<option nextdialogid = "27" resultid = "0">...</option>
+			</dialog>
+			<dialog id = "27" actorname = "Enpisi">
+				<text>Right, I might as well teach you on how to use the parachute, since it's a pain for me to come back to you again later on. When in air, press [V] or the parachute quick slot key to deploy it, press the same key again to release it.</text>
+				<option nextdialogid = "" resultid = "0">Pain +9999</option>
+			</dialog>
+			<dialog id = "28" actorname = "Enpisi">
+				<text>When in air, press [V] or the parachute quick slot key to deploy it, press the same key again to release it.</text>
+				<option nextdialogid = "" resultid = "0">Okay, thanks.</option>
+			</dialog>
+			
+			
+			
+			<dialog id = "29" actorname = "Enpisi" newdialogsection = "true">
+				<text>You've already made it this far. I guess I've got nothing left to teach you then.</text>
+				<option nextdialogid = "30" resultid = "0">Huh? What are you talking about?</option>
+			</dialog>
+			<dialog id = "30" actorname = "Enpisi">
+				<text>See those plastic objects over there? Go push them down, climb on them while they're falling, and jump again to the platform above. This will be the final test to prepare you for the journey outside.</text>
+				<option nextdialogid = "" resultid = "0">...and just who set all this up?</option>
+			</dialog>
+			<dialog id = "31" actorname = "Enpisi">
+				<text>Hahaha, I wonder who indeed. Anyway I won't be guiding you anymore, good luck!</text>
+				<option nextdialogid = "" resultid = "0">Who else besides us are this small...</option>
+			</dialog>
+			
+			
+			
+			<dialog id = "32" actorname = "You" newdialogsection = "true">
+				<text>I've made it... The door should be just up ahead. Hope the Cake's still there.</text>
+				<option nextdialogid = "" resultid = "0"></option>
+			</dialog>
+		</dialogtree>    
+	</level>
+		
+	<level>
+		<dialogtree id = "0" gamelevelparent = "Level2">
+			<dialog id = "0" actorname = "You" newdialogsection = "true">
+				<text>There it is. The Cake must be in that box there...</text>
+				<option nextdialogid = "1" resultid = "0">I need to find a way to get there.</option>
+			</dialog>
+			<dialog id = "1" actorname = "You">
+				<text>The human here is moving about too much. I need to find a way to distract him before getting the Cake.</text>
+				<option nextdialogid = "2" resultid = "0">Hmm...</option>
+			</dialog>
+			<dialog id = "2" actorname = "Enpisi">
+				<text>Need any help?</text>
+				<option nextdialogid = "3" resultid = "0">I thought you were dead.</option>
+				<option nextdialogid = "3" resultid = "0">Wow, a fly's talking to me.</option>
+			</dialog>
+			<dialog id = "3" actorname = "Enpisi">
+				<text>How mean...Anyway, the shelf over there might contain something useful.</text>
+				<option nextdialogid = "" resultid = "0">Bye.</option>
+			</dialog>
+			
+			
+			
+			<dialog id = "2" actorname = "You" newdialogsection = "true">
+				<text>...</text>
+				<option nextdialogid = "" resultid = "0">...</option>
+			</dialog>
+		</dialogtree>
+	</level>
+</database>

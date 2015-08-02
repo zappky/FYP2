@@ -18,6 +18,10 @@ public class MainMenu : MonoBehaviour {
 
 	public AudioSource clickSound;
 
+	Text collectibleCt_lvl1;
+	Text collectibleCt_lvl2;
+	AchievementManager achievementMgr;
+
 	void Start () 
 	{
 		quitMenu = quitMenu.GetComponent<Canvas>();
@@ -39,6 +43,10 @@ public class MainMenu : MonoBehaviour {
 		optionB = optionB.GetComponent<Button>();
 		extraB = extraB.GetComponent<Button>();
 		exitB = exitB.GetComponent<Button>();
+
+		collectibleCt_lvl1 = achieveMenu.transform.FindChild("collectedItems").GetComponent<Text>();
+		collectibleCt_lvl2 = achieveMenu.transform.FindChild("collectedItems2").GetComponent<Text>();
+		achievementMgr = AchievementManager.Instance;
 	}
 
 	void DisableButton()
@@ -93,6 +101,9 @@ public class MainMenu : MonoBehaviour {
 	{
 		achieveMenu.enabled = true;
 		extraMenu.enabled = false;
+
+		collectibleCt_lvl1.text = "" + achievementMgr.GetCollectibleLevel("Level1").collectibleList.Count + "/3";
+		collectibleCt_lvl2.text = achievementMgr.GetCollectibleLevel("Level2").collectibleList.Count + "/3";
 	}
 
 	public void CreditPress()

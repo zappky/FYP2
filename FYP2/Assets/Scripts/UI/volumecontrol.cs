@@ -8,8 +8,8 @@ public class volumecontrol : MonoBehaviour
 	public static AudioSource BGM;
 	private GUISkin volumeslider;
 	public Vector2 pos;
-	public int width = 250;
-	public int height = 20;
+	public float width = 250;
+	public float height = 20;
 
 	public MainMenu MMscript;
 	public PauseMenu PMscript;
@@ -25,11 +25,13 @@ public class volumecontrol : MonoBehaviour
 			PMscript = GameObject.FindObjectOfType<PauseMenu>();
 		else
 			MMscript = GameObject.FindObjectOfType<MainMenu>();
+
+		width *= (float)Screen.width/Screen.height;
 	}
 
 	void adjustvolume()
 	{
-		hSliderValue = GUI.HorizontalSlider (new Rect((Screen.width  * 0.50f) - 200.0f, (Screen.height * 0.95f) - 400.0f, width, height), hSliderValue, 0.0f, 1.0f, volumeslider.GetStyle("horizontalslider"), volumeslider.GetStyle("horizontalsliderthumb"));
+		hSliderValue = GUI.HorizontalSlider (new Rect((Screen.width  * 0.5f) - width*0.5f, (Screen.height * 0.5f), width, height), hSliderValue, 0.0f, 1.0f, volumeslider.GetStyle("horizontalslider"), volumeslider.GetStyle("horizontalsliderthumb"));
 	}
 
 	void OnGUI()
