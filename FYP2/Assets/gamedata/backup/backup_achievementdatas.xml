@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <database>
 	<level id="0" name="Level1">
-		<collectibles />
+		<collectibles>
+		</collectibles>
 	</level>
 	<level id="1" name="Level2">
-		<collectibles />
+		<collectibles>
+		</collectibles>
 	</level>
 </database>
