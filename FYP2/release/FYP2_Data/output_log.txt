@@ -37,8 +37,8 @@ All persistent gameobject initialize complete =D
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 2da4 -> priority: 1 
-  Thread -> id: 2da8 -> priority: 1 
+  Thread -> id: 2a78 -> priority: 1 
+  Thread -> id: 3a70 -> priority: 1 
 Creating XML File in gamedata/backup
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
