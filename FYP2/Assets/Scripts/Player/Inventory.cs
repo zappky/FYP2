@@ -129,7 +129,7 @@ public class Inventory : MonoBehaviour {
 
 		}
 		toolTipRect.width = slotsize*5;
-		toolTipRect.height = toolTipRect.width;
+		toolTipRect.height = toolTipRect.width*0.5f;
 		dragItemIconRect.width = slotsize;
 		dragItemIconRect.height = dragItemIconRect.width;
 
@@ -699,7 +699,8 @@ public class Inventory : MonoBehaviour {
 			FpsMovement fpsMoveScript = GetComponent<FpsMovement>();
 			if(!fpsMoveScript.useParachute)
 			{
-				fpsMoveScript.ToggleParachute(true);
+				if(!GetComponent<CharacterController>().isGrounded)
+					fpsMoveScript.ToggleParachute(true);
 			}
 			else 						
 			{
@@ -970,7 +971,7 @@ public class Inventory : MonoBehaviour {
 			if(showtooltip == true && draggingitem == false)
 			{
 				toolTipRect.position = currentevent.mousePosition;
-				GUI.Box(toolTipRect,tooltip);
+				GUI.Box(toolTipRect,tooltip,skin.GetStyle("tooltip"));
 			}
 
 		}
@@ -979,11 +980,11 @@ public class Inventory : MonoBehaviour {
 	
 	string CreateToolTip(Item item)
 	{
-		return "Name: "+item.itemname+"\n Amount: "+ item.amount +"\n\n"+"Description: "+ item.description;	
+		return item.itemname+"\n Amount: "+ item.amount +"\n Weight: "+ item.CalculateCombinedWeight() +"\n\n\n"+"Description: "+ item.description;	
 	}
 	string CreateCraftToolTip(CraftingRecipe recipe)
 	{
-		return "Recipe Name: "+recipe.recipe_name+"\n Description: "+ recipe.description +"\n\n"+"Ingrediants: "+ recipe.StringIngrediants();	
+		return recipe.recipe_name+"\n Description: "+ recipe.description +"\n\n"+"Ingredients: "+ recipe.StringIngrediants();	
 	}
 	void DrawCrafting()
 	{

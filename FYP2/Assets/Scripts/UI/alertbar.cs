@@ -4,6 +4,7 @@ using System.Collections;
 
 public class alertbar : MonoBehaviour {
 
+	public bool display = true;
 	Transform bar;		//alertbar
 	Transform barBG;	// alertbar BG
 	EnemyManager AImanager;
@@ -20,6 +21,9 @@ public class alertbar : MonoBehaviour {
 
 	void Update () 
 	{
+		if(!display)
+			return;
+
 		// get alertness of nearest AI
 		float alertValue = AImanager.GetClosestAlertness();
 		float alarmedValue = AImanager.alarmedValue;

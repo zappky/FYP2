@@ -1,11 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\FpsMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UI\volumecontrol.cs">
     <Files>
-      <File FileName="Assets\Scripts\AI\EnemyManager.cs" Line="12" Column="34" />
-      <File FileName="Assets\Scripts\Player\FallResponse.cs" Line="7" Column="34" />
-      <File FileName="Assets\Scripts\Systems\DebugControl.cs" Line="17" Column="2" />
-      <File FileName="Assets\Scripts\Player\FpsMovement.cs" Line="38" Column="2" />
+      <File FileName="Assets\Scripts\UI\volumecontrol.cs" Line="22" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

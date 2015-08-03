@@ -19,7 +19,7 @@ public class volumecontrol : MonoBehaviour
 	{
 		BGM = this.GetComponent<AudioSource>();
 
-		volumeslider = Resources.Load ("slider") as GUISkin;
+		volumeslider = Resources.Load ("Skins/slider") as GUISkin;
 
 		if(LevelManager.Instance.CurrentLevelName == "Level1" || LevelManager.Instance.CurrentLevelName == "Level2")
 			PMscript = GameObject.FindObjectOfType<PauseMenu>();

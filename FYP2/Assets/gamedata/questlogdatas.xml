@@ -9,7 +9,6 @@
 	
 	<level>
 		<quest id = "0" name = "Grab the... Cake?"></quest>
-		<quest id = "1" name = "Grab the... Cake?"></quest>
-		<quest id = "2" name = "Return Safely"></quest>
+		<quest id = "1" name = "Return Safely"></quest>
 	</level>
 </database>

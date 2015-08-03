@@ -159,7 +159,15 @@
 			</dialog>
 			<dialog id="3" actorname="Enpisi">
 				<test>How mean...Anyway, the shelf over there might contain something useful.</test>
-				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">Bye.</option>
+				<option nextdialogid="4" nextdialogid_raw="4" resultid="0">Bye.</option>
+			</dialog>
+			<dialog id="4" actorname="Enpisi">
+				<test>Wait wait! Don't go yet, I still have one more, important thing to tell you.</test>
+				<option nextdialogid="5" nextdialogid_raw="5" resultid="0">...what is it now?</option>
+			</dialog>
+			<dialog id="5" actorname="Enpisi">
+				<test>The game isn't finished yet... hehe</test>
+				<option nextdialogid="" nextdialogid_raw="-1" resultid="0">=.=</option>
 			</dialog>
 			<dialog id="2" actorname="You">
 				<test>...</test>

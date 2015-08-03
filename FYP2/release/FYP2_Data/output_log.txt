@@ -12,7 +12,7 @@ Platform assembly: C:\Users\0000\Desktop\FYP2\FYP2\FYP2\release\FYP2_Data\Manage
 Loading C:\Users\0000\Desktop\FYP2\FYP2\FYP2\release\FYP2_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: C:\Users\0000\Desktop\FYP2\FYP2\FYP2\release\FYP2_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\0000\Desktop\FYP2\FYP2\FYP2\release\FYP2_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.040 seconds
+- Completed reload, in  0.039 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -37,15 +37,15 @@ All persistent gameobject initialize complete =D
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 40ec -> priority: 1 
-  Thread -> id: 3ffc -> priority: 1 
+  Thread -> id: 11d0 -> priority: 1 
+  Thread -> id: 2788 -> priority: 1 
 The referenced script on this Behaviour is missing!
  
 (Filename:  Line: 1713)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
 Shader 'Nature/Terrain/Standard': fallback shader 'Nature/Terrain/Diffuse' not found
-UnloadTime: 3.748818 ms
+UnloadTime: 3.663274 ms
 loading item datas
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
@@ -195,8 +195,1208 @@ All Game singeton gameobject initialize complete =D
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
 
 
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 3932.
-Total: 0.951103 ms (FindLiveObjects: 0.117604 ms CreateObjectMapping: 0.068852 ms MarkObjects: 0.605558 ms  DeleteObjects: 0.147968 ms)
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3963.
+Total: 0.976331 ms (FindLiveObjects: 0.102636 ms CreateObjectMapping: 0.069279 ms MarkObjects: 0.656874 ms  DeleteObjects: 0.147112 ms)
+
+Yarnhas null particleRender reference
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+load PREDEFINED inventory detected
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading  predefined Inventory save data
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Triggering dialog trigger: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+suspect value index check: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+suspect obj check: 0 (CheckPoint)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+some current dialog node save
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
+ 
+(Filename:  Line: 67)
+
+UnloadTime: 2.227216 ms
+All persistent gameobject initialize complete =D 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+
+Unloading 334 unused Assets to reduce memory usage. Loaded Objects now: 984.
+Total: 1.735843 ms (FindLiveObjects: 0.048752 ms CreateObjectMapping: 0.044048 ms MarkObjects: 0.637202 ms  DeleteObjects: 1.005839 ms)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1713)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.789019 ms
+current game level in quest manager:0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+WARNING: DuplicateQuestLogCheck with quest log id is over list value: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+All Game singeton gameobject initialize complete =D 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 3968.
+Total: 0.922019 ms (FindLiveObjects: 0.108623 ms CreateObjectMapping: 0.070562 ms MarkObjects: 0.597858 ms  DeleteObjects: 0.144546 ms)
+
+Yarnhas null particleRender reference
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+load PREDEFINED inventory detected
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading  predefined Inventory save data
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Triggering dialog trigger: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+suspect value index check: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+suspect obj check: 0 (CheckPoint)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+some current dialog node save
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ERROR: Unhandled Command code: additem
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Toggling debug Mode
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null texture passed to GUI.DrawTexture
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+DISCARDING ITEM: Capsule Ball amount:0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+ZERO ITEM detected: Capsule Ball amount:0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+nothing to craft
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+nothing to craft
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+True
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+False
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Inventory doesnt contain item: Parachuteuse item aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Inventory doesnt contain item: Parachuteuse item aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Inventory doesnt contain item: Parachuteuse item aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Triggering dialog trigger: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+suspect value index check: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+suspect obj check: 1 (CheckPoint)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+some current dialog node save
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+True
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+False
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+True
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+False
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+True
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+False
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Inventory doesnt contain item: Parachuteuse item aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading  player checkpoint save data
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading dialog interface datas
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading QuestManager datas
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+WARNING: DuplicateQuestLogCheck with quest log id is over list value: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1713)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.932135 ms
+All persistent gameobject initialize complete =D 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+current game level in quest manager:0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+WARNING: DuplicateQuestLogCheck with quest log id is over list value: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+All Game singeton gameobject initialize complete =D 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 3966.
+Total: 1.021662 ms (FindLiveObjects: 0.106485 ms CreateObjectMapping: 0.073556 ms MarkObjects: 0.743260 ms  DeleteObjects: 0.097932 ms)
+
+Yarnhas null particleRender reference
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+load from CONTINUE inventory detected
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading  player checkpoint save data
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading dialog interface datas
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading QuestManager datas
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+WARNING: DuplicateQuestLogCheck with quest log id is over list value: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Triggering dialog trigger: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+suspect value index check: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+suspect obj check: 1 (CheckPoint)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+some current dialog node save
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Inventory doesnt contain item: Parachuteuse item aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading  player checkpoint save data
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading dialog interface datas
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading QuestManager datas
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+WARNING: DuplicateQuestLogCheck with quest log id is over list value: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1713)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.888515 ms
+All persistent gameobject initialize complete =D 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+current game level in quest manager:0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+WARNING: DuplicateQuestLogCheck with quest log id is over list value: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+All Game singeton gameobject initialize complete =D 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 3966.
+Total: 1.053309 ms (FindLiveObjects: 0.095366 ms CreateObjectMapping: 0.071845 ms MarkObjects: 0.783032 ms  DeleteObjects: 0.102209 ms)
+
+Yarnhas null particleRender reference
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+load from CONTINUE inventory detected
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading  player checkpoint save data
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading dialog interface datas
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading QuestManager datas
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+WARNING: DuplicateQuestLogCheck with quest log id is over list value: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Triggering dialog trigger: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+suspect value index check: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+suspect obj check: 1 (CheckPoint)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+some current dialog node save
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Inventory doesnt contain item: Parachuteuse item aborted
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading  player checkpoint save data
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading dialog interface datas
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading QuestManager datas
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+WARNING: DuplicateQuestLogCheck with quest log id is over list value: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1713)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.882955 ms
+All persistent gameobject initialize complete =D 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+current game level in quest manager:0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+WARNING: DuplicateQuestLogCheck with quest log id is over list value: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+All Game singeton gameobject initialize complete =D 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 3966.
+Total: 1.019952 ms (FindLiveObjects: 0.103064 ms CreateObjectMapping: 0.066713 ms MarkObjects: 0.750103 ms  DeleteObjects: 0.100070 ms)
+
+Yarnhas null particleRender reference
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+load from CONTINUE inventory detected
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading  player checkpoint save data
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading dialog interface datas
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading QuestManager datas
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+WARNING: DuplicateQuestLogCheck with quest log id is over list value: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Triggering dialog trigger: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+suspect value index check: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+suspect obj check: 1 (CheckPoint)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+some current dialog node save
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+True
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+False
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+loading  predefined Inventory save data
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+The referenced script on this Behaviour is missing!
+ 
+(Filename:  Line: 1713)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.168627 ms
+All persistent gameobject initialize complete =D 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+current game level in quest manager:0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+WARNING: DuplicateQuestLogCheck with quest log id is over list value: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+All Game singeton gameobject initialize complete =D 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 3966.
+Total: 1.036202 ms (FindLiveObjects: 0.100498 ms CreateObjectMapping: 0.067996 ms MarkObjects: 0.767209 ms  DeleteObjects: 0.100498 ms)
 
 Yarnhas null particleRender reference
  
@@ -239,206 +1439,22 @@ Creating XML File in gamedata/backup
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogNode'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-Serialization depth limit exceeded at 'my_DialogOption'. There may be an object composition cycle in one or more of your serialized classes.
- 
-(Filename:  Line: 67)
-
-UnloadTime: 2.001422 ms
+UnloadTime: 1.931708 ms
 All persistent gameobject initialize complete =D 
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
 
 
-Unloading 332 unused Assets to reduce memory usage. Loaded Objects now: 957.
-Total: 1.669990 ms (FindLiveObjects: 0.077405 ms CreateObjectMapping: 0.030363 ms MarkObjects: 0.652172 ms  DeleteObjects: 0.909193 ms)
-
-player data path: C:/Users/0000/Desktop/FYP2/FYP2/FYP2/release/FYP2_Data/gamedata/backup/backup_checkpoint_playersave.xml
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
-
-loading  player checkpoint save data
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+Unloading 334 unused Assets to reduce memory usage. Loaded Objects now: 984.
+Total: 1.583171 ms (FindLiveObjects: 0.035922 ms CreateObjectMapping: 0.041054 ms MarkObjects: 0.649604 ms  DeleteObjects: 0.856588 ms)
 
 The referenced script on this Behaviour is missing!
  
 (Filename:  Line: 1713)
 
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.803990 ms
-current game level in quest manager:0
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.922874 ms
+current game level in quest manager:1
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
 
@@ -451,30 +1467,14 @@ All Game singeton gameobject initialize complete =D
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
 
 
-Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 3937.
-Total: 1.052885 ms (FindLiveObjects: 0.121881 ms CreateObjectMapping: 0.071418 ms MarkObjects: 0.694083 ms  DeleteObjects: 0.165074 ms)
+Unloading 78 unused Assets to reduce memory usage. Loaded Objects now: 2574.
+Total: 0.958797 ms (FindLiveObjects: 0.100926 ms CreateObjectMapping: 0.042337 ms MarkObjects: 0.651315 ms  DeleteObjects: 0.163791 ms)
 
-Yarnhas null particleRender reference
+load PREDEFINED inventory detected
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
 
-load from CONTINUE inventory detected
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
-
-loading  player checkpoint save data
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
-
-loading dialog interface datas
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
-
-loading QuestManager datas
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
-
-WARNING: DuplicateQuestLogCheck with quest log id is over list value: 0
+loading  predefined Inventory save data
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
 
@@ -506,15 +1506,67 @@ Creating XML File in gamedata/backup
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
 
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 3.742830 ms
+Look rotation viewing vector is zero
+ 
+(Filename:  Line: 71)
+
+suspect value index check: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+suspect obj check: 1 (CheckPoint)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null current dialog node save
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+suspect value index check: 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+suspect obj check: 2 (CheckPoint)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+null current dialog node save
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Creating XML File in gamedata/backup
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.120450 ms
 All persistent gameobject initialize complete =D 
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
 
 
-Unloading 332 unused Assets to reduce memory usage. Loaded Objects now: 957.
-Total: 1.672983 ms (FindLiveObjects: 0.065858 ms CreateObjectMapping: 0.030363 ms MarkObjects: 0.695365 ms  DeleteObjects: 0.880967 ms)
+Unloading 255 unused Assets to reduce memory usage. Loaded Objects now: 985.
+Total: 0.922019 ms (FindLiveObjects: 0.034212 ms CreateObjectMapping: 0.027797 ms MarkObjects: 0.636775 ms  DeleteObjects: 0.223234 ms)
 
 Creating XML File in gamedata/backup
  

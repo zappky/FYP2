@@ -78,6 +78,9 @@ public class QuestManager : MonoBehaviour {
 	public float notificaitonTimerLimit = 5.0f;//5 sec
 	public GUIStyle notificationlabelStyle;
 	public List<GUIStyle> questlogStyles = new List<GUIStyle>();
+	
+	public GUISkin skin;
+
 	public static QuestManager Instance
 	{
 		get
@@ -134,8 +137,10 @@ public class QuestManager : MonoBehaviour {
 
 			notificationlabelStyle = new GUIStyle();
 			notificationlabelStyle.normal.textColor = Color.white;
-			notificationlabelStyle.normal.background = (Texture2D)Resources.Load("Fonts/green");
+			notificationlabelStyle.normal.background = (Texture2D)Resources.Load("green");
 			notificationlabelStyle.alignment = TextAnchor.MiddleCenter;
+			
+			skin = (GUISkin)Resources.Load("Skins/UI");
 
 			initedBefore = true;
 		}
@@ -451,14 +456,14 @@ public class QuestManager : MonoBehaviour {
 			return;
 		if(display == true)
 		{
-
+			GUI.skin = skin;
 
 			if(ScreenManager.Instance.CheckAspectChanged() == true)
 			{
 				UpdateDisplayRect();
 			}
 
-			GUI.Box(questDisplayRect,"Objective");
+			GUI.Box(questDisplayRect,"Objective", skin.GetStyle("objective"));
 			for (int i = 0; i < questLogs.Count; ++i) 
 			{
 				int predictedSize = (int)(questLogRects[i].width/questLogs[i].questname.Length)*2;//the calcution isnt good enough to determine the nice fitting
@@ -466,7 +471,7 @@ public class QuestManager : MonoBehaviour {
 				{
 					questlogStyles[i].fontSize = predictedSize;
 				}
-				GUI.Box(questLogRects[i],questLogs[i].questname/*+ " : "*/+ questLogs[i].StringStatues(),questlogStyles[i]);
+				GUI.Box(questLogRects[i],questLogs[i].questname/*+ " : "*/+ questLogs[i].StringStatues(), skin.GetStyle("objectiveDesc"));//,questlogStyles[i]);
 
 		
 				//Vector2 temp = questlogStyles[i].CalcSize(new GUIContent(questLogs[i].questname));

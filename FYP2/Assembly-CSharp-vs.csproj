@@ -85,6 +85,7 @@
      <Compile Include="Assets\Scripts\UI\CastSlot.cs" />
      <Compile Include="Assets\Scripts\UI\DialogInterface.cs" />
      <Compile Include="Assets\Scripts\UI\HideCursorScript.cs" />
+     <Compile Include="Assets\Scripts\UI\HideUI.cs" />
      <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
      <Compile Include="Assets\Scripts\UI\MiniMap.cs" />
      <Compile Include="Assets\Scripts\UI\PauseMenu.cs" />
@@ -97,7 +98,6 @@
      <None Include="Assets\gamedata\backup\backup_craftdatas.xml" />
      <None Include="Assets\gamedata\gameleveldatas.xml" />
      <None Include="Assets\gamedata\backup\backup_vendordatas.xml" />
-     <None Include="Assets\gamedata\dump\mytest.xml" />
      <None Include="Assets\gamedata\questlogdatas.xml" />
      <None Include="Assets\gamedata\itemdatas.xml" />
      <None Include="Assets\gamedata\backup\backup_dialogdatas.xml" />

@@ -19,6 +19,8 @@ public class DialogInterface : MonoBehaviour {
 	
 	public my_DialogNode CurrentDialogNode = null;
 
+	public GUISkin skin;
+
 	private float personBoxHeight;
 	private float personBoxWidth;
 	private float optionHeight;
@@ -65,6 +67,8 @@ public class DialogInterface : MonoBehaviour {
 
 			personBox = new Rect (dialogBox.xMin,dialogBox.yMin - personBoxHeight,personBoxWidth,personBoxHeight);
 			initedBefore = true;
+
+			skin = (GUISkin)Resources.Load("Skins/UI");
 		}
 	}
 
@@ -164,6 +168,7 @@ public class DialogInterface : MonoBehaviour {
 	}
 	void OnGUI()
 	{
+
 		if(ScreenManager.Instance.CheckAspectChanged() == true)
 		{
 			UpdateDisplayRect();
@@ -173,6 +178,7 @@ public class DialogInterface : MonoBehaviour {
 			display = false;
 			return;
 		}
+
 		if(display == true)
 		{
 			if(CurrentDialogNode.nodeId < 0)
@@ -184,16 +190,13 @@ public class DialogInterface : MonoBehaviour {
 
 			Player.GetComponent<CastSlot>().display = false;
 			//cursorScript.toggle = true;
+			
+			GUI.skin = skin;
 
 			currentevent = Event.current;	
 
-			GUIStyle guiStyle = new GUIStyle(GUI.skin.box);
-			//guiStyle.font = Resources.Load<Font>("Fonts/POIRETONE-REGULAR");
-			//guiStyle.
-			guiStyle.wordWrap = true;
-
-			GUI.Box(dialogBox,CurrentDialogNode.text, guiStyle);
-			GUI.Box(personBox,CurrentDialogNode.actorName);
+			GUI.Box(dialogBox,CurrentDialogNode.text, skin.GetStyle("dialog"));
+			GUI.Box(personBox,CurrentDialogNode.actorName, skin.GetStyle("name"));
 			
 			if(CurrentDialogNode.options.Count >1)//meaning there are other link than a single process link
 			{
@@ -214,7 +217,7 @@ public class DialogInterface : MonoBehaviour {
 					optionWidth = dialogBox.width /CurrentDialogNode.options.Count;
 					
 					optionRects[i] = new Rect( (i) * optionWidth,dialogBox.yMax - optionHeight,optionWidth,optionHeight);
-					GUI.Box(optionRects[i],CurrentDialogNode.options[i].text);
+					GUI.Box(optionRects[i],CurrentDialogNode.options[i].text, skin.GetStyle("option"));
 					
 					if (optionRects[i].Contains (currentevent.mousePosition) ) //if mouse pointer is within option box
 					{
@@ -246,7 +249,7 @@ public class DialogInterface : MonoBehaviour {
 				optionHeight = dialogBox.height * 0.2f ;
 				optionWidth = dialogBox.width ;
 				optionRects[0] = new Rect( 0,dialogBox.yMax - optionHeight,optionWidth,optionHeight);
-				GUI.Box(optionRects[0],CurrentDialogNode.options[0].text);
+				GUI.Box(optionRects[0],CurrentDialogNode.options[0].text, skin.GetStyle("option"));
 			}
 		}
 	}

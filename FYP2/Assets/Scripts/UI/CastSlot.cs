@@ -139,7 +139,7 @@ public class CastSlot : MonoBehaviour {
 	}
 	void UpdateSlotSize()
 	{
-		slotSize = Screen.width *0.065f;
+		slotSize = Screen.width *0.05f;
 	}
 	void UpdateDisplayRect()
 	{
@@ -156,6 +156,8 @@ public class CastSlot : MonoBehaviour {
 		int index = 0;
 
 		labelRect = new Rect(slotsXstartposition - slotSize, slotsYstartposition ,slotSize,slotSize);
+		
+		GUI.color = new Color(1, 1, 1, 0.85f);
 		GUI.Box(labelRect,(currentSlotLayer+1).ToString(),labelStyle);
 
 		for (int x = 0; x < maxSlotsColumn; ++x) 
@@ -163,7 +165,6 @@ public class CastSlot : MonoBehaviour {
 			//Rect slotRect = new Rect(x*slotSize*slotsXpadding + slotsXstartposition ,slotsYstartposition ,slotSize,slotSize);
 			slotRect = new Rect(x*slotSize*slotsXpadding + slotsXstartposition , slotsYstartposition ,slotSize,slotSize);
 			GUI.Box(slotRect,(x+1).ToString(),skin.GetStyle("slot"));
-
 
 			if(slotsLayerList[currentSlotLayer].slots[x].id >= 0)//if slot contain an valid item
 			{

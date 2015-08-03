@@ -13,9 +13,13 @@ public class CSelect : MonoBehaviour {
 	public Inventory playerinventory;
 	private Interactable iScript = null;
 	Ray ray;
+	
+	public GUISkin skin;
 
 	// Use this for initialization
 	void Start () {
+		
+		skin = (GUISkin)Resources.Load("Skins/UI");
 		
 		playerinventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
 	}
@@ -56,10 +60,12 @@ public class CSelect : MonoBehaviour {
 	{
 		if (display == true) 
 		{
+			GUI.skin = skin;
+
 			if(onguihelper == true)
 			{
 				//Debug.Log (interacthelpertext.Length);
-				GUI.Box(new Rect(Screen.width*0.5f,Screen.height*0.95f,interacthelpertext.Length*6.0f,20.0f), interacthelpertext);
+				GUI.Box(new Rect(Screen.width*0.5f,Screen.height*0.5f,interacthelpertext.Length*6.0f,20.0f), interacthelpertext, skin.GetStyle("interact"));
 			}
 		}
 	}

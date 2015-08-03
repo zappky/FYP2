@@ -109,7 +109,8 @@ public class CTimer :MonoBehaviour {
 	public Rect timerRect;
 	public float timerWidth = 50.0f;
 	public float timerHeight = 20.0f;
-
+	
+	public GUISkin skin;
 
 	//public my_timedata resetTimer;
 	public my_timedata resetDelay = new my_timedata(0.0f,5.0f);//amount of wait time before reset timer.
@@ -160,6 +161,8 @@ public class CTimer :MonoBehaviour {
 				SetOperate(true);
 			break;
 		}
+		
+		skin = (GUISkin)Resources.Load("Skins/UI");
 	}
 	void UpdateTimerRect()
 	{
@@ -371,6 +374,7 @@ public class CTimer :MonoBehaviour {
 		{
 			if(display == true)
 			{
+				GUI.skin = skin;
 				if(ScreenManager.Instance.CheckAspectChanged() == true)
 				{
 					UpdateDisplayRect();
@@ -391,11 +395,11 @@ public class CTimer :MonoBehaviour {
 					
 					if(Mathf.Round(timer.second) <= 9.0f)
 					{
-						GUI.Box(timerRect,timer.minute.ToString("f0") + ":0" + timer.second.ToString("f0"));
+						GUI.Box(timerRect,timer.minute.ToString("f0") + ":0" + timer.second.ToString("f0"), skin.GetStyle("timer"));
 					}
 					else
 					{
-						GUI.Box(timerRect, timer.minute.ToString("f0") + ":" + timer.second.ToString("f0"));
+						GUI.Box(timerRect, timer.minute.ToString("f0") + ":" + timer.second.ToString("f0"), skin.GetStyle("timer"));
 					}
 				}break;
 				}

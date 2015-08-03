@@ -196,7 +196,15 @@
 			</dialog>
 			<dialog id = "3" actorname = "Enpisi">
 				<text>How mean...Anyway, the shelf over there might contain something useful.</text>
-				<option nextdialogid = "" resultid = "0">Bye.</option>
+				<option nextdialogid = "4" resultid = "0">Bye.</option>
+			</dialog>
+			<dialog id = "4" actorname = "Enpisi">
+				<text>Wait wait! Don't go yet, I still have one more, important thing to tell you.</text>
+				<option nextdialogid = "5" resultid = "0">...what is it now?</option>
+			</dialog>
+			<dialog id = "5" actorname = "Enpisi">
+				<text>The game isn't finished yet... hehe</text>
+				<option nextdialogid = "" resultid = "0">=.=</option>
 			</dialog>
 			
 			
